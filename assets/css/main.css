@@ -356,6 +356,7 @@
 
 .cart-modal-header .cart-modal-close-icon{
     font-size: 1.4rem;
+    color: #fff;
     padding: 8px;
 }
 .cart-modal-header .cart-modal-close-icon:hover {
@@ -639,6 +640,11 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.big_banner {
+    margin-bottom: 80px;
+}
+
 .policy_banner{
     height: 61.6px;
 }
@@ -661,7 +667,7 @@
     color: black;
 }
 .banner{
-    background: top center / cover no-repeat url('/assets/img/banner_img.jpeg');
+    background: top center / cover no-repeat url('../img/banner_img.jpeg');
     overflow-x: hidden;
     max-width: 100%;
     margin: auto;
@@ -672,7 +678,7 @@
 }
 .banner_content{
     display: flex;
-    color: #fff;
+    color: #fff !important;
     flex-direction: column;
     justify-content: center;
     align-items: center;

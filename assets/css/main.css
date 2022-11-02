@@ -645,9 +645,6 @@
     margin-bottom: 80px;
 }
 
-.policy_banner{
-    height: 61.6px;
-}
 .btn_banner{
     text-align: center;
     color: #fff;
@@ -671,7 +668,7 @@
     overflow-x: hidden;
     max-width: 100%;
     margin: auto;
-    padding-top: 29%;
+    padding-top: 30%;
     top: 80px;
     position: relative;
     height: 100%;
@@ -687,7 +684,8 @@
     bottom: 0;
     top:0;
     line-height: 16px;
-    left: 100px;
+    left: 80px;
+    height: 85%;
 }
 
 .banner_pretitle{
@@ -713,6 +711,8 @@
     display:flex;
     justify-content: space-around;
     align-items: center;
+    height: 61.6px;
+    
 }
 .policy_text{
     display: flex;

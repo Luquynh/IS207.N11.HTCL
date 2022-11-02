@@ -1,0 +1,151 @@
+@font-face {
+  font-family: 'SVN-Gotham';
+  src: url('./gotham/SVN-GothamBlackItalic.woff2') format('woff2'),
+    url('./gotham/SVN-GothamBlackItalic.woff') format('woff');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SVN-Gotham Book';
+  src: url('./gotham/SVN-GothamBook.woff2') format('woff2'),
+    url('./gotham/SVN-GothamBook.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SVN-Gotham';
+  src: url('./gotham/SVN-GothamBold.woff2') format('woff2'),
+    url('./gotham/SVN-GothamBold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SVN-Gotham';
+  src: url('./gotham/SVN-GothamMediumItalic.woff2') format('woff2'),
+    url('./gotham/SVN-GothamMediumItalic.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SVN-Gotham';
+  src: url('./gotham/SVN-GothamBlack.woff2') format('woff2'),
+    url('./gotham/SVN-GothamBlack.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SVN-Gotham Book';
+  src: url('./gotham/SVN-GothamBookItalic.woff2') format('woff2'),
+    url('./gotham/SVN-GothamBookItalic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SVN-Gotham';
+  src: url('./gotham/SVN-GothamLight.woff2') format('woff2'),
+    url('./gotham/SVN-GothamLight.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SVN-Gotham';
+  src: url('./gotham/SVN-GothamLight.woff2') format('woff2'),
+    url('./gotham/SVN-GothamLight.woff') format('woff');
+  /* //hack */
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SVN-Gotham';
+  src: url('./gotham/SVN-GothamThinItalic.woff2') format('woff2'),
+    url('./gotham/SVN-GothamThinItalic.woff') format('woff');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SVN-Gotham';
+  src: url('./gotham/SVN-GothamLightItalic.woff2') format('woff2'),
+    url('./gotham/SVN-GothamLightItalic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SVN-Gotham';
+  src: url('./gotham/SVN-GothamBoldItalic.woff2') format('woff2'),
+    url('./gotham/SVN-GothamBoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SVN-Gotham XLight';
+  src: url('./gotham/SVN-GothamXLightItalic.woff2') format('woff2'),
+    url('./gotham/SVN-GothamXLightItalic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SVN-Gotham XLight';
+  src: url('./gotham/SVN-GothamXLight.woff2') format('woff2'),
+    url('./gotham/SVN-GothamXLight.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SVN-Gotham Ultra';
+  src: url('./gotham/SVN-GothamUltra.woff2') format('woff2'),
+    url('./gotham/SVN-GothamUltra.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SVN-Gotham Ultra';
+  src: url('./gotham/SVN-GothamUltraItalic.woff2') format('woff2'),
+    url('./gotham/SVN-GothamUltraItalic.woff') format('woff');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SVN-Gotham';
+  src: url('./gotham/SVN-GothamThin.woff2') format('woff2'),
+    url('./gotham/SVN-GothamThin.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SVN-Gotham';
+  src: url('./gotham/SVN-GothamMedium.woff2') format('woff2'),
+    url('./gotham/SVN-GothamMedium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}

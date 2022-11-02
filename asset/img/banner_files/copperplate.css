@@ -1,0 +1,49 @@
+@font-face {
+  font-family: 'CopperplateGothic';
+  font-weight: bold;
+  src: url(copperplate/CopperplateGothic-Bold.eot);
+  src: url(copperplate/CopperplateGothic-Bold.eot?#iefix) format('embedded-opentype'),
+    url(copperplate/CopperplateGothic-Bold.woff2) format('woff2'),
+    url(copperplate/CopperplateGothic-Bold.woff) format('woff'),
+    url(copperplate/CopperplateGothic-Bold.ttf) format('truetype'),
+    url(copperplate/CopperplateGothic-Bold.svg#CopperplateGothic-Bold) format('svg');
+}
+@font-face {
+  font-family: 'CopperplateGothic';
+  font-weight: lighter;
+  src: url(copperplate/CopperplateGothic-Light.eot);
+  src: url(copperplate/CopperplateGothic-Light.eot?#iefix) format('embedded-opentype'),
+    url(copperplate/CopperplateGothic-Light.woff2) format('woff2'),
+    url(copperplate/CopperplateGothic-Light.woff) format('woff'),
+    url(copperplate/CopperplateGothic-Light.ttf) format('truetype'),
+    url(copperplate/CopperplateGothic-Light.svg#CopperplateGothic-Light) format('svg');
+}
+@font-face {
+  font-family: 'Copperplate';
+  font-weight: bold;
+  src: url(copperplate/Copperplate-Bold.eot);
+  src: url(copperplate/Copperplate-Bold.eot?#iefix) format('embedded-opentype'),
+    url(copperplate/Copperplate-Bold.woff2) format('woff2'),
+    url(copperplate/Copperplate-Bold.woff) format('woff'),
+    url(copperplate/Copperplate-Bold.ttf) format('truetype'),
+    url(copperplate/Copperplate-Bold.svg#Copperplate-Bold) format('svg');
+}
+@font-face {
+  font-family: 'Copperplate';
+  font-weight: lighter;
+  src: url(copperplate/Copperplate-Light.eot);
+  src: url(copperplate/Copperplate-Light.eot?#iefix) format('embedded-opentype'),
+    url(copperplate/Copperplate-Light.woff2) format('woff2'),
+    url(copperplate/Copperplate-Light.woff) format('woff'),
+    url(copperplate/Copperplate-Light.ttf) format('truetype'),
+    url(copperplate/Copperplate-Light.svg#Copperplate-Light) format('svg');
+}
+@font-face {
+  font-family: 'Copperplate';
+  src: url(copperplate/Copperplate-Regular.eot);
+  src: url(copperplate/Copperplate-Regular.eot?#iefix) format('embedded-opentype'),
+    url(copperplate/Copperplate-Regular.woff2) format('woff2'),
+    url(copperplate/Copperplate-Regular.woff) format('woff'),
+    url(copperplate/Copperplate-Regular.ttf) format('truetype'),
+    url(copperplate/Copperplate-Regular.svg#Copperplate-Regular) format('svg');
+}

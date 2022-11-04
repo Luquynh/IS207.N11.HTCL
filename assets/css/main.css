@@ -6,7 +6,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 2;
     text-transform: uppercase;
     text-align: center;
     border-bottom: 1px rgba(22,26,33,.2) solid !important; 
@@ -534,7 +534,7 @@
     background-color: var(--bg-color);
     animation: fadeIn_search ease-out 0.3s;
     display: none;
-    z-index: 5;
+    z-index: 1;
     justify-content: center;
 }
 

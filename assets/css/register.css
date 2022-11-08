@@ -1,0 +1,175 @@
+.register {
+    /* min-width: 620px;*/
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    font-weight: 500;
+}
+
+.register__header .register__header--title{
+    font-size: 3rem;
+    height: 80px;
+    line-height: 60px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.register__form {
+    min-width: 620px;
+    display: flex;
+    flex-direction: column;
+}
+
+.register__form-group {
+    position: relative;
+    width: 100%;
+    margin-bottom: 16px;
+}
+.register__form-group .register__label {
+    font-size: 1.6rem;
+    position: absolute;
+    padding: 0 6px;
+    left: 5px;
+    top: 50%;
+    pointer-events: none; /* quan trọng*/
+    transform: translateY(-50%);
+    background: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.register__form-group .register__input {
+    width: 100%;
+    height: 55px;
+    font-size: 1.6rem;
+    padding: 5px 20px;
+    color: #5c5c5c;
+    font-weight: 500;
+    border: 1.5px solid #dfdfdf;
+    border-radius: 5px;
+    /* appearance: none; */
+}
+.register__form-group input:focus {
+    border: 1px solid var(--text-color);
+    transition: all 0.3s ease-in-out;
+}
+.register__form-group input:focus + label, 
+.register__form-group input:valid + label {
+    top: 0px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+.register__form .gender {
+    display: flex;
+    width: 100%;
+}
+
+.gender .gender__input {
+    width: 50%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    margin-bottom: 16px;
+}
+
+.gender__input .gender__input--radio {
+    padding: 16px 16px;
+    margin-right: 16px;
+    margin-left: 16px;
+    width: 20px;
+    height: 20px;
+    background: #323232;
+}
+
+.register__input--address {
+    width: 100%;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+  .select-address {
+    position: relative;
+    display: flex;
+    width: 20em;
+    height: 40px;
+    line-height: 3;
+    background: #fff;
+    overflow: hidden;
+  }
+  .register__input--address-combobox {
+    flex: 1;
+    padding: 0 .5em;
+    color: #000;
+    cursor: pointer;
+    outline: none;
+    border: #dfdfdf 1px solid;
+    border-radius: 5px;
+  }
+
+  .register__input--address-combobox:focus{
+    border: 2px solid var(--text-color);
+  }
+
+  /* thiết kế dấu mũi tên */
+  .select-address::after {
+    content: '\25BC';
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    right: 2px;
+    padding: 0 1em;
+    background: #fff;
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+    color: #000;
+    line-height: 40px;
+    border-left: 0.5px solid #ededed;
+    outline: none;
+  }
+  
+.register__footer {
+    font-size: 1.2rem;
+    min-width: 620px;
+    /* height: auto; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register__footer--text {
+    color: #ccc
+}
+.register__footer--text a {
+    text-decoration: none;
+    color: blue;
+    opacity: 0.9;
+}
+
+.register__footer--text a:hover {
+    opacity: 0.6;
+}
+
+.register__footer--btn {
+    height: 55px;
+    width: 50%;
+    background-color: var(--text-color);
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.register__footer--btn:hover {
+    color: #ccc;
+    cursor: pointer;
+}

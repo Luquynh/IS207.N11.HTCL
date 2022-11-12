@@ -22,8 +22,9 @@
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/register.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>Document</title>
+    <title>CURNON</title>
 </head>
 <body>
     <div id="main">
@@ -130,7 +131,9 @@
     
                 <ul class="nav-list logo">
                     <li class="nav-item">
-                        <img src="https://curnonwatch.com/_next/static/media/logo.cc5d661a.svg" alt="logo">
+                        <a href="./index.html">
+                            <img src="https://curnonwatch.com/_next/static/media/logo.cc5d661a.svg" alt="logo">
+                        </a>
                     </li>
                 </ul>
     
@@ -152,12 +155,9 @@
             </div>
     
         </div>
-        <!-- Overlay effect -->
-        <label for="" class="overlay"></label>
+
         <!-- modal cart -->
-        <!-- <input type="checkbox" hidden name="" class="cart-input" id="cart-modal__check" >-->
-        <!-- <label for="cart-modal__check" class="nav-overlay__cart"></label>  -->
-    
+        <div for="" class="overlay__cart"></div>
         <div class="cart-modal">
             <div class="cart-modal-container">
                 <header class="cart-modal-header">
@@ -173,11 +173,12 @@
         </div>
     
         <!-- Modal Search  -->
-        <!-- <input type="checkbox" hidden name="" class="search-check"id="search-modal__check"> -->
-        <!-- <label for="search-modal__check" class="nav-overlay__search"></label> -->
-    
+        <div for="" class="overlay__search"></div>
         <div class="search-modal">
             <div class="search-container">
+                <label href="">
+                    <i class="search-icon__close ti-close"></i>
+                </label>
                 <header class="search-header">
                     <input type="search" name="search" id="" class="search-input" placeholder="Nhập từ khóa...">
                     <!-- <label for="search-modal__check" class="search-icon__close">Đóng</label> -->
@@ -192,15 +193,10 @@
                     <p class="search-body__item">Mykonos</p>
                 </div>
             </div>
-    
-            <label for="search-modal__check" class="search-icon__close">Đóng</label>
         </div>
     
         <!-- Modal Account -->
-    
-        <!-- <input type="checkbox" hidden name="" class="account-check"id="account-modal__check"> -->
-        <!-- <label for="account-modal__check" class="nav-overlay__account"></label> -->
-    
+        <div for="" class="overlay__account"></div>
         <div class="account-modal">
             <div class="account__container">
                 <label for="account-modal__check" href="">
@@ -212,12 +208,26 @@
                     </h3>
                     <p class="account__header--text">Nhập email và mật khẩu của bạn:</p>
                 </header>
-    
-                <div action="" class="account__body">
-                    <input type="email" name="" id="" class="account__body--input" placeholder="Email">
-                    <input type="password" name="" id="" class="account__body--input" placeholder="Mật khẩu">
-                    <button class="account__body--login-btn">Đăng nhập</button>
-                </div>
+                
+                <!-- Dùng lại register.css của register form  -->
+                <form action="" class="account__body"> 
+                    <div class="register__form-group">
+                        <input type="text" name="" id="" class="register__input" required>
+                        <label for="" class="register__label">Email</label>
+                    </div>
+
+                    <div class="register__form-group">
+                        <input type="password" name="" id="" class="register__input" required>
+                        <label for="" class="register__label">Mật khẩu</label>
+                    </div>
+                    
+                    <div class="register__form-group center-colum ">
+                        <p class="register__footer--text">This site is protected by reCAPTCHA and the Google 
+                            <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and 
+                            <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.</p>
+                        <input class="register__footer--btn" type="submit" value="Đăng nhập">
+                    </div>
+                </form>
     
                 <footer class="account__footer">
                     <p class="account__footer--text">Khách hàng mới? 
@@ -415,8 +425,10 @@
             for(i = 0; i< arr.length; i++) {
                 if (arr[i] == $(event.target).attr('name')) {
                     $('.' + arr[i]).css('display', 'flex');
+                    $('.overlay').show();
                 } else {
                     $('.' + arr[i]).hide();
+                    $('.overlay').hide();
                 }
             }
         })
@@ -427,6 +439,8 @@
 
             $('.watch-list-women').hide();
             $('.watch-chain-women').hide();
+
+            $('.overlay').hide();
 
         }
     })
@@ -440,20 +454,20 @@
         $('html').click(function(event){
             if ($(event.target).closest('#cart').length > 0){
                 $('.cart-modal').css('display', 'block');
-                $('.nav-overlay__cart').show();
+                $('.overlay__cart').show();
             }
             else {
                 $('.cart-modal').css('display', 'none');
-                $('.nav-overlay__cart').hide();
+                $('.overlay__cart').hide();
             }
         })
         $('.cart-modal-close-icon').click(function(){
             $('.cart-modal').css('display', 'none');
-            $('.nav-overlay__cart').hide();
+            $('.overlay__cart').hide();
         })
-        $('.nav-overlay__cart').click(function(){
+        $('.overlay__cart').click(function(){
             $('.cart-modal').css('display', 'none');
-            $('.nav-overlay__cart').hide();
+            $('.overlay__cart').hide();
         })
         $('.cart-modal').click(function(event){
             event.stopPropagation();
@@ -462,42 +476,42 @@
         $('html').click(function(event){
             if ($(event.target).closest('#search').length > 0){
                 $('.search-modal').css('display', 'block');
-                $('.nav-overlay__search').show();
+                $('.overlay__search').show();
             }
             else {
                 $('.search-modal').css('display', 'none');
-                $('.nav-overlay__search').hide();
+                $('.overlay__search').hide();
             }
         })
         $('.search-icon__close').click(function(){
             $('.search-modal').css('display', 'none');
-            $('.nav-overlay__search').hide();
+            $('.overlay__search').hide();
         })
-        $('.nav-overlay__search').click(function(){
+        $('.overlay__search').click(function(){
             $('.search-modal').css('display', 'none');
-            $('.nav-overlay__search').hide();
+            $('.overlay__search').hide();
         })
         $('.search-modal').click(function(event){
             event.stopPropagation();
         })
-        //Account
+        // //Account
         $('html').click(function(event){
             if ($(event.target).closest('#account').length > 0){
                 $('.account-modal').css('display', 'flex');
-                $('.nav-overlay__account').show();
+                $('.overlay__account').show();
             }
             else {
                 $('.account-modal').css('display', 'none');
-                $('.nav-overlay__account').hide();
+                $('.overlay__account').hide();
             }
         })
         $('.account__header--close').click(function(){
             $('.account-modal').css('display', 'none');
-            $('.nav-overlay__account').hide();
+            $('.overlay__account').hide();
         })
-        $('.nav-overlay__search').click(function(){
+        $('.overlay__account').click(function(){
             $('.account-modal').css('display', 'none');
-            $('.nav-overlay__account').hide();
+            $('.overlay__account').hide();
         })
         $('.account-modal').click(function(event){
             event.stopPropagation();

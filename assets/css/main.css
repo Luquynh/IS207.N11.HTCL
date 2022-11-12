@@ -132,15 +132,20 @@
     animation: tranforms ease-in 0.3s;
     z-index: 5;
     background-color: var(--bg-color);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
-.overlay {
-    top: 80px;
+.overlay,
+.overlay__search,
+.overlay__cart,
+.overlay__account {
     position: fixed;
+    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
-    bottom: 0;
     background-color: rgba(0, 0, 0, 0.3);
     display: none;
+    z-index: 1;
 }
 .nav-item__left:hover .nav-item__product--tab{
     display: flex;
@@ -306,19 +311,15 @@
     cursor: pointer;
 }
 
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
+
+/* Modal */
 .cart-modal {
     position: fixed;
     right: 0;
     top: 0;
     bottom: 0;
-    /* transform: translateX(100%); */
     display: none;
-    z-index: 2;
+    z-index: 5;
     animation: transform_cart 0.2s linear;
 }
 
@@ -403,23 +404,6 @@
     padding: 8px;
 }
 
-/* .cart-input:checked~.cart-modal {
-    display: flex;
-    transform: translateX(0%);
-} */
-
-.nav-overlay__cart,
-.nav-overlay__search,
-.nav-overlay__account {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-    display: none;
-    animation: fadeIn_overlay 0.3s linear;
-}
 @keyframes fadeIn_overlay {
     from {
         opacity: 0;
@@ -440,9 +424,9 @@
     right: 0;
     left: 0;
     height: auto;
-    background-color: var(--bg-color);
-    animation: fadeIn_search 0.3s linear;
-    z-index: 5;
+    background-color: #fff;
+    animation: fadeIn_search 0.3s ease-in-out;
+    z-index: 1;
     display: none;
 }
 @keyframes fadeIn_search {
@@ -483,11 +467,10 @@
     border-radius: 0;
 }
 .search-icon__close {
-    text-transform: uppercase;
-    font-size: 1.4rem;
+    text-decoration: none;
+    font-size: 1.6rem;
     font-weight: 500;
     color: #000;
-    border-bottom: 1px #000 solid;
     position: absolute;
     right: 180px;
     top: 40px;
@@ -508,16 +491,7 @@
     margin: 14px 0 20px;
     text-align: center;
 }
-.nav-overlay__search {
-    position: fixed;
-    top:0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-    display: none;
-    /* animation: fadeIn_overlay 0.3s linear; */
-}
+
 /* .search-check:checked~ .search-modal {
     display: block;
 }
@@ -531,7 +505,7 @@
     left: 0;
     right: 0;
     top: 80px;
-    background-color: var(--bg-color);
+    background-color: #fff;
     animation: fadeIn_search ease-out 0.3s;
     display: none;
     z-index: 1;
@@ -552,7 +526,7 @@
     top: 0;
     margin-top: 8px;
     padding: 12px 12px;
-    font-size: 2rem;
+    font-size: 1.6rem;
     opacity: 0.7;
 }
 .account__header--close:hover{

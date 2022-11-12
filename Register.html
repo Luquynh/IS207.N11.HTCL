@@ -10,277 +10,514 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/register.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/eedc58b116.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <title>Tạo tài khoản</title>
 </head>
 <body>
-    <div class="register">
-        <header class="register__header">
-            <h1 class="register__header--title">Tạo tài khoản</h1>
-        </header>
-        <form action="" class="register__form">
-            <div class="register__form-group">
-                <input type="text" name="" id="" class="register__input" required>
-                <label for="" class="register__label">Họ tên</label>
-            </div>
+    <div class="main">
+        <div id="header">
+            <div id="navbar">
+                <ul class="nav-list nav-list__left">
 
-            <div class="register__form-group">
-                <input type="text" name="" id="" class="register__input" required>
-                <label for="" class="register__label">Số điện thoại</label>
+                    <li class="nav-item nav-item__left " >Nam giới
+                            <div class="nav-item__product--tab">
+                                <button name="watch-list-men" class="nav-item__product--tab-link">Đồng hồ
+                                    <!-- <i class="nav-item__product--tab-icon ti-arrow-circle-right"></i> -->
+                                </button>
+                                <button name="watch-chain-men"class="nav-item__product--tab-link">Dây đồng hồ
+                                    <!-- <i class="nav-item__product--tab-icon ti-arrow-circle-right"></i> -->
+                                </button>
+                            </div>
+    
+                            <div class="subnav-product__tabcontent watch-list-men" id="watch-list-men">
+                                <a href="" class="watch-item">
+                                    <img class="watch-img" src="./assets/img/men/KASHMIR.png" alt="">
+                                    <p class="watch-name">KASHMIR</p>
+                                </a>
+                                <a href="" class="watch-item">
+                                    <img  class="watch-img" src="./assets/img/men/COLOSSEUM.png" alt="">
+                                    <p class="watch-name">COLOSSEUM</p>
+                                </a>
+                                <a href="" class="watch-item">
+                                    <img  class="watch-img" src="./assets/img/men/WEIMAR.png" alt="">
+                                    <p class="watch-name">WEIMAR</p>
+                                </a>
+                                <a href="" class="watch-item">
+                                    <img  class="watch-img" src="./assets/img/men/FUTURA.png" alt="">
+                                    <p class="watch-name">FUTURA</p>
+                                </a>
+                                <a href="" class="watch-item watch-name all">Xem tất cả
+                                    <br>
+                                    <i class="all-icon ti-arrow-right"></i>
+                                </a>
+                            </div>
+                            
+                            <div class="subnav-product__tabcontent watch-chain-men" id="watch-chain-men">
+                                <img src="./assets/img/men/watch-chain-men.jpg" alt="Dây đồng hồ" class="watch-chain--img">
+                                <div class="watch-chain--container">
+                                    <p class="watch-chain--text">
+                                        Từ nay bạn đã có thể biến một thành nhiều chiếc đồng hồ để thay đổi phong cách thời trang của bản thân với dây đồng hồ Curnon.
+                                    </p>
+                                    
+                                    <button class="watch-chain--purchase-btn">MUA NGAY</button>
+                                </div>
+                            </div>
+                            
+                    </li>
+                    
+                    <li class="nav-item nav-item__left">Nữ giới
+                        <div class="nav-item__product--tab">
+                            <button name="watch-list-women" index='0' class="nav-item__product--tab-link">Đồng hồ
+                                <!-- <i class="nav-item__product--tab-icon ti-right"></i> -->
+                            </button>
+                            <button name="watch-chain-women"index='1' class="nav-item__product--tab-link">Dây đồng hồ
+                                <!-- <i class="nav-item__product--tab-icon ti-arrow-circle-right"></i> -->
+                            </button>
+                        </div>
+    
+                        <div class="subnav-product__tabcontent watch-list-women" >
+                            <a href="" class="watch-item">
+                                <img class="watch-img" src="./assets/img/women/MELISSANI.png" alt="">
+                                <p class="watch-name">MELISSANI</p>
+                            </a>
+                            <a href="" class="watch-item">
+                                <img  class="watch-img" src="./assets/img/women/HAMILTON.png" alt="">
+                                <p class="watch-name">HAMILTON</p>
+                            </a>
+                            <a href="" class="watch-item">
+                                <img  class="watch-img" src="./assets/img/women/MORAINE.png" alt="">
+                                <p class="watch-name">MORAINE</p>
+                            </a>
+                            <a href="" class="watch-item">
+                                <img  class="watch-img" src="./assets/img/women/SANTORINI.png" alt="">
+                                <p class="watch-name">SANTORINI</p>
+                            </a>
+                            <a href="" class="watch-item watch-name all">Xem tất cả
+                                <br>
+                                <i class="all-icon ti-arrow-right"></i>
+                            </a>
+                        </div>
+    
+                        <div class="subnav-product__tabcontent watch-chain-women" id="watch-chain-men">
+                            <img src="./assets/img/women/watch-chain-women.jpg" alt="Dây đồng hồ" class="watch-chain--img">
+                            <div class="watch-chain--container">
+                                <p class="watch-chain--text">
+                                    Biến một thành nhiều chiếc đồng hồ để thay đổi phong cách thời trang của bản thân với dây đồng hồ Curnon.
+                                </p>
+                                <button class="watch-chain--purchase-btn">MUA NGAY</button>
+                            </div>
+                        </div>
+                    </li>
+    
+                    <li class="dropup nav-item nav-item__left">About
+                        <div class="nav-item dropup-content">
+                            <a href="">Blog</a>
+                            <a href="">Về chúng tôi</a>
+                        </div>
+                    </li>
+                </ul>
+    
+                <ul class="nav-list logo">
+                    <li class="nav-item">
+                        <a href="./index.html">
+                            <img src="https://curnonwatch.com/_next/static/media/logo.cc5d661a.svg" alt="logo">
+                        </a>
+                    </li>
+                </ul>
+    
+                <ul class="nav-list nav-list__right">
+                    <label for="cart-modal__check" class="nav-item" id="cart">
+                        Giỏ hàng
+                        <i class="nav-item__link ti-bag"></i>
+                    </label>
+                    <label for="account-modal__check" class="nav-item" id="account">
+                        <a class="nav-item__link">
+                            <i class="ti-user"></i>
+                        </a>
+                    </label>
+                    <label for="search-modal__check" class="nav-item" id="search">
+                        <i class="nav-item__link ti-search"></i>
+                    </label>
+                </ul>
+                
             </div>
-
-            <div class="register__form-group">
-                <input type="email" name="" id="" class="register__input" required>
-                <label for="" class="register__label">Email</label>
-            </div>
-
-            <div class="gender">
-                <div class="gender__input">
-                    <input type="radio" name="gender" id="" class="gender__input--radio" value="0">
-                    <label class="gender__input--label">Nam</label>
-                </div>
-                <div class="gender__input">
-                    <input type="radio" name="gender" id="" class="gender__input--radio" value="1">
-                    <label class="gender__input--label">Nữ</label>
-                </div>
-            </div>
-
-            <div class="register__form-group">
-                <input type="datetime" name="" id="" class="register__input" required>
-                <label for="" class="register__label">Ngày sinh</label>
-            </div>
-
-            <div class="register__form-group">
-                <input type="password" name="" id="" class="register__input" required>
-                <label for="" class="register__label">Mật khẩu</label>
-            </div>
-            <div class="register__input--address">
-                <div class="select-address">
-                    <select class="register__input--address-combobox" id="customer_shipping_province" name="customer_shipping_province">
-                        <option data-code="null" value="null" selected="" selected disabled>
-                        Chọn tỉnh / thành </option>
-                                    <option data-code="HC" value="50">Hồ Chí Minh</option>
-                                    <option data-code="HI" value="1">Hà Nội</option>
-                                    <option data-code="DA" value="32">Đà Nẵng</option>
-                                    <option data-code="AG" value="57">An Giang</option>
-                                    <option data-code="BV" value="49">Bà Rịa - Vũng Tàu</option>
-                                    <option data-code="BI" value="47">Bình Dương</option>
-                                    <option data-code="BP" value="45">Bình Phước</option>
-                                    <option data-code="BU" value="39">Bình Thuận</option>
-                                    <option data-code="BD" value="35">Bình Định</option>
-                                    <option data-code="BL" value="62">Bạc Liêu</option>
-                                    <option data-code="BG" value="15">Bắc Giang</option>
-                                    <option data-code="BK" value="4">Bắc Kạn</option>
-                                    <option data-code="BN" value="18">Bắc Ninh</option>
-                                    <option data-code="BT" value="53">Bến Tre</option>
-                                    <option data-code="CB" value="3">Cao Bằng</option>
-                                    <option data-code="CM" value="63">Cà Mau</option>
-                                    <option data-code="CN" value="59">Cần Thơ</option>
-                                    <option data-code="GL" value="41">Gia Lai</option>
-                                
-                            
-                                
-                                    <option data-code="HG" value="2">Hà Giang</option>
-                                
-                            
-                                
-                                    <option data-code="HM" value="23">Hà Nam</option>
-                                
-                            
-                                
-                                    <option data-code="HT" value="28">Hà Tĩnh</option>
-                                
-                            
-                                
-                                    <option data-code="HO" value="11">Hòa Bình</option>
-                                
-                            
-                                
-                                    <option data-code="HY" value="21">Hưng Yên</option>
-                                
-                            
-                                
-                                    <option data-code="HD" value="19">Hải Dương</option>
-                                
-                            
-                                
-                                    <option data-code="HP" value="20">Hải Phòng</option>
-                                
-                            
-                                
-                                    <option data-code="HU" value="60">Hậu Giang</option>
-                                
-                            
-                                
-                                    <option data-code="KH" value="37">Khánh Hòa</option>
-                                
-                            
-                                
-                                    <option data-code="KG" value="58">Kiên Giang</option>
-                                
-                            
-                                
-                                    <option data-code="KT" value="40">Kon Tum</option>
-                                
-                            
-                                
-                                    <option data-code="LI" value="8">Lai Châu</option>
-                                
-                            
-                                
-                                    <option data-code="LA" value="51">Long An</option>
-                                
-                            
-                                
-                                    <option data-code="LO" value="6">Lào Cai</option>
-                                
-                            
-                                
-                                    <option data-code="LD" value="44">Lâm Đồng</option>
-                                
-                            
-                                
-                                    <option data-code="LS" value="13">Lạng Sơn</option>
-                                
-                            
-                                
-                                    <option data-code="ND" value="24">Nam Định</option>
-                                
-                            
-                                
-                                    <option data-code="NA" value="27">Nghệ An</option>
-                                
-                            
-                                
-                                    <option data-code="NB" value="25">Ninh Bình</option>
-                                
-                            
-                                
-                                    <option data-code="NT" value="38">Ninh Thuận</option>
-                                
-                            
-                                
-                                    <option data-code="PT" value="16">Phú Thọ</option>
-                                
-                            
-                                
-                                    <option data-code="PY" value="36">Phú Yên</option>
-                                
-                            
-                                
-                                    <option data-code="QB" value="29">Quảng Bình</option>
-                                
-                            
-                                
-                                    <option data-code="QM" value="33">Quảng Nam</option>
-                                
-                            
-                                
-                                    <option data-code="QG" value="34">Quảng Ngãi</option>
-                                
-                            
-                                
-                                    <option data-code="QN" value="14">Quảng Ninh</option>
-                                
-                            
-                                
-                                    <option data-code="QT" value="30">Quảng Trị</option>
-                                
-                            
-                                
-                                    <option data-code="ST" value="61">Sóc Trăng</option>
-                                
-                            
-                                
-                                    <option data-code="SL" value="9">Sơn La</option>
-                                
-                            
-                                
-                                    <option data-code="TH" value="26">Thanh Hóa</option>
-                                
-                            
-                                
-                                    <option data-code="TB" value="22">Thái Bình</option>
-                                
-                            
-                                
-                                    <option data-code="TY" value="12">Thái Nguyên</option>
-                                
-                            
-                                
-                                    <option data-code="TT" value="31">Thừa Thiên Huế</option>
-                                
-                            
-                                
-                                    <option data-code="TG" value="52">Tiền Giang</option>
-                                
-                            
-                                
-                                    <option data-code="TV" value="54">Trà Vinh</option>
-                                
-                            
-                                
-                                    <option data-code="TQ" value="5">Tuyên Quang</option>
-                                
-                            
-                                
-                                    <option data-code="TN" value="46">Tây Ninh</option>
-                                
-                            
-                                
-                                    <option data-code="VL" value="55">Vĩnh Long</option>
-                                
-                            
-                                
-                                    <option data-code="VT" value="17">Vĩnh Phúc</option>
-                                
-                            
-                                
-                                    <option data-code="YB" value="10">Yên Bái</option>
-                                
-                            
-                                
-                                    <option data-code="DB" value="7">Điện Biên</option>
-                                
-                            
-                                
-                                    <option data-code="DC" value="42">Đắk Lắk</option>
-                                
-                            
-                                
-                                    <option data-code="DO" value="43">Đắk Nông</option>
-                                
-                            
-                                
-                                    <option data-code="DN" value="48">Đồng Nai</option>
-                                
-                            
-                                
-                                    <option data-code="DT" value="56">Đồng Tháp</option>
-                    </select>
-                </div>
-
-                <div class="select-address">
-                    <select class="register__input--address-combobox" name="" id="">
-                        <option value="null" selected disabled>Chọn quận / huyện</option>
-                    </select>
-                </div>
-
-                <div class="select-address">
-                    <select class="register__input--address-combobox" name="" id="">
-                        <option value="null" selected disabled>Chọn phường / xã</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="register__form-group">
-                <input type="text" name="" id="" class="register__input" required>
-                <label for="" class="register__label">Địa chỉ</label>
-            </div>
-        </form>
-        <div class="register__footer">
-            <p class="register__footer--text">This site is protected by reCAPTCHA and the Google <a href="">Privacy Policy</a> and <a href="">Terms of Service</a> apply.</p>
-            <input class="register__footer--btn" type="submit" value="Đăng ký">
+    
         </div>
+        
+        
+        <!-- modal cart -->
+        <div for="" class="overlay__cart"></div>
+        <div class="cart-modal">
+            <div class="cart-modal-container">
+                <header class="cart-modal-header">
+                    Giỏ hàng của bạn
+                    <label for="cart-modal__check"><i class="cart-modal-close-icon ti-close"></i></label>
+                </header>
+    
+                <div class="cart-modal-body">
+                    <p class="cart-info">Hiện đang chưa có sản phẩm nào trong giỏ hàng của bạn.</p>
+                    <button class="cart-buy-btn">Mua hàng ngay <i class="cart-buy-icon ti-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Modal Search  -->
+        <div for="" class="overlay__search"></div>
+        <div class="search-modal">
+            <div class="search-container">
+                <header class="search-header">
+                    <input type="search" name="search" id="" class="search-input" placeholder="Nhập từ khóa...">
+                    <!-- <label for="search-modal__check" class="search-icon__close">Đóng</label> -->
+                </header>
+                
+                <div class="search-body">
+                    <p class="search-body__title">Các từ khóa nổi bật:</p>
+                    <p class="search-body__item">Kashmir</p>
+                    <p class="search-body__item">Colosseum</p>
+                    <p class="search-body__item">Florenge</p>
+                    <p class="search-body__item">Jackie Cuff</p>
+                    <p class="search-body__item">Mykonos</p>
+                </div>
+            </div>
+            
+            <label href="">
+                <i class="search-icon__close ti-close"></i>
+            </label>
+        </div>
+    
+        <!-- Modal Account -->
+        <div for="" class="overlay__account"></div>
+        <div class="account-modal">
+            <div class="account__container">
+                <label for="account-modal__check" href="">
+                    <i class="account__header--close ti-close"></i>
+                </label>
+                <header class="account__header">
+                    <h3 class="account__header--title">
+                        Đăng nhập tài khoản
+                    </h3>
+                    <p class="account__header--text">Nhập email và mật khẩu của bạn:</p>
+                </header>
+    
+                <form action="" class="account__body">
+                    <div class="register__form-group">
+                        <input type="text" name="" id="" class="register__input" required>
+                        <label for="" class="register__label">Email</label>
+                    </div>
+
+                    <div class="register__form-group">
+                        <input type="password" name="" id="" class="register__input" required>
+                        <label for="" class="register__label">Mật khẩu</label>
+                    </div>
+                    
+                    <div class="register__form-group center-colum ">
+                        <p class="register__footer--text">This site is protected by reCAPTCHA and the Google <a href="">Privacy Policy</a> and <a href="">Terms of Service</a> apply.</p>
+                        <input class="register__footer--btn" type="submit" value="Đăng nhập">
+                    </div>
+                </form>
+    
+                <footer class="account__footer">
+                    <p class="account__footer--text">Khách hàng mới? 
+                        <a href="./Register.html" class="account__footer--link" >Tạo tài khoản</a>
+                    </p>
+    
+                    <p class="account__footer--text">Quên mật khẩu? 
+                        <a href="" class="account__footer--link">Khôi phục mật khẩu</a>
+                    </p>
+                </footer>
+            </div>
+        </div>
+    
+        <div class="register">
+            <div class="register__container">
+                <header class="register__header">
+                    <h1 class="register__header--title">Tạo tài khoản</h1>
+                </header>
+                <div class="register__form">
+
+                    <form action="" class="">
+                        <div class="register__form-group">
+                            <input type="text" name="" id="" class="register__input" required>
+                            <label for="" class="register__label">Họ tên</label>
+                        </div>
+            
+                        <div class="register__form-group">
+                            <input type="text" name="" id="" class="register__input" required>
+                            <label for="" class="register__label">Số điện thoại</label>
+                        </div>
+            
+                        <div class="register__form-group">
+                            <input type="text" name="" id="" class="register__input" required>
+                            <label for="" class="register__label">Email</label>
+                        </div>
+            
+                        <div class="gender">
+                            <div class="gender__input">
+                                <input type="radio" name="gender" id="" class="gender__input--radio" value="0">
+                                <label class="gender__input--label">Nam</label>
+                            </div>
+                            <div class="gender__input">
+                                <input type="radio" name="gender" id="" class="gender__input--radio" value="1">
+                                <label class="gender__input--label">Nữ</label>
+                            </div>
+                        </div>
+            
+                        <div class="register__form-group">
+                            <input type="datetime" name="" id="" class="register__input" required>
+                            <label for="" class="register__label">Ngày sinh</label>
+                        </div>
+            
+                        <div class="register__form-group">
+                            <input type="password" name="" id="" class="register__input" required>
+                            <label for="" class="register__label">Mật khẩu</label>
+                        </div>
+                        <div class="register__input--address">
+                            <div class="select-address mr-12">
+                                <select class="register__input--address-combobox" id="city">
+                                    <option value="" selected>Chọn tỉnh / thành </option>
+                                </select>
+                            </div>
+            
+                            <div class="select-address mr-12">
+                                <select class="register__input--address-combobox" name="" id="district">
+                                    <option value="" selected>Chọn quận / huyện</option>
+                                </select>
+                            </div>
+            
+                            <div class="select-address">
+                                <select class="register__input--address-combobox" name="" id="ward">
+                                    <option value="" selected>Chọn phường / xã</option>
+                                </select>
+                            </div>
+                        </div>
+            
+                        <div class="register__form-group">
+                            <input type="text" name="" id="" class="register__input" required>
+                            <label for="" class="register__label">Địa chỉ</label>
+                        </div>
+
+                        <div class="register__form-group center-colum">
+                            <p class="register__footer--text">This site is protected by reCAPTCHA and the Google 
+                                <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and 
+                                <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.</p>
+                            <input class="register__footer--btn" type="submit" value="Đăng ký">
+                        </div>
+                    </form>
+                </div>
+                <div class="register__footer">
+                    <a href="./index.html" class="register__footer--btn-back">
+                        <i class="register__footer--btn-back-icon fa-solid fa-arrow-left-long"></i>
+                        Quay lại trang chủ
+                    </a>
+                </div>
+            </div>
+        </div>
+    
+        <div id="footer">
+            <div class="row footer_content">
+                <div class="col col-fourth footer_box ">
+                    <img src="https://curnonwatch.com/_next/static/media/logo.cc5d661a.svg" alt="" >
+                    <div class="footer_info mt-16"><a href="" class="footer_link">Về chúng tôi</a></div>
+                    <div class="footer_info mt-16"><a href="" class="footer_link">Chính sách vận chuyển</a></div>
+                    <div class="footer_info mt-16"><a href="" class="footer_link">Đổi trả & Bảo hành</a></div>
+                </div>
+                <div class="col col-fourth footer_box mt-32">
+                    <div class="footer_title">LIÊN LẠC</div>
+                    <div class="footer_info mt-16">cskh@curnonwatch.com</div>
+                    <div class="footer_info mt-16">0868889103</div>
+                    <div class="row mt-16">
+                        <img src="https://curnonwatch.com/_next/static/media/icon_fb.ba9f5d29.svg" alt="" class="col col-fourth footer_social ">
+                        <img src="https://curnonwatch.com/_next/static/media/icon_insta.9353e397.svg" alt="" class="col col-fourth footer_social ">
+                        <img src="https://curnonwatch.com/_next/static/media/icon_youtube.dee9fd66.svg" alt="" class="col col-fourth footer_social ">
+                    </div>
+                </div>
+                <div class="col col-fourth  footer_box mt-32">
+                    <div class="footer_title">HANOI STORES</div>
+                    <div class="footer_info mt-16">33 Hàm Long, Hoàn Kiếm.</div>
+                    <div class="footer_info mt-16">9 B7 Phạm Ngọc Thạch, Đống Đa.</div>
+                    <div class="footer_info mt-16">173C Kim Mã, Ba Đình.</div>
+                </div>
+                <div class="col col-fourth footer_box mt-32">
+                    <div class="footer_title">DỊCH VỤ THANH TOÁN</div>
+                    <div class="row mt-16">  
+                        <img src="https://curnonwatch.com/_next/static/media/momo.1a8e86d8.png" alt="" class="col col-fourth footer_pay ">
+                        <img src="https://curnonwatch.com/_next/static/media/vnpay.3fa45c06.png" alt="" class="col col-fourth footer_pay ">
+                        <img src="https://curnonwatch.com/_next/static/media/cod.10bcbd91.png" alt="" class="col col-fourth footer_pay">
+                        <img src="https://curnonwatch.com/_next/static/media/fundiin.34ef01d3.png" alt="" class="col col-fourth footer_pay">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer_copyright">
+                <div class="cpright_text">
+                    <p class="cpright_title">© 2021 - Bản quyền của CTCP PHÁT TRIỂN SẢN PHẨM SÁNG TẠO VIỆT</p>
+                    <p class="cpright_line">Giấy chứng nhận ĐKKD số 0108150321 do Sở Kế hoạch và Đầu tư Thành phố Hà Nội cấp ngày 29/01/2018 123C Thụy Khuê, Tây Hồ, Hà Nội</p>
+                </div>
+                <div class="img_tick"> <img src="https://curnonwatch.com/_next/static/media/certificate.e07e4993.png" alt="" ></div>
+                
+            </div>
+        </div>  
+
     </div>
 </body>
+<script>
+    
+    // Chọn tỉnh huyện phường xã trong form đăng ký
+    var citis = document.getElementById("city");
+    var districts = document.getElementById("district");
+    var wards = document.getElementById("ward");
+    var Parameter = {
+    url: "./data/data.json", //Đường dẫn đến file chứa dữ liệu hoặc api do backend cung cấp
+    method: "GET", //do backend cung cấp
+    responseType: "application/json", //kiểu Dữ liệu trả về do backend cung cấp
+    };
+    //gọi ajax = axios => nó trả về cho chúng ta là một promise
+    var promise = axios(Parameter);
+    //Xử lý khi request thành công
+    promise.then(function (result) {
+    renderCity(result.data);
+    });
+
+    function renderCity(data) {
+    for (const x of data) {
+        citis.options[citis.options.length] = new Option(x.Name, x.Id);
+    }
+
+    // xứ lý khi thay đổi tỉnh thành thì sẽ hiển thị ra quận huyện thuộc tỉnh thành đó
+    citis.onchange = function () {
+        district.length = 1;
+        ward.length = 1;
+        if(this.value != ""){
+        const result = data.filter(n => n.Id === this.value);
+
+        for (const k of result[0].Districts) {
+            district.options[district.options.length] = new Option(k.Name, k.Id);
+        }
+        }
+    };
+
+    // xứ lý khi thay đổi quận huyện thì sẽ hiển thị ra phường xã thuộc quận huyện đó
+    district.onchange = function () {
+        ward.length = 1;
+        const dataCity = data.filter((n) => n.Id === citis.value);
+        if (this.value != "") {
+        const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
+
+        for (const w of dataWards) {
+            wards.options[wards.options.length] = new Option(w.Name, w.Id);
+        }
+        }
+    };
+    }
+</script>
+
+<script>
+    //Navbar hover tab
+    $('html').mouseover(function(event){
+        var arr = ["watch-list-men", 'watch-chain-men', 'watch-list-women', 'watch-chain-women'];
+        var i;
+        $('.nav-item__product--tab-link').mouseover(function(event){
+            for(i = 0; i< arr.length; i++) {
+                if (arr[i] == $(event.target).attr('name')) {
+                    $('.' + arr[i]).css('display', 'flex');
+                    $('.overlay').show();
+                } else {
+                    $('.' + arr[i]).hide();
+                    $('.overlay').hide();
+                }
+            }
+        })
+
+        if (jQuery.inArray($(event.target).attr('name'), arr) == -1){
+            $('.watch-list-men').hide();
+            $('.watch-chain-men').hide();
+
+            $('.watch-list-women').hide();
+            $('.watch-chain-women').hide();
+
+            $('.overlay').hide();
+
+        }
+    })
+    $('.subnav-product__tabcontent').mouseover(function(event){
+        event.stopPropagation();
+    })
+
+    //Modal
+    $(document).ready(function(){
+        // Cart modal
+        $('html').click(function(event){
+            if ($(event.target).closest('#cart').length > 0){
+                $('.cart-modal').css('display', 'block');
+                $('.overlay__cart').show();
+            }
+            else {
+                $('.cart-modal').css('display', 'none');
+                $('.overlay__cart').hide();
+            }
+        })
+        $('.cart-modal-close-icon').click(function(){
+            $('.cart-modal').css('display', 'none');
+            $('.overlay__cart').hide();
+        })
+        $('.overlay__cart').click(function(){
+            $('.cart-modal').css('display', 'none');
+            $('.overlay__cart').hide();
+        })
+        $('.cart-modal').click(function(event){
+            event.stopPropagation();
+        })
+        //Search modal 
+        $('html').click(function(event){
+            if ($(event.target).closest('#search').length > 0){
+                $('.search-modal').css('display', 'block');
+                $('.overlay__search').show();
+            }
+            else {
+                $('.search-modal').css('display', 'none');
+                $('.overlay__search').hide();
+            }
+        })
+        $('.search-icon__close').click(function(){
+            $('.search-modal').css('display', 'none');
+            $('.overlay__search').hide();
+        })
+        $('.overlay__search').click(function(){
+            $('.search-modal').css('display', 'none');
+            $('.overlay__search').hide();
+        })
+        $('.search-modal').click(function(event){
+            event.stopPropagation();
+        })
+        // //Account
+        $('html').click(function(event){
+            if ($(event.target).closest('#account').length > 0){
+                $('.account-modal').css('display', 'flex');
+                $('.overlay__account').show();
+            }
+            else {
+                $('.account-modal').css('display', 'none');
+                $('.overlay__account').hide();
+            }
+        })
+        $('.account__header--close').click(function(){
+            $('.account-modal').css('display', 'none');
+            $('.overlay__account').hide();
+        })
+        $('.overlay__account').click(function(){
+            $('.account-modal').css('display', 'none');
+            $('.overlay__account').hide();
+        })
+        $('.account-modal').click(function(event){
+            event.stopPropagation();
+        })
+    })
+
+</script>
 </html>

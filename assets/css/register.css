@@ -1,12 +1,21 @@
 .register {
-    /* min-width: 620px;*/
-    width: 100%;
+    position: relative;
+    /* top: 0; */
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+.register__container {
+    position: relative;
+    top: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     justify-content: space-around;
     font-weight: 500;
+    background-color: #fff;
+    padding: 32px 0;
 }
 
 .register__header .register__header--title{
@@ -15,11 +24,11 @@
     line-height: 60px;
     text-align: center;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 900;
 }
 
 .register__form {
-    min-width: 620px;
+    margin: auto;
     display: flex;
     flex-direction: column;
 }
@@ -43,14 +52,13 @@
 
 .register__form-group .register__input {
     width: 100%;
-    height: 55px;
+    height: 50px;
     font-size: 1.6rem;
     padding: 5px 20px;
     color: #5c5c5c;
     font-weight: 500;
     border: 1.5px solid #dfdfdf;
     border-radius: 5px;
-    /* appearance: none; */
 }
 .register__form-group input:focus {
     border: 1px solid var(--text-color);
@@ -96,11 +104,13 @@
     position: relative;
     display: flex;
     width: 20em;
-    height: 40px;
+    height: 50px;
     line-height: 3;
     background: #fff;
     overflow: hidden;
+    justify-content: space-between;
   }
+
   .register__input--address-combobox {
     flex: 1;
     padding: 0 .5em;
@@ -130,22 +140,25 @@
     -o-transition: .25s all ease;
     transition: .25s all ease;
     color: #000;
-    line-height: 40px;
+    line-height: 50px;
     border-left: 0.5px solid #ededed;
     outline: none;
   }
-  
+.center-colum {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .register__footer {
     font-size: 1.2rem;
-    min-width: 620px;
-    /* height: auto; */
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .register__footer--text {
-    color: #ccc
+    color: #ccc;
 }
 .register__footer--text a {
     text-decoration: none;
@@ -158,18 +171,34 @@
 }
 
 .register__footer--btn {
-    height: 55px;
+    height: 50px;
     width: 50%;
     background-color: var(--text-color);
     color: #fff;
     font-size: 1.6rem;
     font-weight: 600;
     text-transform: uppercase;
+    border-radius: 3px;
     margin-top: 16px;
-    margin-bottom: 16px;
 }
 
 .register__footer--btn:hover {
     color: #ccc;
     cursor: pointer;
+}
+
+.register__footer--btn-back {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-color);
+    padding: 16px 16px;
+}
+
+.register__footer--btn-back:hover {
+    opacity: 0.7;
+}
+.register__footer--btn-back-icon {
+    color: #000;
+    margin-right: 8px;
 }

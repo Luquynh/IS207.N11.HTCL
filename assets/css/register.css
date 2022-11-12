@@ -6,6 +6,7 @@
     bottom: 0;
 }
 .register__container {
+    min-width: 620px;
     position: relative;
     top: 80px;
     display: flex;
@@ -28,6 +29,7 @@
 }
 
 .register__form {
+    min-width: 620px;
     margin: auto;
     display: flex;
     flex-direction: column;

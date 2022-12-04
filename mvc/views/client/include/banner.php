@@ -4,7 +4,7 @@
                         <div class="banner_pretitle">Happy Women's Day</div>
                         <div class="banner_title">ALLWAYS BY YOUR SIDE</div>
                         <div class="banner_subtitle">By 1 Get 1 Free</div>
-                        <a href="#" class="btn_banner">GET 5% OFF</a>
+                        <a href="#" class="btn_banner">SHOP NOW</a>
                     </div>
                 
                     <div class="policy_banner">

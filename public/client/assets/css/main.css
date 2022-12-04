@@ -628,7 +628,7 @@
     font-size: 14px;
     border: 1px solid #f8f7f4;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: bolder;
     line-height: 14px;
     letter-spacing: -.02em;
     transition: all .3s ease;

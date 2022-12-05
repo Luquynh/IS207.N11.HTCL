@@ -115,6 +115,7 @@
 
   .register__input--address-combobox {
     flex: 1;
+    width: 30%;
     padding: 0 .5em;
     color: #000;
     cursor: pointer;

@@ -1,6 +1,0 @@
-
-window[window["TiktokAnalyticsObject"]].instance("C4J2PGGASI8C5G6I3830").setAdvancedMatchingAvailableProperties({"email":true,"phone_number":true,"auto_email":false,"auto_phone_number":false});
-window[window["TiktokAnalyticsObject"]].instance("C4J2PGGASI8C5G6I3830").setPixelInfo && window[window["TiktokAnalyticsObject"]].instance("C4J2PGGASI8C5G6I3830").setPixelInfo({status: 0, name: "Curnon website", advertiserID: "7000036704774045698", setupMode: 1, partner: "", is_onsite: false });
-window[window["TiktokAnalyticsObject"]].setPCMDomain && window[window["TiktokAnalyticsObject"]].setPCMDomain("curnonwatch.com");
-window[window["TiktokAnalyticsObject"]].setPCMConfig && window[window["TiktokAnalyticsObject"]].setPCMConfig([]);
-window[window["TiktokAnalyticsObject"]].enableFirstPartyCookie && window[window["TiktokAnalyticsObject"]].enableFirstPartyCookie(true);

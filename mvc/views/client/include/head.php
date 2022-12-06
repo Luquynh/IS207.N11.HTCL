@@ -8,7 +8,7 @@
     <!-- <link rel="stylesheet" href="views/assets/css/responsive_triet.css"> -->
 
     
-    <link rel="stylesheet" href="public/client/assets/font/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="<?=base?>public/client/assets/font/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/eedc58b116.js" crossorigin="anonymous"></script>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="public/client/assets/css/responsive_triet.css">
     <link rel="stylesheet" href="public/client/assets/css/register.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
     <title>CURNON</title>
     <style>
     <?php 
@@ -32,6 +34,7 @@
     include "public/client/assets/css/main_triet.css";
     include "public/client/assets/css/responsive_triet.css";
     include "public/client/assets/css/register.css";
+    include "public/client/assets/font/themify-icons/themify-icons.css";
     
     ?>
     </style>

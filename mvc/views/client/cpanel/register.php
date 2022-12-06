@@ -90,9 +90,14 @@
                     </form>
                 </div>
                 <div class="register__footer">
-                    <a href="<?=base?>" class="register__footer--btn-back">
-                        <i class="register__footer--btn-back-icon fa-solid fa-arrow-left-long"></i>
+                    <a href="<?=base?>" class="register__footer--item">
+                        <i class="register__footer-icon fa-solid fa-arrow-left-long"></i>
                         Quay lại trang chủ
+                    </a>
+
+                    <a href="<?=base?>login/login" class="register__footer--item">
+                        Đăng nhập
+                        <i class="register__footer-icon fa-solid fa-arrow-right-long"></i>
                     </a>
                 </div>
             </div>

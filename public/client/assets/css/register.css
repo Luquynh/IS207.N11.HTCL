@@ -1,13 +1,14 @@
 .register {
     position: relative;
-    /* top: 0; */
+    top: 80px;
     right: 0;
     left: 0;
-    bottom: 0;
+    /* bottom: 0; */
+    background-color: rgb(236, 235, 234);
 }
 .register__container {
-    min-width: 620px;
-    position: relative;
+    width: 800px;
+    /* position: absolute; */
     top: 80px;
     display: flex;
     flex-direction: column;
@@ -17,6 +18,9 @@
     font-weight: 500;
     background-color: #fff;
     padding: 32px 0;
+    margin: auto;
+    /* margin-top: 24px; */
+    border-radius: 5px;
 }
 
 .register__header .register__header--title{
@@ -61,6 +65,20 @@
     font-weight: 500;
     border: 1.5px solid #dfdfdf;
     border-radius: 5px;
+}
+
+/* Login form */
+
+#togglePassword {
+    cursor: pointer;
+    position: absolute;
+    /* margin-left: -30px; */
+    left: 90%;
+    top: 0;
+    bottom: 0;
+    font-size: 1.6rem;
+    line-height: 50px;
+    padding: 0 8px;
 }
 .register__form-group input:focus {
     border: 1px solid var(--text-color);
@@ -156,7 +174,7 @@
 .register__footer {
     font-size: 1.2rem;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
 }
 
@@ -190,7 +208,7 @@
     cursor: pointer;
 }
 
-.register__footer--btn-back {
+.register__footer--item {
     text-decoration: none;
     font-size: 1.2rem;
     font-weight: 500;
@@ -198,10 +216,11 @@
     padding: 16px 16px;
 }
 
-.register__footer--btn-back:hover {
+.register__footer--item:hover {
     opacity: 0.7;
 }
-.register__footer--btn-back-icon {
+.register__footer-icon {
     color: #000;
     margin-right: 8px;
+    margin-left: 8px;
 }

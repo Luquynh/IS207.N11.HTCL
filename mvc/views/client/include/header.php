@@ -104,7 +104,7 @@
     
                 <ul class="nav-list logo">
                     <li class="nav-item">
-                        <a href="#">
+                        <a href="<?=base?>">
                             <img src="https://curnonwatch.com/_next/static/media/logo.cc5d661a.svg" alt="logo">
                         </a>
                     </li>

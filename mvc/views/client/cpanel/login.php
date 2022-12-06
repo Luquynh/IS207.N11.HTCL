@@ -33,8 +33,9 @@
                     </div>
 
                     <div class="register__form-group">
-                        <input type="password" name="" id="" class="register__input" required>
+                        <input type="password" name="" id="id_password" class="register__input" required>
                         <label for="" class="register__label">Mật khẩu</label>
+                        <i class="fa-regular fa-eye-slash" id="togglePassword"></i>
                     </div>
                     
                     <div class="register__form-group center-colum ">
@@ -62,3 +63,17 @@
     ?>
 	<!--/Footer-->
 </body>
+
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#id_password');
+
+    togglePassword.addEventListener('click', function (e) {
+        // toggle the eye slash icon
+        // this.classList.remove('fa-eye');
+        this.classList.toggle('fa-eye');
+        // toggle the type attribute
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+});
+</script>

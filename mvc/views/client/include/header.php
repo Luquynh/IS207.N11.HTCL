@@ -16,19 +16,19 @@
     
                             <div class="subnav-product__tabcontent watch-list-men" id="watch-list-men">
                                 <a href="" class="watch-item">
-                                    <img class="watch-img" src="public/client/assets/img/men/KASHMIR.png" alt="">
+                                    <img class="watch-img" src="<?=base?>public/client/assets/img/men/KASHMIR.png" alt="">
                                     <p class="watch-name">KASHMIR</p>
                                 </a>
                                 <a href="" class="watch-item">
-                                    <img  class="watch-img" src="public/client/assets/img/men/COLOSSEUM.png" alt="">
+                                    <img  class="watch-img" src="<?=base?>public/client/assets/img/men/COLOSSEUM.png" alt="">
                                     <p class="watch-name">COLOSSEUM</p>
                                 </a>
                                 <a href="" class="watch-item">
-                                    <img  class="watch-img" src="public/client/assets/img/men/WEIMAR.png" alt="">
+                                    <img  class="watch-img" src="<?=base?>public/client/assets/img/men/WEIMAR.png" alt="">
                                     <p class="watch-name">WEIMAR</p>
                                 </a>
                                 <a href="" class="watch-item">
-                                    <img  class="watch-img" src="public/client/assets/img/men/FUTURA.png" alt="">
+                                    <img  class="watch-img" src="<?=base?>public/client/assets/img/men/FUTURA.png" alt="">
                                     <p class="watch-name">FUTURA</p>
                                 </a>
                                 <a href="" class="watch-item watch-name all">Xem tất cả
@@ -38,7 +38,7 @@
                             </div>
                             
                             <div class="subnav-product__tabcontent watch-chain-men" id="watch-chain-men">
-                                <img src="public/client/assets/img/men/watch-chain-men.jpg" alt="Dây đồng hồ" class="watch-chain--img">
+                                <img src="<?=base?>public/client/assets/img/men/watch-chain-men.jpg" alt="Dây đồng hồ" class="watch-chain--img">
                                 <div class="watch-chain--container">
                                     <p class="watch-chain--text">
                                         Từ nay bạn đã có thể biến một thành nhiều chiếc đồng hồ để thay đổi phong cách thời trang của bản thân với dây đồng hồ Curnon.
@@ -62,19 +62,19 @@
     
                         <div class="subnav-product__tabcontent watch-list-women" >
                             <a href="" class="watch-item">
-                                <img class="watch-img" src="public/client/assets/img/women/MELISSANI.png" alt="">
+                                <img class="watch-img" src="<?=base?>public/client/assets/img/women/MELISSANI.png" alt="">
                                 <p class="watch-name">MELISSANI</p>
                             </a>
                             <a href="" class="watch-item">
-                                <img  class="watch-img" src="public/client/assets/img/women/HAMILTON.png" alt="">
+                                <img  class="watch-img" src="<?=base?>public/client/assets/img/women/HAMILTON.png" alt="">
                                 <p class="watch-name">HAMILTON</p>
                             </a>
                             <a href="" class="watch-item">
-                                <img  class="watch-img" src="public/client/assets/img/women/MORAINE.png" alt="">
+                                <img  class="watch-img" src="<?=base?>public/client/assets/img/women/MORAINE.png" alt="">
                                 <p class="watch-name">MORAINE</p>
                             </a>
                             <a href="" class="watch-item">
-                                <img  class="watch-img" src="public/client/assets/img/women/SANTORINI.png" alt="">
+                                <img  class="watch-img" src="<?=base?>public/client/assets/img/women/SANTORINI.png" alt="">
                                 <p class="watch-name">SANTORINI</p>
                             </a>
                             <a href="" class="watch-item watch-name all">Xem tất cả
@@ -84,7 +84,7 @@
                         </div>
     
                         <div class="subnav-product__tabcontent watch-chain-women" id="watch-chain-men">
-                            <img src="public/client/assets/img/women/watch-chain-women.jpg" alt="Dây đồng hồ" class="watch-chain--img">
+                            <img src="<?=base?>public/client/assets/img/women/watch-chain-women.jpg" alt="Dây đồng hồ" class="watch-chain--img">
                             <div class="watch-chain--container">
                                 <p class="watch-chain--text">
                                     Biến một thành nhiều chiếc đồng hồ để thay đổi phong cách thời trang của bản thân với dây đồng hồ Curnon.
@@ -116,7 +116,7 @@
                         <i class="nav-item__link ti-bag"></i>
                     </label>
                     <label for="account-modal__check" class="nav-item" id="account">
-                        <a class="nav-item__link">
+                        <a class="nav-item__link" href="<?=base?>login/login">
                             <i class="ti-user"></i>
                         </a>
                     </label>
@@ -168,8 +168,8 @@
         </div>
     
         <!-- Modal Account -->
-        <div for="" class="overlay__account"></div>
-        <div class="account-modal">
+        <!-- <div for="" class="overlay__account"></div> -->
+        <!-- <div class="account-modal">
             <div class="account__container">
                 <label for="account-modal__check" href="">
                     <i class="account__header--close ti-close"></i>
@@ -208,8 +208,9 @@
                     </p>
                 </footer>
             </div>
-        </div>
-        <script>
+        </div> -->
+
+<script>
           $('html').mouseover(function(event){
         var arr = ["watch-list-men", 'watch-chain-men', 'watch-list-women', 'watch-chain-women'];
         var i;
@@ -287,27 +288,27 @@
             event.stopPropagation();
         })
         // //Account
-        $('html').click(function(event){
-            if ($(event.target).closest('#account').length > 0){
-                $('.account-modal').css('display', 'flex');
-                $('.overlay__account').show();
-            }
-            else {
-                $('.account-modal').css('display', 'none');
-                $('.overlay__account').hide();
-            }
-        })
-        $('.account__header--close').click(function(){
-            $('.account-modal').css('display', 'none');
-            $('.overlay__account').hide();
-        })
-        $('.overlay__account').click(function(){
-            $('.account-modal').css('display', 'none');
-            $('.overlay__account').hide();
-        })
-        $('.account-modal').click(function(event){
-            event.stopPropagation();
-        })
+        // $('html').click(function(event){
+        //     if ($(event.target).closest('#account').length > 0){
+        //         $('.account-modal').css('display', 'flex');
+        //         $('.overlay__account').show();
+        //     }
+        //     else {
+        //         $('.account-modal').css('display', 'none');
+        //         $('.overlay__account').hide();
+        //     }
+        // })
+        // $('.account__header--close').click(function(){
+        //     $('.account-modal').css('display', 'none');
+        //     $('.overlay__account').hide();
+        // })
+        // $('.overlay__account').click(function(){
+        //     $('.account-modal').css('display', 'none');
+        //     $('.overlay__account').hide();
+        // })
+        // $('.account-modal').click(function(event){
+        //     event.stopPropagation();
+        // })
     })
 
-    </script>
+</script>

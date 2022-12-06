@@ -1,6 +1,6 @@
 <?php
 class register extends Controller{
-   var $categorymodel;
+   var $registermodel;
     function __construct()
         {
             // $this->commonmodel = $this->ModelCommon("commonmodel");
@@ -8,8 +8,8 @@ class register extends Controller{
             // $this->slider = $this->ModelClient("slidermodel");
             // $this->checkoutmodel = $this->ModelClient("checkoutmodel");
         }
-    function show(){
-        $this->ViewClient("masterlayout",[]);
+    function register(){
+        $this->ViewClient("register",[]);
     }
     
 }

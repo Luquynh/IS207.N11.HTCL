@@ -136,8 +136,7 @@
 }
 .overlay,
 .overlay__search,
-.overlay__cart,
-.overlay__account {
+.overlay__cart {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -500,15 +499,15 @@
 } */
 
 .account-modal {
-    position: fixed;
+    /* position: fixed; */
+    margin-top: 68px;
     height: auto;
     left: 0;
     right: 0;
     top: 80px;
     background-color: #fff;
     animation: fadeIn_search ease-out 0.3s;
-    display: none;
-    z-index: 1;
+    display: flex;
     justify-content: center;
 }
 
@@ -638,7 +637,7 @@
     color: black;
 }
 .big_banner .banner{
-    background: top center / cover no-repeat url('./public/client/assets/img/banner_img.jpeg');
+    background: top center / cover no-repeat url('<?=base?>/public/client/assets/img/banner_img.jpeg');
     overflow-x: hidden;
     max-width: 100%;
     margin: auto;

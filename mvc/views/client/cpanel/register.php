@@ -1,9 +1,30 @@
 <!-- head-->
 <?php 
         require_once "./mvc/views/client/include/head.php";
-    ?>
+?>
     <!--/head-->
+<script>
+    $(document).ready(function(){
+        $("#email").keyup(function(){
+            var email = $(this).val();
+            $.post("ajax/checkuser",{email:email},function(data){
+                 $("#mess").html(data);
+            });
+        });
 
+        $("#pass_confirm").keyup(function(){
+            var pass_confirm = $(this).val();
+            var pass  = $("#pass").val();
+            $.post("ajax/checkpass",{pass:pass,pass_confirm:pass_confirm},function(data){
+                 $("#mess").html(data);
+            });
+        });
+
+		$(".unset-mess").blur(function(){
+                 $("#mess").html("");
+        });
+    });
+</script>
 <body>
 
 	<!-- header-->
@@ -17,10 +38,11 @@
             <div class="register__container">
                 <header class="register__header">
                     <h1 class="register__header--title">Tạo tài khoản</h1>
+                    <div style="height: 30px; width: 100%;" id= "mess"><?=$data["mess"]?></div>
                 </header>
                 <div class="register__form">
 
-                    <form action="" class="">
+                    <form action="register/register" method="post">
                         <div class="register__form-group">
                             <input type="text" name="" id="" class="register__input" required>
                             <label for="" class="register__label">Họ tên</label>
@@ -48,12 +70,12 @@
                         </div>
             
                         <div class="register__form-group">
-                            <input type="password" name="" id="" class="register__input" required>
+                            <input type="password" name="" id="" class="register__input" name="data[pass]" id = "pass" required>
                             <label for="" class="register__label">Mật khẩu</label>
                         </div>
             
                         <div class="register__form-group">
-                            <input type="password" name="" id="" class="register__input" required>
+                            <input type="password" name="" id="" class="register__input" name="data[pass_confirm]" id = "pass_confirm" required>
                             <label for="" class="register__label">Nhập lại mật khẩu</label>
                         </div>
                         <div class="register__input--address">

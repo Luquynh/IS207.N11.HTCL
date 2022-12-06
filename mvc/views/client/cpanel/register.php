@@ -48,13 +48,13 @@
                         </div>
             
                         <div class="register__form-group">
-                            <input type="datetime" name="" id="" class="register__input" required>
-                            <label for="" class="register__label">Ngày sinh</label>
+                            <input type="password" name="" id="" class="register__input" required>
+                            <label for="" class="register__label">Mật khẩu</label>
                         </div>
             
                         <div class="register__form-group">
                             <input type="password" name="" id="" class="register__input" required>
-                            <label for="" class="register__label">Mật khẩu</label>
+                            <label for="" class="register__label">Nhập lại mật khẩu</label>
                         </div>
                         <div class="register__input--address">
                             <div class="select-address">

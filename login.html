@@ -1,9 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/register.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
 
-   
-        <div id="header">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/eedc58b116.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
+    <title>Đăng nhập</title>
+</head>
+<body>
+            <div id="header">
             <div id="navbar">
                 <ul class="nav-list nav-list__left">
+
                     <li class="nav-item nav-item__left " >Nam giới
                             <div class="nav-item__product--tab">
                                 <button name="watch-list-men" class="nav-item__product--tab-link">Đồng hồ
@@ -16,19 +38,19 @@
     
                             <div class="subnav-product__tabcontent watch-list-men" id="watch-list-men">
                                 <a href="" class="watch-item">
-                                    <img class="watch-img" src="<?=base?>public/client/assets/img/men/KASHMIR.png" alt="">
+                                    <img class="watch-img" src="./assets/img/men/KASHMIR.png" alt="">
                                     <p class="watch-name">KASHMIR</p>
                                 </a>
                                 <a href="" class="watch-item">
-                                    <img  class="watch-img" src="<?=base?>public/client/assets/img/men/COLOSSEUM.png" alt="">
+                                    <img  class="watch-img" src="./assets/img/men/COLOSSEUM.png" alt="">
                                     <p class="watch-name">COLOSSEUM</p>
                                 </a>
                                 <a href="" class="watch-item">
-                                    <img  class="watch-img" src="<?=base?>public/client/assets/img/men/WEIMAR.png" alt="">
+                                    <img  class="watch-img" src="./assets/img/men/WEIMAR.png" alt="">
                                     <p class="watch-name">WEIMAR</p>
                                 </a>
                                 <a href="" class="watch-item">
-                                    <img  class="watch-img" src="<?=base?>public/client/assets/img/men/FUTURA.png" alt="">
+                                    <img  class="watch-img" src="./assets/img/men/FUTURA.png" alt="">
                                     <p class="watch-name">FUTURA</p>
                                 </a>
                                 <a href="" class="watch-item watch-name all">Xem tất cả
@@ -38,7 +60,7 @@
                             </div>
                             
                             <div class="subnav-product__tabcontent watch-chain-men" id="watch-chain-men">
-                                <img src="<?=base?>public/client/assets/img/men/watch-chain-men.jpg" alt="Dây đồng hồ" class="watch-chain--img">
+                                <img src="./assets/img/men/watch-chain-men.jpg" alt="Dây đồng hồ" class="watch-chain--img">
                                 <div class="watch-chain--container">
                                     <p class="watch-chain--text">
                                         Từ nay bạn đã có thể biến một thành nhiều chiếc đồng hồ để thay đổi phong cách thời trang của bản thân với dây đồng hồ Curnon.
@@ -62,19 +84,19 @@
     
                         <div class="subnav-product__tabcontent watch-list-women" >
                             <a href="" class="watch-item">
-                                <img class="watch-img" src="<?=base?>public/client/assets/img/women/MELISSANI.png" alt="">
+                                <img class="watch-img" src="./assets/img/women/MELISSANI.png" alt="">
                                 <p class="watch-name">MELISSANI</p>
                             </a>
                             <a href="" class="watch-item">
-                                <img  class="watch-img" src="<?=base?>public/client/assets/img/women/HAMILTON.png" alt="">
+                                <img  class="watch-img" src="./assets/img/women/HAMILTON.png" alt="">
                                 <p class="watch-name">HAMILTON</p>
                             </a>
                             <a href="" class="watch-item">
-                                <img  class="watch-img" src="<?=base?>public/client/assets/img/women/MORAINE.png" alt="">
+                                <img  class="watch-img" src="./assets/img/women/MORAINE.png" alt="">
                                 <p class="watch-name">MORAINE</p>
                             </a>
                             <a href="" class="watch-item">
-                                <img  class="watch-img" src="<?=base?>public/client/assets/img/women/SANTORINI.png" alt="">
+                                <img  class="watch-img" src="./assets/img/women/SANTORINI.png" alt="">
                                 <p class="watch-name">SANTORINI</p>
                             </a>
                             <a href="" class="watch-item watch-name all">Xem tất cả
@@ -84,7 +106,7 @@
                         </div>
     
                         <div class="subnav-product__tabcontent watch-chain-women" id="watch-chain-men">
-                            <img src="<?=base?>public/client/assets/img/women/watch-chain-women.jpg" alt="Dây đồng hồ" class="watch-chain--img">
+                            <img src="./assets/img/women/watch-chain-women.jpg" alt="Dây đồng hồ" class="watch-chain--img">
                             <div class="watch-chain--container">
                                 <p class="watch-chain--text">
                                     Biến một thành nhiều chiếc đồng hồ để thay đổi phong cách thời trang của bản thân với dây đồng hồ Curnon.
@@ -104,7 +126,7 @@
     
                 <ul class="nav-list logo">
                     <li class="nav-item">
-                        <a href="<?=base?>">
+                        <a href="./index.html">
                             <img src="https://curnonwatch.com/_next/static/media/logo.cc5d661a.svg" alt="logo">
                         </a>
                     </li>
@@ -116,7 +138,7 @@
                         <i class="nav-item__link ti-bag"></i>
                     </label>
                     <label for="account-modal__check" class="nav-item" id="account">
-                        <a class="nav-item__link" href="<?=base?>login/login">
+                        <a class="nav-item__link">
                             <i class="ti-user"></i>
                         </a>
                     </label>
@@ -128,8 +150,10 @@
             </div>
     
         </div>
-                <!-- modal cart -->
-                <div for="" class="overlay__cart"></div>
+        
+        
+        <!-- modal cart -->
+        <div for="" class="overlay__cart"></div>
         <div class="cart-modal">
             <div class="cart-modal-container">
                 <header class="cart-modal-header">
@@ -148,9 +172,6 @@
         <div for="" class="overlay__search"></div>
         <div class="search-modal">
             <div class="search-container">
-                <label href="">
-                    <i class="search-icon__close ti-close"></i>
-                </label>
                 <header class="search-header">
                     <input type="search" name="search" id="" class="search-input" placeholder="Nhập từ khóa...">
                     <!-- <label for="search-modal__check" class="search-icon__close">Đóng</label> -->
@@ -165,11 +186,15 @@
                     <p class="search-body__item">Mykonos</p>
                 </div>
             </div>
+            
+            <label href="">
+                <i class="search-icon__close ti-close"></i>
+            </label>
         </div>
     
         <!-- Modal Account -->
-        <!-- <div for="" class="overlay__account"></div> -->
-        <!-- <div class="account-modal">
+        <div for="" class="overlay__account"></div>
+        <div class="account-modal">
             <div class="account__container">
                 <label for="account-modal__check" href="">
                     <i class="account__header--close ti-close"></i>
@@ -208,107 +233,6 @@
                     </p>
                 </footer>
             </div>
-        </div> -->
-
-<script>
-          $('html').mouseover(function(event){
-        var arr = ["watch-list-men", 'watch-chain-men', 'watch-list-women', 'watch-chain-women'];
-        var i;
-        $('.nav-item__product--tab-link').mouseover(function(event){
-            for(i = 0; i< arr.length; i++) {
-                if (arr[i] == $(event.target).attr('name')) {
-                    $('.' + arr[i]).css('display', 'flex');
-                    $('.overlay').show();
-                } else {
-                    $('.' + arr[i]).hide();
-                    $('.overlay').hide();
-                }
-            }
-        })
-
-        if (jQuery.inArray($(event.target).attr('name'), arr) == -1){
-            $('.watch-list-men').hide();
-            $('.watch-chain-men').hide();
-
-            $('.watch-list-women').hide();
-            $('.watch-chain-women').hide();
-
-            $('.overlay').hide();
-
-        }
-    })
-    $('.subnav-product__tabcontent').mouseover(function(event){
-        event.stopPropagation();
-    })
-
-    //Modal
-    $(document).ready(function(){
-        // Cart modal
-        $('html').click(function(event){
-            if ($(event.target).closest('#cart').length > 0){
-                $('.cart-modal').css('display', 'block');
-                $('.overlay__cart').show();
-            }
-            else {
-                $('.cart-modal').css('display', 'none');
-                $('.overlay__cart').hide();
-            }
-        })
-        $('.cart-modal-close-icon').click(function(){
-            $('.cart-modal').css('display', 'none');
-            $('.overlay__cart').hide();
-        })
-        $('.overlay__cart').click(function(){
-            $('.cart-modal').css('display', 'none');
-            $('.overlay__cart').hide();
-        })
-        $('.cart-modal').click(function(event){
-            event.stopPropagation();
-        })
-        //Search modal 
-        $('html').click(function(event){
-            if ($(event.target).closest('#search').length > 0){
-                $('.search-modal').css('display', 'block');
-                $('.overlay__search').show();
-            }
-            else {
-                $('.search-modal').css('display', 'none');
-                $('.overlay__search').hide();
-            }
-        })
-        $('.search-icon__close').click(function(){
-            $('.search-modal').css('display', 'none');
-            $('.overlay__search').hide();
-        })
-        $('.overlay__search').click(function(){
-            $('.search-modal').css('display', 'none');
-            $('.overlay__search').hide();
-        })
-        $('.search-modal').click(function(event){
-            event.stopPropagation();
-        })
-        // //Account
-        // $('html').click(function(event){
-        //     if ($(event.target).closest('#account').length > 0){
-        //         $('.account-modal').css('display', 'flex');
-        //         $('.overlay__account').show();
-        //     }
-        //     else {
-        //         $('.account-modal').css('display', 'none');
-        //         $('.overlay__account').hide();
-        //     }
-        // })
-        // $('.account__header--close').click(function(){
-        //     $('.account-modal').css('display', 'none');
-        //     $('.overlay__account').hide();
-        // })
-        // $('.overlay__account').click(function(){
-        //     $('.account-modal').css('display', 'none');
-        //     $('.overlay__account').hide();
-        // })
-        // $('.account-modal').click(function(event){
-        //     event.stopPropagation();
-        // })
-    })
-
-</script>
+        </div>
+</body>
+</html>

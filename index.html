@@ -3,28 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="wiinfoh=device-wiinfoh, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="./assets/css/main_triet.css">
+    <link rel="stylesheet" href="./assets/css/responsive_triet.css">
+
+    
+    <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/eedc58b116.js" crossorigin="anonymous"></script>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <!-- <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/base.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="./assets/css/base.css">
-    <link rel="stylesheet" href="./assets/css/register.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/main.css">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://kit.fontawesome.com/eedc58b116.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="./assets/css/register.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-    <title>Tạo tài khoản</title>
+    <title>CURNON</title>
 </head>
 <body>
-    <div class="main">
+    <div id="main">
         <div id="header">
             <div id="navbar">
                 <ul class="nav-list nav-list__left">
-
                     <li class="nav-item nav-item__left " >Nam giới
                             <div class="nav-item__product--tab">
                                 <button name="watch-list-men" class="nav-item__product--tab-link">Đồng hồ
@@ -149,8 +155,7 @@
             </div>
     
         </div>
-        
-        
+
         <!-- modal cart -->
         <div for="" class="overlay__cart"></div>
         <div class="cart-modal">
@@ -171,6 +176,9 @@
         <div for="" class="overlay__search"></div>
         <div class="search-modal">
             <div class="search-container">
+                <label href="">
+                    <i class="search-icon__close ti-close"></i>
+                </label>
                 <header class="search-header">
                     <input type="search" name="search" id="" class="search-input" placeholder="Nhập từ khóa...">
                     <!-- <label for="search-modal__check" class="search-icon__close">Đóng</label> -->
@@ -185,10 +193,6 @@
                     <p class="search-body__item">Mykonos</p>
                 </div>
             </div>
-            
-            <label href="">
-                <i class="search-icon__close ti-close"></i>
-            </label>
         </div>
     
         <!-- Modal Account -->
@@ -214,6 +218,11 @@
                     <div class="register__form-group">
                         <input type="password" name="" id="" class="register__input" required>
                         <label for="" class="register__label">Mật khẩu</label>
+                        <!-- <i class="fa-regular fa-eye toggle-password"></i> -->
+                    </div>
+                    <div class="toggle-password-container">
+                        <input type="checkbox" name="" id="toggle-password" value="1">
+                        <label class="toggle-password--label">Hiện mật khẩu</label>
                     </div>
                     
                     <div class="register__form-group center-colum ">
@@ -233,196 +242,182 @@
                 </footer>
             </div>
         </div>
-    
-        <div class="register">
-            <div class="register__container">
-                <header class="register__header">
-                    <h1 class="register__header--title">Tạo tài khoản</h1>
-                </header>
-                <div class="register__form">
-
-                    <form action="" class="">
-                        <div class="register__form-group">
-                            <input type="text" name="" id="" class="register__input" required>
-                            <label for="" class="register__label">Họ tên</label>
-                        </div>
-            
-                        <div class="register__form-group">
-                            <input type="text" name="" id="" class="register__input" required>
-                            <label for="" class="register__label">Số điện thoại</label>
-                        </div>
-            
-                        <div class="register__form-group">
-                            <input type="text" name="" id="" class="register__input" required>
-                            <label for="" class="register__label">Email</label>
-                        </div>
-            
-                        <div class="gender">
-                            <div class="gender__input">
-                                <input type="radio" name="gender" id="" class="gender__input--radio" value="0">
-                                <label class="gender__input--label">Nam</label>
-                            </div>
-                            <div class="gender__input">
-                                <input type="radio" name="gender" id="" class="gender__input--radio" value="1">
-                                <label class="gender__input--label">Nữ</label>
-                            </div>
-                        </div>
-            
-                        <div class="register__form-group">
-                            <input type="datetime" name="" id="" class="register__input" required>
-                            <label for="" class="register__label">Ngày sinh</label>
-                        </div>
-            
-                        <div class="register__form-group">
-                            <input type="password" name="" id="" class="register__input" required>
-                            <label for="" class="register__label">Mật khẩu</label>
-                        </div>
-
-                        <div class="register__form-group">
-                            <input type="password" name="" id="" class="register__input" required>
-                            <label for="" class="register__label">Nhập lại mật khẩu</label>
-                        </div>
-
-                        <div class="register__input--address">
-                            <div class="select-address">
-                                <select class="register__input--address-combobox" id="city">
-                                    <option value="" selected>Chọn tỉnh / thành </option>
-                                </select>
-                            </div>
-            
-                            <div class="select-address">
-                                <select class="register__input--address-combobox" name="" id="district">
-                                    <option value="" selected>Chọn quận / huyện</option>
-                                </select>
-                            </div>
-            
-                            <div class="select-address">
-                                <select class="register__input--address-combobox" name="" id="ward">
-                                    <option value="" selected>Chọn phường / xã</option>
-                                </select>
-                            </div>
-                        </div>
-            
-                        <div class="register__form-group">
-                            <input type="text" name="" id="" class="register__input" required>
-                            <label for="" class="register__label">Địa chỉ</label>
-                        </div>
-
-                        <div class="register__form-group center-colum">
-                            <p class="register__footer--text">This site is protected by reCAPTCHA and the Google 
-                                <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and 
-                                <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.</p>
-                            <input class="register__footer--btn" type="submit" value="Đăng ký">
-                        </div>
-                    </form>
+        
+        </div>
+        <div class="big_banner">
+            <div class="banner">
+                <div class="banner_content">
+                    <div class="banner_pretitle">Happy Women's Day</div>
+                    <div class="banner_title">ALLWAYS BY YOUR SIDE</div>
+                    <div class="banner_subtitle">By 1 Get 1 Free</div>
+                    <a href="#" class="btn_banner">GET 5% OFF</a>
                 </div>
-                <div class="register__footer">
-                    <a href="./index.html" class="register__footer--btn-back">
-                        <i class="register__footer--btn-back-icon fa-solid fa-arrow-left-long"></i>
-                        Quay lại trang chủ
-                    </a>
+            
+                <div class="policy_banner">
+                    <div class="policy_text"><span><i class="icon_banner ti-truck"></i></span>FREESHIP ĐƠN HÀNG >700K</div>
+                    <div class="policy_text"><span><i class="icon_banner ti-shield"></i></span>BẢO HÀNH 10 NĂM</div>
+                    <div class="policy_text"><span><i class="icon_banner ti-package"></i></span>ĐỔI TRẢ MIỄN PHÍ TRONG VÒNG 3 NGÀY</div>                   
+                </div>
+            </div> 
+        </div>
+
+        <div id="content">
+            <div class="content_section">
+                <div class="category_cards_root">
+                    <div class="category_cards">
+                        <a href="" class="category_card">
+                            <img src="./assets/img/main_page/Dong_ho_nu_80c6668c12.jpg" alt="">
+                            <div class="category_card_content">
+                                <p>ĐỒNG HỒ NỮ</p>
+                                <div class="category_card_link"><i class="ti-arrow-right"></i></div>
+                            </div>
+                        </a>
+                        <a href="" class="category_card">
+                            <img src="./assets/img/main_page/Dong_ho_nam_03c94ab72d.jpg" alt="">
+                            <div class="category_card_content">
+                                <p>ĐỒNG HỒ NAM</p>
+                                <div class="category_card_link"><i class="ti-arrow-right"></i></div>
+                            </div>
+                        </a>
+                        <a href="" class="category_card">
+                            <img src="./assets/img/main_page/Phu_kien_thoi_trang_a94ba78315.jpg" alt="">
+                            <div class="category_card_content">
+                                <p>PHỤ KIỆN THỜI TRANG</p>
+                                <div class="category_card_link"><i class="ti-arrow-right"></i></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="outstanding_products">
+                    <h3 class="outstanding_title">MEN'S OUTSTANDING PRODUCTS</h3>
+                    <a class="look_all" rel="stylesheet" href="#">XEM TẤT CẢ <i class="ti-arrow-right"></i></a>
+                    <div class="watch_container" >
+                        <a href="#" class="watch_item" >
+                            <img class="img_watch_item" src="./assets/img/main_page/bt.webp" alt="">
+                            <p class="p_watch_item">KASHMIR</p>
+                            <h4 class="h4_watch_item">CALM</h4>
+                            <div class="div_watch_item">2.399.000 <u>đ</u></div>
+                            <button class="button_watch_item">THÊM VÀO GIỎ</button>
+                        </a>
+                        <a href="#" class="watch_item">
+                            <img class="img_watch_item" src="./assets/img/main_page/vd.webp" alt="">
+                            <p class="p_watch_item">KASHMIR</p>
+                            <h4 class="h4_watch_item">POTENT</h4>
+                            <div class="div_watch_item">2.299.000 <u>đ</u></div>
+                            <button class="button_watch_item">THÊM VÀO GIỎ</button>
+                        </a>
+                        <a href="#" class="watch_item">
+                            <img class="img_watch_item" src="./assets/img/main_page/vd (1).webp" alt="">
+                            <p class="p_watch_item">KASHMIR</p>
+                            <h4 class="h4_watch_item">DAPPER</h4>
+                            <div class="div_watch_item">2.299.000 <u>đ</u></div>
+                            <button class="button_watch_item">THÊM VÀO GIỎ</button>
+                        </a>
+                        <a href="#" class="watch_item">
+                            <img class="img_watch_item" src="./assets/img/main_page/bx.webp" alt="">
+                            <p class="p_watch_item">KASHMIR</p>
+                            <h4 class="h4_watch_item">SWANK</h4>
+                            <div class="div_watch_item">2.399.000 <u>đ</u></div>
+                            <button class="button_watch_item">THÊM VÀO GIỎ</button>
+                        </a>
+                    </div>
+                </div>
+    
+                <div class="outstanding_products">
+                    <h3 class="outstanding_title">WOMEN'S OUTSTANDING PRODUCTS</h3>
+                    <a class="look_all" rel="stylesheet" href="#">XEM TẤT CẢ <i class="ti-arrow-right"></i></a>
+                    <div class="watch_container" >
+                        <a href="#" class="watch_item" >
+                            <img class="img_watch_item" src="./assets/img/main_page/sky.webp" alt="">
+                            <p class="p_watch_item">MELISSANI</p>
+                            <h4 class="h4_watch_item">SKY</h4>
+                            <div class="div_watch_item">2.299.000 <u>đ</u></div>
+                            <button class="button_watch_item">THÊM VÀO GIỎ</button>
+                        </a>
+                        <a href="#" class="watch_item">
+                            <img class="img_watch_item" src="./assets/img/main_page/sylvia.webp" alt="">
+                            <p class="p_watch_item">HAMILTON</p>
+                            <h4 class="h4_watch_item">SYLVIA</h4>
+                            <div class="div_watch_item">2.399.000 <u>đ</u></div>
+                            <button class="button_watch_item">THÊM VÀO GIỎ</button>
+                        </a>
+                        <a href="#" class="watch_item">
+                            <img class="img_watch_item" src="./assets/img/main_page/haze.webp" alt="">
+                            <p class="p_watch_item">MELISSANI</p>
+                            <h4 class="h4_watch_item">HAZE</h4>
+                            <div class="div_watch_item">2.399.000 <u>đ</u></div>
+                            <button class="button_watch_item">THÊM VÀO GIỎ</button>
+                        </a>
+                        <a href="#" class="watch_item">
+                            <img class="img_watch_item" src="./assets/img/main_page/dawn.webp" alt="">
+                            <p class="p_watch_item">MELISSANI</p>
+                            <h4 class="h4_watch_item">DAWN</h4>
+                            <div class="div_watch_item">2.299.000 <u>đ</u></div>
+                            <button class="button_watch_item">THÊM VÀO GIỎ</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="content_section">
+                <div class="storyofcurnon">
+                    <img src="https://curnonwatch.com/_next/static/media/logo_small.f2cdcd68.svg" alt="" class="img_story">
+                    <h3 class="story_title">THE STORY OF CURNON</h3>
+                    <p class="story_text">
+                    Cuối năm 2016, 3 chàng trai đam mê Startup và Đồng hồ quyết định thành lập Curnon, nhưng ngay từ đầu, chúng tôi đã biết rằng: Curnon sinh ra với một sứ mệnh lớn lao hơn, không chỉ dừng lại là một thương hiệu đồng hồ. Chúng tôi muốn mang tới một nguồn cảm hứng, một sự thay đổi về tư duy, về suy nghĩ và chính những cái chúng tôi gọi là trải nghiệm cho người trẻ.
+                    </p>
+                    <img src="./assets/img/main_page/storyLargecurnon.png" alt="" class="img_story1">
                 </div>
             </div>
         </div>
-    
+
         <div id="footer">
-            <div class="row footer_content">
-                <div class="col col-fourth footer_box ">
-                    <img src="https://curnonwatch.com/_next/static/media/logo.cc5d661a.svg" alt="" >
-                    <div class="footer_info mt-16"><a href="" class="footer_link">Về chúng tôi</a></div>
-                    <div class="footer_info mt-16"><a href="" class="footer_link">Chính sách vận chuyển</a></div>
-                    <div class="footer_info mt-16"><a href="" class="footer_link">Đổi trả & Bảo hành</a></div>
-                </div>
-                <div class="col col-fourth footer_box mt-32">
-                    <div class="footer_title">LIÊN LẠC</div>
-                    <div class="footer_info mt-16">cskh@curnonwatch.com</div>
-                    <div class="footer_info mt-16">0868889103</div>
-                    <div class="row mt-16">
-                        <img src="https://curnonwatch.com/_next/static/media/icon_fb.ba9f5d29.svg" alt="" class="col col-fourth footer_social ">
-                        <img src="https://curnonwatch.com/_next/static/media/icon_insta.9353e397.svg" alt="" class="col col-fourth footer_social ">
-                        <img src="https://curnonwatch.com/_next/static/media/icon_youtube.dee9fd66.svg" alt="" class="col col-fourth footer_social ">
+                <div class="row footer_content">
+                    <div class="col col-fourth footer_box ">
+                        <img src="https://curnonwatch.com/_next/static/media/logo.cc5d661a.svg" alt="" >
+                        <div class="footer_info mt-16"><a href="" class="footer_link">Về chúng tôi</a></div>
+                        <div class="footer_info mt-16"><a href="" class="footer_link">Chính sách vận chuyển</a></div>
+                        <div class="footer_info mt-16"><a href="" class="footer_link">Đổi trả & Bảo hành</a></div>
+                    </div>
+                    <div class="col col-fourth footer_box mt-32">
+                        <div class="footer_title">LIÊN LẠC</div>
+                        <div class="footer_info mt-16">cskh@curnonwatch.com</div>
+                        <div class="footer_info mt-16">0868889103</div>
+                        <div class="row mt-16">
+                            <img src="https://curnonwatch.com/_next/static/media/icon_fb.ba9f5d29.svg" alt="" class="col col-fourth footer_social ">
+                            <img src="https://curnonwatch.com/_next/static/media/icon_insta.9353e397.svg" alt="" class="col col-fourth footer_social ">
+                            <img src="https://curnonwatch.com/_next/static/media/icon_youtube.dee9fd66.svg" alt="" class="col col-fourth footer_social ">
+                        </div>
+                    </div>
+                    <div class="col col-fourth  footer_box mt-32">
+                        <div class="footer_title">HANOI STORES</div>
+                        <div class="footer_info mt-16">33 Hàm Long, Hoàn Kiếm.</div>
+                        <div class="footer_info mt-16">9 B7 Phạm Ngọc Thạch, Đống Đa.</div>
+                        <div class="footer_info mt-16">173C Kim Mã, Ba Đình.</div>
+                    </div>
+                    <div class="col col-fourth footer_box mt-32">
+                        <div class="footer_title">DỊCH VỤ THANH TOÁN</div>
+                        <div class="row mt-16">  
+                            <img src="https://curnonwatch.com/_next/static/media/momo.1a8e86d8.png" alt="" class="col col-fourth footer_pay ">
+                            <img src="https://curnonwatch.com/_next/static/media/vnpay.3fa45c06.png" alt="" class="col col-fourth footer_pay ">
+                            <img src="https://curnonwatch.com/_next/static/media/cod.10bcbd91.png" alt="" class="col col-fourth footer_pay">
+                            <img src="https://curnonwatch.com/_next/static/media/fundiin.34ef01d3.png" alt="" class="col col-fourth footer_pay">
+                        </div>
                     </div>
                 </div>
-                <div class="col col-fourth  footer_box mt-32">
-                    <div class="footer_title">HANOI STORES</div>
-                    <div class="footer_info mt-16">33 Hàm Long, Hoàn Kiếm.</div>
-                    <div class="footer_info mt-16">9 B7 Phạm Ngọc Thạch, Đống Đa.</div>
-                    <div class="footer_info mt-16">173C Kim Mã, Ba Đình.</div>
-                </div>
-                <div class="col col-fourth footer_box mt-32">
-                    <div class="footer_title">DỊCH VỤ THANH TOÁN</div>
-                    <div class="row mt-16">  
-                        <img src="https://curnonwatch.com/_next/static/media/momo.1a8e86d8.png" alt="" class="col col-fourth footer_pay ">
-                        <img src="https://curnonwatch.com/_next/static/media/vnpay.3fa45c06.png" alt="" class="col col-fourth footer_pay ">
-                        <img src="https://curnonwatch.com/_next/static/media/cod.10bcbd91.png" alt="" class="col col-fourth footer_pay">
-                        <img src="https://curnonwatch.com/_next/static/media/fundiin.34ef01d3.png" alt="" class="col col-fourth footer_pay">
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer_copyright">
-                <div class="cpright_text">
-                    <p class="cpright_title">© 2021 - Bản quyền của CTCP PHÁT TRIỂN SẢN PHẨM SÁNG TẠO VIỆT</p>
-                    <p class="cpright_line">Giấy chứng nhận ĐKKD số 0108150321 do Sở Kế hoạch và Đầu tư Thành phố Hà Nội cấp ngày 29/01/2018 123C Thụy Khuê, Tây Hồ, Hà Nội</p>
-                </div>
-                <div class="img_tick"> <img src="https://curnonwatch.com/_next/static/media/certificate.e07e4993.png" alt="" ></div>
                 
-            </div>
-        </div>  
-
-    </div>
-</body>
-<script>
+                <div class="footer_copyright">
+                       <div class="cpright_text">
+                        <p class="cpright_title">© 2021 - Bản quyền của CTCP PHÁT TRIỂN SẢN PHẨM SÁNG TẠO VIỆT</p>
+                        <p class="cpright_line">Giấy chứng nhận ĐKKD số 0108150321 do Sở Kế hoạch và Đầu tư Thành phố Hà Nội cấp ngày 29/01/2018 123C Thụy Khuê, Tây Hồ, Hà Nội</p>
+                       </div>
+                       <div class="img_tick"> <img src="https://curnonwatch.com/_next/static/media/certificate.e07e4993.png" alt="" ></div>
+                    <!-- </div> -->
+                </div>
+        </div>   
+        
+    </div>    
     
-    // Chọn tỉnh huyện phường xã trong form đăng ký
-    var citis = document.getElementById("city");
-    var districts = document.getElementById("district");
-    var wards = document.getElementById("ward");
-    var Parameter = {
-    url: "./data/data.json", //Đường dẫn đến file chứa dữ liệu hoặc api do backend cung cấp
-    method: "GET", //do backend cung cấp
-    responseType: "application/json", //kiểu Dữ liệu trả về do backend cung cấp
-    };
-    //gọi ajax = axios => nó trả về cho chúng ta là một promise
-    var promise = axios(Parameter);
-    //Xử lý khi request thành công
-    promise.then(function (result) {
-    renderCity(result.data);
-    });
-
-    function renderCity(data) {
-    for (const x of data) {
-        citis.options[citis.options.length] = new Option(x.Name, x.Id);
-    }
-
-    // xứ lý khi thay đổi tỉnh thành thì sẽ hiển thị ra quận huyện thuộc tỉnh thành đó
-    citis.onchange = function () {
-        district.length = 1;
-        ward.length = 1;
-        if(this.value != ""){
-        const result = data.filter(n => n.Id === this.value);
-
-        for (const k of result[0].Districts) {
-            district.options[district.options.length] = new Option(k.Name, k.Id);
-        }
-        }
-    };
-
-    // xứ lý khi thay đổi quận huyện thì sẽ hiển thị ra phường xã thuộc quận huyện đó
-    district.onchange = function () {
-        ward.length = 1;
-        const dataCity = data.filter((n) => n.Id === citis.value);
-        if (this.value != "") {
-        const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
-
-        for (const w of dataWards) {
-            wards.options[wards.options.length] = new Option(w.Name, w.Id);
-        }
-        }
-    };
-    }
-</script>
-
+</body>
 <script>
     //Navbar hover tab
     $('html').mouseover(function(event){

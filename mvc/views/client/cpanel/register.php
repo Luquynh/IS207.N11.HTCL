@@ -48,13 +48,13 @@
                         </div>
             
                         <div class="register__form-group">
-                            <input type="datetime" name="" id="" class="register__input" required>
-                            <label for="" class="register__label">Ngày sinh</label>
+                            <input type="password" name="" id="" class="register__input" required>
+                            <label for="" class="register__label">Mật khẩu</label>
                         </div>
             
                         <div class="register__form-group">
                             <input type="password" name="" id="" class="register__input" required>
-                            <label for="" class="register__label">Mật khẩu</label>
+                            <label for="" class="register__label">Nhập lại mật khẩu</label>
                         </div>
                         <div class="register__input--address">
                             <div class="select-address">
@@ -90,9 +90,14 @@
                     </form>
                 </div>
                 <div class="register__footer">
-                    <a href="<?=base?>" class="register__footer--btn-back">
-                        <i class="register__footer--btn-back-icon fa-solid fa-arrow-left-long"></i>
+                    <a href="<?=base?>" class="register__footer--item">
+                        <i class="register__footer-icon fa-solid fa-arrow-left-long"></i>
                         Quay lại trang chủ
+                    </a>
+
+                    <a href="<?=base?>login/login" class="register__footer--item">
+                        Đăng nhập
+                        <i class="register__footer-icon fa-solid fa-arrow-right-long"></i>
                     </a>
                 </div>
             </div>

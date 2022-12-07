@@ -11,7 +11,7 @@ class register extends Controller{
     function register(){
         if(!isset($_SESSION["info"])){
             $mess = "";
-            if(isset($_POST["sigin"])){
+            if(isset($_POST["register"])){
                 $post = $_POST["data"];
                 if($post["pass"] == $post["pass_confirm"]){
                     $checkuser = $this->commonmodel->checkemail($post["email"]);

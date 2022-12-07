@@ -2,7 +2,7 @@
     class usermodel extends DB{
 
         function sigin($email,$pass,$name,$address,$phonenumber,$gender){
-            $sql ="INSERT INTO khachhang VALUES ('','$name','$email','$pass','$phonenumber','$gender','$address',current_time(),'','true')";
+            $sql ="INSERT INTO khachhang VALUES ('','$name','$gender','$email','$pass','$phonenumber','$address',current_time(),'',0)";
             $query = $this->conn->prepare($sql);
             $result = $query->execute();
             return $result;

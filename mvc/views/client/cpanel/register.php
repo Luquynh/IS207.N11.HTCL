@@ -8,7 +8,7 @@
         $("#email").keyup(function(){
             var email = $(this).val();
             $.post("ajax/checkuser",{email:email},function(data){
-                 $("#mess").html(data);
+                $("#mess").html(data);
             });
         });
 
@@ -16,12 +16,12 @@
             var pass_confirm = $(this).val();
             var pass  = $("#pass").val();
             $.post("ajax/checkpass",{pass:pass,pass_confirm:pass_confirm},function(data){
-                 $("#mess").html(data);
+                $("#mess").html(data);
             });
         });
 
 		$(".register__input").blur(function(){
-                 $("#mess").html("");
+            $("#mess").html("");
         });
     });
 </script>
@@ -38,9 +38,9 @@
             <div class="register__container">
                 <header class="register__header">
                     <h1 class="register__header--title">Tạo tài khoản</h1>
-                    <div style="height: 30px; width: 100%;" id= "mess"><?=$data["mess"]?></div>
                 </header>
                 <div class="register__form">
+                    <div style="height: 24px; width: 100%; text-align: left; font-size: 12px; font-weight: 600;" id= "mess"><?=$data["mess"]?></div>
 
                     <form action="./register/register" method="post">
                         <div class="register__form-group">
@@ -61,11 +61,11 @@
             
                         <div class="gender">
                             <div class="gender__input">
-                                <input type="radio" name="gender" id="" class="gender__input--radio" value="0">
+                                <input type="radio" name="data[gender]" id="" class="gender__input--radio" value="0" checked>
                                 <label class="gender__input--label">Nam</label>
                             </div>
                             <div class="gender__input">
-                                <input type="radio" name="gender" id="" class="gender__input--radio" value="1">
+                                <input type="radio" name="data[gender]" id="" class="gender__input--radio" value="1">
                                 <label class="gender__input--label">Nữ</label>
                             </div>
                         </div>
@@ -81,26 +81,26 @@
                         </div>
                         <div class="register__input--address">
                             <div class="select-address">
-                                <select class="register__input--address-combobox" id="city">
-                                    <option value="" selected>Chọn tỉnh / thành </option>
+                                <select class="register__input--address-combobox" id="city" >
+                                    <option value="" name = data[city] selected>Chọn tỉnh / thành </option>
                                 </select>
                             </div>
             
                             <div class="select-address">
-                                <select class="register__input--address-combobox" name="" id="district">
-                                    <option value="" selected>Chọn quận / huyện</option>
+                                <select class="register__input--address-combobox" id="district" >
+                                    <option value="" name = data[district] selected>Chọn quận / huyện</option>
                                 </select>
                             </div>
             
                             <div class="select-address">
-                                <select class="register__input--address-combobox" name="" id="ward">
-                                    <option value="" selected>Chọn phường / xã</option>
+                                <select class="register__input--address-combobox" id="ward" >
+                                    <option value="" name = data[ward] selected>Chọn phường / xã</option>
                                 </select>
                             </div>
                         </div>
             
                         <div class="register__form-group">
-                            <input type="text" name="" id="" class="register__input" required>
+                            <input type="text" class="register__input" name = data[address] required>
                             <label for="" class="register__label">Địa chỉ</label>
                         </div>
 

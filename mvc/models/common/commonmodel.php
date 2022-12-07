@@ -76,8 +76,8 @@
             return $result;
         }
 
-        function sigin($email,$pass,$name,$address,$phonenumber){
-            $sql ="INSERT INTO khachhang VALUES ('','$name','$email','$pass','$phonenumber','1','$address',current_time(),'','0')";
+        function sigin($email,$pass,$name,$address,$phonenumber,$gender){
+            $sql ="INSERT INTO khachhang VALUES ('','$name','$gender','$email','$pass','$phonenumber','$address',current_time(),'',0)";
             $query = $this->conn->prepare($sql);
             $result = $query->execute();
             return $result;

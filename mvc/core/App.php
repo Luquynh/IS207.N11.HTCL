@@ -20,8 +20,7 @@ class App{
         require_once "./mvc/Controllers/".$this->controller.".php";
         
         $this->controller = new $this->controller;
-        // echo "controler ";
-        // print_r($this->controller);
+        
         //Xu li action 
         if(isset($arr[1])){
             if(method_exists($this->controller,$arr[1])){

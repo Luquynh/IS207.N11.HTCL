@@ -11,7 +11,6 @@ class register extends Controller{
     function show(){
         $mess = "";
         $data = ["mess"=>$mess];
-
         $this->ViewClient("register",$data);
         
     }

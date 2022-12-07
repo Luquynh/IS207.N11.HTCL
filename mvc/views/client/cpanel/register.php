@@ -8,7 +8,7 @@
         $("#email").keyup(function(){
             var email = $(this).val();
             $.post("ajax/checkuser",{email:email},function(data){
-                 $("#mess").html(data);
+                $("#mess").html(data);
             });
         });
 
@@ -16,12 +16,12 @@
             var pass_confirm = $(this).val();
             var pass  = $("#pass").val();
             $.post("ajax/checkpass",{pass:pass,pass_confirm:pass_confirm},function(data){
-                 $("#mess").html(data);
+                $("#mess").html(data);
             });
         });
 
 		$(".register__input").blur(function(){
-                 $("#mess").html("");
+            $("#mess").html("");
         });
     });
 </script>

@@ -29,7 +29,7 @@ class register extends Controller{
             }
             $data = ["mess"=>$mess];
             $this->ViewClient("register",$data);
-        }else header("location:".base."home/index");
+        }else header("location:".base."home/show");
     }
 
     

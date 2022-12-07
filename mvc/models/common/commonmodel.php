@@ -69,7 +69,7 @@
 
         //kiểm tra xem tài khoản đã tồn tại hay chưa dùng trong đăng kí tài khoản
         function checkemail($email){
-            $sql ="SELECT * FROM user_account WHERE email_account = '$email'";
+            $sql ="SELECT * FROM khachhang WHERE email = '$email'";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->rowCount();

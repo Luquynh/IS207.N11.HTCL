@@ -1,5 +1,5 @@
 <?php
-    class ajax extends controller{
+    class ajax extends Controller{
         var $commonmodel;
         var $homeclientmodel;
         var $checkoutmodel;

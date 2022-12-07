@@ -20,7 +20,7 @@
             });
         });
 
-		$(".unset-mess").blur(function(){
+		$(".register__input").blur(function(){
                  $("#mess").html("");
         });
     });
@@ -44,17 +44,17 @@
 
                     <form action="register/register" method="post">
                         <div class="register__form-group">
-                            <input type="text" name="" id="" class="register__input" required>
+                            <input type="text" name="data[name]" class="register__input" required>
                             <label for="" class="register__label">Họ tên</label>
                         </div>
             
                         <div class="register__form-group">
-                            <input type="text" name="" id="" class="register__input" required>
+                            <input type="text" name="data[phonenumber]" id="" class="register__input" required>
                             <label for="" class="register__label">Số điện thoại</label>
                         </div>
             
                         <div class="register__form-group">
-                            <input type="text" name="" id="" class="register__input" required>
+                            <input type="text" name="data[email]" id="email" class="register__input" required>
                             <label for="" class="register__label">Email</label>
                         </div>
             
@@ -70,13 +70,13 @@
                         </div>
             
                         <div class="register__form-group">
-                            <input type="password" name="" id="" class="register__input" name="data[pass]" id = "pass" required>
+                            <input type="password" class="register__input" name="data[pass]" id = "pass" required>
                             <label for="" class="register__label">Mật khẩu</label>
                         </div>
             
                         <div class="register__form-group">
-                            <input type="password" name="" id="" class="register__input" name="data[pass_confirm]" id = "pass_confirm" required>
-                            <label for="" class="register__label">Nhập lại mật khẩu</label>
+                            <input type="password" class="register__input" name="data[pass_confirm]" id = "pass_confirm" required>
+                            <label for="" class="register__label">Xác nhận mật khẩu</label>
                         </div>
                         <div class="register__input--address">
                             <div class="select-address">
@@ -107,7 +107,7 @@
                             <p class="register__footer--text">This site is protected by reCAPTCHA and the Google 
                                 <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and 
                                 <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.</p>
-                            <input class="register__footer--btn" type="submit" value="Đăng ký">
+                            <input class="register__footer--btn" type="submit" value="Đăng ký" name="sigin">
                         </div>
                     </form>
                 </div>

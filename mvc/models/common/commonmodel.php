@@ -77,7 +77,7 @@
         }
 
         function sigin($email,$pass,$name,$address,$phonenumber){
-            $sql ="INSERT INTO user_account VALUES ('','$name','$email','$pass','$phonenumber','$address',current_time(),'','Hoạt Động')";
+            $sql ="INSERT INTO khachhang VALUES ('','$name','$email','$pass','$phonenumber','$address',current_time(),'','0')";
             $query = $this->conn->prepare($sql);
             $result = $query->execute();
             return $result;

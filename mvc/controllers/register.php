@@ -8,9 +8,18 @@ class register extends Controller{
             // $this->slider = $this->ModelClient("slidermodel");
             // $this->checkoutmodel = $this->ModelClient("checkoutmodel");
         }
+    function show(){
+        $mess = "";
+        $data = ["mess"=>$mess];
+
+        $this->ViewClient("register",$data);
+        
+    }
     function register(){
+        // $this->ViewClient("register",[]);
         if(!isset($_SESSION["info"])){
-            $mess = "";
+            
+            
             if(isset($_POST["sigin"])){
                 $post = $_POST["data"];
                 if($post["pass"] == $post["pass_confirm"]){
@@ -20,7 +29,8 @@ class register extends Controller{
                         if($user){
                             NotifiSiginSuccess();
                         }
-                    }else{
+                    }
+                    else{
                         $mess = "<p style='color: red;'>Email này đã có người khác sử dụng</p>";
                     }
                 }else{
@@ -29,9 +39,11 @@ class register extends Controller{
             }
             $data = ["mess"=>$mess];
             $this->ViewClient("register",$data);
-        }else header("location:".base."home/show");
+        }else header("location:".base);
     }
-
+    // function show(){
+    //     $this->ViewClient("masterlayout",[]);
+    // }
     
 
 

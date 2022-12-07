@@ -11,6 +11,10 @@ class home extends Controller{
     function show(){
         $this->ViewClient("masterlayout",[]);
     }
-    
+    function error404(){
+        $data = [];
+        $this->ViewAdmin("error404",$data);
+    }
+
 }
 ?>

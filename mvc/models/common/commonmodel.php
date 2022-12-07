@@ -77,14 +77,14 @@
         }
 
         function sigin($email,$pass,$name,$address,$phonenumber){
-            $sql ="INSERT INTO khachhang VALUES ('','$name','$email','$pass','$phonenumber','$address',current_time(),'','0')";
+            $sql ="INSERT INTO khachhang VALUES ('','$name','$email','$pass','$phonenumber','1','$address',current_time(),'','0')";
             $query = $this->conn->prepare($sql);
             $result = $query->execute();
             return $result;
         }
         //lấy sản phẩm mới nhất
         function GetProductNew(){
-                $sql = "SELECT * FROM product WHERE status_delete = 0  ORDER BY id DESC LIMIT 4";
+                $sql = "SELECT * FROM sanpham WHERE status_delete = 0  ORDER BY id DESC LIMIT 4";
                 $query = $this->conn->prepare($sql);
                 $query->execute();
                 $result =  $query->fetchAll(PDO::FETCH_ASSOC);
@@ -93,7 +93,7 @@
 
         //hàm lấy sản phẩm theo id
         function GetProductById($id){
-            $sql = "SELECT * FROM product WHERE id = $id";
+            $sql = "SELECT * FROM sanpham WHERE id = $id";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result =  $query->fetchAll(PDO::FETCH_ASSOC);
@@ -102,7 +102,7 @@
 
         //lấy ra số lượng sản phẩm theo từng danh mục
         function NumberProductById($id){
-                $sql = "SELECT * FROM product WHERE category_id = $id and status_delete = 0";
+                $sql = "SELECT * FROM sanpham WHERE category_id = $id and status_delete = 0";
                 $query = $this->conn->prepare($sql);
                 $query->execute();
                 $result =  $query->rowCount();
@@ -111,7 +111,7 @@
 
         // Sản phẩm bán chạy nhất
         function MSProduct(){
-            $sql = "SELECT * FROM product WHERE status_delete = 0  ORDER BY pay DESC LIMIT 3";
+            $sql = "SELECT * FROM sanpham WHERE status_delete = 0  ORDER BY pay DESC LIMIT 3";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result =  $query->fetchAll(PDO::FETCH_ASSOC);
@@ -120,7 +120,7 @@
 
         // Sản phẩm khuyến mãi
         function ProductSale(){
-            $sql = "SELECT * FROM product WHERE status_delete = 0  ORDER BY sale_product DESC LIMIT 3";
+            $sql = "SELECT * FROM sanpham WHERE status_delete = 0  ORDER BY sale_product DESC LIMIT 3";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result =  $query->fetchAll(PDO::FETCH_ASSOC);

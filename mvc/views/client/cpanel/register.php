@@ -42,7 +42,7 @@
                 </header>
                 <div class="register__form">
 
-                    <form action="register/register" method="post">
+                    <form action="./register/register" method="post">
                         <div class="register__form-group">
                             <input type="text" name="data[name]" class="register__input" required>
                             <label for="" class="register__label">Họ tên</label>
@@ -56,6 +56,7 @@
                         <div class="register__form-group">
                             <input type="text" name="data[email]" id="email" class="register__input" required>
                             <label for="" class="register__label">Email</label>
+                            
                         </div>
             
                         <div class="gender">
@@ -107,7 +108,7 @@
                             <p class="register__footer--text">This site is protected by reCAPTCHA and the Google 
                                 <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and 
                                 <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.</p>
-                            <input class="register__footer--btn" type="submit" value="Đăng ký" name="sigin">
+                            <input class="register__footer--btn" type="submit" value="Đăng ký" name="sigin" >
                         </div>
                     </form>
                 </div>

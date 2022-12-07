@@ -46,7 +46,7 @@
     
                 <footer class="account__footer">
                     <p class="account__footer--text">Khách hàng mới? 
-                        <a href="<?=base?>register/register" class="account__footer--link" >Tạo tài khoản</a>
+                        <a href="<?=base?>register" class="account__footer--link" >Tạo tài khoản</a>
                     </p>
     
                     <p class="account__footer--text">Quên mật khẩu? 

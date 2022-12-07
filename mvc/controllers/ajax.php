@@ -1,5 +1,5 @@
 <?php
-    class ajax extends controller{
+    class ajax extends Controller{
         var $commonmodel;
         var $homeclientmodel;
         var $checkoutmodel;
@@ -7,9 +7,9 @@
         function __construct()
         {
             $this->commonmodel = $this->ModelCommon("commonmodel");
-            $this->homeclientmodel = $this->ModelClient("homemodel");
-            $this->checkoutmodel = $this->ModelClient("checkoutmodel");
-            $this->ordermodel = $this->ModelAdmin("ordermodel");
+            // $this->homeclientmodel = $this->ModelClient("homemodel");
+            // $this->checkoutmodel = $this->ModelClient("checkoutmodel");
+            // $this->ordermodel = $this->ModelAdmin("ordermodel");
 
         }
 

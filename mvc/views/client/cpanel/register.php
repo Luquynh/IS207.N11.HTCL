@@ -42,7 +42,7 @@
                 </header>
                 <div class="register__form">
 
-                    <form action="register/register" method="post">
+                    <form action="./register/register" method="post">
                         <div class="register__form-group">
                             <input type="text" name="data[name]" class="register__input" required>
                             <label for="" class="register__label">Họ tên</label>

@@ -9,12 +9,16 @@ class register extends Controller{
             // $this->checkoutmodel = $this->ModelClient("checkoutmodel");
         }
     function show(){
-        $this->ViewClient("register",[]);
+        $mess = "";
+        $data = ["mess"=>$mess];
+
+        $this->ViewClient("register",$data);
+        
     }
     function register(){
         // $this->ViewClient("register",[]);
         if(!isset($_SESSION["info"])){
-            $mess = "";
+            
             
             if(isset($_POST["sigin"])){
                 $post = $_POST["data"];

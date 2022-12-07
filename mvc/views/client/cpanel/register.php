@@ -56,6 +56,7 @@
                         <div class="register__form-group">
                             <input type="text" name="data[email]" id="email" class="register__input" required>
                             <label for="" class="register__label">Email</label>
+                            
                         </div>
             
                         <div class="gender">

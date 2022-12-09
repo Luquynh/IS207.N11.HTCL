@@ -25,22 +25,22 @@
                     </h3>
                     <p class="account__header--text">Nhập email và mật khẩu của bạn:</p>
                 </header>
-    
-                <form action="" class="account__body">
+                <div style="height: 20px; width: 100%; color: red;"><?=$data["mess"]?><?php if(isset($_SESSION["error_login"])){echo $_SESSION["error_login"];unset($_SESSION["error_login"]);}?></div>
+                <form action="./login/login" class="account__body" method="POST">
                     <div class="register__form-group">
-                        <input type="text" name="" id="" class="register__input" required>
+                        <input type="text"  id="" class="register__input" name="email" value="<?=$data["email"]?>" required>
                         <label for="" class="register__label">Email</label>
                     </div>
 
                     <div class="register__form-group">
-                        <input type="password" name="" id="id_password" class="register__input" required>
+                        <input type="password" id="id_password" class="register__input" name="password" value="<?=$data["pass"]?>" required>
                         <label for="" class="register__label">Mật khẩu</label>
                         <i class="fa-regular fa-eye-slash" id="togglePassword"></i>
                     </div>
                     
                     <div class="register__form-group center-colum ">
                         <p class="register__footer--text">This site is protected by reCAPTCHA and the Google <a href="">Privacy Policy</a> and <a href="">Terms of Service</a> apply.</p>
-                        <input class="register__footer--btn" type="submit" value="Đăng nhập">
+                        <input class="register__footer--btn" type="submit" name="login">
                     </div>
                 </form>
     

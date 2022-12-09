@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2022 at 04:30 AM
+-- Generation Time: Dec 07, 2022 at 05:52 PM
 -- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- PHP Version: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -110,6 +110,7 @@ CREATE TABLE `donhang` (
 CREATE TABLE `khachhang` (
   `makh` int(11) NOT NULL,
   `tenkh` varchar(100) NOT NULL,
+  `gioitinh` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
   `matkhau` varchar(50) NOT NULL,
   `sodt` int(10) NOT NULL,
@@ -118,6 +119,18 @@ CREATE TABLE `khachhang` (
   `ngaysua` datetime NOT NULL,
   `tt_xoa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `khachhang`
+--
+
+INSERT INTO `khachhang` (`makh`, `tenkh`, `gioitinh`, `email`, `matkhau`, `sodt`, `diachi`, `ngaytao`, `ngaysua`, `tt_xoa`) VALUES
+(4, 'đăng', 0, '20521990@gm.uit.edu.vn', '202cb962ac59075b964b07152d234b70', 367890323, '', '2022-12-07 21:32:11', '0000-00-00 00:00:00', 0),
+(5, 'khánh', 0, 'buivanthuan1608@gmail.com', '202cb962ac59075b964b07152d234b70', 12345678, '', '2022-12-07 21:36:43', '0000-00-00 00:00:00', 0),
+(6, 'duy', 1, 'sdfjhsk@gmail.com.vn', '202cb962ac59075b964b07152d234b70', 2147483647, '', '2022-12-07 21:38:13', '0000-00-00 00:00:00', 0),
+(7, 'đăng', 1, '206274@gmail.com.vn', '202cb962ac59075b964b07152d234b70', 2147483647, 'Thủ Đức', '2022-12-07 21:40:07', '0000-00-00 00:00:00', 0),
+(8, 'tâm', 0, 'tam@gmail.com.vn', '202cb962ac59075b964b07152d234b70', 4345, 'Thủ Đức', '2022-12-07 21:44:24', '0000-00-00 00:00:00', 0),
+(13, 'Bui Văn Thuận', 0, 't@gmail.com.vn', '202cb962ac59075b964b07152d234b70', 2147483647, 'Bến Tre', '2022-12-07 23:49:57', '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -288,7 +301,7 @@ ALTER TABLE `donhang`
 -- AUTO_INCREMENT for table `khachhang`
 --
 ALTER TABLE `khachhang`
-  MODIFY `makh` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `makh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `loaisp`

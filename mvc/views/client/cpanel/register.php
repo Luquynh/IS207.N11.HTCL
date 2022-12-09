@@ -81,20 +81,20 @@
                         </div>
                         <div class="register__input--address">
                             <div class="select-address">
-                                <select class="register__input--address-combobox" id="city" >
-                                    <option value="" name = data[city] selected>Chọn tỉnh / thành </option>
+                                <select class="register__input--address-combobox" id="city" name="data[city]">
+                                    <option value="" disabled selected>Chọn tỉnh / thành </option>
                                 </select>
                             </div>
             
                             <div class="select-address">
-                                <select class="register__input--address-combobox" id="district" >
-                                    <option value="" name = data[district] selected>Chọn quận / huyện</option>
+                                <select class="register__input--address-combobox" id="district" name="data[district]" >
+                                    <option value="" disabled selected>Chọn quận / huyện</option>
                                 </select>
                             </div>
             
                             <div class="select-address">
-                                <select class="register__input--address-combobox" id="ward" >
-                                    <option value="" name = data[ward] selected>Chọn phường / xã</option>
+                                <select class="register__input--address-combobox" id="ward" name="data[ward]">
+                                    <option value="" disabled selected>Chọn phường / xã</option>
                                 </select>
                             </div>
                         </div>
@@ -149,7 +149,7 @@
     var promise = axios(Parameter);
     //Xử lý khi request thành công
     promise.then(function (result) {
-    renderCity(result.data);
+        renderCity(result.data);
     });
 
     function renderCity(data) {

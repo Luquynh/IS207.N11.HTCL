@@ -116,7 +116,7 @@
                         <i class="nav-item__link ti-bag"></i>
                     </label>
                     <label for="account-modal__check" class="nav-item" id="account">
-                        <a class="nav-item__link" href="<?=base?>login/login">
+                        <a class="nav-item__link" href="<?=base?>login">
                             <i class="ti-user"></i>
                         </a>
                     </label>

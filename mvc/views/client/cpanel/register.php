@@ -118,7 +118,7 @@
                         Quay lại trang chủ
                     </a>
 
-                    <a href="<?=base?>login/login" class="register__footer--item">
+                    <a href="<?=base?>login" class="register__footer--item">
                         Đăng nhập
                         <i class="register__footer-icon fa-solid fa-arrow-right-long"></i>
                     </a>

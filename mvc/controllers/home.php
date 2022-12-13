@@ -9,7 +9,14 @@ class home extends Controller{
             // $this->checkoutmodel = $this->ModelClient("checkoutmodel");
         }
     function show(){
-        $this->ViewClient("masterlayout",[]);
+        // $this->ViewClient("masterlayout",[]);
+        $a = $this->ModelClient("get_pictures_to_home");
+        $this->ViewClient("masterlayout",
+            ["best_men" => $a->get_best_seller("men"),
+            "best_women" => $a->get_best_seller("women"),
+            "avatar_men" => $a->get_avatar("men"),
+            "avatar_women" => $a->get_avatar("women"),
+            ]);
     }
     function error404(){
         $data = [];

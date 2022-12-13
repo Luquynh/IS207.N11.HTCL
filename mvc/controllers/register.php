@@ -23,9 +23,7 @@ class register extends Controller{
                 if($post["pass"] == $post["pass_confirm"]){
                     $checkuser = $this->commonmodel->checkemail($post["email"]);
                     if($checkuser < 1){
-                        // $address = $post["address"].', '. $post["ward"].', '.$post["district"].', '.$post["city"];
-                        // echo $post["ward"];
-                        $user = $this->commonmodel->sigin($post["email"],md5($post["pass"]),$post["name"],$post["city"] ,$post["phonenumber"], $post["gender"]);
+                        $user = $this->commonmodel->sigin($post["email"],md5($post["pass"]),$post["name"],$post["address"],$post["ward"],$post["district"],$post["city"] ,$post["phonenumber"], $post["gender"]);
                         if($user){
                             NotifiSiginSuccess();
                         }

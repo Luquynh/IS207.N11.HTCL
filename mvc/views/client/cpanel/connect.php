@@ -1,5 +1,5 @@
 <?php
-    $connect = new mysqli('localhost','root','','web_dongho1');
+    $connect = new mysqli('localhost','root','','web_dongho');
     if($connect->errno !== 0)
     {
         die("Error: Could not connect to the database. An error ".$connect->error." ocurred.");

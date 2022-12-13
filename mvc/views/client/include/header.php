@@ -15,22 +15,12 @@
                             </div>
     
                             <div class="subnav-product__tabcontent watch-list-men" id="watch-list-men">
+                            <?php while($row = mysqli_fetch_assoc($data["avatar_men"])):?>
                                 <a href="" class="watch-item">
-                                    <img class="watch-img" src="<?=base?>public/client/assets/img/men/KASHMIR.png" alt="">
-                                    <p class="watch-name">KASHMIR</p>
+                                    <img class="watch-img" src="public/client/assets/img/men/<?php echo $row["img"]?>" alt="">
+                                    <p class="watch-name"><?php echo $row["tenbosuutap"]?></p>
                                 </a>
-                                <a href="" class="watch-item">
-                                    <img  class="watch-img" src="<?=base?>public/client/assets/img/men/COLOSSEUM.png" alt="">
-                                    <p class="watch-name">COLOSSEUM</p>
-                                </a>
-                                <a href="" class="watch-item">
-                                    <img  class="watch-img" src="<?=base?>public/client/assets/img/men/WEIMAR.png" alt="">
-                                    <p class="watch-name">WEIMAR</p>
-                                </a>
-                                <a href="" class="watch-item">
-                                    <img  class="watch-img" src="<?=base?>public/client/assets/img/men/FUTURA.png" alt="">
-                                    <p class="watch-name">FUTURA</p>
-                                </a>
+                            <?php endwhile;?>
                                 <a href="" class="watch-item watch-name all">Xem tất cả
                                     <br>
                                     <i class="all-icon ti-arrow-right"></i>
@@ -61,22 +51,12 @@
                         </div>
     
                         <div class="subnav-product__tabcontent watch-list-women" >
-                            <a href="" class="watch-item">
-                                <img class="watch-img" src="<?=base?>public/client/assets/img/women/MELISSANI.png" alt="">
-                                <p class="watch-name">MELISSANI</p>
-                            </a>
-                            <a href="" class="watch-item">
-                                <img  class="watch-img" src="<?=base?>public/client/assets/img/women/HAMILTON.png" alt="">
-                                <p class="watch-name">HAMILTON</p>
-                            </a>
-                            <a href="" class="watch-item">
-                                <img  class="watch-img" src="<?=base?>public/client/assets/img/women/MORAINE.png" alt="">
-                                <p class="watch-name">MORAINE</p>
-                            </a>
-                            <a href="" class="watch-item">
-                                <img  class="watch-img" src="<?=base?>public/client/assets/img/women/SANTORINI.png" alt="">
-                                <p class="watch-name">SANTORINI</p>
-                            </a>
+                        <?php while($row = mysqli_fetch_assoc($data["avatar_women"])):?>
+                                <a href="" class="watch-item">
+                                    <img class="watch-img" src="public/client/assets/img/women/<?php echo $row["img"]?>" alt="">
+                                    <p class="watch-name"><?php echo $row["tenbosuutap"]?></p>
+                                </a>
+                            <?php endwhile;?>
                             <a href="" class="watch-item watch-name all">Xem tất cả
                                 <br>
                                 <i class="all-icon ti-arrow-right"></i>
@@ -111,25 +91,34 @@
                 </ul>
     
                 <ul class="nav-list nav-list__right">
-                    <label for="cart-modal__check" class="nav-item" id="cart">
-                        Giỏ hàng
+                    <div for="account-modal__check" class="nav-item dropup pr-8" id="account">
+                        <?php if(!isset($_SESSION["info"]["name"])) 
+                                echo '<a class="nav-item__link " href="login/login">
+                                        <i class="ti-user"></i>
+                                    </a>'; 
+                        ?>
+                        <?php if(isset($_SESSION["info"]["name"])){?>
+                            <?php echo '<p style="text-transform:none;">'.'<i class="ti-user pr-8"></i>'.$_SESSION['info']["name"].' '.'<i style="font-size: 1.2rem;" class="ti-angle-down"></i></p>'?>
+                            <div class="nav-item dropup-content">
+                                <a href="" style="display: flex; align-items: center;">Thông tin cá nhân</a>
+                                <a href="" style="display: flex; align-items: center;">Lịch sử mua hàng</a>
+                                <a href="logout/logout" style="display: flex; align-items: center;"><i class="ti-shift-right pr-8"></i>Đăng xuất</a>
+                            </div>
+                        <?php }?>
+                    </div>
+                    <div for="search-modal__check" class="nav-item pr-8" id="search">
+                        <i class="nav-item__link ti-search "></i>
+                    </div>
+                    <div for="cart-modal__check" class="nav-item pr-8" id="cart">
                         <i class="nav-item__link ti-bag"></i>
-                    </label>
-                    <label for="account-modal__check" class="nav-item" id="account">
-                        <a class="nav-item__link" href="<?=base?>login">
-                            <i class="ti-user"></i>
-                        </a>
-                    </label>
-                    <label for="search-modal__check" class="nav-item" id="search">
-                        <i class="nav-item__link ti-search"></i>
-                    </label>
+                    </div>
                 </ul>
                 
             </div>
     
         </div>
-                <!-- modal cart -->
-                <div for="" class="overlay__cart"></div>
+        <!-- modal cart -->
+        <div for="" class="overlay__cart"></div>
         <div class="cart-modal">
             <div class="cart-modal-container">
                 <header class="cart-modal-header">
@@ -167,51 +156,8 @@
             </div>
         </div>
     
-        <!-- Modal Account -->
-        <!-- <div for="" class="overlay__account"></div> -->
-        <!-- <div class="account-modal">
-            <div class="account__container">
-                <label for="account-modal__check" href="">
-                    <i class="account__header--close ti-close"></i>
-                </label>
-                <header class="account__header">
-                    <h3 class="account__header--title">
-                        Đăng nhập tài khoản
-                    </h3>
-                    <p class="account__header--text">Nhập email và mật khẩu của bạn:</p>
-                </header>
-    
-                <form action="" class="account__body">
-                    <div class="register__form-group">
-                        <input type="text" name="" id="" class="register__input" required>
-                        <label for="" class="register__label">Email</label>
-                    </div>
-
-                    <div class="register__form-group">
-                        <input type="password" name="" id="" class="register__input" required>
-                        <label for="" class="register__label">Mật khẩu</label>
-                    </div>
-                    
-                    <div class="register__form-group center-colum ">
-                        <p class="register__footer--text">This site is protected by reCAPTCHA and the Google <a href="">Privacy Policy</a> and <a href="">Terms of Service</a> apply.</p>
-                        <input class="register__footer--btn" type="submit" value="Đăng nhập">
-                    </div>
-                </form>
-    
-                <footer class="account__footer">
-                    <p class="account__footer--text">Khách hàng mới? 
-                        <a href="./Register.html" class="account__footer--link" >Tạo tài khoản</a>
-                    </p>
-    
-                    <p class="account__footer--text">Quên mật khẩu? 
-                        <a href="" class="account__footer--link">Khôi phục mật khẩu</a>
-                    </p>
-                </footer>
-            </div>
-        </div> -->
-
 <script>
-          $('html').mouseover(function(event){
+        $('html').mouseover(function(event){
         var arr = ["watch-list-men", 'watch-chain-men', 'watch-list-women', 'watch-chain-women'];
         var i;
         $('.nav-item__product--tab-link').mouseover(function(event){
@@ -287,28 +233,6 @@
         $('.search-modal').click(function(event){
             event.stopPropagation();
         })
-        // //Account
-        // $('html').click(function(event){
-        //     if ($(event.target).closest('#account').length > 0){
-        //         $('.account-modal').css('display', 'flex');
-        //         $('.overlay__account').show();
-        //     }
-        //     else {
-        //         $('.account-modal').css('display', 'none');
-        //         $('.overlay__account').hide();
-        //     }
-        // })
-        // $('.account__header--close').click(function(){
-        //     $('.account-modal').css('display', 'none');
-        //     $('.overlay__account').hide();
-        // })
-        // $('.overlay__account').click(function(){
-        //     $('.account-modal').css('display', 'none');
-        //     $('.overlay__account').hide();
-        // })
-        // $('.account-modal').click(function(event){
-        //     event.stopPropagation();
-        // })
     })
 
 </script>

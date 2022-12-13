@@ -20,7 +20,7 @@
     
 	<!-- gọi danh muc sp -->
     <?php 
-        // require_once "./mvc/views/client/cpanel/".$data["folder"]."/".$data["file"].".php";
+        require_once "./mvc/views/client/include/content.php";
     ?>
     <!--/gọi danh muc sp -->
 

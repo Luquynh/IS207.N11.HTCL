@@ -1,8 +1,8 @@
 <?php
     class usermodel extends DB{
 
-        function sigin($email,$pass,$name,$address,$phonenumber,$gender){
-            $sql ="INSERT INTO khachhang VALUES ('','$name','$gender','$email','$pass','$phonenumber','$address',current_time(),'',0)";
+        function sigin($email, $pass, $name, $address, $xaid, $maqh, $matp, $phonenumber, $gender){
+            $sql ="INSERT INTO khachhang VALUES ('','$name','$gender','$email','$pass','$phonenumber','$matp','$maqh','$xaid','$address',current_time(),'',0)";
             $query = $this->conn->prepare($sql);
             $result = $query->execute();
             return $result;

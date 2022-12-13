@@ -35,13 +35,12 @@ class login extends Controller{
                         $_SESSION["info"]["id"]= $name[0]["makh"];
                         $_SESSION["info"]["name"] = $name[0]["tenkh"];
                         $_SESSION["info"]["gender"] = $name[0]["gioitinh"];
-                        $_SESSION["info"]["email"] = $name[0]["email_account"];
+                        $_SESSION["info"]["email"] = $name[0]["email"];
                         $_SESSION["info"]["matkhau"] = $name[0]["matkhau"];
                         notification("success","Đăng Nhập Thành Công","","","false","");
                         header('Refresh: 1; URL='.base.'home');
                     }
                     else{
-                       
                         notification("error","Đăng Nhập Thất Bại","Thông tin tài khoản hoặc mật khẩu không chính xác","OK","true","#3085d6");
                         header('Refresh: 1; URL='.base.'login');
                     }
@@ -50,13 +49,13 @@ class login extends Controller{
                     // $mess = "Tài khoản của bạn đã bị khóa vui lòng liên hệ quản trị viên để được mở";
                 }
             }
-            // $data = [
-            //     "mess"=>$mess,
-            //     "email"=>$email,
-            //     "pass"=>$pass
+            $data = [
+                "mess"=>$mess,
+                "email"=>$email,
+                "pass"=>$pass
             
-            // ];
-            // $this->ViewClient("login",$data);
+            ];
+            $this->ViewClient("login",$data);
         }else header("location:".base."home");
     }
     }

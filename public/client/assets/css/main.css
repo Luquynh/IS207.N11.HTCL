@@ -497,7 +497,16 @@
 .search-check:checked~ .nav-overlay__search {
     display: block;
 } */
-
+.account__container_admin{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding: 25px 25px;
+    box-shadow:  rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 5px;
+}
 .account-modal {
     /* position: fixed; */
     margin-top: 68px;

@@ -8,10 +8,18 @@
             $result =  $query->rowCount();
             return $result;
         }
+        function Loginadmin($email,$pass){
+            $sql = "SELECT * FROM admin WHERE email = '$email' and matkhau  = '$pass'";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result =  $query->rowCount();
+            return $result;
+        }
+        
         
         //Kiểm tra người dùng có bị block tài khoản hay không
         function CheckBlockUser($email){
-            $sql = "SELECT * FROM khachhang WHERE email = '$email' and active_status = 'block'";
+            $sql = "SELECT * FROM khachhang WHERE email = '$email' and tt_xoa = '1'";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result =  $query->rowCount();
@@ -29,7 +37,7 @@
 
         //Lấy danh sách người dùng theo trang
         function GetAllUser($limit,$offset){
-            $sql = "SELECT * FROM khachhang ORDER BY 'id' ASC LIMIT $limit OFFSET $offset";
+            $sql = "SELECT * FROM khachhang ORDER BY 'makh' ASC LIMIT $limit OFFSET $offset";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result =  $query->fetchAll(PDO::FETCH_ASSOC);

@@ -84,7 +84,7 @@
         }
         //lấy sản phẩm mới nhất
         function GetProductNew(){
-                $sql = "SELECT * FROM sanpham WHERE status_delete = 0  ORDER BY id DESC LIMIT 4";
+                $sql = "SELECT * FROM sanpham WHERE status_delete = 0  ORDER BY ngaytao DESC LIMIT 4";
                 $query = $this->conn->prepare($sql);
                 $query->execute();
                 $result =  $query->fetchAll(PDO::FETCH_ASSOC);
@@ -93,7 +93,7 @@
 
         //hàm lấy sản phẩm theo id
         function GetProductById($id){
-            $sql = "SELECT * FROM sanpham WHERE id = $id";
+            $sql = "SELECT * FROM sanpham WHERE masp = $id";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result =  $query->fetchAll(PDO::FETCH_ASSOC);

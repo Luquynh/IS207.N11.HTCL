@@ -40,7 +40,7 @@
                     
                     <div class="register__form-group center-colum ">
                         <p class="register__footer--text">This site is protected by reCAPTCHA and the Google <a href="">Privacy Policy</a> and <a href="">Terms of Service</a> apply.</p>
-                        <input class="register__footer--btn" type="submit" name="login">
+                        <input class="register__footer--btn" type="submit" name="login" value="Đăng nhập">
                     </div>
                 </form>
     

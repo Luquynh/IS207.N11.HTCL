@@ -81,27 +81,42 @@
                         </div>
                         <div class="register__input--address">
                             <div class="select-address">
-                                <select class="register__input--address-combobox" id="city" >
-                                    <option value="" name = data[city] selected>Chọn tỉnh / thành </option>
+                                <select class="register__input--address-combobox" id="city" name="data[city]">
+                                    <option value="null" disabled selected>Chọn tỉnh / thành phố</option>
+                                    <?php 
+                                    require ("connect.php");
+                                    $sql = "select * from devvn_tinhthanhpho";
+                                    $query = $connect->query($sql);
+                                    // $query = $this->addressmodel->city_all();
+                                    $num = mysqli_num_rows($query);
+                                    if ($num > 0){
+                                        while($row = mysqli_fetch_array($query)){
+                                            
+                                    ?>
+                                        <option value="<?php echo $row['matp']; ?>"><?php echo $row['name']; ?></option>';
+                                    <?php 
+                                        }
+                                    }
+                                    ?>
                                 </select>
                             </div>
             
                             <div class="select-address">
-                                <select class="register__input--address-combobox" id="district" >
-                                    <option value="" name = data[district] selected>Chọn quận / huyện</option>
+                                <select class="register__input--address-combobox" id="district" name="data[district]" >
+                                    <option value="null" disabled selected>Chọn quận / huyện</option>
                                 </select>
                             </div>
             
                             <div class="select-address">
-                                <select class="register__input--address-combobox" id="ward" >
-                                    <option value="" name = data[ward] selected>Chọn phường / xã</option>
+                                <select class="register__input--address-combobox" id="ward" name="data[ward]">
+                                    <option value="" disabled selected>Chọn phường / xã</option>
                                 </select>
                             </div>
                         </div>
             
                         <div class="register__form-group">
                             <input type="text" class="register__input" name = data[address] required>
-                            <label for="" class="register__label">Địa chỉ</label>
+                            <label for="" class="register__label">Địa chỉ <label style="font-size: 1.2rem;">(Ví dụ: 79 đường số 12...)</label></label>
                         </div>
 
                         <div class="register__form-group center-colum">
@@ -134,7 +149,7 @@
 	<!--/Footer-->
 </body>
 
-<script>
+<!-- <script>
     // alert("xin chao");
     // Chọn tỉnh huyện phường xã trong form đăng ký
     var citis = document.getElementById("city");
@@ -149,7 +164,7 @@
     var promise = axios(Parameter);
     //Xử lý khi request thành công
     promise.then(function (result) {
-    renderCity(result.data);
+        renderCity(result.data);
     });
 
     function renderCity(data) {
@@ -183,4 +198,23 @@
         }
     };
     }
+</script> -->
+
+<script>
+    $(document).ready(function(){
+        $("#city").change(function(){
+            var id_city = $("#city").val();
+            $.post("./mvc/views/client/cpanel/district.php", {id: id_city}, function(data){
+                    $("#district").html(data);
+                }
+                )
+        })
+
+        $("#district").change(function(){
+            var id_district = $("#district").val();
+            $.post("./mvc/views/client/cpanel/ward.php", {id_d: id_district}, function(data){
+                $("#ward").html(data);
+            })
+        })
+    })
 </script>

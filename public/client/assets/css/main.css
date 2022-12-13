@@ -26,7 +26,11 @@
     margin: 0;
 }
 
-.nav-list__right,
+.nav-list__right{
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+}
 .nav-list__left{
     min-width: 300px;
     display: flex;
@@ -506,7 +510,7 @@
     right: 0;
     top: 80px;
     background-color: #fff;
-    animation: fadeIn_search ease-out 0.3s;
+    /* animation: fadeIn_search ease-out 0.3s; */
     display: flex;
     justify-content: center;
 }

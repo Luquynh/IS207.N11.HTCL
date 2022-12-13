@@ -1,4 +1,4 @@
-<div class="big_banner">
+<!-- <div class="big_banner">
                 <div class="banner">
                     <div class="banner_content">
                         <div class="banner_pretitle">Happy Women's Day</div>
@@ -122,4 +122,4 @@
                     <img src="views/assets/img/main_page/storyLargecurnon.png" alt="" class="img_story1">
                 </div>
             </div>
-        </div>
+        </div> -->

@@ -1,6 +1,6 @@
 <?php
 class DB{
-    public $con;
+    public $conn;
     protected $servername="localhost";
     protected $username="root";
     protected $password="";

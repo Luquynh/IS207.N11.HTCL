@@ -3,10 +3,13 @@ class login extends Controller{
     var $commonmodel;
     var $tableAdmin = "admin_account";
     var $accountmodel;
+    var $header;
     function __construct()
     {
         $this->commonmodel = $this->ModelCommon("commonmodel");
         $this->accountmodel = $this->ModelAdmin("accountmodel");
+        $this->header=$this->ModelClient("get_pictures_to_home");
+
     }
     function show(){
         $mess="";
@@ -15,7 +18,9 @@ class login extends Controller{
                     $data = [
                 "mess"=>$mess,
                 "email"=>$email,
-                "pass"=>$pass
+                "pass"=>$pass,
+            "avatar_men" => $this->header->get_avatar("men"),
+            "avatar_women" => $this->header->get_avatar("women"),
             ];
             $this->ViewClient("login",$data);
     }
@@ -52,8 +57,9 @@ class login extends Controller{
             $data = [
                 "mess"=>$mess,
                 "email"=>$email,
-                "pass"=>$pass
-            
+                "pass"=>$pass,
+            "avatar_men" => $this->header->get_avatar("men"),
+            "avatar_women" => $this->header->get_avatar("women"),
             ];
             $this->ViewClient("login",$data);
         }else header("location:".base."home");

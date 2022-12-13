@@ -1,6 +1,4 @@
 
-
-   
         <div id="header">
             <div id="navbar">
                 <ul class="nav-list nav-list__left">

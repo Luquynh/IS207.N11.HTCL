@@ -4,21 +4,21 @@
             <div class="category_cards_root">
                 <div class="category_cards">
                     <a href="" class="category_card">
-                        <img src="public/client/assets/img/main_page/Dong_ho_nu_80c6668c12.jpg" alt="">
+                        <img src="<?=base?>public/client/assets/img/main_page/Dong_ho_nu_80c6668c12.jpg" alt="">
                         <div class="category_card_content">
                             <p>ĐỒNG HỒ NỮ</p>
                             <div class="category_card_link"><i class="ti-arrow-right"></i></div>
                         </div>
                     </a>
                     <a href="" class="category_card">
-                        <img src="public/client/assets/img/main_page/Dong_ho_nam_03c94ab72d.jpg" alt="">
+                        <img src="<?=base?>public/client/assets/img/main_page/Dong_ho_nam_03c94ab72d.jpg" alt="">
                         <div class="category_card_content">
                             <p>ĐỒNG HỒ NAM</p>
                             <div class="category_card_link"><i class="ti-arrow-right"></i></div>
                         </div>
                     </a>
                     <a href="" class="category_card">
-                        <img src="public/client/assets/img/main_page/Phu_kien_thoi_trang_a94ba78315.jpg" alt="">
+                        <img src="<?=base?>public/client/assets/img/main_page/Phu_kien_thoi_trang_a94ba78315.jpg" alt="">
                         <div class="category_card_content">
                             <p>PHỤ KIỆN THỜI TRANG</p>
                             <div class="category_card_link"><i class="ti-arrow-right"></i></div>
@@ -33,7 +33,7 @@
                 <div class="watch_container" >
                 <?php while($row = mysqli_fetch_assoc($data["best_men"])):?>
                         <a href="#" class="watch_item" >
-                            <img class="img_watch_item" src="public/client/assets/img/men/<?php echo $row["img"]?>" alt="">
+                            <img class="img_watch_item" src="<?=base?>public/client/assets/img/men/<?php echo $row["img"]?>" alt="">
                             <p class="p_watch_item"><?php echo $row["tenbosuutap"]?></p>
                             <h4 class="h4_watch_item"><?php echo $row["tensp"]?></h4>
                             <div class="div_watch_item"><?php echo $row["gia"]?>.000<u> ₫</u></div>
@@ -49,7 +49,7 @@
                 <div class="watch_container" >
                 <?php while($row = mysqli_fetch_assoc($data["best_women"])):?>
                         <a href="#" class="watch_item" >
-                            <img class="img_watch_item" src="public/client/assets/img/women/<?php echo $row["img"]?>" alt="">
+                            <img class="img_watch_item" src="<?=base?>public/client/assets/img/women/<?php echo $row["img"]?>" alt="">
                             <p class="p_watch_item"><?php echo $row["tenbosuutap"]?></p>
                             <h4 class="h4_watch_item"><?php echo $row["tensp"]?></h4>
                             <div class="div_watch_item"><?php echo $row["gia"]?>.000<u> ₫</u></div>

@@ -32,7 +32,9 @@
                 <a class="look_all" rel="stylesheet" href="#">XEM TẤT CẢ <i class="ti-arrow-right"></i></a>
                 <div class="watch_container" >
                 <?php while($row = mysqli_fetch_assoc($data["best_men"])):?>
-                        <a href="#" class="watch_item" >
+
+                        <a href="http://localhost/curnon/callMCprodetails/show/<?php echo $row["masp"]?>" class="watch_item" >
+
                             <img class="img_watch_item" src="<?=base?>public/client/assets/img/men/<?php echo $row["img"]?>" alt="">
                             <p class="p_watch_item"><?php echo $row["tenbosuutap"]?></p>
                             <h4 class="h4_watch_item"><?php echo $row["tensp"]?></h4>
@@ -48,7 +50,9 @@
                 <a class="look_all" rel="stylesheet" href="#">XEM TẤT CẢ <i class="ti-arrow-right"></i></a>
                 <div class="watch_container" >
                 <?php while($row = mysqli_fetch_assoc($data["best_women"])):?>
-                        <a href="#" class="watch_item" >
+
+                        <a href="http://localhost/curnon/callMCprodetails/show/<?php echo $row["masp"]?>" class="watch_item" >
+
                             <img class="img_watch_item" src="<?=base?>public/client/assets/img/women/<?php echo $row["img"]?>" alt="">
                             <p class="p_watch_item"><?php echo $row["tenbosuutap"]?></p>
                             <h4 class="h4_watch_item"><?php echo $row["tensp"]?></h4>

@@ -34,6 +34,8 @@
     include "public/client/assets/css/main.css";
     include "public/client/assets/css/main_triet.css";
     include "public/client/assets/css/responsive_triet.css";
+    include "public/client/assets/css/css1.css";
+    include "public/client/assets/css/responsive1.css";
     include "public/client/assets/css/register.css";
     include "public/client/assets/font/themify-icons/themify-icons.css";
     

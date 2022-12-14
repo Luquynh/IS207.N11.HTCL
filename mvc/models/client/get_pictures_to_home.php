@@ -1,7 +1,7 @@
 <?php
     class get_pictures_to_home extends DB1 {
         public function get_best_seller($gioitinh) {
-            $sql = "SELECT tensp, gia, sanpham.img, tenbosuutap
+            $sql = "SELECT masp, tensp, gia, sanpham.img, tenbosuutap
             from sanpham 
             INNER JOIN bosuutap 
             ON sanpham.mabosuutap = bosuutap.mabosuutap 

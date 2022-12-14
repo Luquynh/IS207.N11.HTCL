@@ -16,7 +16,9 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="public/build/images/img.jpg" alt="..." class="img-circle profile_img">
+                <!-- Thay doi hinh anh admin o day  -->
+               
+                <img src="<?=base?>public/admin/assets/img/businessman.png" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Xin Chào,</span>
@@ -63,7 +65,7 @@
         <!-- page content -->
         <div class="right_col">
             <?php
-                // require_once "./mvc/views/admin/cpanel/".$data["folder"]."/".$data["file"].".php";
+                require_once "./mvc/views/admin/cpanel/".$data["folder"]."/".$data["file"].".php";
             ?>
         </div>
         <!-- /page content -->	

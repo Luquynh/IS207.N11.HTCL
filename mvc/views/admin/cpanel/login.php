@@ -1,13 +1,64 @@
 <!-- head-->
 <?php 
-        require_once "./mvc/views/client/include/head.php";
+        require_once "./mvc/views/admin/include/head.php";
     ?>
     <!--/head-->
+<style>
+    :root {
+    --bg-color: #f8f7f4;
+    --text-color: #161a21;
+    --curnon-font: 'Montserrat',-apple-system,BlinkMacSystemFont,sans-serif;
+}
+    body{
+    background-color: var(--bg-color);
+    }
+    .background_curnon{
+        background-color: var(--bg-color);
+    }
+    .ac_interface{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin-top: 16px;
+        margin-bottom: 16px;
+        padding: 60px 15px;
+        box-shadow:  rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        background-color: var(--text-color);
 
+    }
+    .title_welcome{
+        background-color: var(--text-color);
+        color: #fff;
+        font-size: 3rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        border-radius: 3px;
+        margin-top: 16px;
+        text-align: center;
+        
+    }
+    .img-login{
+        width: 45%;
+       margin: auto;
+       margin-top:20px ;
+    }
+    .text_login{
+        color: white; 
+        text-align:center; 
+        margin-top: 15px;
+        font-size:14px;
+    }
+    
+</style>
 <body>
    <!-- login -->
     <!-- <div for="" class="overlay__account"></div> -->
-    <div class="account-modal">
+    <div class="account-modal background_curnon">   
+            <div class="ac_interface ">
+                <h1 class="title_welcome">Welcome back !</h1>
+                <p class="text_login">Our Admin</p>
+                <img src="<?=base?>public/admin/assets/img/technical-support.png" alt="" class="img-login">
+            </div>
             <div class="account__container_admin">
                 <!-- <label for="account-modal__check" href="">
                     <i class="account__header--close ti-close"></i>
@@ -36,8 +87,6 @@
                         <input class="register__footer--btn" type="submit" name="login">
                     </div>
                 </form>
-    
-               
             </div>
         </div>
 	<!-- login -->

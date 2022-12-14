@@ -190,29 +190,29 @@
 
         //Đổi mật khẩu admin
         function changepass(){
-                if(isset($_POST["submit"])){
-                    $post = $_POST["data"];
-                    $cookie = $_COOKIE["user"];
-                    $result = $this->commonmodel->GetPassOld($cookie,$this->table);
-                    if($result != null){
-                        if(md5($post["pass_old"]) == $result[0]["pass_word"]){
-                            if($post["pass_new"]==$post["pass_again"]){
-                                $passnew = $post["pass_new"];
-                                $passold = $result[0]["pass_word"];
-                                $success = $this->commonmodel->ChangePassword(md5($passnew),$cookie,$this->table);
-                                if($success){
-                                    notification("success","Thành Công!","Mật khẩu đã được thay đổi!","Xác Nhận","true","#3085d6");
-                                }else{
-                                    notification("error","Thất Bại","Có lỗi sảy ra vui lòng thử lại!","Xác Nhận","true","#3085d6");
-                                }
-                            }else{
-                                notification("error","Thất Bại","Nhập lại mật khẩu không khớp!","Xác Nhận","true","#3085d6");
-                            }
-                        }else{
-                            notification("error","Thất Bại","Mật khẩu cũ không chính xác!","Xác Nhận","true","#3085d6");
-                        }
-                    }
-                }
+                // if(isset($_POST["submit"])){
+                //     $post = $_POST["data"];
+                //     $cookie = $_COOKIE["user"];
+                //     $result = $this->commonmodel->GetPassOld($cookie,$this->table);
+                //     if($result != null){
+                //         if(md5($post["pass_old"]) == $result[0]["pass_word"]){
+                //             if($post["pass_new"]==$post["pass_again"]){
+                //                 $passnew = $post["pass_new"];
+                //                 $passold = $result[0]["pass_word"];
+                //                 $success = $this->commonmodel->ChangePassword(md5($passnew),$cookie,$this->table);
+                //                 if($success){
+                //                     notification("success","Thành Công!","Mật khẩu đã được thay đổi!","Xác Nhận","true","#3085d6");
+                //                 }else{
+                //                     notification("error","Thất Bại","Có lỗi sảy ra vui lòng thử lại!","Xác Nhận","true","#3085d6");
+                //                 }
+                //             }else{
+                //                 notification("error","Thất Bại","Nhập lại mật khẩu không khớp!","Xác Nhận","true","#3085d6");
+                //             }
+                //         }else{
+                //             notification("error","Thất Bại","Mật khẩu cũ không chính xác!","Xác Nhận","true","#3085d6");
+                //         }
+                //     }
+                // }
             $data = ["folder"=>"changepass","file"=>"changepass","titel"=>"Đổi Mật Khẩu"];
             $this->ViewAdmin("masterlayout",$data);
         }

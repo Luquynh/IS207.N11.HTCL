@@ -1,16 +1,21 @@
 <?php
 class register extends Controller{
     var $registermodel;
+    var $header;
     function __construct()
         {
             $this->commonmodel = $this->ModelCommon("commonmodel");
+            $this->header=$this->ModelClient("get_pictures_to_home");
             // $this->categorymodel = $this->ModelClient("homemodel");
             // $this->slider = $this->ModelClient("slidermodel");
             // $this->checkoutmodel = $this->ModelClient("checkoutmodel");
         }
     function show(){
         $mess = "";
-        $data = ["mess"=>$mess];
+        $data = ["mess"=>$mess,
+        "avatar_men" => $this->header->get_avatar("men"),
+        "avatar_women" => $this->header->get_avatar("women"),
+    ];
         $this->ViewClient("register",$data);
         
     }
@@ -35,7 +40,10 @@ class register extends Controller{
                     $mess = "<p style='color: red;'>Xác nhận mật khẩu không khớp</p>";
                 }
             }
-            $data = ["mess"=>$mess];
+            $data = ["mess"=>$mess,
+            "avatar_men" => $this->header->get_avatar("men"),
+            "avatar_women" => $this->header->get_avatar("women"),
+        ];
             $this->ViewClient("register",$data);
         }else header("location:".base);
     }

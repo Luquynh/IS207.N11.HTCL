@@ -1,6 +1,4 @@
 
-
-   
         <div id="header">
             <div id="navbar">
                 <ul class="nav-list nav-list__left">
@@ -17,7 +15,7 @@
                             <div class="subnav-product__tabcontent watch-list-men" id="watch-list-men">
                             <?php while($row = mysqli_fetch_assoc($data["avatar_men"])):?>
                                 <a href="" class="watch-item">
-                                    <img class="watch-img" src="public/client/assets/img/men/<?php echo $row["img"]?>" alt="">
+                                    <img class="watch-img" src="<?=base?>public/client/assets/img/men/<?php echo $row["img"]?>" alt="">
                                     <p class="watch-name"><?php echo $row["tenbosuutap"]?></p>
                                 </a>
                             <?php endwhile;?>
@@ -53,7 +51,7 @@
                         <div class="subnav-product__tabcontent watch-list-women" >
                         <?php while($row = mysqli_fetch_assoc($data["avatar_women"])):?>
                                 <a href="" class="watch-item">
-                                    <img class="watch-img" src="public/client/assets/img/women/<?php echo $row["img"]?>" alt="">
+                                    <img class="watch-img" src="<?=base?>public/client/assets/img/women/<?php echo $row["img"]?>" alt="">
                                     <p class="watch-name"><?php echo $row["tenbosuutap"]?></p>
                                 </a>
                             <?php endwhile;?>

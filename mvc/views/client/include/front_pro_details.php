@@ -1,3 +1,24 @@
+<?php 
+        require_once "./mvc/views/client/include/head.php";
+    ?>
+    <!--/head-->
+<style>
+    #content{
+        margin-top: 98px;
+    }
+    .policy_banner{
+        display: flex;
+        justify-content: space-around;
+        background-color: #ecebea;
+        padding: 20px 0;
+    }
+</style>
+<body>
+
+	<!-- header-->
+    <?php 
+        require_once "./mvc/views/client/include/header.php";
+    ?>
 <?php $row = mysqli_fetch_array($data["only1pro"]) ?>
 <div id="content">
     <div class="watch_container">
@@ -177,7 +198,16 @@
             </div>
         </div>
     </div>
-
+    <!-- chinh sach van chuyen  -->
+    <div class="policy_banner">
+                        <div class="policy_text"><span><i class="icon_banner ti-truck"></i></span>FREESHIP ĐƠN HÀNG >700K</div>
+                        <div class="policy_text"><span><i class="icon_banner ti-shield"></i></span>BẢO HÀNH 10 NĂM</div>
+                        <div class="policy_text"><span><i class="icon_banner ti-package"></i></span>ĐỔI TRẢ MIỄN PHÍ TRONG VÒNG 3 NGÀY</div>                   
+    </div>
+    <?php 
+        require_once "./mvc/views/client/include/footer.php";
+    ?>
+</body>
     <script>
         //FUNCTION xoá nút cũ tô nút mới
         {function node(num){

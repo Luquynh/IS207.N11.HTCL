@@ -204,6 +204,32 @@
                         <div class="policy_text"><span><i class="icon_banner ti-shield"></i></span>BẢO HÀNH 10 NĂM</div>
                         <div class="policy_text"><span><i class="icon_banner ti-package"></i></span>ĐỔI TRẢ MIỄN PHÍ TRONG VÒNG 3 NGÀY</div>                   
     </div>
+    <div id="khung_mota">
+        <div class="box_mota"><?php echo $row["mota"]?></div>
+        <div class="box_thongso">
+            <div class="flex0">
+                <div class="flex1">
+                    <div class="flex2">Kích thước</div>
+                    <div class="flex3"><?php echo $row["kichthuoc"]?>MM</div>
+                </div>
+                <hr/>
+                <div class="flex1">
+                    <div class="flex2">Màu sắc</div>
+                    <div class="flex3" style="text-transform: uppercase;"><?php echo $row["mausac"]?></div>
+                </div>
+                <hr/>
+                <div class="flex1">
+                    <div class="flex2">Chống nước</div>
+                    <div class="flex3">3ATM</div>
+                </div>
+                <hr/>
+                <div class="flex1">
+                    <div class="flex2">Chất liệu dây</div>
+                    <div class="flex3" style="text-transform: uppercase;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <?php 
         require_once "./mvc/views/client/include/footer.php";
     ?>

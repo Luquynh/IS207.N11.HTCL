@@ -439,3 +439,28 @@ body {
     top: 0;
     transform: translateY(-100%);
 }
+
+#khung_mota {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#khung_mota .box_mota {
+    text-align: justify;
+    flex: 1;
+    padding: 26px 20px 0 90px;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+#khung_mota .box_thongso {
+    flex: 1;
+    padding: 26px 90px 0 20px;
+}
+
+.flex0 .flex1 {
+    display: flex;
+    justify-content: space-between;
+    height: 43px;
+    line-height: 43px;
+}

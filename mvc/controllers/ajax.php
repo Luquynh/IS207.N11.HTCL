@@ -1,18 +1,32 @@
-<?php
+<!-- <?php
     class ajax extends Controller{
         var $commonmodel;
         var $homeclientmodel;
         var $checkoutmodel;
         var $ordermodel;
+        var $full_address;
         function __construct()
         {
             $this->commonmodel = $this->ModelCommon("commonmodel");
+            $this->full_address = $this->ModelClient("addressmodel");
             // $this->homeclientmodel = $this->ModelClient("homemodel");
             // $this->checkoutmodel = $this->ModelClient("checkoutmodel");
             // $this->ordermodel = $this->ModelAdmin("ordermodel");
 
         }
 
+        //Show list thành phố
+        function showlistcity (){
+            $list_city = $this->full_address->city_all();
+
+        }
+        function showDistrict() {
+            $matp = $_POST["id_city"];
+            $query = $this->full_address->getDistrict($matp);
+            foreach($query as $row):
+                echo '<option value="'.$row['xaid'].'">'.$row['name'].'</option>';
+            endforeach;
+        }
         //kiểm tra xem tài khoản này có ai sử dụng hay chưa (lúc đăng kí tài khoản)
         function checkuser(){
             $email = $_POST["email"];
@@ -365,4 +379,4 @@
             }
         }
     }
-?>
+?> 

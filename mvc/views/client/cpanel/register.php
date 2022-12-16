@@ -23,6 +23,8 @@
 		$(".register__input").blur(function(){
             $("#mess").html("");
         });
+
+        
     });
 </script>
 <body>
@@ -83,21 +85,14 @@
                             <div class="select-address">
                                 <select class="register__input--address-combobox" id="city" name="data[city]">
                                     <option value="null" disabled selected>Chọn tỉnh / thành phố</option>
+                                    <!-- <option value="83">Bến Tre</option> -->
                                     <?php 
-                                    require ("connect.php");
-                                    $sql = "select * from devvn_tinhthanhpho";
-                                    $query = $connect->query($sql);
-                                    // $query = $this->addressmodel->city_all();
-                                    $num = mysqli_num_rows($query);
-                                    if ($num > 0){
-                                        while($row = mysqli_fetch_array($query)){
-                                            
-                                    ?>
-                                        <option value="<?php echo $row['matp']; ?>"><?php echo $row['name']; ?></option>';
-                                    <?php 
-                                        }
-                                    }
-                                    ?>
+                                    // $listcity = $this->full_address->city_all();
+                                    $listcity = $data['list_city'];
+                                    foreach($listcity as $row):?>
+                                        <option value="<?php echo $row['matp']; ?>"><?php echo $row['name']; ?></option>
+                                    <?php endforeach; ?>
+                                    
                                 </select>
                             </div>
             
@@ -149,62 +144,14 @@
 	<!--/Footer-->
 </body>
 
-<!-- <script>
-    // alert("xin chao");
-    // Chọn tỉnh huyện phường xã trong form đăng ký
-    var citis = document.getElementById("city");
-    var districts = document.getElementById("district");
-    var wards = document.getElementById("ward");
-    var Parameter = {
-    url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json", //Đường dẫn đến file chứa dữ liệu hoặc api do backend cung cấp
-    method: "GET", //do backend cung cấp
-    responseType: "application/json", //kiểu Dữ liệu trả về do backend cung cấp
-    };
-    //gọi ajax = axios => nó trả về cho chúng ta là một promise
-    var promise = axios(Parameter);
-    //Xử lý khi request thành công
-    promise.then(function (result) {
-        renderCity(result.data);
-    });
 
-    function renderCity(data) {
-    for (const x of data) {
-        citis.options[citis.options.length] = new Option(x.Name, x.Id);
-    }
-
-    // xứ lý khi thay đổi tỉnh thành thì sẽ hiển thị ra quận huyện thuộc tỉnh thành đó
-    citis.onchange = function () {
-        district.length = 1;
-        ward.length = 1;
-        if(this.value != ""){
-        const result = data.filter(n => n.Id === this.value);
-
-        for (const k of result[0].Districts) {
-            district.options[district.options.length] = new Option(k.Name, k.Id);
-        }
-        }
-    };
-
-    // xứ lý khi thay đổi quận huyện thì sẽ hiển thị ra phường xã thuộc quận huyện đó
-    district.onchange = function () {
-        ward.length = 1;
-        const dataCity = data.filter((n) => n.Id === citis.value);
-        if (this.value != "") {
-        const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
-
-        for (const w of dataWards) {
-            wards.options[wards.options.length] = new Option(w.Name, w.Id);
-        }
-        }
-    };
-    }
-</script> -->
 
 <script>
     $(document).ready(function(){
         $("#city").change(function(){
             var id_city = $("#city").val();
-            $.post("./mvc/views/client/cpanel/district.php", {id: id_city}, function(data){
+            // alert(id_city);
+            $.post("./mvc/views/client/cpanel/district.php", {id_city: id_city}, function(data){
                     $("#district").html(data);
                 }
                 )

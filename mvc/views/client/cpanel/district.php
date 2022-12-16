@@ -1,6 +1,6 @@
 <?php
-    require ("connect.php");
-    $key = $_POST['id'];
+    include ("connect.php");
+    $key = $_POST['id_city'];
     $sql = "SELECT * FROM devvn_quanhuyen WHERE matp = '$key'";
     $query = $connect->query($sql);
     $num = mysqli_num_rows($query);

@@ -1,5 +1,5 @@
 <?php
-    require ("connect.php");
+    include ("connect.php");
     $key1 = $_POST['id_d'];
     $sql1 = "SELECT * FROM devvn_xaphuongthitran WHERE maqh = '$key1'";
     $query1 = $connect->query($sql1);

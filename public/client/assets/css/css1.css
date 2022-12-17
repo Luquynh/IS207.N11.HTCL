@@ -1,14 +1,14 @@
 * {
     margin: 0;
     padding: 0;
-    color: #161a21;
+    /* color: #161a21; */
     font-family: 'Montserrat';
-    font-size: 14px;
+    /* font-size: 14px; */
 }
 
-body {
+/* body {
     background: linear-gradient(rgba(110, 127, 145, 0.15) 0%, rgba(22, 26, 33, 0) 100%);
-}
+} */
 
 .hide {
     display: none;

@@ -1,4 +1,4 @@
-<div class="content_section">
+<div class="content_section" >
                 <div class="storyofcurnon">
                     <img src="https://curnonwatch.com/_next/static/media/logo_small.f2cdcd68.svg" alt="" class="img_story">
                     <h3 class="story_title">THE STORY OF CURNON</h3>

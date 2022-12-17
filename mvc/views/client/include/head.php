@@ -40,6 +40,7 @@
     include "public/client/assets/font/themify-icons/themify-icons.css";
     include "public/client/assets/css/inforuser.css";
     include "public/client/assets/css/changeinfor.css";
+    include "public/client/assets/css/cart.css";
     ?>
     </style>
 </head>

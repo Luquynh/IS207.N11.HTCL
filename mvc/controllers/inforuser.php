@@ -14,25 +14,25 @@
             }
         }
 
-        function show(){
-            $mess = "";
-            $data = ["mess"=>$mess,
-            "avatar_men" => $this->header->get_avatar("men"),
-            "avatar_women" => $this->header->get_avatar("women")
-            ];
-            $this->ViewClient("inforuser",$data);
+        // function show(){
+        //     $mess = "";
+        //     $data = ["mess"=>$mess,
+        //     "avatar_men" => $this->header->get_avatar("men"),
+        //     "avatar_women" => $this->header->get_avatar("women")
+        //     ];
+        //     $this->ViewClient("inforuser",$data);
             
-        }
+        // }
 
-        function inforuser()
+        function show()
         {
             //lấy thông tin người dùng nhờ có session id
             $id_user = $_SESSION["info"]["id"];
             $info_user = $this->informodel->GetInfoUser($id_user);
             
-            $matp = $_SESSION["info"]['city'];
-            $maqh = $_SESSION["info"]['district'];
-            $xaid = $_SESSION["info"]['ward'];
+            $matp = $info_user[0]['matp'];
+            $maqh = $info_user[0]['maqh'];
+            $xaid = $info_user[0]['xaid'];
 
             $nameCity = $this->informodel->getNameCity($matp);
             $nameDistrict = $this->informodel->getNameDistrict($maqh);
@@ -68,6 +68,7 @@
 
         function changeinfor()
         {
+           
             //lấy thông tin người dùng nhờ có session id
             $id_user = $_SESSION["info"]["id"];
             $info_user = $this->informodel->GetInfoUser($id_user);
@@ -80,9 +81,10 @@
             }
             
             //Lấy name của quận, huyện. phường, xã
-            $matp = $_SESSION["info"]['city'];
-            $maqh = $_SESSION["info"]['district'];
-            $xaid = $_SESSION["info"]['ward'];
+            
+            $matp = $info_user[0]['matp'];
+            $maqh = $info_user[0]['maqh'];
+            $xaid = $info_user[0]['xaid'];
 
             $nameCity = $this->informodel->getNameCity($matp);
             $nameDistrict = $this->informodel->getNameDistrict($maqh);

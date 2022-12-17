@@ -20,7 +20,7 @@
         }
 
         function getWard($id_district) {
-            $sql = 'SELECT * FROM devvn_xaphuongthitran WHERE maqh = $id_district';
+            $sql = "SELECT * FROM devvn_xaphuongthitran WHERE maqh = '$id_district'";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result =  $query->fetchAll(PDO::FETCH_ASSOC);

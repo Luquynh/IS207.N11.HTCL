@@ -84,11 +84,11 @@
                         <div class="register__input--address">
                             <div class="select-address">
                                 <select class="register__input--address-combobox" id="city" name="data[city]">
-                                    <option value="null" disabled selected>Chọn tỉnh / thành phố</option>
+                                    <option value="null" disabled selected>---Chọn thành phố---</option>
                                     <!-- <option value="83">Bến Tre</option> -->
                                     <?php 
-                                    // $listcity = $this->full_address->city_all();
-                                    $listcity = $data['list_city'];
+                                    $listcity = $this->full_address->city_all();
+                                    // $listcity = $data['list_city'];
                                     foreach($listcity as $row):?>
                                         <option value="<?php echo $row['matp']; ?>"><?php echo $row['name']; ?></option>
                                     <?php endforeach; ?>
@@ -98,13 +98,13 @@
             
                             <div class="select-address">
                                 <select class="register__input--address-combobox" id="district" name="data[district]" >
-                                    <option value="null" disabled selected>Chọn quận / huyện</option>
+                                    <option value ='null' disabled selected>---Chọn quận huyện---</option>
                                 </select>
                             </div>
             
                             <div class="select-address">
                                 <select class="register__input--address-combobox" id="ward" name="data[ward]">
-                                    <option value="" disabled selected>Chọn phường / xã</option>
+                                    <option value ='null' disabled selected>---Chọn xã phường---</option>
                                 </select>
                             </div>
                         </div>
@@ -151,7 +151,7 @@
         $("#city").change(function(){
             var id_city = $("#city").val();
             // alert(id_city);
-            $.post("./mvc/views/client/cpanel/district.php", {id_city: id_city}, function(data){
+            $.post("<?=base?>ajax/district", {id_city: id_city}, function(data){
                     $("#district").html(data);
                 }
                 )
@@ -159,7 +159,7 @@
 
         $("#district").change(function(){
             var id_district = $("#district").val();
-            $.post("./mvc/views/client/cpanel/ward.php", {id_d: id_district}, function(data){
+            $.post("<?=base?>ajax/ward", {id_district: id_district}, function(data){
                 $("#ward").html(data);
             })
         })

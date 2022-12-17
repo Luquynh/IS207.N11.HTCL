@@ -94,10 +94,10 @@
     
                     <tr class="row-infor">
                         <td class="col-infor">
-                            <a href="changeinfor"><button class="infor-user-btn">Thay đổi thông tin</button></a>
+                            <a href="<?=base?>inforuser/changeinfor"><button class="infor-user-btn">Thay đổi thông tin</button></a>
                         </td>
                         <td class="col-infor">
-                            <a href="changepassword"><button class="infor-user-btn">Đổi mật khẩu</button></a>
+                            <a href="<?=base?>inforuser/changepassword"><button class="infor-user-btn">Đổi mật khẩu</button></a>
                         </td>
                     </tr>
                 </table>

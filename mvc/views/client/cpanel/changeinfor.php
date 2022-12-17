@@ -86,7 +86,7 @@
             
                         <div class="update__input--address">
                             <div class="select-address">
-                                <select class="update__input--address-combobox" id="city" name="data[city]">
+                                <select class="update__input--address-combobox" id="city_update" name="data[city]">
                                     <option value="<?=$data['info'][0]['matp']?>" selected><?= $data['city'][0]['name']?></option>
                                     <?php 
                                     $listcity = $this->full_address->city_all();
@@ -94,18 +94,19 @@
                                     foreach($listcity as $row):?>
                                         <option value="<?php echo $row['matp']; ?>"><?php echo $row['name']; ?></option>
                                     <?php endforeach; ?>
-                                    ?>
+                                    
                                 </select>
                             </div>
                             
                             <div class="select-address">
-                                <select class="update__input--address-combobox" id="district" name="data[district]" >
-                                    <option value="<?=$data['info'][0]['maqh']?>" selected><?=$data['district'][0]['name']?></option>
+                                <select class="update__input--address-combobox" id="district_update" name="data[district]" >
+                                    <option value="<?=$data['info'][0]['maqh']?>"><?=$data['district'][0]['name']?></option>
+                                    
                                 </select>
                             </div>
             
                             <div class="select-address">
-                                <select class="update__input--address-combobox" id="ward" name="data[ward]">
+                                <select class="update__input--address-combobox" id="ward_update" name="data[ward]">
                                     <option value="<?=$data['info'][0]['xaid']?>" selected><?=$data['ward'][0]['name']?></option>
                                 </select>
                             </div>
@@ -149,19 +150,19 @@
 
 <script>
     $(document).ready(function(){
-        $("#city").change(function(){
-            var id_city = $("#city").val();
+        $("#city_update").change(function(){
+            var id_city = $("#city_update").val();
             // alert(id_city);
-            $.post("./mvc/views/client/cpanel/district.php", {id_city: id_city}, function(data){
-                    $("#district").html(data);
+            $.post("<?=base?>ajax/district", {id_city: id_city}, function(data2){
+                    $("#district_update").html(data2);
                 }
                 )
         })
 
-        $("#district").change(function(){
-            var id_district = $("#district").val();
-            $.post("./mvc/views/client/cpanel/ward.php", {id_d: id_district}, function(data){
-                $("#ward").html(data);
+        $("#district_update").change(function(){
+            var id_district = $("#district_update").val();
+            $.post("<?=base?>ajax/ward", {id_district: id_district}, function(data2){
+                $("#ward_update").html(data2);
             })
         })
     })

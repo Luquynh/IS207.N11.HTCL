@@ -32,4 +32,5 @@
     <link href="public/build/css/page.css" rel="stylesheet">
     <!-- jQuery -->
     <script src="public/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="public/javascript.js"></script>
   </head>

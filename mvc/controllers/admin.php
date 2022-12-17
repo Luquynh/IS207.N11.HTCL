@@ -12,19 +12,19 @@
         function __construct()
         {
             $this->accountmodel = $this->ModelAdmin("accountmodel");
-            // $this->homemodel  = $this->ModelAdmin("homemodel");
-            // $this->categorymodel = $this->ModelAdmin("categorymodel");
-            // $this->accadminmodel = $this->ModelAdmin("accountmodel");
-            // $this->commonmodel = $this->ModelCommon("commonmodel");
-            // $this->productmodel = $this->ModelAdmin("productmodel");
-            // $this->slider = $this->ModelAdmin("slidermodel");
-            // $this->ordermodel=$this->ModelAdmin("ordermodel");
+            $this->homemodel  = $this->ModelAdmin("homemodel");
+            $this->categorymodel = $this->ModelAdmin("categorymodel");
+            $this->accadminmodel = $this->ModelAdmin("accountmodel");
+            $this->commonmodel = $this->ModelCommon("commonmodel");
+            $this->productmodel = $this->ModelAdmin("productmodel");
+            $this->slider = $this->ModelAdmin("slidermodel");
+            $this->ordermodel=$this->ModelAdmin("ordermodel");
             //check người dùng đã đăng nhập hay chưa hoặc đã đăng nhập trước đó mà chưa đăng xuất
             
             
         }
         function show(){
-            $mess="";
+        $mess="";
         $email = "";
         $pass = "";
                     $data = [
@@ -74,9 +74,27 @@
 
         //Trang home admin
         function home(){
-            //lấy ra số lượng tất cả các đơn hàng
+           //lấy ra số lượng tất cả các đơn hàng
+           $countallorder = $this->homemodel->CountAllOrder();
+           //lấy ra tổng doanh thu của web
+           $totalmony = $this->homemodel->CountAllMony();
+           //lấy ra tổng các đơn hàng đã giao thành công
+           $ordersuccess = $this->homemodel->CountOrderSuccess();
+           //lấy ra tổng số lượng thành viên
+           $totaluser = $this->homemodel->CountUser();
+           //lấy ra thông tin 10 đơn hàng gần nhất
+           $ordernew = $this->homemodel->OrderNew();
+           $data = [
+               "folder"=>"home",
+               "file"  =>"homeadmin",
+               "totalorder"=>$countallorder[0]["tong"],
+               "totalmony"=>$totalmony[0]["tong"],
+               "ordersuccess"=>$ordersuccess[0]["tong"],
+               "ordernew"=>$ordernew,
+               "totaluser"=>$totaluser[0]["tong"]
+           ];
           
-            $this->ViewAdmin("masterlayout",[]);
+            $this->ViewAdmin("masterlayout",$data);
         }
 
         //quản lí danh mục sản phẩm
@@ -385,7 +403,7 @@
             $mess = "";
             if( isset($_POST['submit']) ){
                 $slider = $_POST["slider"];
-                $result = $this->slider->AddSlider($slider["name"],$slider["img"]);
+                $result = $this->slider->AddSlider($slider["pretitle"],$slider["title1"],$slider["subtitle"],$slider["img"]);
                 if($result != null){
                     $mess = "Thêm Slider Thành Công!";
                 }else $mess = "Thêm Slider Thất Bại!";
@@ -418,6 +436,7 @@
 
         //Quản lí tài khoản người dùng
         function useraccount(){
+            $gioitinh="";
             //lấy số trang mà người dùng chọn
             if(!isset($_GET['page']) || $_GET['page'] < 1){
                 $currentpage = 1;
@@ -433,7 +452,8 @@
                 "title" =>"Quản Lí Tài Khoản Người Dùng",
                 "listaccount"=>$listaccount,
                 "currentpage"=>$currentpage,
-                "totalpage"=>$totalpage
+                "totalpage"=>$totalpage,
+                "gioitinh"=>$gioitinh
             ];
             $this->ViewAdmin("masterlayout",$data);
         }
@@ -478,6 +498,7 @@
             $mess ="";
             $id_user = $_GET["id_user"];
             $id_order = $_GET["id_order"];
+            // $gioitinh="";
             if(isset($_GET["page"])){
                 $page = $_GET["page"];
             }else{
@@ -505,7 +526,8 @@
                 "orderdetails"=>$order_details,
                 "idorder" => $id_order,
                 "page"=>$page,
-                "statusorder"=>$status[0]["status"]
+                "statusorder"=>$status[0]["status"],
+                
             ];
             $this->ViewAdmin("masterlayout",$data);
         }

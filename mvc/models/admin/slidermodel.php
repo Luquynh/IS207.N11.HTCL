@@ -9,20 +9,20 @@
             return $result;
         }
         //Thêm Slider
-        function AddSlider($name,$img){
-            $sql = "INSERT INTO slider values ('','$name','$img',current_time(),'','Hiển Thị')";
+        function AddSlider($pretitle,$title,$subtitle,$img){
+            $sql = "INSERT INTO slider values ('','$pretitle','$title','$subtitle',current_time(),current_time(),'$img',0)";
             $query = $this->conn->prepare($sql);
             $result = $query->execute();
             return $result;
         }
         //dùng để hiển thị hoặc ẩn slider trang người dùng
         function statusslider($id,$status){
-            if($status == "Hiển Thị"){
-                $sql = "UPDATE slider SET status='Ẩn' WHERE id = $id";
+            if($status == 0){
+                $sql = "UPDATE slider SET tt_xoa='1' WHERE maslider = $id";
                 $query = $this->conn->prepare($sql);
                 $query->execute();
             }else{
-                $sql = "UPDATE slider SET status='Hiển Thị' WHERE id = $id";
+                $sql = "UPDATE slider SET tt_xoa='0' WHERE maslider = $id";
                 $query = $this->conn->prepare($sql);
                 $query->execute();
             }
@@ -30,7 +30,7 @@
 
         //Xóa slider
         function DeleteSlider($id){
-            $sql = "DELETE from slider WHERE id = $id";
+            $sql = "DELETE from slider WHERE maslider = $id";
             $query = $this->conn->prepare($sql);
             $query->execute();
             return $query;

@@ -6,11 +6,32 @@
     #content{
         margin-top: 98px;
     }
-    .policy_banner{
-        display: flex;
-        justify-content: space-around;
-        background-color: #ecebea;
-        padding: 20px 0;
+    body {
+    background: linear-gradient(rgba(110, 127, 145, 0.15) 0%, rgba(22, 26, 33, 0) 100%);
+    /* background: linear-gradient(rgba(117, 60, 36, 0.15) 0%, rgba(22, 26, 33, 0) 100%); */
+    }
+    .policy_banner1{
+    background: #ecebea;
+    padding: 20px 0;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 61.6px;
+    width: 100%;
+    }
+    .policy_banner1 .policy_text{
+    display: flex;
+    align-items: center;
+    font-weight: 510;
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: .02em;
+    color: #161a21;
+    }
+    .policy_banner1 .icon_banner{
+        font-size: 20px;
+        color:black;
+        margin-right: 10px;
     }
 </style>
 <body>
@@ -199,7 +220,7 @@
         </div>
     </div>
     <!-- chinh sach van chuyen  -->
-    <div class="policy_banner">
+    <div class="policy_banner1">
                         <div class="policy_text"><span><i class="icon_banner ti-truck"></i></span>FREESHIP ĐƠN HÀNG >700K</div>
                         <div class="policy_text"><span><i class="icon_banner ti-shield"></i></span>BẢO HÀNH 10 NĂM</div>
                         <div class="policy_text"><span><i class="icon_banner ti-package"></i></span>ĐỔI TRẢ MIỄN PHÍ TRONG VÒNG 3 NGÀY</div>                   

@@ -54,13 +54,13 @@
         }
 
         //Hàm xử lý mở hoặc khóa tài khoản người dùng
-        function StatusAccountUser($id,$status){
-            if($status == "Hoạt Động"){
-                $sql = "UPDATE khachhang SET active_status='Block' WHERE id = $id";
+        function StatusAccountUser($makh,$status){
+            if($status == 0){
+                $sql = "UPDATE khachhang SET tt_xoa=1 WHERE makh = $makh";
                 $query = $this->conn->prepare($sql);
                 $query->execute();
             }else{
-                $sql = "UPDATE khachhang SET active_status='Hoạt Động' WHERE id = $id";
+                $sql = "UPDATE khachhang SET tt_xoa=0 WHERE makh = $makh";
                 $query = $this->conn->prepare($sql);
                 $query->execute();
             }

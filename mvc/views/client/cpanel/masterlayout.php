@@ -2,8 +2,20 @@
   <?php 
         require_once "./mvc/views/client/include/head.php";
     ?>
-    <!--/head-->
+    
+    <?php $row = mysqli_fetch_array($data["banner"]) ?>
 
+    <!--/head-->
+    <style>
+    
+    .big_banner .banner{
+        background: top center / cover no-repeat url('<?=imgclient?><?php echo $row["banner_img"];
+        $pretitle=$row["pretitle"];
+        $title=$row["title"];
+        $subtitle=$row["subtitle"];
+        ?>');
+    }
+    </style>
 <body>
 
 	<!-- header-->
@@ -13,9 +25,21 @@
 	<!--/header-->
 
     <!-- Banner -->
-    <?php 
-        require_once "./mvc/views/client/include/banner.php";
-    ?>
+    <div class="big_banner">
+                <div class="banner">
+                    <div class="banner_content">
+                        <div class="banner_pretitle"><?php echo $pretitle?></div>
+                        <div class="banner_title"><?php echo $title?></div>
+                        <div class="banner_subtitle"><?php echo $subtitle?></div>                      
+                        <a href="#" class="btn_banner">SHOP NOW</a>
+                    </div>
+                </div> 
+                <div class="policy_banner">
+                        <div class="policy_text"><span><i class="icon_banner ti-truck"></i></span>FREESHIP ĐƠN HÀNG >700K</div>
+                        <div class="policy_text"><span><i class="icon_banner ti-shield"></i></span>BẢO HÀNH 10 NĂM</div>
+                        <div class="policy_text"><span><i class="icon_banner ti-package"></i></span>ĐỔI TRẢ MIỄN PHÍ TRONG VÒNG 3 NGÀY</div>                   
+                </div>
+    </div>
     <!-- Banner -->
     
 	<!-- gọi danh muc sp -->

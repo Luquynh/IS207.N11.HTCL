@@ -1,6 +1,7 @@
 <?php
 class home extends Controller{
    var $categorymodel;
+   var $slider;
     function __construct()
         {
             // $this->commonmodel = $this->ModelCommon("commonmodel");
@@ -11,11 +12,18 @@ class home extends Controller{
     function show(){
         // $this->ViewClient("masterlayout",[]);
         $a = $this->ModelClient("get_pictures_to_home");
+        $slider=$this->ModelClient("Cslidermodel");
+        
         $this->ViewClient("masterlayout",
             ["best_men" => $a->get_best_seller("men"),
             "best_women" => $a->get_best_seller("women"),
             "avatar_men" => $a->get_avatar("men"),
             "avatar_women" => $a->get_avatar("women"),
+            "banner"=>$slider->GetData()
+            // "banner_img"=>$slider->GetData("banner_img"),
+            // "pretitle"=>$slider->GetData("pretitle"),
+            // "title"=>$slider->GetData("title"),
+            // "subtitle"=>$slider->GetData("subtitle"),
             ]);
     }
     function error404(){

@@ -15,11 +15,11 @@
 }
 
 .addborder {
-    border: 1px solid #161a21 !important;
+    border: 1px solid #161a21 ;
 }
 
 .bgcolor {
-    background-color: #000 !important;
+    background-color: #000 ;
 }
 
 #content .watch_container {

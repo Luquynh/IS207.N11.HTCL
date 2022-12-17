@@ -19,8 +19,8 @@ class login extends Controller{
                 "mess"=>$mess,
                 "email"=>$email,
                 "pass"=>$pass,
-            "avatar_men" => $this->header->get_avatar("men"),
-            "avatar_women" => $this->header->get_avatar("women"),
+                "avatar_men" => $this->header->get_avatar("men"),
+                "avatar_women" => $this->header->get_avatar("women"),
             ];
             $this->ViewClient("login",$data);
     }
@@ -41,7 +41,11 @@ class login extends Controller{
                         $_SESSION["info"]["name"] = $name[0]["tenkh"];
                         $_SESSION["info"]["gender"] = $name[0]["gioitinh"];
                         $_SESSION["info"]["email"] = $name[0]["email"];
-                        $_SESSION["info"]["matkhau"] = $name[0]["matkhau"];
+                        $_SESSION["info"]["pass"] = $name[0]["matkhau"];
+                        $_SESSION["info"]["address"] = $name[0]['diachi'];
+                        $_SESSION["info"]["ward"] = $name[0]['xaid'];
+                        $_SESSION["info"]["district"] = $name[0]['maqh'];
+                        $_SESSION["info"]["city"] = $name[0]['matp'];
                         notification("success","Đăng Nhập Thành Công","","","false","");
                         header('Refresh: 1; URL='.base.'home');
                     }

@@ -1,5 +1,5 @@
 
-        <div id="header">
+    <div id="header">
             <div id="navbar">
                 <ul class="nav-list nav-list__left">
                     <li class="nav-item nav-item__left " >Nam giới
@@ -14,12 +14,12 @@
     
                             <div class="subnav-product__tabcontent watch-list-men" id="watch-list-men">
                             <?php while($row = mysqli_fetch_assoc($data["avatar_men"])):?>
-                                <a href="" class="watch-item">
+                                <a href="http://localhost/curnon/callMCproOPT/show/<?php echo $row["tenbosuutap"]?>" class="watch-item">
                                     <img class="watch-img" src="<?=base?>public/client/assets/img/men/<?php echo $row["img"]?>" alt="">
                                     <p class="watch-name"><?php echo $row["tenbosuutap"]?></p>
                                 </a>
                             <?php endwhile;?>
-                                <a href="" class="watch-item watch-name all">Xem tất cả
+                                <a href="http://localhost/curnon/callMCpromenwo/show/men" class="watch-item watch-name all">Xem tất cả
                                     <br>
                                     <i class="all-icon ti-arrow-right"></i>
                                 </a>
@@ -50,12 +50,12 @@
     
                         <div class="subnav-product__tabcontent watch-list-women" >
                         <?php while($row = mysqli_fetch_assoc($data["avatar_women"])):?>
-                                <a href="" class="watch-item">
+                                <a href="http://localhost/curnon/callMCproOPT/show/<?php echo $row["tenbosuutap"]?>" class="watch-item">
                                     <img class="watch-img" src="<?=base?>public/client/assets/img/women/<?php echo $row["img"]?>" alt="">
                                     <p class="watch-name"><?php echo $row["tenbosuutap"]?></p>
                                 </a>
                             <?php endwhile;?>
-                            <a href="" class="watch-item watch-name all">Xem tất cả
+                            <a href="http://localhost/curnon/callMCpromenwo/show/women" class="watch-item watch-name all">Xem tất cả
                                 <br>
                                 <i class="all-icon ti-arrow-right"></i>
                             </a>
@@ -90,11 +90,11 @@
     
                 <ul class="nav-list nav-list__right">
                     <div for="account-modal__check" class="nav-item dropup pr-8" id="account">
-                        <?php if(!isset($_SESSION["info"]["name"])) 
-                                echo '<a class="nav-item__link " href="login/login">
+                    <?php if(!isset($_SESSION["info"]["name"])) {?>
+                                <a class="nav-item__link " href="<?=base?>login">
                                         <i class="ti-user"></i>
-                                    </a>'; 
-                        ?>
+                                    </a>
+                        <?php }?>
                         <?php if(isset($_SESSION["info"]["name"])){?>
                             <?php echo '<p style="text-transform:none;">'.'<i class="ti-user pr-8"></i>'.$_SESSION['info']["name"].' '.'<i style="font-size: 1.2rem;" class="ti-angle-down"></i></p>'?>
                             <div class="nav-item dropup-content">

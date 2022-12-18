@@ -1,9 +1,9 @@
 * {
     margin: 0;
     padding: 0;
-    color: #161a21;
+    /* color: #161a21; */
     font-family: 'Montserrat';
-    font-size: 14px;
+    /* font-size: 14px; */
 }
 
 body {
@@ -456,6 +456,7 @@ body {
 #khung_mota .box_thongso {
     flex: 1;
     padding: 26px 90px 0 20px;
+    font-size: 14px;
 }
 
 .flex0 .flex1 {

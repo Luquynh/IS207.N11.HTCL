@@ -20,7 +20,7 @@
             $id=$_POST['id_city'];
             $query = $this->full_address->getDistrict($id);
             // $list = $this->Mdistrict->district_provinceid($id);
-            $html="<option value ='null' disabled selected>---Chọn quận huyện---</option>";
+            $html="<option value ='0' disabled selected>---Chọn quận huyện---</option>";
             foreach ($query as $row) 
             {
                 $html.='<option value = '.$row["maqh"].'>'.$row["name"].'</option>';
@@ -32,7 +32,7 @@
             $id = $_POST['id_district'];
             $query = $this->full_address->getWard($id);
             // $list = $this->Mdistrict->district_provinceid($id);
-            $html="<option value ='null' disabled selected>---Chọn xã phường---</option>";
+            $html="<option value ='0' disabled selected>---Chọn xã phường---</option>";
             foreach ($query as $row) 
             {
                 $html.='<option value = '.$row["xaid"].'>'.$row["name"].'</option>';
@@ -47,7 +47,7 @@
                 if($check >=1){
                     $mess = "<p style='color: red;'>Email này đã có người khác sử dụng</p>";
                 }else{
-                    $mess= "<p style='color: green;'>Email hợp lệ có thể sử dụng</p>";
+                    $mess= "<p style='color: green;'>Email hợp lệ</p>";
                 }
             }else {
                 $mess ="<p style='color: red;'>Email và mật khẩu không được chứa kí tự đặc biệt</p>";
@@ -65,6 +65,52 @@
             }else {
                 $mess = "<p style='color: green;'>Xác nhận mật khẩu trùng khớp</p>";
             }
+            echo $mess;
+        }
+        //Kiểm tra định dạng số điện thoại
+        function checkSodt(){
+            $sodt = $_POST["phonenumber"];
+            $vnf_regex = '/((09|03|07|08|05)+([0-9]{8})\b)/';
+            if($sodt !==''){
+                if (preg_match($vnf_regex, $sodt) == false) 
+                {
+                    $mess = "<p style='color: red;'>Số điện thoại của bạn không đúng định dạng!";
+                }else{
+                    $mess = "<p style='color: green;'>Số điện thoại của bạn hợp lệ!";
+                }
+            }else{
+                $mess = "<p style='color: red;'>Bạn chưa điền số điện thoại!";
+            }
+            echo $mess;
+        }
+        //Kiểm tra xem người dùng có chọn tỉnh thành phố hay không 
+        function checkCity(){
+            $check_city = $_POST['city'];
+            if($check_city == 0)
+            {
+                $mess = "<p style='color: red; '>Vui lòng chọn Tỉnh / thành phố</p>";
+            } 
+            else $mess ="";
+            echo $mess;
+        }
+        //Kiểm tra xem người dùng có chọn quận huyện hay không 
+        function checkDistrict (){
+            $check_district = $_POST['district'];
+            if($check_district == 0)
+            {
+                $mess = "<p style='color: red; '>Vui lòng chọn Quận / huyện</p>";
+            } 
+            else $mess = '';
+            echo $mess;
+        }
+        //Kiểm tra xem người dùng có chọn tỉnh thành phố hay không 
+        function checkWard(){
+            $check_ward = $_POST['ward'];
+            if($check_ward == 0)
+            {
+                $mess = "<p style='color: red; '>Vui lòng chọn Phường / xã</p>";
+            }
+            else $mess = '';
             echo $mess;
         }
         // hiển chi tiết sản phẩm khi người dùng bấm vào mua sản phẩm

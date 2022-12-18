@@ -5,10 +5,16 @@
     <!--/head-->
 <script>
     $(document).ready(function(){
+        $("#phonenumber").keyup(function(){
+            var phonenumber = $(this).val();
+            $.post("ajax/checkSodt",{phonenumber:phonenumber},function(data){
+                $("#mess_phonenumber").html(data);
+            });
+        });
         $("#email").keyup(function(){
             var email = $(this).val();
             $.post("ajax/checkuser",{email:email},function(data){
-                $("#mess").html(data);
+                $("#mess_email").html(data);
             });
         });
 
@@ -16,15 +22,53 @@
             var pass_confirm = $(this).val();
             var pass  = $("#pass").val();
             $.post("ajax/checkpass",{pass:pass,pass_confirm:pass_confirm},function(data){
-                $("#mess").html(data);
+                $("#mess_pass").html(data);
             });
         });
-
+        $("#pass_confirm").blur(function(){
+            var city  = $("#city").val();
+            $.post("ajax/checkCity",{city:city},function(data){
+                $("#mess_address").html(data);
+            });
+        });
 		$(".register__input").blur(function(){
             $("#mess").html("");
         });
 
-        
+        // $("#city").mouseup(function(){
+        //     // var city  = $("#city").val();
+        //     // $.post("ajax/checkCity",{city:city},function(data){
+        //     //     $("#mess").html(data);
+        //     // });
+        //     var district  = $("#district").val();
+        //     $.post("ajax/checkDistrict",{district:district},function(data){
+        //         $("#mess_address").html(data);
+        //     });
+        // });
+        $("#city").change(function(){
+            var district  = $("#district").val();
+            $.post("ajax/checkDistrict",{district:district},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        // $("#district").mouseup(function(){
+        //     var ward  = $("#ward").val();
+        //     $.post("ajax/checkWard",{ward:ward},function(data){
+        //         $("#mess_address").html(data);
+        //     });
+        // });
+        $("#district").change(function(){
+            var ward  = $("#ward").val();
+            $.post("ajax/checkWard",{ward:ward},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        $("#ward").mouseup(function(){
+            var ward  = $("#ward").val();
+            $.post("ajax/checkWard",{ward:ward},function(data){
+                $("#mess_address").html(data);
+            });
+        });
     });
 </script>
 <body>
@@ -42,25 +86,26 @@
                     <h1 class="register__header--title">Tạo tài khoản</h1>
                 </header>
                 <div class="register__form">
-                    <div style="height: 24px; width: 100%; text-align: left; font-size: 12px; font-weight: 600;" id= "mess"><?=$data["mess"]?></div>
+                    <!-- <div style="height: 24px; width: 100%; text-align: left; font-size: 12px; font-weight: 600;" id= "mess"><?=$data["mess"]?></div> -->
 
                     <form action="./register/register" method="post">
                         <div class="register__form-group">
                             <input type="text" name="data[name]" class="register__input" required>
                             <label for="" class="register__label">Họ tên</label>
                         </div>
-            
+                        <div style="padding-left: 4px; padding-bottom: 10px;width: 100%; text-align: left; font-size: 12px; font-weight: 600;" id= "mess_phonenumber"><?=$data["mess"]?></div>
+
                         <div class="register__form-group">
-                            <input type="text" name="data[phonenumber]" id="" class="register__input" required>
+                            <input type="text" name="data[phonenumber]" id="phonenumber" class="register__input" required>
                             <label for="" class="register__label">Số điện thoại</label>
                         </div>
             
+                        <div style="padding-left: 4px; padding-bottom: 10px;width: 100%; text-align: left; font-size: 12px; font-weight: 600;" id= "mess_email"><?=$data["mess"]?></div>
                         <div class="register__form-group">
                             <input type="text" name="data[email]" id="email" class="register__input" required>
                             <label for="" class="register__label">Email</label>
                             
                         </div>
-            
                         <div class="gender">
                             <div class="gender__input">
                                 <input type="radio" name="data[gender]" id="" class="gender__input--radio" value="0" checked>
@@ -71,7 +116,8 @@
                                 <label class="gender__input--label">Nữ</label>
                             </div>
                         </div>
-            
+                        
+                        <div style="padding-left: 4px; padding-bottom: 10px;width: 100%; text-align: left; font-size: 12px; font-weight: 600;" id= "mess_pass"><?=$data["mess"]?></div>
                         <div class="register__form-group">
                             <input type="password" class="register__input" name="data[pass]" id = "pass" required>
                             <label for="" class="register__label">Mật khẩu</label>
@@ -81,10 +127,12 @@
                             <input type="password" class="register__input" name="data[pass_confirm]" id = "pass_confirm" required>
                             <label for="" class="register__label">Xác nhận mật khẩu</label>
                         </div>
+                        <div style="padding-left: 4px; padding-bottom: 10px; width: 100%; text-align: left; font-size: 12px; font-weight: 600;" id= "mess_address"><?=$data["mess"]?></div>
                         <div class="register__input--address">
                             <div class="select-address">
-                                <select class="register__input--address-combobox" id="city" name="data[city]">
-                                    <option value="null" disabled selected>---Chọn thành phố---</option>
+                                <!-- <label for="" class="register__label">Xác nhận mật khẩu</label> -->
+                                <select class="register__input--address-combobox" id="city" name="data[city]" required>
+                                    <option value = "0" disabled selected>---Chọn thành phố---</option>
                                     <!-- <option value="83">Bến Tre</option> -->
                                     <?php 
                                     $listcity = $this->full_address->city_all();
@@ -95,16 +143,16 @@
                                     
                                 </select>
                             </div>
-            
+                            
                             <div class="select-address">
-                                <select class="register__input--address-combobox" id="district" name="data[district]" >
-                                    <option value ='null' disabled selected>---Chọn quận huyện---</option>
+                                <select class="register__input--address-combobox" id="district" name="data[district]" required>
+                                    <option value ='0' disabled selected>---Chọn quận huyện---</option>
                                 </select>
                             </div>
             
                             <div class="select-address">
-                                <select class="register__input--address-combobox" id="ward" name="data[ward]">
-                                    <option value ='null' disabled selected>---Chọn xã phường---</option>
+                                <select class="register__input--address-combobox" id="ward" name="data[ward]" required>
+                                    <option value ='0' disabled selected>---Chọn xã phường---</option>
                                 </select>
                             </div>
                         </div>

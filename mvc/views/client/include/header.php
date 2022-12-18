@@ -109,6 +109,7 @@
                     </div>
                     <div for="cart-modal__check" class="nav-item pr-8" id="cart">
                         <i class="nav-item__link ti-bag"></i>
+                        <p class="quanlity-cart">1</p>
                     </div>
                 </ul>
                 

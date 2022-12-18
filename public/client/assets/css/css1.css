@@ -456,6 +456,7 @@
 #khung_mota .box_thongso {
     flex: 1;
     padding: 26px 90px 0 20px;
+    font-size: 14px;
 }
 
 .flex0 .flex1 {

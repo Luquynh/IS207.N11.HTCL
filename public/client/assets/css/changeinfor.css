@@ -1,0 +1,226 @@
+.update {
+    position: relative;
+    top: 80px;
+    right: 0;
+    left: 0;
+    /* bottom: 0; */
+    background-color: rgb(236, 235, 234);
+}
+.update__container {
+    width: 800px;
+    /* position: absolute; */
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    font-weight: 500;
+    background-color: #fff;
+    padding: 32px 0;
+    margin: auto;
+    /* margin-top: 24px; */
+    border-radius: 5px;
+}
+
+.update__header .update__header--title{
+    font-size: 3rem;
+    height: 80px;
+    line-height: 60px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.update__form {
+    min-width: 620px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.update__form-group {
+    position: relative;
+    width: 100%;
+    margin-bottom: 16px;
+}
+.update__form-group .update__label {
+    font-size: 1.6rem;
+    position: absolute;
+    padding: 0 6px;
+    left: 5px;
+    top: 50%;
+    pointer-events: none; /* quan trọng*/
+    transform: translateY(-50%);
+    background: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.update__form-group .update__input {
+    width: 100%;
+    height: 50px;
+    font-size: 1.6rem;
+    padding: 5px 20px;
+    color: #5c5c5c;
+    font-weight: 500;
+    border: 1.5px solid #dfdfdf;
+    border-radius: 5px;
+}
+
+/* Login form */
+
+#togglePassword {
+    cursor: pointer;
+    position: absolute;
+    /* margin-left: -30px; */
+    left: 90%;
+    top: 0;
+    bottom: 0;
+    font-size: 1.6rem;
+    line-height: 50px;
+    padding: 0 8px;
+}
+.update__form-group input:focus {
+    border: 1px solid var(--text-color);
+    transition: all 0.3s ease-in-out;
+}
+.update__form-group input:focus + label, 
+.update__form-group input:valid + label {
+    top: 0px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+.update__form .gender {
+    display: flex;
+    width: 100%;
+}
+
+.gender .gender__input {
+    width: 50%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    margin-bottom: 16px;
+}
+
+.gender__input .gender__input--radio {
+    padding: 16px 16px;
+    margin-right: 16px;
+    margin-left: 16px;
+    width: 20px;
+    height: 20px;
+    background: #323232;
+}
+
+.update__input--address {
+    width: 100%;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+  .select-address {
+    position: relative;
+    display: flex;
+    width: 20em;
+    height: 50px;
+    line-height: 3;
+    background: #fff;
+    overflow: hidden;
+    justify-content: space-between;
+  }
+
+  .update__input--address-combobox {
+    flex: 1;
+    width: 30%;
+    padding: 0 .5em;
+    color: #000;
+    cursor: pointer;
+    outline: none;
+    border: #dfdfdf 1px solid;
+    border-radius: 5px;
+  }
+
+  .update__input--address-combobox:focus{
+    border: 2px solid var(--text-color);
+  }
+
+  /* thiết kế dấu mũi tên */
+  .select-address::after {
+    content: '\25BC';
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    right: 2px;
+    padding: 0 1em;
+    background: #fff;
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+    color: #000;
+    line-height: 50px;
+    border-left: 0.5px solid #ededed;
+    outline: none;
+  }
+.center-colum {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.update__footer {
+    font-size: 1.2rem;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+}
+
+.update__footer--text {
+    color: #ccc;
+}
+.update__footer--text a {
+    text-decoration: none;
+    color: blue;
+    opacity: 0.9;
+}
+
+.update__footer--text a:hover {
+    opacity: 0.6;
+}
+
+.update__footer--btn {
+    height: 50px;
+    width: 50%;
+    background-color: var(--text-color);
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 3px;
+    margin-top: 16px;
+}
+
+.update__footer--btn:hover {
+    color: #ccc;
+    cursor: pointer;
+}
+
+.update__footer--item {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-color);
+    padding: 16px 16px;
+}
+
+.update__footer--item:hover {
+    opacity: 0.7;
+}
+.update__footer-icon {
+    color: #000;
+    margin-right: 8px;
+    margin-left: 8px;
+}

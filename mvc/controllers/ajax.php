@@ -1,18 +1,44 @@
-<?php
+<!-- <?php
     class ajax extends Controller{
         var $commonmodel;
         var $homeclientmodel;
         var $checkoutmodel;
         var $ordermodel;
+        var $full_address;
         function __construct()
         {
             $this->commonmodel = $this->ModelCommon("commonmodel");
+            $this->full_address = $this->ModelClient("addressmodel");
             // $this->homeclientmodel = $this->ModelClient("homemodel");
             // $this->checkoutmodel = $this->ModelClient("checkoutmodel");
             // $this->ordermodel = $this->ModelAdmin("ordermodel");
 
         }
 
+        //Show list quận huyện theo thành phố
+        public function district(){
+            $id=$_POST['id_city'];
+            $query = $this->full_address->getDistrict($id);
+            // $list = $this->Mdistrict->district_provinceid($id);
+            $html="<option value ='null' disabled selected>---Chọn quận huyện---</option>";
+            foreach ($query as $row) 
+            {
+                $html.='<option value = '.$row["maqh"].'>'.$row["name"].'</option>';
+            }
+            echo $html;
+        }
+        //Show list xã phường trị trấn theo quận huyện
+        public function ward(){
+            $id = $_POST['id_district'];
+            $query = $this->full_address->getWard($id);
+            // $list = $this->Mdistrict->district_provinceid($id);
+            $html="<option value ='null' disabled selected>---Chọn xã phường---</option>";
+            foreach ($query as $row) 
+            {
+                $html.='<option value = '.$row["xaid"].'>'.$row["name"].'</option>';
+            }
+            echo $html;
+        }
         //kiểm tra xem tài khoản này có ai sử dụng hay chưa (lúc đăng kí tài khoản)
         function checkuser(){
             $email = $_POST["email"];
@@ -365,4 +391,4 @@
             }
         }
     }
-?>
+?> 

@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content" >
         <div class="content_section">
 
             <div class="category_cards_root">

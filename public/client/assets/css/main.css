@@ -316,96 +316,7 @@
 
 
 /* Modal */
-.cart-modal {
-    position: fixed;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    display: none;
-    z-index: 5;
-    animation: transform_cart 0.2s linear;
-}
 
-@keyframes transform_cart {
-    from {
-        transform: translateX(100%)
-    }
-    to {
-        transform: translateX(0)
-    }
-}
-.cart-modal-container {
-    width: 400px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3) ;
-}
-
-.cart-modal-header {
-    height: 80px;
-    background-color: var(--text-color);
-    color: #ffff;
-    font-family: 'Montserrat';
-    text-transform: uppercase;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-align: left;
-    letter-spacing: -.02em;
-    font-size: 2rem;
-    padding: 0 30px;
-}
-
-.cart-modal-header .cart-modal-close-icon{
-    font-size: 1.4rem;
-    color: #fff;
-    padding: 8px;
-}
-.cart-modal-header .cart-modal-close-icon:hover {
-    opacity: 0.6;
-    cursor: pointer;
-}
-.cart-modal-body {
-    flex: 1;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    padding: 160px 30px;
-}
-
-.cart-modal-body .cart-info {
-    font-size: 1.6rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 22px;
-    letter-spacing: .02em;
-    text-align: center;
-
-}
-
-.cart-modal-body .cart-buy-btn {
-    width: 100%;
-    height: 50px;
-    background-color: #161a21;
-    font-family: 'Montserrat';
-    color: #ffff;
-    font-size: 1.4rem;
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
-.cart-modal-body .cart-buy-btn:hover {
-    color: #ccc;
-    cursor: pointer;
-}
-.cart-buy-icon {
-    font-size: small;
-    padding: 8px;
-}
 
 @keyframes fadeIn_overlay {
     from {
@@ -629,7 +540,8 @@
 }
 
 .big_banner {
-    margin-bottom: 80px;
+    margin-bottom: 150px;
+    position: relative;
 }
 
 .banner_content .btn_banner{
@@ -655,7 +567,8 @@
     overflow-x: hidden;
     max-width: 100%;
     margin: auto;
-    padding-top: 30%;
+    padding-top: 18%;
+    padding-bottom: 20%;
     top: 80px;
     position: relative;
 }
@@ -675,8 +588,8 @@
 }
 
 .banner_content .banner_pretitle{
-    font-size: 16px;
-    margin-bottom: 20px;
+    font-size: 22px;
+    margin-bottom: 24px;
     font-weight: 700;
 }
 .banner_content .banner_title{
@@ -691,14 +604,16 @@
     margin-bottom: 24px;
     font-weight: 400;
 }
-.banner .policy_banner{
+.policy_banner{
     background: #ecebea;
     padding: 20px 0;
     display:flex;
     justify-content: space-around;
     align-items: center;
     height: 61.6px;
-    
+    position: absolute;
+    width: 100%;
+    top: 110%;
 }
 .policy_banner .policy_text{
     display: flex;

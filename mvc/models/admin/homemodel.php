@@ -1,8 +1,8 @@
 <?php
     class homemodel extends DB{
-        //đếm tất cả các hóa đơn
+        //đếm tất cả các hóa đơn hay don hang
         function CountAllOrder(){
-            $sql = "SELECT count(*) as tong FROM order_product WHERE cancel_order =  0";
+            $sql = "SELECT count(*) as tong FROM donhang WHERE matrangthai =  1";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -11,7 +11,7 @@
 
         //đếm tổng doanh thu của web
         function CountAllMony(){
-            $sql = "SELECT sum(total_mony) as tong FROM order_product WHERE status_recieve = 'true'";
+            $sql = "SELECT sum(tonggiatri) as tong FROM donhang WHERE matrangthai= 3";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -20,7 +20,7 @@
 
         //đếm tổng số đơn hàng đã giao
         function CountOrderSuccess(){
-            $sql = "SELECT count(*) as tong FROM order_product WHERE status_recieve = 'true'";
+            $sql = "SELECT count(*) as tong FROM donhang WHERE matrangthai= 3";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -29,7 +29,7 @@
 
         //lấy ra 10 đơn hàng gần đây nhất
         function OrderNew(){
-            $sql = "SELECT * FROM order_product WHERE cancel_order =  0 and delete_order = 0 order by id desc limit 4";
+            $sql = "SELECT * FROM donhang WHERE matrangthai= 1  order by madonhang desc limit 4";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -38,7 +38,7 @@
 
         //đếm tổng số thành viên
         function CountUser(){
-            $sql = "SELECT count(*) as tong FROM user_account";
+            $sql = "SELECT count(*) as tong FROM khachhang";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);

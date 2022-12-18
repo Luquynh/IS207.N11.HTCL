@@ -90,7 +90,7 @@
     
                 <ul class="nav-list nav-list__right">
                     <div for="account-modal__check" class="nav-item dropup pr-8" id="account">
-                    <?php if(!isset($_SESSION["info"]["name"])) {?>
+                        <?php if(!isset($_SESSION["info"]["name"])) {?>
                                 <a class="nav-item__link " href="<?=base?>login">
                                         <i class="ti-user"></i>
                                     </a>
@@ -98,9 +98,9 @@
                         <?php if(isset($_SESSION["info"]["name"])){?>
                             <?php echo '<p style="text-transform:none;">'.'<i class="ti-user pr-8"></i>'.$_SESSION['info']["name"].' '.'<i style="font-size: 1.2rem;" class="ti-angle-down"></i></p>'?>
                             <div class="nav-item dropup-content">
-                                <a href="" style="display: flex; align-items: center;">Thông tin cá nhân</a>
+                                <a href="<?=base?>inforuser/inforuser" style="display: flex; align-items: center;">Thông tin cá nhân</a>
                                 <a href="" style="display: flex; align-items: center;">Lịch sử mua hàng</a>
-                                <a href="logout/logout" style="display: flex; align-items: center;"><i class="ti-shift-right pr-8"></i>Đăng xuất</a>
+                                <a href="<?=base?>logout/logout" style="display: flex; align-items: center;"><i class="ti-shift-right pr-8"></i>Đăng xuất</a>
                             </div>
                         <?php }?>
                     </div>
@@ -123,10 +123,54 @@
                     Giỏ hàng của bạn
                     <label for="cart-modal__check"><i class="cart-modal-close-icon ti-close"></i></label>
                 </header>
-    
-                <div class="cart-modal-body">
+                <div class="cart_tagLine policy">
+                    <div class="policy_text "><span><i class="icon_banner ti-truck"></i>
+                        </span>FREESHIP ĐƠN HÀNG >700K
+                    </div>
+                </div>
+                <!-- <div class="cart-modal-body">
                     <p class="cart-info">Hiện đang chưa có sản phẩm nào trong giỏ hàng của bạn.</p>
                     <button class="cart-buy-btn">Mua hàng ngay <i class="cart-buy-icon ti-arrow-right"></i></button>
+                </div> -->
+                <div class="cart-body">
+                    <div class="cart-product">
+                        <div class="cart-item--imgBox">
+                            <div class="cart-item--iconclose">
+                                <a href=""><i class="ti-close"></i></a>
+                            </div>
+                            <div class="cart-item--img">
+                                <img src="public/client/assets/img/men/COLOSSEM/CANNON/CANNON.png" alt="">
+                            </div>
+                        </div>
+                        <div class="cart-item--contentBox">
+                            <div class="cart-item-boxinfor">
+                                <div class="cart-item--itemName">
+                                    <div class="cart-item--itemName__text">HERBERT</div>
+                                    <div class="cart-item--itemName__price"><strong>1.799.000 ₫</strong></div>
+                                </div>
+                                <div class="cart-item--itemOption">
+                                    <div class="cart-item--itemOption__option">40MM</div>
+                                    <div class="cart-item--itemOption__quanlity-btn">
+                                        <button class="cart-item--itemOption__quanlity-btn-sub quanlity-btn">-</button>
+                                        <input type="text" value="1" class="input-quanlity-btn"></input>
+                                        <button class="cart-item--itemOption__quanlity-btn-add quanlity-btn">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart-footer">
+                        <div class="cart-total">
+                            <div class="cart-total--title">Thành tiền:</div>
+                            <div class="cart-total--value"><strong>1.799.000 ₫</strong></div>
+                        </div>
+                        <a class="cart-btn cart-buy-btn mg-10">
+                            XEM CHI TIẾT
+                        </a>
+                        <a class="cart-btn cart-buy-btn color-cart-checkout-btn mg-10">
+                            THANH TOÁN NGAY
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

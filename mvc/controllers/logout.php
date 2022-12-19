@@ -23,6 +23,10 @@
             unset($_SESSION["cart"]);
             header("location:".base);
         }
+        function resetcart(){
+            unset($_SESSION["cart"]);
+            header("location:".base);
+        }
     }
 
 ?>

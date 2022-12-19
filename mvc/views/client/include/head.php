@@ -42,6 +42,7 @@
     include "public/client/assets/css/inforuser.css";
     include "public/client/assets/css/changeinfor.css";
     include "public/client/assets/css/cart.css";
+    include "public/client/assets/css/cart_mini.css";
     ?>
     </style>
 </head>

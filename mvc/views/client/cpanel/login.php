@@ -25,7 +25,7 @@
                     </h3>
                     <p class="account__header--text">Nhập email và mật khẩu của bạn:</p>
                 </header>
-                <div style="height: 20px; width: 100%; color: red;"><?=$data["mess"]?><?php if(isset($_SESSION["error_login"])){echo $_SESSION["error_login"];unset($_SESSION["error_login"]);}?></div>
+                <div style="color:red; 4px; padding-bottom: 10px;width: 100%; text-align: left; font-size: 12px; font-weight: 600;"><?=$data["mess"]?><?php if(isset($_SESSION["error_login"])){echo $_SESSION["error_login"];unset($_SESSION["error_login"]);}?></div>
                 <form action="./login/login" class="account__body" method="POST">
                     <div class="register__form-group">
                         <input type="text"  id="" class="register__input" name="email" value="<?=$data["email"]?>" required>

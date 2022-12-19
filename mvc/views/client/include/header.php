@@ -107,75 +107,98 @@
                     <div for="search-modal__check" class="nav-item pr-8" id="search">
                         <i class="nav-item__link ti-search "></i>
                     </div>
-                    <div for="cart-modal__check" class="nav-item pr-8" id="cart">
+                    <div class="nav-item pr-8" id="cart-mini">
                         <i class="nav-item__link ti-bag"></i>
-                        <p class="quanlity-cart">1</p>
+                        <?php if(isset($_SESSION["cart"])){?>
+                        <p class="quantity-cart-mini"><?=count($_SESSION['cart'])?></p>
+                        <?php }?>
                     </div>
                 </ul>
                 
             </div>
     
         </div>
-        <!-- modal cart -->
-        <div for="" class="overlay__cart"></div>
-        <div class="cart-modal">
-            <div class="cart-modal-container">
-                <header class="cart-modal-header">
+        <!-- modal cart-mini -->
+        <div for="" class="overlay__cart-mini"></div>
+        <div class="cart-mini-modal">
+            <div class="cart-mini-modal-container">
+                <header class="cart-mini-modal-header">
                     Giỏ hàng của bạn
-                    <label for="cart-modal__check"><i class="cart-modal-close-icon ti-close"></i></label>
+                    <label for="cart-mini-modal__check"><i class="cart-mini-modal-close-icon ti-close"></i></label>
                 </header>
-                <div class="cart_tagLine policy">
+                <div class="cart-mini_tagLine policy">
                     <div class="policy_text "><span><i class="icon_banner ti-truck"></i>
                         </span>FREESHIP ĐƠN HÀNG >700K
                     </div>
                 </div>
-                <!-- <div class="cart-modal-body">
-                    <p class="cart-info">Hiện đang chưa có sản phẩm nào trong giỏ hàng của bạn.</p>
-                    <button class="cart-buy-btn">Mua hàng ngay <i class="cart-buy-icon ti-arrow-right"></i></button>
-                </div> -->
-                <div class="cart-body">
-                    <div class="cart-product">
-                        <div class="cart-item--imgBox">
-                            <div class="cart-item--iconclose">
-                                <a href=""><i class="ti-close"></i></a>
-                            </div>
-                            <div class="cart-item--img">
-                                <img src="public/client/assets/img/men/COLOSSEM/CANNON/CANNON.png" alt="">
-                            </div>
-                        </div>
-                        <div class="cart-item--contentBox">
-                            <div class="cart-item-boxinfor">
-                                <div class="cart-item--itemName">
-                                    <div class="cart-item--itemName__text">HERBERT</div>
-                                    <div class="cart-item--itemName__price"><strong>1.799.000 ₫</strong></div>
+                <?php if(!isset($_SESSION["cart"])){?>
+                    <div class="cart-mini-modal-body padding-center">
+                        <p class="cart-mini-info">Hiện đang chưa có sản phẩm nào trong giỏ hàng của bạn.</p>
+                        <button class="cart-mini-buy-btn">Mua hàng ngay <i class="cart-mini-buy-icon ti-arrow-right"></i></button>
+                    </div>
+                <?php }?>
+                <div class="cart-mini-body">
+                    <?php if(isset($_SESSION["cart"])){?>
+                    <?php foreach($_SESSION["cart"] as $values):?>
+                        <form method="post">
+                            <div class="cart-mini-product">
+                                <div class="cart-mini-item--imgBox">
+                                    <div class="cart-mini-item--iconclose">
+                                        <!-- <a href="" id="deleteproductcart" idproduct=""><i class="ti-close"></i></a> -->
+                                        <!-- <a href="<?=base?>ajax/deleteproductcart&id=<?=$values["id"]?>" id="deleteproductcart" idproduct="<?=$values["id"]?>"><i class="ti-close"></i></a> -->
+                                    </div>
+                                    <div class="cart-mini-item--img">
+                                        <img src="<?=base?>public/client/assets/img/<?=$values['gioitinh']?>/<?php echo $values["img"]?>" alt="">
+                                    </div>
                                 </div>
-                                <div class="cart-item--itemOption">
-                                    <div class="cart-item--itemOption__option">40MM</div>
-                                    <div class="cart-item--itemOption__quanlity-btn">
-                                        <button class="cart-item--itemOption__quanlity-btn-sub quanlity-btn">-</button>
-                                        <input type="text" value="1" class="input-quanlity-btn"></input>
-                                        <button class="cart-item--itemOption__quanlity-btn-add quanlity-btn">+</button>
+                                <div class="cart-mini-item--contentBox">
+                                    <div class="cart-mini-item-boxinfor">
+                                        <div class="cart-mini-item--itemName">
+                                            <div class="cart-mini-item--itemName__text"><?=$values["name"]?></div>
+                                            <div class="cart-mini-item--itemName__price">
+                                                <strong><?=$values["price_old"]?></strong>
+                                            </div>
+                                        </div>
+                                        <div class="cart-mini-item--itemOption">
+                                            <div class="cart-mini-item--itemOption__option"><?= $values['size']?>MM</div>
+                                            <div class="cart-mini-item--itemOption__quanlity-btn">
+                                                <!-- <a href="<?=base?>ajax/upquantity&id=<?=$values["id"]?>" class="cart-mini-item--itemOption__quantity-btn-sub quantity-btn" id="downquantity" idproduct="<?=$values["id"]?>">-</a> -->
+                                                Số lượng: <input type="text" value="<?=$values["quantity"]?>" class="input-quantity-btn"></input>
+                                                <!-- <a href="<?=base?>ajax/upquantity&id=<?=$values["id"]?>" class="cart-mini-item--itemOption__quantity-btn-add quantity-btn" id="upquantity" idproduct="<?=$values["id"]?>">+</a> -->
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="cart-footer">
-                        <div class="cart-total">
-                            <div class="cart-total--title">Thành tiền:</div>
-                            <div class="cart-total--value"><strong>1.799.000 ₫</strong></div>
-                        </div>
-                        <a class="cart-btn cart-buy-btn mg-10">
-                            XEM CHI TIẾT
-                        </a>
-                        <a class="cart-btn cart-buy-btn color-cart-checkout-btn mg-10">
-                            THANH TOÁN NGAY
-                        </a>
-                    </div>
+                        </form>
+                    <?php endforeach;?>
+				<?php }?>
                 </div>
+                
+                <?php if(isset($_SESSION['cart'])){?>
+                <div class="cart-mini-footer">
+                    <div class="cart-mini-total">
+                        <div class="cart-mini-total--title">Thành tiền:</div>
+                        <div class="cart-mini-total--value"><strong><?=$data['total']?> ₫</strong></div>
+                    </div>
+                    <a href="<?=base?>cart/showcart" class="cart-mini-btn cart-mini-buy-btn mg-10">
+                        XEM CHI TIẾT
+                    </a>
+                    <a class="cart-mini-btn cart-mini-buy-btn color-cart-mini-checkout-btn mg-10">
+                        THANH TOÁN NGAY
+                    </a>
+                    <a href="<?=base?>logout/resetcart" class="reset-cart-btn" style="font-size: 14px;">
+                        <!-- <i class="fa-solid fa-arrow-rotate-left cart-checkout-buy-icon"></i> -->
+                        <i class="ti-trash cart-checkout-buy-icon "></i>
+                        Làm mới giỏ hàng
+                    </a>
+                </div>
+                <?php }?>
+                
             </div>
         </div>
-    
+        <div for="" class="temp"></div>
+        
         <!-- Modal Search  -->
         <div for="" class="overlay__search"></div>
         <div class="search-modal">
@@ -199,6 +222,7 @@
             </div>
         </div>
     
+<!--Navbar -->
 <script>
         $('html').mouseover(function(event){
         var arr = ["watch-list-men", 'watch-chain-men', 'watch-list-women', 'watch-chain-women'];
@@ -234,24 +258,24 @@
     $(document).ready(function(){
         // Cart modal
         $('html').click(function(event){
-            if ($(event.target).closest('#cart').length > 0){
-                $('.cart-modal').css('display', 'block');
-                $('.overlay__cart').show();
+            if ($(event.target).closest('#cart-mini').length > 0){
+                $('.cart-mini-modal').css('display', 'block');
+                $('.overlay__cart-mini').show();
             }
             else {
-                $('.cart-modal').css('display', 'none');
-                $('.overlay__cart').hide();
+                $('.cart-mini-modal').css('display', 'none');
+                $('.overlay__cart-mini').hide();
             }
         })
-        $('.cart-modal-close-icon').click(function(){
-            $('.cart-modal').css('display', 'none');
-            $('.overlay__cart').hide();
+        $('.cart-mini-modal-close-icon').click(function(){
+            $('.cart-mini-modal').css('display', 'none');
+            $('.overlay__cart-mini').hide();
         })
-        $('.overlay__cart').click(function(){
-            $('.cart-modal').css('display', 'none');
-            $('.overlay__cart').hide();
+        $('.overlay__cart-mini').click(function(){
+            $('.cart-mini-modal').css('display', 'none');
+            $('.overlay__cart-mini').hide();
         })
-        $('.cart-modal').click(function(event){
+        $('.cart-mini-modal').click(function(event){
             event.stopPropagation();
         })
         //Search modal 
@@ -278,4 +302,21 @@
         })
     })
 
+</script>
+<!-- Cart mini -->
+<script>
+    $(document).ready(function(){
+        // $("#deleteproductcart").click(function(){
+        //     var idproduct = $(this).attr('idproduct');
+        //     $.post("<?=base?>ajax/deleteproductcart", {id: idproduct}, function(data){
+        //         $(".temp").html(data);
+        //     })
+        // })
+        $("#upquantity").click(function(){
+            var idproduct = $(this).attr('idproduct');
+            $.post({id: idproduct}, function(data){
+                $(".temp").html(data);
+            })
+        })
+    })
 </script>

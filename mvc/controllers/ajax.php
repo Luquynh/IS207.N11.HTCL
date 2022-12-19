@@ -5,12 +5,14 @@
         var $checkoutmodel;
         var $ordermodel;
         var $full_address;
+        var $productmodel;
         function __construct()
         {
             $this->commonmodel = $this->ModelCommon("commonmodel");
             $this->full_address = $this->ModelClient("addressmodel");
+            $this->productmodel = $this->ModelClient("get_data_to_pro_details");
             // $this->homeclientmodel = $this->ModelClient("homemodel");
-            // $this->checkoutmodel = $this->ModelClient("checkoutmodel");
+            $this->checkoutmodel = $this->ModelClient("checkoutmodel");
             // $this->ordermodel = $this->ModelAdmin("ordermodel");
 
         }
@@ -220,32 +222,42 @@
                 if(isset($_POST["id"])){
                     $id = $_POST["id"];
                     $product_temp = $this->commonmodel->GetProductById($id);
+                    $mabosuutap = $product_temp[0]["mabosuutap"];
+                    $bosuutap = $this->commonmodel->getBosuutap($mabosuutap);
+                    $makichthuoc = $bosuutap[0]['makichthuoc'];
+                    $kichthuoc = $this->commonmodel->getKichthuoc($makichthuoc);
                     $product = [
-                        "id"=>$product_temp[0]["id"],
-                        "name"=>$product_temp[0]["name"],
-                        "price"=>$product_temp[0]["price"] * (1-$product_temp[0]["sale_product"]/100),
-                        "img"=>$product_temp[0]["img_product"],
+                        "id"=>$product_temp[0]["masp"],
+                        "name"=>$product_temp[0]["tensp"],
+                        "gioitinh"=>$bosuutap[0]['gioitinh'],
+                        "price_new"=>$product_temp[0]["gia"] * (1-$product_temp[0]["giamgia"]/100),
+                        "price_old"=>$product_temp[0]["gia"],
+                        "img"=>$product_temp[0]["img"],
+                        "color" => $product_temp[0]["mausac"],
+                        "size" => $kichthuoc[0]["kichthuoc"],
                         "quantity"=>1,
-                        "sale"=>$product_temp[0]["sale_product"],
-                        "total"=>0
+                        "sale"=>$product_temp[0]["giamgia"],
+                        "total" => 0
                     ];
-                    if($product_temp[0]["quantity"] > 0){
-                        if(!isset($_SESSION["cart"][$id])){
+                    if($product_temp[0]["soluong"] > 0){
+                        if(!isset($_SESSION["cart"][$id])){ //Nếu chưa có sản phẩm $id
                             $_SESSION["cart"][$id] = $product;
-                            $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["price"];
+                            $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["price_new"];
                         }
                         else{
                             $_SESSION["cart"][$id]["quantity"]+=1;
-                            $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["quantity"] * $_SESSION["cart"][$id]["price"];
+                            $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["quantity"] * $_SESSION["cart"][$id]["price_new"];
                         }
-                        echo '<script>location.href="'.base.'cart/showcart"</script>';
+                        echo '<script> location.reload() </script>';
+                        // echo count($_SESSION['cart']);
                     }else{
                         NotifiErrorQuantity("Sản phẩm đã được bán hết quay lại sau nhé!");
                     }
                 }
             }else{
                 $_SESSION["error_login"] = "Vui Lòng đăng nhập";
-                echo '<script>location.href="'.base.'login/login"</script>';
+                $error_login = '<script>location.href="'.base.'login/"</script>';
+                echo $error_login;
             }
         }
 
@@ -254,10 +266,10 @@
             if(isset($_GET["id"])){
                 $id = $_GET["id"];
                 $_SESSION['cart'][$id]["quantity"]-=1;
-                $_SESSION['cart'][$id]["total"] = $_SESSION['cart'][$id]["quantity"] * $_SESSION['cart'][$id]["price"];
+                $_SESSION['cart'][$id]["total"] = $_SESSION['cart'][$id]["quantity"] * $_SESSION['cart'][$id]["price_new"];
                 if($_SESSION['cart'][$id]["quantity"] == 0){
                     $_SESSION['cart'][$id]["quantity"]=1;
-                    $_SESSION['cart'][$id]["total"] = $_SESSION['cart'][$id]["quantity"] * $_SESSION['cart'][$id]["price"];
+                    $_SESSION['cart'][$id]["total"] = $_SESSION['cart'][$id]["quantity"] * $_SESSION['cart'][$id]["price_new"];
                 }
                 header("location:".base."cart/showcart");
             }
@@ -268,10 +280,14 @@
             if(isset($_GET["id"])){
                 $id = $_GET["id"];
                 $_SESSION['cart'][$id]["quantity"]+=1;
+                // $quantity_product = $this->checkoutmodel->GetQuantityById($id);
                 $quantity_product = $this->checkoutmodel->GetQuantityById($id);
-                if($_SESSION['cart'][$id]["quantity"] <= $quantity_product[0]["quantity"]){
-                    $_SESSION['cart'][$id]["total"] = $_SESSION['cart'][$id]["quantity"] * $_SESSION['cart'][$id]["price"];
-                    header("location:".base."cart/showcart");
+                
+                if($_SESSION['cart'][$id]["quantity"] <= $quantity_product[0]["soluong"]){
+                    $_SESSION['cart'][$id]["total"] = $_SESSION['cart'][$id]["quantity"] * $_SESSION['cart'][$id]["price_new"];
+                    
+                    header("location:".base.'cart/showcart');
+                // header("location:".base);
                 }else{
                     $_SESSION['cart'][$id]["quantity"]-=1;
                     NotifiError("Xin lỗi số lượng trong kho không đủ","cart/showcart");
@@ -284,7 +300,10 @@
             if(isset($_GET["id"])){
                 $id = $_GET["id"];
                 unset($_SESSION['cart'][$id]);
-                header("location:".base."cart/showcart");
+                header("location:".base.'cart/showcart');
+                
+                // echo '<script> location.reload() </script>';
+                
             }
         }
 

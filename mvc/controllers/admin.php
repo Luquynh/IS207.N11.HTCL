@@ -106,10 +106,10 @@
             }else $currentpage = 1;
             // hiển thị sản phẩm tương ứng số trang
             $offset = ($currentpage - 1)*$limit;
-            $totalcategory = $this->commonmodel->GetNumber("category");
+            $totalcategory = $this->commonmodel->GetNumber("bosuutap");
             $totalpage = ceil($totalcategory / $limit);
             $mess = "";
-            $temp = $this->commonmodel->GetCategoryPage($limit,$offset,"category");
+            $temp = $this->commonmodel->GetCategoryPage($limit,$offset,"bosuutap","mabosuutap");
             $result = json_decode($temp,true);
             if( isset($_SESSION["DeleteCategory"]) ){
                 $mess  = $_SESSION["DeleteCategory"];
@@ -304,11 +304,11 @@
                 $currentpage =  $_GET['page'];
             }else $currentpage = 1;
             // hiển thị sản phẩm tương ứng số trang
-            $limit = 3;
-            $totalproduct = $this->commonmodel->GetNumber("product");
+            $limit = 4;
+            $totalproduct = $this->commonmodel->GetNumber("sanpham");
             $totalpage = ceil($totalproduct / $limit);
             $offset = ($currentpage - 1) * $limit;
-            $result = json_decode($this->commonmodel->GetCategoryPage($limit,$offset,"product"),true);
+            $result = json_decode($this->commonmodel->GetCategoryPage($limit,$offset,"sanpham","masp"),true);
             $totalpage = ceil($totalproduct / $limit);
             $data = [
                 "folder"      =>"product",
@@ -325,7 +325,7 @@
         //Xóa sản phẩm
         function deleteproduct($id,$page,$stt){
             $result = $this->productmodel->DeleteProduct($id);
-            if($stt % 3 == 1){
+            if($stt % 4 == 1){
                 $page-=1;
             }
             if($result){
@@ -432,6 +432,46 @@
             $status = $_GET['status'];
             $this->slider->statusslider($id,$status);
             header("location:".base."admin/showslider");
+        }
+        function editslider(){
+            $id = $_GET['id'];
+            $img_dp="";
+            $result1= $this->commonmodel->GetDataslider($id,"slider");
+            $mess="";
+            if(isset($_POST['submit'])){          
+                $name = $_POST['name'];
+                $content = $_POST['content'];
+                $slogan=$_POST['slogan'];
+                if ($_FILES['img']['size'] == 0 ){  
+                    foreach($result1 as $row){
+                        $img=$row["banner_img"];
+                    }          
+            
+                }
+                else{
+                    $img=$_FILES['img']['name'];
+                    
+                }
+           
+                $result = $this->slider->Editslider($id,$name,$slogan,$content,$img);
+                if($result == null){
+                    $mess = "Sửa Thành Công!";
+                }else{
+                    $mess = "Sửa Thất Bại!";
+                }
+            }
+            $result = $this->commonmodel->GetDataslider($id,"slider");
+            $data = [
+                "folder"      =>"slider",
+                "file"        =>"editslider",
+                "title"       =>"Sửa Danh Mục Sản Phẩm",
+                "data"        =>$result,
+                "mess"        =>$mess,
+                "img_dp"      =>$img_dp,
+                
+                
+            ];
+            $this->ViewAdmin("masterlayout",$data);
         }
 
         //Quản lí tài khoản người dùng

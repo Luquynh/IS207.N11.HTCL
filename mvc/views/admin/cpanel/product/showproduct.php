@@ -35,16 +35,16 @@
                 <tbody>
                     <?php foreach($data["data"] as $key => $values){ $stt = ($data['currentpage']-1)*3+($key+1)?>
                     <tr class="even pointer">
-                        <td style=" font-size: 16px;" class="name__product"><?=$values['name']?></td>
-                        <td style=" font-size: 16px;" class="price__product"><?=$values['name_category']?></td>
+                        <td style=" font-size: 16px;" class="name__product"><?=$values['tensp']?></td>
+                        <td style=" font-size: 16px;" class="price__product"><?=$values['mabosuutap']?></td>
                         <td style=" font-size: 16px;" class="img_product">
-                            <img class="img__product-img" src="public/images/img_product/<?=$values['img_product']?>" alt="">
+                            <img class="img__product-img" src="<?=base?>public/client/assets/img/<?=$values['img']?>" alt="">
                         </td>
-                        <td><?=$values['price']?></td>
-                        <td><?=$values['quantity']?></td>
+                        <td><?=$values['gia']?></td>
+                        <td><?=$values['soluong']?></td>
                         <td>
-                            <a style="height: 35px;" class="btn btn-success" href="<?=base?>admin/editproduct&id=<?=$values['id']?>&page=<?=$data["currentpage"]?>">Sửa</a>
-                            <a style="height: 35px" class="btn btn-danger submit" href="javascrip:void(0)" onclick="del(<?=$values['id']?>,'<?=$values['name'] ?>','<?=base.'admin/deleteproduct/'?>','sản phẩm ',<?=$data['currentpage']?>,<?=$stt?>)"  >Xóa</a> 
+                            <a style="height: 35px;" class="btn btn-success" href="<?=base?>admin/editproduct&id=<?=$values['masp']?>&page=<?=$data["currentpage"]?>">Sửa</a>
+                            <a style="height: 35px" class="btn btn-danger submit" href="javascrip:void(0)" onclick="del(<?=$values['masp']?>,'<?=$values['tensp'] ?>','<?=base.'admin/deleteproduct/'?>','sản phẩm ',<?=$data['currentpage']?>,<?=$stt?>)"  >Xóa</a> 
                         </td>
                     </tr>
                     <?php  } ?>

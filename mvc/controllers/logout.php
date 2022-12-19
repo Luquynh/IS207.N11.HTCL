@@ -14,7 +14,7 @@
         }
         //đăng nhập admin
         function admin(){
-            setcookie("user","",time()-1,"/");
+            
             header("location:".base."login/admin");
         }
 

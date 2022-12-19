@@ -8,6 +8,13 @@
             $result =  $query->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         }
+        function getimg(){
+            $sql = "SELECT banner_img FROM slider";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result =  $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
         //Thêm Slider
         function AddSlider($pretitle,$title,$subtitle,$img){
             $sql = "INSERT INTO slider values ('','$pretitle','$title','$subtitle',current_time(),current_time(),'$img',0)";
@@ -34,6 +41,18 @@
             $query = $this->conn->prepare($sql);
             $query->execute();
             return $query;
+        }
+        function Editslider($id,$name,$slogan,$content,$img){
+            $sql = "UPDATE slider SET pretitle='$name', title='$content', subtitle='$slogan', banner_img='$img' WHERE maslider = $id";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+        }
+        function counthd(){
+            $sql = "SELECT count(*) as sohd FROM donhang WHERE tt_xoa= 0";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
         }
     }
 ?>

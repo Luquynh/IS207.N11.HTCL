@@ -30,7 +30,11 @@
     <link href="public/build/css/custom.min.css" rel="stylesheet">
     <!-- csss -->
     <link href="public/build/css/page.css" rel="stylesheet">
+    <link href="public/admin/assets/css/main.css" rel="stylesheet">
+
+    
     <!-- jQuery -->
     <script src="public/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="public/javascript.js"></script>
   </head>

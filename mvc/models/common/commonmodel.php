@@ -44,15 +44,15 @@
 
         // dùng để lấy tổng số lượng bản ghi
         function GetNumber($table){
-            $sql = "SELECT * FROM $table WHERE status_delete = 0";
+            $sql = "SELECT * FROM $table WHERE tt_xoa = 0";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result =  $query->rowCount();
             return $result;
         }
         //lấy danh mục sản phẩm theo số lượng để phân trang
-        function GetCategoryPage($limit,$offset,$table){
-            $sql = "SELECT * FROM $table WHERE status_delete = 0  ORDER BY 'id' ASC LIMIT $limit OFFSET $offset";
+        function GetCategoryPage($limit,$offset,$table,$id_name){
+            $sql = "SELECT * FROM $table WHERE tt_xoa = 0  ORDER BY $id_name ASC LIMIT $limit OFFSET $offset";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -61,6 +61,13 @@
         //lấy sản phẩm hoặc danh mục theo id dùng để sửa sản phẩm hoặc danh mục
         function GetData($id,$table){
             $sql = "SELECT * FROM $table WHERE id = $id";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return json_decode(json_encode($result),true);
+        }
+        function GetDataslider($id,$table){
+            $sql = "SELECT * FROM $table WHERE maslider = $id";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);

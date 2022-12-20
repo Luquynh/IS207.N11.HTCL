@@ -46,7 +46,12 @@
                 $last_name = $explode_name[count($explode_name) - 1];
                 $avt = $first_name[0].$last_name[0];
             } else $avt = $explode_name[0][0];
-
+            $total = 0;
+            if(isset($_SESSION["cart"])){
+                foreach($_SESSION["cart"] as $key=>$values){
+                    $total+=$values["total"];
+                }
+            }
             $data = [
                 "info" => $info_user,
                 "city" => $nameCity,
@@ -55,7 +60,8 @@
                 // 'avt' => [$first_name[0], $last_name[0]]
                 'avt' => $avt,
                 "avatar_men" => $this->header->get_avatar("men"),
-                "avatar_women" => $this->header->get_avatar("women")
+                "avatar_women" => $this->header->get_avatar("women"),
+                'total' => $total
             ];
             $this->ViewClient("inforuser",$data);
         }

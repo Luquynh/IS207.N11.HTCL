@@ -106,6 +106,20 @@
             $result =  $query->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         }
+        function getBosuutap($mabosuutap){
+            $sql = "SELECT * FROM bosuutap WHERE mabosuutap = '$mabosuutap'";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result =  $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
+        function getKichthuoc($makichthuoc){
+            $sql = "SELECT * FROM kichthuoc WHERE makichthuoc = '$makichthuoc'";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result =  $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
 
         //lấy ra số lượng sản phẩm theo từng danh mục
         function NumberProductById($id){

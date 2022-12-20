@@ -4,6 +4,12 @@ class callMCproOPT extends Controller{
     function show($tenbst){
         $header = $this->ModelClient("get_pictures_to_home");
         $a = $this->ModelClient("get_data_to_pro_OPT");
+        $total = 0;
+        if(isset($_SESSION["cart"])){
+            foreach($_SESSION["cart"] as $key=>$values){
+                $total+=$values["total"];
+            }
+        }
         $data = [
         "avatar_men" => $header->get_avatar("men"),
         "avatar_women" => $header->get_avatar("women"),
@@ -12,7 +18,9 @@ class callMCproOPT extends Controller{
         "gioitinh" => $a->get_gioitinh($tenbst),
         "anhmota" => $a->get_anh_mota($tenbst),
         "mausac" => $a->get_mausac($tenbst),
-        "get_all_spOPT" => $a->get_all_spOPT($tenbst)];
+        "get_all_spOPT" => $a->get_all_spOPT($tenbst),
+        'total' => $total
+    ];
         $this->ViewClient("require_pro_OPT",$data);
     }
 }

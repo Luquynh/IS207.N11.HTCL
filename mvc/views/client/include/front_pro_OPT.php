@@ -70,12 +70,12 @@
             <?php while($row1 = mysqli_fetch_array($data["get_all_spOPT"])):?>
             <div class="watch_mid_con">
             <a style="margin-top: 70px;" href="http://localhost/curnon/callMCprodetails/show/<?php echo $row1["masp"]?>" class="watch_item" >
-                <img class="img_watch_item" src="<?=base?>public/client/assets/img/<?php echo $gt["gioitinh"]?>/<?php echo $row1["img"]?>" alt="">
+                <img class="img_watch_item" src="<?=base?>public/client/assets/img/<?php echo $row1["img"]?>" alt="">
                 <p class="p_watch_item"><?php echo $row1["tenbosuutap"]?></p>
                 <h4 class="h4_watch_item"><?php echo $row1["tensp"]?></h4>
                 <div class="div_watch_item"><?php echo $row1["gia"]?>.000 ₫</div>
                 <button class="button_watch_item">THÊM VÀO GIỎ</button>
-                <div style="display: none;" class="tieuxao2"><?php echo $row["mausac"]?></div>
+                <div style="display: none;" class="tieuxao2"><?php echo $row1["mausac"]?></div>
             </a>
             <button class="button_watch_item">THÊM VÀO GIỎ</button>
             </div>

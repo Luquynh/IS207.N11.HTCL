@@ -1,6 +1,6 @@
 <!-- head-->
 <?php 
-        require_once "./mvc/views/client/include/head.php";
+        // require_once "./mvc/views/client/include/head.php";
 ?>
     <!--/head-->
 <script>
@@ -25,6 +25,18 @@
         });
     });
 </script>
+<style>
+    .form-control{
+    height: calc(1.5em + 1.5rem + 2px);
+    font-size: 1.5rem;
+}
+    label{
+        font-size: 17px;
+    }
+    .gender .gender__input{
+        width: 10%;
+    }
+</style>
 <body>
 
 <div class="title_left">
@@ -35,32 +47,36 @@
 </div>
 
     <!-- Register -->
-    <div class="update">
-            <div class="update__container">
-                <header class="update__header">
-                    <h1 class="update__header--title">Cập nhật thông tin</h1>
-                </header>
+    <div class="">
+            <div class="x_content">
+                
                 <div class="update__form">
                     <!-- <div style="height: 24px; width: 100%; text-align: left; font-size: 12px; font-weight: 600;" id= "mess"><?=$data["mess"]?></div> -->
 
                     <form action="" method="post"  enctype="multipart/form-data">
-                        <div class="update__form-group">
-                            <input type="text"  name = "data[name]"class="update__input" value="<?=$data['info'][0]['tenkh']?>" required>
-                            <label for="" class="update__label">Họ tên</label>
+                        <div class="form-group">
+                            <label for="" class="">Họ tên</label>
+                            <input type="text"  name = "data[name]"class="form-control col-6" value="<?=$data['info'][0]['tenkh']?>" required>
+                            
                         </div>
             
-                        <div class="update__form-group">
-                            <input type="text" name="data[phonenumber]" class="update__input" value="<?=$data['info'][0]['sodt']?>"required>
-                            <label for="" class="update__label">Số điện thoại</label>
+                        <div class="form-group">
+                            <label for="" class="">Số điện thoại</label>
+                            <input type="text" name="data[phonenumber]" class="form-control col-6" value="<?=$data['info'][0]['sodt']?>"required>
+                            
                         </div>
             
-                        <div class="update__form-group">
-                            <input type="text" name="data[email]" id="email" class="update__input" value="<?=$data['info'][0]['email']?>"required>
-                            <label for="" class="update__label">Email</label>
+                        <div class="form-group">
+                            <label for="" class="">Email</label>
+                            <input type="text" name="data[email]" id="email" class="form-control col-6" value="<?=$data['info'][0]['email']?>"required>
+                            
                         </div>
+                        <div class="form-group">
                         <?php 
                             if($data['info'][0]['gioitinh'] == 0){
-                                echo '<div class="gender">
+                                echo '
+                                <label for="" class="">Giới tính</label>
+                                <div class="gender">
                                             <div class="gender__input">
                                                 <input type="radio" name="data[gender]" id="" class="gender__input--radio" value="0" checked>
                                                 <label class="gender__input--label">Nam</label>
@@ -84,8 +100,9 @@
                                 </div>';
                             }
                             ?>
+                        </div>
             
-                        <div class="update__input--address">
+                        <div class="form-group">
                             <div class="select-address">
                                 <select class="update__input--address-combobox" id="city_update" name="data[city]">
                                     <option value="<?=$data['info'][0]['matp']?>" selected><?= $data['city'][0]['name']?></option>
@@ -113,30 +130,18 @@
                             </div>
                         </div>
             
-                        <div class="update__form-group">
-                            <input type="text" class="update__input" name = data[address] value="<?=$data['info'][0]['diachi']?>" required>
-                            <label for="" class="update__label">Địa chỉ <label style="font-size: 1.2rem;">(Ví dụ: 79 đường số 12...)</label></label>
+                        <div class="form-group">
+                            <label for="" class="">Địa chỉ <label style="font-size: 1.2rem;">(Ví dụ: 79 đường số 12...)</label></label>
+                            <input type="text" class="form-control col-6" name = data[address] value="<?=$data['info'][0]['diachi']?>" required>
+                            
                         </div>
 
-                        <div class="update__form-group center-colum">
-                            <p class="update__footer--text">This site is protected by reCAPTCHA and the Google 
-                                <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and 
-                                <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.</p>
+                        <div class="">
                             <input class="update__footer--btn" type="submit" value="Cập nhật" name="submit" >
                         </div>
                     </form>
                 </div>
-                <div class="update__footer">
-                    <a href="<?=base?>inforuser/inforuser" class="update__footer--item">
-                        <i class="update__footer-icon fa-solid fa-arrow-left-long"></i>
-                        Quay lại 
-                    </a>
-
-                    <!-- <a href="<?=base?>login" class="update__footer--item">
-                        Đăng nhập
-                        <i class="update__footer-icon fa-solid fa-arrow-right-long"></i>
-                    </a> -->
-                </div>
+                
             </div>
         </div>
     <!--/ Register -->

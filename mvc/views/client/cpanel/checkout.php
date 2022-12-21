@@ -148,7 +148,12 @@
         
         <!-- Cart -->
         <div class="order-infor-container">
-            <div class="cart-checkout-title" style="padding: 16px;"><?php echo count($_SESSION['cart']); ?> sản phẩm</div>
+            <div class="cart-checkout-title" style="padding: 16px;">
+                <?php if(isset($_SESSION["cart"])){?>
+                <?php echo count($_SESSION['cart']); ?> sản phẩm
+                <?php } ?>
+                0 sản phẩm
+            </div>
             <div class="order-infor--content-container">
                 <?php if(isset($_SESSION["cart"])){?>
                 <?php foreach($_SESSION["cart"] as $values):?>
@@ -194,7 +199,16 @@
             <table style="padding: 0 60px 16px;">
                 <tr class="order-checkout--total" style="padding-bottom: 16px;">
                     <td><span class="order-checkout--total__text font-size-14">Tạm tính:</span></td>
-                    <td><span class="order-checkout--total__price font-size-16 color-black"><strong><?= $data['total']?> ₫</strong></span></td>
+                    <?php if(isset($_SESSION["cart"])){?>
+                        <td><span class="order-checkout--total__price font-size-16 color-black"><strong><?= $data['total']?> ₫</strong></span></td>
+                        <!-- <td><span class="order-checkout--total__price" name='data["total"]' value='<?= $data['total']?>'><strong><?= $data['total']?> ₫</strong></span></td> -->
+                    <?php }
+                    else { ?>
+                        <!-- <td><span class="order-checkout--total__price" name='data["total"]' value='<?= $data['total']?>'><strong>0 ₫</strong></span></td> -->
+                        <td><span class="order-checkout--total__price font-size-16 color-black"><strong>0 ₫</strong></span></td>
+                        
+                    <?php }?>
+                    <!-- <td><span class="order-checkout--total__price font-size-16 color-black"><strong><?= $data['total']?> ₫</strong></span></td> -->
                 </tr>
                 <tr class="order-checkout--total border-bottom" style="padding-bottom: 24px; border-bottom: 1px #eee solid;">
                     <td><span class="order-checkout--total__text font-size-14">Phí ship:</span></td>
@@ -202,7 +216,14 @@
                 </tr>
                 <tr class="order-checkout--total" style="padding-bottom: 16px;">
                     <td><span class="order-checkout--total__text font-size-16">Tổng tiền:</span></td>
-                    <td><span class="order-checkout--total__price" name='data["total"]' value='<?= $data['total']?>'><strong><?= $data['total']?> ₫</strong></span></td>
+                    <?php if(isset($_SESSION["cart"])){?>
+                        <td><span class="order-checkout--total__price" name='data["total"]' value='<?= $data['total']?>'><strong><?= $data['total']?> ₫</strong></span></td>
+                    <?php }
+                    else { ?>
+                        <td><span class="order-checkout--total__price" name='data["total"]' value='<?= $data['total']?>'><strong>0 ₫</strong></span></td>
+        
+                    <?php }?>
+                    
                 </tr>
             </table>
         </div>

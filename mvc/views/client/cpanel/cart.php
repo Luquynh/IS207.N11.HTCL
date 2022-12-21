@@ -29,7 +29,7 @@
                             <?php foreach($_SESSION["cart"] as $values):?>
                             <div class="cart-infor--product">
                                 <div class="cart-infor-left">
-                                    <img class="cart-infor--content__img" src="<?=base?>public/client/assets/img/<?=$values['gioitinh']?>/<?php echo $values["img"]?>"></img>
+                                    <img class="cart-infor--content__img" src="<?=base?>public/client/assets/img/<?php echo $values["img"]?>"></img>
                                     <div class="cart-infor--content__nameBox">
                                         <strong class="cart-infor--content__title mg-bt-8px" style="font-size: 16px;"><?=$values["name"]?></strong>
                                         <div class="cart-infor--content__option mg-bt-8px">

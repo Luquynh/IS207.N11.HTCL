@@ -148,7 +148,7 @@
                                         <!-- <a href="<?=base?>ajax/deleteproductcart&id=<?=$values["id"]?>" id="deleteproductcart" idproduct="<?=$values["id"]?>"><i class="ti-close"></i></a> -->
                                     </div>
                                     <div class="cart-mini-item--img">
-                                        <img src="<?=base?>public/client/assets/img/<?=$values['gioitinh']?>/<?php echo $values["img"]?>" alt="">
+                                        <img src="<?=base?>public/client/assets/img/<?php echo $values["img"]?>" alt="">
                                     </div>
                                 </div>
                                 <div class="cart-mini-item--contentBox">

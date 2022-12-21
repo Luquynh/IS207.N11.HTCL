@@ -44,6 +44,9 @@
                 <table class="infor-content-infor" >
                     <tr class="row-infor">
                         <th class="">
+                            <strong>ID</strong>
+                        </th>
+                        <th class="">
                             <strong>Địa chỉ</strong>
                         </th>
                         <th class="">
@@ -69,6 +72,9 @@
                 <?php foreach($data['order'] as $row): ?>
                     <tr class="row-infor">
                         <td class="col-infor">
+                            <?=$row['madonhang']?>
+                        </td>
+                        <td class="col-infor">
                             <?=$row['diachi']?>
                         </td>
                         <td class="col-infor">
@@ -81,14 +87,42 @@
                             <!-- <?=$row['tonggiatri']?> ₫ -->
                             <?=number_format($row['tonggiatri'], $decimals=0, $dec_point=',', $thousands_sep = '.')?> ₫
                         </td>
-                        <td class="col-infor">
-                            <?php 
+                        <?php 
                             $trangthaidonhang = $this->checkoutmodel->getTrangthaidonhang($row['matrangthai']);
-                            echo $trangthaidonhang[0]['tentrangthai'];
-                            ?>
-                        </td>
-                        <td class="col-infor">
+                            $trangthaidonhang[0]['tentrangthai'];
+                            
+                        ?>
+                        <?php if($row["matrangthai"] == "0"){ ?>
+                            <td class="col-infor" style="color: red; font-weight: bold;"><?=$trangthaidonhang[0]['tentrangthai']?></td>
+                        <?php }else if($row["matrangthai"] == "1"){?>
+                            <td class="col-infor" style="color: blue; font-weight: bold;"><?=$trangthaidonhang[0]['tentrangthai']?></td>
+                        <?php } else {?>
+                            <td class="col-infor" style="color: green; font-weight: bold;"><?=$trangthaidonhang[0]['tentrangthai']?></td>
+                        <?php }?>
+                        
+                        
+                        <!-- <td class="col-infor">
                             <a  id_order="<?=$row["madonhang"]?>" href="javascrip:void(0)" style="margin-bottom: 18px;" class="btn_details_order" name="details">Xác nhận</a>
+                            <a  id_order="<?=$row["madonhang"]?>" href="javascrip:void(0)" style="margin-bottom: 18px;" class="btn_details_order" name="details">Chi Tiết</a>
+
+                        </td> -->
+                        <td class="col-infor col-item-center">
+                            <?php if($row["matrangthai"] == "1") {?>
+                                <span style="margin-bottom: 18px; background-color: red; border: none; " class="btn_details_order" onclick="cancelorder()">Hủy Đơn</span>
+                                <button  name="cancel" id="cancel" hidden></button>
+                            <?php }?>
+                            <?php if($row["matrangthai"] == "4"){ ?>
+                                <span style="margin-bottom: 18px; background-color: green; border: none; " class="btn_details_order" >Xác nhận</span>
+                                <button  name="confirm" id="confirm" hidden></button>
+                                <!-- <button style="margin-bottom: 10px; background-color: green; border: none;" class="btn_details_order" name="confirm">Xác Nhận</button> -->
+                            <?php }?>
+                            <?php if($row["matrangthai"] == "0"){?>
+                                <!-- <span style="margin-bottom: 18px;" class="btn_details_order" onclick="deleteorder()">Xóa Đơn</span>
+                                <button id="delete" name="delete" hidden></button> -->
+                                <!-- <a  id_order="<?=$row["madonhang"]?>" href="javascrip:void(0)" style="margin-bottom: 18px;" class="btn_details_order" name="details">Chi Tiết</a> -->
+
+                            <?php }?>
+                            <!-- <a  id_order="<?=$values["id"]?>" href="javascrip:void(0)" style="margin-bottom: 18px;" class="btn btn-primary btn_details_order" name="details">Chi Tiết</a> -->
                             <a  id_order="<?=$row["madonhang"]?>" href="javascrip:void(0)" style="margin-bottom: 18px;" class="btn_details_order" name="details">Chi Tiết</a>
 
                         </td>
@@ -114,6 +148,9 @@
     th {
         background-color: #eee;
         padding: 10px;
+    }
+    .color-green {
+        color: green;
     }
 </style>
 <script>

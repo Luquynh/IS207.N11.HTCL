@@ -425,7 +425,7 @@
             //lấy tất cả sản phẩm theo id_order
             $order_details = $this->ordermodel->GetOrderDetails($id_order);
             echo '
-                <h2 class="infor-content--header">Chi tiết đơn hàng</h2>
+                <h2 class="infor-content--header">Chi tiết đơn hàng: #'.$id_order.'</h2>
                 <a href="'.base.'inforuser/history" class="" style="text-decoration: none; color: black; font-size: 14px;position: relative;
                 top: -8px">
                     <i class="infororder__footer-icon fa-solid fa-arrow-left-long"></i>

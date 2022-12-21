@@ -57,7 +57,7 @@
         //lấy đơn hàng theo id khách hàng(dùng để hiển thị lịch sử mua hàng của khách hàng)
         function GetHistotyOrder($id){
             // $sql = "select * from order_product where user_id = $id and cancel_order = 0 and delete_order = 0";
-            $sql = "SELECT * from donhang where makh = $id and tt_xoa = 0";
+            $sql = "SELECT * from donhang where makh = $id and tt_xoa = 0 ORDER BY madonhang DESC";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);

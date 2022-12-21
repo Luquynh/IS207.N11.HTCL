@@ -151,15 +151,15 @@
             <div class="cart-checkout-title" style="padding: 16px;">
                 <?php if(isset($_SESSION["cart"])){?>
                 <?php echo count($_SESSION['cart']); ?> sản phẩm
-                <?php } ?>
-                0 sản phẩm
+                <?php } else echo '0 sản phẩm';?>
+                
             </div>
             <div class="order-infor--content-container">
                 <?php if(isset($_SESSION["cart"])){?>
                 <?php foreach($_SESSION["cart"] as $values):?>
                 <div class="order-infor--product">
                     <div class="order-infor-left">
-                        <img class="order-infor--content__img" src="<?=base?>public/client/assets/img/<?=$values['gioitinh']?>/<?php echo $values["img"]?>"></img>
+                        <img class="order-infor--content__img" src="<?=base?>public/client/assets/img/<?php echo $values["img"]?>"></img>
                         <div class="order-infor--content__nameBox">
                             <strong class="order-infor--content__title mg-bt-8px" style="font-size: 16px;"><?=$values["name"]?></strong>
                             <div class="order-infor--content__option mg-bt-8px">

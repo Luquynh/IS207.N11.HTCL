@@ -7,8 +7,8 @@
             $query->execute();
         }
         //Cập nhật thông tin người dùng khi order 
-        function ChangerInfoorder($id, $name, $email, $address, $xaid, $maqh, $matp, $phone){
-            $sql = "UPDATE khachhang SET tenkh = '$name', email = '$email', sodt = '$phone', diachi = '$address', xaid = '$xaid', maqh = '$maqh', matp = '$matp', ngaysua = current_time() where makh = $id";
+        function ChangerInfoorder($id, $name, $email, $address, $xaid, $maqh, $matp, $phone, $diachi_dd){
+            $sql = "UPDATE khachhang SET tenkh = '$name', email = '$email', sodt = '$phone', diachi = '$address', xaid = '$xaid', maqh = '$maqh', matp = '$matp', diachi_dd='$diachi_dd', ngaysua = current_time() where makh = $id";
             $query = $this->conn->prepare($sql);
             $query->execute();
         }

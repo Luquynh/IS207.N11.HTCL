@@ -43,9 +43,22 @@
                     $id = $_SESSION["info"]["id"];
                     //Cập nhật lại thông tin khách hàng nếu có thay đổi
                     $address = $order["address"];
-                    $this->informodel->ChangerInfoorder($id, $order["name"], $order["email"], $address, $order["ward"], $order["district"], $order["city"], $order["phonenumber"]);
+                    //lấy thông tin người dùng nhờ có session id
+                    $id_user = $_SESSION["info"]["id"];
+                    $info_user = $this->informodel->GetInfoUser($id_user);
+
+                    $matp = $order['city'];
+                    $maqh = $order['district'];
+                    $xaid = $order['ward'];
+
+                    //tao dia chi day du 
+                    $nameCity = $this->informodel->getNameCity($matp);
+                    $nameDistrict = $this->informodel->getNameDistrict($maqh);
+                    $nameWard = $this->informodel->getNameWard($xaid);
+                    $diachi_dd = $order["address"].", ".$nameCity[0]["name"].", ".$nameDistrict[0]["name"].", ".$nameWard[0]["name"]."";
+                    $this->informodel->ChangerInfoorder($id, $order["name"], $order["email"], $address, $order["ward"], $order["district"], $order["city"], $order["phonenumber"],$diachi_dd);
                     //Thêm đơn hàng vào bảng order_product
-                    $id_order = $this->checkoutmodel->AddDonhang($id,$order["phonenumber"], $address,35000,$total);
+                    $id_order = $this->checkoutmodel->AddDonhang($id,$order["phonenumber"], $diachi_dd,35000,$total);
                     //dùng for để duyệt giỏ hàng lấy ra từng sản phẩm
                     foreach($_SESSION["cart"] as $key=>$values){
                         //thêm từng sản phẩm vào bảng order_detail
@@ -58,10 +71,10 @@
                         // $quantity_pay = $this->checkoutmodel->GetProductPay($values["id"]) + $values["quantity"];
                         // $this->checkoutmodel->PayProduct($values["id"],$quantity_pay);
                     };
-                    notification("success","Đặt Hàng Thành Công","Đơn hàng của bạn đang chờ xử lý","OK","true","3085d6");
+                    // notification("success","Đặt Hàng Thành Công","Đơn hàng của bạn đang chờ xử lý","OK","true","3085d6");
                     // header("location:".base);
                     unset($_SESSION["cart"]);
-                    // NotifiOrder("Đặt Hàng Thành Công","home/history");
+                    NotifiOrder("Đặt Hàng Thành Công","inforuser/history");
                     // $flag = 1;
                 }else 
                     notification("error","Không Thành Công","Vui lòng thêm sản phẩm vào giỏ hàng","OK","true","3085d6");

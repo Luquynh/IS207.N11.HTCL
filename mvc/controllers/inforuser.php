@@ -3,11 +3,13 @@
         var $informodel;
         var $header;
         var $full_address;
+        var $checkoutmodel;
         function __construct()
         {
             $this->header = $this->ModelClient("get_pictures_to_home");
             $this->informodel = $this->ModelClient("informodel");
             $this->full_address = $this->ModelClient("addressmodel");
+            $this->checkoutmodel = $this->ModelClient("checkoutmodel");
             if(!isset($_SESSION["info"])){
                 $_SESSION["error_login"] = "Vui Lòng đăng nhập";
                 header("location:".base."login/login");
@@ -184,44 +186,63 @@
 
         function history()
         {
-            //lấy thông tin người dùng nhờ có session id
-            $id_user = $_SESSION["info"]["id"];
-            $info_user = $this->informodel->GetInfoUser($id_user);
-            
-            $matp = $info_user[0]['matp'];
-            $maqh = $info_user[0]['maqh'];
-            $xaid = $info_user[0]['xaid'];
-
-            $nameCity = $this->informodel->getNameCity($matp);
-            $nameDistrict = $this->informodel->getNameDistrict($maqh);
-            $nameWard = $this->informodel->getNameWard($xaid);
-
-            //Lấy kí tự đầu tiên của Name
-            $nameUser = $_SESSION['info']['name'];
-            $explode_name = explode(' ', $nameUser);
-            if (count($explode_name) > 1){
-                $first_name = $explode_name[0];
-                $last_name = $explode_name[count($explode_name) - 1];
-                $avt = $first_name[0].$last_name[0];
-            } else $avt = $explode_name[0][0];
-            $total = 0;
-            if(isset($_SESSION["cart"])){
-                foreach($_SESSION["cart"] as $key=>$values){
-                    $total+=$values["total"];
+            if(isset($_SESSION["info"])){
+                if(isset($_POST["confirm"])){
+                    $id = $_POST["id"];
+                    $this->checkoutmodel->Confirm($id);
                 }
+                if(isset($_POST["cancel"])){
+                    $id = $_POST["id"];
+                    $this->checkoutmodel->CancelOrder($id);
+                }
+                if(isset($_POST["delete"])){
+                    $id = $_POST["id"];
+                    $this->checkoutmodel->DeleteOrder($id);
+                }
+                if(isset($_POST["details"])){
+                    
+                }
+
+                //Lấy id của người dùng
+                $id_user = $_SESSION["info"]["id"];
+                //lấy thông tin người dùng nhờ có session id
+                $info_user = $this->informodel->GetInfoUser($id_user);
+                
+                
+                //Lấy kí tự đầu tiên của Name
+                $nameUser = $_SESSION['info']['name'];
+                $explode_name = explode(' ', $nameUser);
+                if (count($explode_name) > 1){
+                    $first_name = $explode_name[0];
+                    $last_name = $explode_name[count($explode_name) - 1];
+                    $avt = $first_name[0].$last_name[0];
+                } else $avt = $explode_name[0][0];
+                //Tính  tổng tiền
+                $total = 0;
+                if(isset($_SESSION["cart"])){
+                    foreach($_SESSION["cart"] as $key=>$values){
+                        $total+=$values["total"];
+                    }
+                }
+
+                //lấy id khách hàng sau đó lấy ra nhưng đơn hàng của khách hàng đó
+                $order = $this->checkoutmodel->GetHistotyOrder($id_user);
+                
+                $data = [
+                    "order"=>$order,
+                    "info" => $info_user,
+    
+                    'avt' => $avt,
+                    "avatar_men" => $this->header->get_avatar("men"),
+                    "avatar_women" => $this->header->get_avatar("women"),
+                    'total' => $total
+                ];
+                $this->ViewClient("history",$data);
+            }else{
+                $_SESSION["error_login"] = "Vui Lòng đăng nhập";
+                header("location:".base."login/login");
             }
-            $data = [
-                "info" => $info_user,
-                "city" => $nameCity,
-                "district" => $nameDistrict,
-                "ward" => $nameWard,
-                // 'avt' => [$first_name[0], $last_name[0]]
-                'avt' => $avt,
-                "avatar_men" => $this->header->get_avatar("men"),
-                "avatar_women" => $this->header->get_avatar("women"),
-                'total' => $total
-            ];
-            $this->ViewClient("history",$data);
+            
         }
     }
 ?>

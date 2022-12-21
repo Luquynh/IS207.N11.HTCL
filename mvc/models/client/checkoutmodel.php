@@ -2,7 +2,7 @@
     class checkoutmodel extends DB{
         //Ghi dữ liệu vào bảng order_product trong database
         function AddDonhang($id_user,$phone,$address,$ship, $total){
-            $sql = "INSERT INTO donhang VALUES ('','$address',$phone,$total,current_time(),'', 1, $id_user, $ship, 0)";
+            $sql = "INSERT INTO donhang VALUES ('','$address','$phone',$total,current_time(),'', 1, $id_user, $ship, 0)";
             $query = $this->conn->prepare($sql);
             $query->execute();
             // $this->conn->exec($sql);
@@ -32,14 +32,20 @@
             $query = $this->conn->prepare($sql);
             $query->execute();
         }
-
+        // Lấy tên trạng thái đơn hàng
+        function getTrangthaidonhang($id){
+            $sql = "SELECT tentrangthai from trangthaidonhang where matrangthai = $id";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
         //Lấy số lượng đã bán cột pay trong bảng product
         function GetProductPay($id){
             $sql = "SELECT pay FROM product WHERE id = $id and status_delete = 0";
             $query = $this->conn->prepare($sql);
-            $query->execute();
-            $result = $query->fetchAll(PDO::FETCH_ASSOC);
-            return $result[0]["pay"];
+            $result = $query->execute();
+            return $result;
         }
         //Cập nhật số lượng sản phẩm đã bán trong mỗi sản phẩm (cột pay trong csdl)
         function PayProduct($id,$quantity){
@@ -50,7 +56,8 @@
 
         //lấy đơn hàng theo id khách hàng(dùng để hiển thị lịch sử mua hàng của khách hàng)
         function GetHistotyOrder($id){
-            $sql = "select * from order_product where user_id = $id and cancel_order = 0 and delete_order = 0";
+            // $sql = "select * from order_product where user_id = $id and cancel_order = 0 and delete_order = 0";
+            $sql = "SELECT * from donhang where makh = $id and tt_xoa = 0";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);

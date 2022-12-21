@@ -494,7 +494,7 @@
             $data = [
                 "folder"      =>"slider",
                 "file"        =>"editslider",
-                "title"       =>"Sửa Danh Mục Sản Phẩm",
+                "title"       =>"Sửa thông tin slider",
                 "data"        =>$result,
                 "mess"        =>$mess,
                 "img_dp"      =>$img_dp,
@@ -525,6 +525,52 @@
                 "currentpage"=>$currentpage,
                 "totalpage"=>$totalpage,
                 "gioitinh"=>$gioitinh,
+                
+            ];
+            $this->ViewAdmin("masterlayout",$data);
+        }
+        function editaccount(){
+            $id = $_GET['id'];
+           
+            $info_user= $this->commonmodel->GetData($id,"khachhang","makh");
+            $mess="";
+            $matp = $info_user[0]['matp'];
+            $maqh = $info_user[0]['maqh'];
+            $xaid = $info_user[0]['xaid'];
+            //tao dia chi day du 
+            $nameCity = $this->informodel->getNameCity($matp);
+            $nameDistrict = $this->informodel->getNameDistrict($maqh);
+            $nameWard = $this->informodel->getNameWard($xaid);
+            if(isset($_POST['submit'])){          
+                $info = $_POST["data"];
+
+                $matp = $info_user[0]['matp'];
+                $maqh = $info_user[0]['maqh'];
+                $xaid = $info_user[0]['xaid'];
+                //tao dia chi day du 
+                $nameCity1 = $this->informodel->getNameCity($matp);
+                $nameDistrict1 = $this->informodel->getNameDistrict($maqh);
+                $nameWard1 = $this->informodel->getNameWard($xaid);
+                $diachi_dd =$info["address"].", ".$nameCity1[0]["name"].", ".$nameDistrict1[0]["name"].", ".$nameWard1[0]["name"]."";
+               
+                
+                $this->informodel->ChangerInfo($id, $info["name"], $info["email"], $info["address"], $info["ward"], $info["district"], $info["city"], $info["phonenumber"], $info["gender"],$diachi_dd);
+                notifichanger("Thay đổi thông tin thành công");
+           
+               
+
+            }
+           
+            $data = [
+                "folder"      =>"useraccount",
+                "file"        =>"editaccount",
+                "city" => $nameCity,
+                "district" => $nameDistrict,
+                "ward" => $nameWard,
+                "title"       =>"Sửa thông tin khách hàng",
+                "info"        =>$info_user,
+                "mess"        =>$mess,
+               
                 
             ];
             $this->ViewAdmin("masterlayout",$data);

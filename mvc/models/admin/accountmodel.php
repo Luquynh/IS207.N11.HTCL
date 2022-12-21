@@ -17,7 +17,6 @@
             return $result;
         }
         
-        
         //Kiểm tra người dùng có bị block tài khoản hay không
         function CheckBlockUser($email){
             $sql = "SELECT * FROM khachhang WHERE email = '$email' and tt_xoa = '1'";

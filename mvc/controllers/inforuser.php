@@ -82,9 +82,7 @@
             $info_user = $this->informodel->GetInfoUser($id_user);
             if(isset($_POST["change_infor"])){
                 $info = $_POST["data"];
-                // $nameCity = $this->informodel->getNameCity($info_user[0]['matp']);
-                // $nameDistrict = $this->informodel->getNameDistrict($info_user[0]['maqh']);
-                // $nameWard = $this->informodel->getNameWard($info_user[0]['xaid']);
+              
                 $matp = $info_user[0]['matp'];
                 $maqh = $info_user[0]['maqh'];
                 $xaid = $info_user[0]['xaid'];
@@ -95,7 +93,6 @@
                 $diachi_dd =$info["address"].", ".$nameCity[0]["name"].", ".$nameDistrict[0]["name"].", ".$nameWard[0]["name"]."";
                
                 // ChangerInfo($id, $name, $email, $address, $xaid, $maqh, $matp, $phone, $gender)
-
                 $this->informodel->ChangerInfo($id_user, $info["name"], $info["email"], $info["address"], $info["ward"], $info["district"], $info["city"], $info["phonenumber"], $info["gender"],$diachi_dd);
                 notifichanger("Thay đổi thông tin thành công");
                 

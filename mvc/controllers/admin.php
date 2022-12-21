@@ -1,5 +1,7 @@
 <?php
+   
     class admin extends Controller{
+        
         var $categorymodel;
         var $accadminmodel;
         var $commonmodel;
@@ -9,6 +11,8 @@
         var $table = "admin";
         var $homemodel;
         var $accountmodel;
+        var $informodel;
+        var $full_address;
         function __construct()
         {
             $this->accountmodel = $this->ModelAdmin("accountmodel");
@@ -19,11 +23,16 @@
             $this->productmodel = $this->ModelAdmin("productmodel");
             $this->slider = $this->ModelAdmin("slidermodel");
             $this->ordermodel=$this->ModelAdmin("ordermodel");
+            $this->informodel = $this->ModelClient("informodel");
+            $this->full_address = $this->ModelClient("addressmodel");
             //check người dùng đã đăng nhập hay chưa hoặc đã đăng nhập trước đó mà chưa đăng xuất
             
             
         }
         function show(){
+            // if(isset($_SESSION["thongtin"])){
+            //     unset($_SESSION["thongtin"]);
+            // }
         $mess="";
         $email = "";
         $pass = "";
@@ -34,7 +43,22 @@
             ];
             $this->ViewAdmin("login",$data);
         }
+        function logout(){
+            if(isset($_SESSION["thongtin"])){
+                unset($_SESSION["thongtin"]);
+            }
+            $mess="";
+            $email = "";
+            $pass = "";
+                        $data = [
+                    "mess"=>$mess,
+                    "email"=>$email,
+                    "pass"=>$pass
+                ];
+                $this->ViewAdmin("login",$data);
+        }
         function login(){
+            
             if(!isset($_SESSION["thongtin"])){
                 $mess = "";
                 $email = "";
@@ -46,12 +70,13 @@
                     if(1){
                         $check = $this->accountmodel->Loginadmin($email,md5($pass));
                         if($check >=1){
+                            // $_SESSION["thongtin"]["tt_xoa"] = $check[0]['tt_xoa'];
                             notification("success","Đăng Nhập Thành Công","","","false","");
                             header('Refresh: 1; URL='.base.'admin/home');
                         }
                         else{
                            
-                            notification("error","Đăng Nhập Thất Bại","Thông tin tài khoản hoặc mật khẩu không chính xác","OK","true","#3085d6");
+                            notification("error","Đăng Nhập Thất Bại","Thông tin tài khoản hoặc mật khẩu không chính xác","$check","true","#3085d6");
                             header('Refresh: 1; URL='.base.'admin');
                         }
                     }else{
@@ -74,7 +99,8 @@
 
         //Trang home admin
         function home(){
-           //lấy ra số lượng tất cả các đơn hàng
+           if(1){
+            //lấy ra số lượng tất cả các đơn hàng
            $countallorder = $this->homemodel->CountAllOrder();
            //lấy ra tổng doanh thu của web
            $totalmony = $this->homemodel->CountAllMony();
@@ -95,21 +121,25 @@
            ];
           
             $this->ViewAdmin("masterlayout",$data);
+           }
+           else{
+            header('Refresh: 1; URL='.base.'admin');
+           }
         }
 
         //quản lí danh mục sản phẩm
         function showcategory(){
-            $limit = 5;
+            $limit = 4;
             //lấy số trang
             if(isset($_GET['page'])){
                 $currentpage =  $_GET['page'];
             }else $currentpage = 1;
             // hiển thị sản phẩm tương ứng số trang
             $offset = ($currentpage - 1)*$limit;
-            $totalcategory = $this->commonmodel->GetNumber("category");
+            $totalcategory = $this->commonmodel->GetNumber("bosuutap");
             $totalpage = ceil($totalcategory / $limit);
             $mess = "";
-            $temp = $this->commonmodel->GetCategoryPage($limit,$offset,"category");
+            $temp = $this->commonmodel->GetCategoryPage($limit,$offset,"bosuutap","mabosuutap");
             $result = json_decode($temp,true);
             if( isset($_SESSION["DeleteCategory"]) ){
                 $mess  = $_SESSION["DeleteCategory"];
@@ -129,7 +159,7 @@
 
         //Xóa danh mục sản phẩm 
         function deletecategory($id,$page,$stt){
-            if($stt % 5 == 1){
+            if($stt % 4 == 1){
                 $page-=1;
             }
             $result = $this->categorymodel->DeleteCategory($id);
@@ -304,11 +334,11 @@
                 $currentpage =  $_GET['page'];
             }else $currentpage = 1;
             // hiển thị sản phẩm tương ứng số trang
-            $limit = 3;
-            $totalproduct = $this->commonmodel->GetNumber("product");
+            $limit = 4;
+            $totalproduct = $this->commonmodel->GetNumber("sanpham");
             $totalpage = ceil($totalproduct / $limit);
             $offset = ($currentpage - 1) * $limit;
-            $result = json_decode($this->commonmodel->GetCategoryPage($limit,$offset,"product"),true);
+            $result = json_decode($this->commonmodel->GetCategoryPage($limit,$offset,"sanpham","masp"),true);
             $totalpage = ceil($totalproduct / $limit);
             $data = [
                 "folder"      =>"product",
@@ -325,7 +355,7 @@
         //Xóa sản phẩm
         function deleteproduct($id,$page,$stt){
             $result = $this->productmodel->DeleteProduct($id);
-            if($stt % 3 == 1){
+            if($stt % 4 == 1){
                 $page-=1;
             }
             if($result){
@@ -433,6 +463,46 @@
             $this->slider->statusslider($id,$status);
             header("location:".base."admin/showslider");
         }
+        function editslider(){
+            $id = $_GET['id'];
+            $img_dp="";
+            $result1= $this->commonmodel->GetDataslider($id,"slider");
+            $mess="";
+            if(isset($_POST['submit'])){          
+                $name = $_POST['name'];
+                $content = $_POST['content'];
+                $slogan=$_POST['slogan'];
+                if ($_FILES['img']['size'] == 0 ){  
+                    foreach($result1 as $row){
+                        $img=$row["banner_img"];
+                    }          
+            
+                }
+                else{
+                    $img=$_FILES['img']['name'];
+                    
+                }
+           
+                $result = $this->slider->Editslider($id,$name,$slogan,$content,$img);
+                if($result == null){
+                    $mess = "Sửa Thành Công!";
+                }else{
+                    $mess = "Sửa Thất Bại!";
+                }
+            }
+            $result = $this->commonmodel->GetDataslider($id,"slider");
+            $data = [
+                "folder"      =>"slider",
+                "file"        =>"editslider",
+                "title"       =>"Sửa thông tin slider",
+                "data"        =>$result,
+                "mess"        =>$mess,
+                "img_dp"      =>$img_dp,
+                
+                
+            ];
+            $this->ViewAdmin("masterlayout",$data);
+        }
 
         //Quản lí tài khoản người dùng
         function useraccount(){
@@ -445,6 +515,7 @@
             $offset = ($currentpage-1)*$limit;
             $listaccount = $this->accadminmodel->GetAllUser($limit,$offset);
             $numberaccount = $this->accadminmodel->GetNumberUser();
+         
             $totalpage = ceil($numberaccount/$limit);
             $data = [
                 "folder"=>"useraccount",
@@ -453,7 +524,54 @@
                 "listaccount"=>$listaccount,
                 "currentpage"=>$currentpage,
                 "totalpage"=>$totalpage,
-                "gioitinh"=>$gioitinh
+                "gioitinh"=>$gioitinh,
+                
+            ];
+            $this->ViewAdmin("masterlayout",$data);
+        }
+        function editaccount(){
+            $id = $_GET['id'];
+           
+            $info_user= $this->commonmodel->GetData($id,"khachhang","makh");
+            $mess="";
+            $matp = $info_user[0]['matp'];
+            $maqh = $info_user[0]['maqh'];
+            $xaid = $info_user[0]['xaid'];
+            //tao dia chi day du 
+            $nameCity = $this->informodel->getNameCity($matp);
+            $nameDistrict = $this->informodel->getNameDistrict($maqh);
+            $nameWard = $this->informodel->getNameWard($xaid);
+            if(isset($_POST['submit'])){          
+                $info = $_POST["data"];
+
+                $matp = $info_user[0]['matp'];
+                $maqh = $info_user[0]['maqh'];
+                $xaid = $info_user[0]['xaid'];
+                //tao dia chi day du 
+                $nameCity1 = $this->informodel->getNameCity($matp);
+                $nameDistrict1 = $this->informodel->getNameDistrict($maqh);
+                $nameWard1 = $this->informodel->getNameWard($xaid);
+                $diachi_dd =$info["address"].", ".$nameCity1[0]["name"].", ".$nameDistrict1[0]["name"].", ".$nameWard1[0]["name"]."";
+               
+                
+                $this->informodel->ChangerInfo($id, $info["name"], $info["email"], $info["address"], $info["ward"], $info["district"], $info["city"], $info["phonenumber"], $info["gender"],$diachi_dd);
+                notifichanger("Thay đổi thông tin thành công");
+           
+               
+
+            }
+           
+            $data = [
+                "folder"      =>"useraccount",
+                "file"        =>"editaccount",
+                "city" => $nameCity,
+                "district" => $nameDistrict,
+                "ward" => $nameWard,
+                "title"       =>"Sửa thông tin khách hàng",
+                "info"        =>$info_user,
+                "mess"        =>$mess,
+               
+                
             ];
             $this->ViewAdmin("masterlayout",$data);
         }

@@ -43,13 +43,25 @@
                         <td style=" font-size: 16px;" class=""><?=$values["pretitle"] ?></td>
                         <td style=" font-size: 16px;" class=""><?=$values["title"] ?></td>
                         <td style=" font-size: 16px;" class=""><?=$values["subtitle"] ?></td>
-                        <td style=" font-size: 16px;" class=""><a onclick="status()" id = "status" href="<?=base?>admin/statusslider&id=<?=$values['maslider']?>&status=<?=$values["tt_xoa"] ?>" class="btn btn-primary"><?=$values["tt_xoa"] ?></a></td>
+                        <td style=" font-size: 16px;" class=""><a onclick="status()" id = "status" href="<?=base?>admin/statusslider&id=<?=$values['maslider']?>&status=<?=$values["tt_xoa"] ?>" <?php 
+                        if($values["tt_xoa"]==0)
+                           {
+                            $class="btn btn-primary";
+                            $tt="Hoạt động";
+                           }
+                        else{
+                            $class="btn btn-danger";
+                            $tt="Ngừng Hoạt động";
+                        }
+                        ?>
+                        class="<?=$class ?>"><?=$tt ?></a></td>
                         <td style=" font-size: 16px;" class="img_product">
                             <img class="img__product-img" src="<?=imgclient?><?=$values['banner_img']?>" alt="">
                         </td>
                         <td style=" font-size: 16px;" class=""><?=$values["ngaytao"] ?></td>
                         <td>
                             <a style="height: 35px" class="btn btn-danger submit" href="javascrip:void(0)" onclick="del(<?=$values['maslider']?>,'<?=$values['pretitle'] ?>','<?=base.'admin/deleteslider/'?>','slider ')"  >Xóa</a> 
+                            <a style="height: 35px;" class="btn btn-success" href="<?=base?>admin/editslider&id=<?=$values['maslider']?>">Sửa</a>
                         </td>
                     </tr>
                     <?php } ?>

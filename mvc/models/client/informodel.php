@@ -1,12 +1,17 @@
 <?php
     class informodel extends DB{
         //thay đổi thông tin người dùng
-        function ChangerInfo($id, $name, $email, $address, $xaid, $maqh, $matp, $phone, $gender){
-            $sql = "UPDATE khachhang SET tenkh = '$name', email = '$email', sodt = '$phone', diachi = '$address', xaid = '$xaid', maqh = '$maqh', matp = '$matp', gioitinh = '$gender', ngaysua = current_time() where makh = $id";
+        function ChangerInfo($id, $name, $email, $address, $xaid, $maqh, $matp, $phone, $gender,$diachi_dd){
+            $sql = "UPDATE khachhang SET tenkh = '$name', email = '$email', sodt = '$phone', xaid = '$xaid', maqh = '$maqh', matp = '$matp',diachi = '$address',diachi_dd='$diachi_dd', gioitinh = '$gender', ngaysua = current_time() where makh = $id";
             $query = $this->conn->prepare($sql);
             $query->execute();
         }
-
+        //Cập nhật thông tin người dùng khi order 
+        function ChangerInfoorder($id, $name, $email, $address, $xaid, $maqh, $matp, $phone){
+            $sql = "UPDATE khachhang SET tenkh = '$name', email = '$email', sodt = '$phone', diachi = '$address', xaid = '$xaid', maqh = '$maqh', matp = '$matp', ngaysua = current_time() where makh = $id";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+        }
         //lấy thông tin người dùng theo id
         function GetInfoUser($id){
             $sql = "SELECT * FROM khachhang where makh = $id";

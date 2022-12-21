@@ -58,7 +58,7 @@
                             <p class="p_watch_item"><?php echo $row["tenbosuutap"]?></p>
                             <h4 class="h4_watch_item"><?php echo $row["tensp"]?></h4>
                             <div class="div_watch_item"><?php echo $row["gia"]?>.000<u> ₫</u></div>
-                            <button class="button_watch_item">THÊM VÀO GIỎ</button>
+                            <button class="button_watch_item" id="addtocard" idproduct="<?php echo $row["masp"]?>">THÊM VÀO GIỎ</button>
                         </a>
                         <button class="button_watch_item">THÊM VÀO GIỎ</button>
                     </div>
@@ -67,4 +67,4 @@
             </div>
             <!-- ^ Đồng hồ nữ -->
         </div>
-    </div>
+</div>

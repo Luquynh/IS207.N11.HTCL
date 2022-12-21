@@ -44,23 +44,30 @@
 
         // dùng để lấy tổng số lượng bản ghi
         function GetNumber($table){
-            $sql = "SELECT * FROM $table WHERE status_delete = 0";
+            $sql = "SELECT * FROM $table WHERE tt_xoa = 0";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result =  $query->rowCount();
             return $result;
         }
         //lấy danh mục sản phẩm theo số lượng để phân trang
-        function GetCategoryPage($limit,$offset,$table){
-            $sql = "SELECT * FROM $table WHERE status_delete = 0  ORDER BY 'id' ASC LIMIT $limit OFFSET $offset";
+        function GetCategoryPage($limit,$offset,$table,$id_name){
+            $sql = "SELECT * FROM $table WHERE tt_xoa = 0  ORDER BY $id_name ASC LIMIT $limit OFFSET $offset";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
             return json_encode($result);
         }
         //lấy sản phẩm hoặc danh mục theo id dùng để sửa sản phẩm hoặc danh mục
-        function GetData($id,$table){
-            $sql = "SELECT * FROM $table WHERE id = $id";
+        function GetData($id,$table,$maid){
+            $sql = "SELECT * FROM $table WHERE $maid = $id";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return json_decode(json_encode($result),true);
+        }
+        function GetDataslider($id,$table){
+            $sql = "SELECT * FROM $table WHERE maslider = $id";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -76,8 +83,8 @@
             return $result;
         }
         
-        function sigin($email, $pass, $name, $address, $xaid, $maqh, $matp, $phonenumber, $gender){
-            $sql ="INSERT INTO khachhang VALUES ('','$name','$gender','$email','$pass','$phonenumber','$matp','$maqh','$xaid','$address',current_time(),'',0)";
+        function sigin($email, $pass, $name, $address, $xaid, $maqh, $matp, $phonenumber, $gender,$diachi_dd){
+            $sql ="INSERT INTO khachhang VALUES ('','$name','$gender','$email','$pass','$phonenumber','$matp','$maqh','$xaid','$address','$diachi_dd',current_time(),'',0)";
             $query = $this->conn->prepare($sql);
             $result = $query->execute();
             return $result;
@@ -94,6 +101,20 @@
         //hàm lấy sản phẩm theo id
         function GetProductById($id){
             $sql = "SELECT * FROM sanpham WHERE masp = $id";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result =  $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
+        function getBosuutap($mabosuutap){
+            $sql = "SELECT * FROM bosuutap WHERE mabosuutap = '$mabosuutap'";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result =  $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
+        function getKichthuoc($makichthuoc){
+            $sql = "SELECT * FROM kichthuoc WHERE makichthuoc = '$makichthuoc'";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result =  $query->fetchAll(PDO::FETCH_ASSOC);

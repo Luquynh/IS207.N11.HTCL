@@ -20,7 +20,7 @@ class login extends Controller{
                 "email"=>$email,
                 "pass"=>$pass,
                 "avatar_men" => $this->header->get_avatar("men"),
-                "avatar_women" => $this->header->get_avatar("women"),
+                "avatar_women" => $this->header->get_avatar("women")
             ];
             $this->ViewClient("login",$data);
     }

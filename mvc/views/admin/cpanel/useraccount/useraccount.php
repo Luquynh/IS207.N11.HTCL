@@ -17,6 +17,7 @@
                         <th class="column-title">Số Điện Thoại</th>
                         <th class="column-title">Địa Chỉ</th>
                         <th class="column-title no-link last"><span class="nobr">Trạng thái hoạt động</span></th>
+                        <th class="column-title no-link last"><span class="nobr">Hành Động</span>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,8 +36,8 @@
                             }
                             ?>
                             <td style=" font-size: 16px;" class=""><?=$gioitinh?></td>
-                            <td style=" font-size: 16px;" class="">0<?=$values["sodt"]?></td>
-                            <td style=" font-size: 16px;" class=""><?=$values["diachi"]?></td>
+                            <td style=" font-size: 16px;" class=""><?=$values["sodt"]?></td>
+                            <td style=" font-size: 16px;" class=""><?=$values["diachi_dd"]?></td>
                             <td>
                                 
                             <a href="<?=base?>admin/statusaccountuser&id=<?=$values["makh"]?>&status=<?=$values["tt_xoa"]?>&page=<?=$data["currentpage"]?>" style="height: 35px;" class="btn btn-primary" href="">
@@ -51,6 +52,10 @@
                             <?=$tt_hd?>
                             </a> 
                     
+                        </td>
+                        <td>
+                             
+                            <a style="height: 35px;" class="btn btn-success" href="<?=base?>admin/editaccount&id=<?=$values['makh']?>">Sửa</a>
                         </td>
                         </tr>
                     <?php }?>

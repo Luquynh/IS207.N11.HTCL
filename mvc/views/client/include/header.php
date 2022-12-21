@@ -96,7 +96,7 @@
                                     </a>
                         <?php }?>
                         <?php if(isset($_SESSION["info"]["name"])){?>
-                            <?php echo '<p style="text-transform:none;">'.'<i class="ti-user pr-8"></i>'.$_SESSION['info']["name"].' '.'<i style="font-size: 1.2rem;" class="ti-angle-down"></i></p>'?>
+                            <?php echo '<p style="text-transform:none;">'.'<i class="ti-user pr-8"></i>'.$_SESSION["info"]["name"].'<i style="font-size: 1.2rem;" class="ti-angle-down"> </i></p>'?>
                             <div class="nav-item dropup-content">
                                 <a href="<?=base?>inforuser/inforuser" style="display: flex; align-items: center;">Thông tin cá nhân</a>
                                 <a href="" style="display: flex; align-items: center;">Lịch sử mua hàng</a>
@@ -184,7 +184,7 @@
                     <a href="<?=base?>cart/showcart" class="cart-mini-btn cart-mini-buy-btn mg-10">
                         XEM CHI TIẾT
                     </a>
-                    <a class="cart-mini-btn cart-mini-buy-btn color-cart-mini-checkout-btn mg-10">
+                    <a href="<?=base?>checkout"class="cart-mini-btn cart-mini-buy-btn color-cart-mini-checkout-btn mg-10">
                         THANH TOÁN NGAY
                     </a>
                     <a href="<?=base?>logout/resetcart" class="reset-cart-btn" style="font-size: 14px;">

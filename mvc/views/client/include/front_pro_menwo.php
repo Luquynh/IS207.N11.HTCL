@@ -37,14 +37,22 @@
                     <!-- Bộ sưu tập -->
                     <div class="filter_model_root">
                         <div class="filter_model_contentModel">
-                            <?php while($row = mysqli_fetch_array($data["get_menwo1"])):?>
+                            <?php
+                            // $count = 0; 
+                            while($row = mysqli_fetch_array($data["get_menwo1"])):?>
                             <button class="filter_model_btn">
                                 <img class="filter_model_thumbnail" src="<?=base?>public/client/assets/img/<?php echo $data["gioitinh"]?>/<?php echo $row["img"]?>" alt="">
                                 <p class="filter_model_name"><?php echo $row["tenbosuutap"]?></p>
                             </button>
-                            <?php endwhile;?>
+                            <?php 
+                            // $count+=1;
+                            // if($count%4==0) {
+                            //     echo '<br>';
+                            // }
+                            endwhile;?>
                         </div>
                     </div>
+                    
                     <!-- Size -->
                     <div class="filter_size_root">
                         <div class="filter_size_contentSize">
@@ -64,7 +72,7 @@
                                 <div class="filter_color_boxImg">
                                     <img class="filter_color_thumbnail" src="<?=base?>public/client/assets/img/color/<?php echo $row["mausac"]?>.png">
                                 </div>
-                                <p style="text-transform: capitalize;" class="filter_color_name"><?php echo $row["mausac"]?></p>
+                                <p class="filter_color_name"><?php echo $row["mausac"]?></p>
                             </button>
                             <?php endwhile;?>
                         </div>
@@ -94,13 +102,18 @@
     <div style="background-color: #f8f7f4;" class="outstanding_products">
         <div class="watch_container" >
             <?php while($row = mysqli_fetch_array($data["get_all_spmenwo"])):?>
+            <div class="watch_mid_con">
             <a style="margin-top: 70px;" href="http://localhost/curnon/callMCprodetails/show/<?php echo $row["masp"]?>" class="watch_item" >
                 <img class="img_watch_item" src="<?=base?>public/client/assets/img/<?php echo $data["gioitinh"]?>/<?php echo $row["img"]?>" alt="">
                 <p class="p_watch_item"><?php echo $row["tenbosuutap"]?></p>
                 <h4 class="h4_watch_item"><?php echo $row["tensp"]?></h4>
-                <div class="div_watch_item"><?php echo $row["gia"]?>.000 ₫</div>
+                <div class="div_watch_item"><?php echo $row["gia"]?>₫</div>
                 <button class="button_watch_item">THÊM VÀO GIỎ</button>
+                <div style="display: none;" class="tieuxao1"><?php echo $row["kichthuoc"]?></div>
+                <div style="display: none;" class="tieuxao2"><?php echo $row["mausac"]?></div>
             </a>
+            <button class="button_watch_item">THÊM VÀO GIỎ</button>
+            </div>
             <?php endwhile;?>
         </div>
     </div>
@@ -175,6 +188,40 @@
             $('.cd_text .ti-check').hide();
             $('.cd_text').eq(0).find('.ti-check').show();
         })
+        // code lọc theo type
+        $('.filter_model_btn').click(function(){
+            var tenbst = $(this).find('.filter_model_name').text();
+            $('.watch_item').hide();
+            $sl = $('.watch_item').length;
+            for (var i = 0; i < $sl; i++ ){
+                if ($('.watch_item').eq(i).find('.p_watch_item').text() == tenbst) {
+                    $('.watch_item').eq(i).show();
+                }
+            }
+        })
+        $('.filter_color_btn').click(function(){
+            var mausac = $(this).find('.filter_color_name').text();
+            $('.watch_item').hide();
+            $sl = $('.watch_item').length;
+            for (var i = 0; i < $sl; i++ ){
+                if ($('.watch_item').eq(i).find('.tieuxao2').text() == mausac) {
+                    $('.watch_item').eq(i).show();
+                }
+            }
+        })
+        $('.filter_size_btn').click(function(){
+            var kichthuoc = $(this).find('.filter_number_size1').text();
+            $('.watch_item').hide();
+            $sl = $('.watch_item').length;
+            for (var i = 0; i < $sl; i++ ){
+                if ($('.watch_item').eq(i).find('.tieuxao1').text() == kichthuoc) {
+                    $('.watch_item').eq(i).show();
+                }
+            }
+        })
+        $('.filter_desktop_reset').click(function(){
+            $('.watch_item').show();
+        })    
     </script>
 
     

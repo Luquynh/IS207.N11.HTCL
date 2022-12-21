@@ -44,7 +44,7 @@
                         $this->checkoutmodel->PayProduct($values["id"],$quantity_pay);
                     };
                     unset($_SESSION["cart"]);
-                    //notification("success","Đặt Hàng Thành Công","Đơn hàng của bạn đang chờ xử lý","OK","true","3085d6");
+                    notification("success","Đặt Hàng Thành Công","Đơn hàng của bạn đang chờ xử lý","OK","true","3085d6");
                     NotifiOrder("Đặt Hàng Thành Công","home/history");
                 }else 
                     notification("error","Không Thành Công","Vui lòng thêm sản phẩm vào giỏ hàng","OK","true","3085d6");
@@ -82,6 +82,11 @@
             $this->ViewClient("cart",$data);
         }
 
+        function resetcart(){
+            unset($_SESSION["cart"]);
+            header("location:".base);
+            // "cart/showcart"
+        }
         //Thanh toán đơn hàng
         function order(){
             

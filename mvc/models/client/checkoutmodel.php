@@ -1,17 +1,18 @@
 <?php
     class checkoutmodel extends DB{
         //Ghi dữ liệu vào bảng order_product trong database
-        function AddOrder($id_user,$name,$phone,$address,$total){
-            $sql = "INSERT INTO order_product VALUES ('', $id_user, current_time(), '$name', '$address', '$phone', 'Chờ Xử Lý',$total,'false',0,0)";
+        function AddDonhang($id_user,$phone,$address,$ship, $total){
+            $sql = "INSERT INTO donhang VALUES ('','$address',$phone,$total,current_time(),'', 1, $id_user, $ship, 0)";
             $query = $this->conn->prepare($sql);
             $query->execute();
+            // $this->conn->exec($sql);
             $id_order = $this->conn->lastInsertId();
             return $id_order;
         }
 
         //Ghi dữ liệu vào bảng order_details trong database
-        function AddOrderDetails($id_order,$id_product,$quantity,$unit_price,$name_product){
-            $sql = "INSERT INTO order_details VALUES ($id_order,'$name_product', $id_product, $quantity, $unit_price)";
+        function AddChitietdonhang($id_order,$id_product,$quantity,$unit_price){
+            $sql = "INSERT INTO chitietdonhang VALUES ('',$id_order,$id_product, $quantity, $unit_price)";
             $query = $this->conn->prepare($sql);
             $query->execute();
         }
@@ -27,7 +28,7 @@
 
         //cập nhật lại số lượng sản phẩm sau khi đã bán
         function UpdateQuantityById($id,$quantity){
-            $sql = "UPDATE product SET quantity = $quantity WHERE id = $id";
+            $sql = "UPDATE sanpham SET soluong = $quantity WHERE masp = $id";
             $query = $this->conn->prepare($sql);
             $query->execute();
         }

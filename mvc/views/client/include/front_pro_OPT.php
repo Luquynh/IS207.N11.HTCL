@@ -38,7 +38,7 @@
                                 <div class="filter_color_boxImg">
                                     <img class="filter_color_thumbnail" src="<?=base?>public/client/assets/img/color/<?php echo $row["mausac"]?>.png">
                                 </div>
-                                <p style="text-transform: capitalize;" class="filter_color_name"><?php echo $row["mausac"]?></p>
+                                <p class="filter_color_name"><?php echo $row["mausac"]?></p>
                             </button>
                             <?php endwhile;?>
                         </div>
@@ -68,13 +68,17 @@
     <div style="background-color: #f8f7f4;" class="outstanding_products">
         <div class="watch_container" >
             <?php while($row1 = mysqli_fetch_array($data["get_all_spOPT"])):?>
+            <div class="watch_mid_con">
             <a style="margin-top: 70px;" href="http://localhost/curnon/callMCprodetails/show/<?php echo $row1["masp"]?>" class="watch_item" >
-                <img class="img_watch_item" src="<?=base?>public/client/assets/img/<?php echo $gt["gioitinh"]?>/<?php echo $row1["img"]?>" alt="">
+                <img class="img_watch_item" src="<?=base?>public/client/assets/img/<?php echo $row1["img"]?>" alt="">
                 <p class="p_watch_item"><?php echo $row1["tenbosuutap"]?></p>
                 <h4 class="h4_watch_item"><?php echo $row1["tensp"]?></h4>
                 <div class="div_watch_item"><?php echo $row1["gia"]?>.000 ₫</div>
                 <button class="button_watch_item">THÊM VÀO GIỎ</button>
+                <div style="display: none;" class="tieuxao2"><?php echo $row1["mausac"]?></div>
             </a>
+            <button class="button_watch_item">THÊM VÀO GIỎ</button>
+            </div>
             <?php endwhile;?>
         </div>
     </div>
@@ -149,4 +153,17 @@
             $('.cd_text .ti-check').hide();
             $('.cd_text').eq(0).find('.ti-check').show();
         })
+        $('.filter_color_btn').click(function(){
+            var mausac = $(this).find('.filter_color_name').text();
+            $('.watch_item').hide();
+            $sl = $('.watch_item').length;
+            for (var i = 0; i < $sl; i++ ){
+                if ($('.watch_item').eq(i).find('.tieuxao2').text() == mausac) {
+                    $('.watch_item').eq(i).show();
+                }
+            }
+        })
+        $('.filter_desktop_reset').click(function(){
+            $('.watch_item').show();
+        }) 
     </script>

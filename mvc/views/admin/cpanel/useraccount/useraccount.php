@@ -1,6 +1,3 @@
-<?php 
-
-?>
 <div class="">
     <div class="page-title">
         <div class="title_left">
@@ -39,7 +36,7 @@
                             }
                             ?>
                             <td style=" font-size: 16px;" class=""><?=$gioitinh?></td>
-                            <td style=" font-size: 16px;" class="">0<?=$values["sodt"]?></td>
+                            <td style=" font-size: 16px;" class=""><?=$values["sodt"]?></td>
                             <td style=" font-size: 16px;" class=""><?=$values["diachi_dd"]?></td>
                             <td>
                                 
@@ -57,8 +54,8 @@
                     
                         </td>
                         <td>
-                            <a style="height: 35px" class="btn btn-danger submit" href="javascrip:void(0)" onclick="del(<?=$values['maslider']?>,'<?=$values['pretitle'] ?>','<?=base.'admin/deleteslider/'?>','slider ')"  >Xóa</a> 
-                            <a style="height: 35px;" class="btn btn-success" href="<?=base?>admin/editslider&id=<?=$values['maslider']?>">Sửa</a>
+                             
+                            <a style="height: 35px;" class="btn btn-success" href="<?=base?>admin/editaccount&id=<?=$values['makh']?>">Sửa</a>
                         </td>
                         </tr>
                     <?php }?>

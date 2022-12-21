@@ -59,8 +59,8 @@
             return json_encode($result);
         }
         //lấy sản phẩm hoặc danh mục theo id dùng để sửa sản phẩm hoặc danh mục
-        function GetData($id,$table){
-            $sql = "SELECT * FROM $table WHERE id = $id";
+        function GetData($id,$table,$maid){
+            $sql = "SELECT * FROM $table WHERE $maid = $id";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);

@@ -10,8 +10,11 @@
                   <li><a href="<?=base."admin/showcategory"?>"><i class="fa fa-list"></i>Quản Lí Danh Mục</a></li>
                   <li><a href="<?=base."admin/showproduct"?>"><i class="fa fa-archive"></i>Quản Lí Sản Phẩm</a></li>
                   <li><a href="<?=base."admin/showslider"?>"><i class="fa fa-slideshare"></i>Quản Lí Slider</a></li>
+                  <li><a href="<?=base."admin"?>"><i class="fa fa-bar-chart"></i>Thống kê</a></li>
+
                   <li><a href="<?=base?>admin/changepass"><i class="fa fa-cog"></i>Đổi Mật Khẩu</a></li>
-                  <li><a onclick="logout('<?=base.'logout/admin'?>')" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-sign-out pull-left"></i>Đăng Xuất</a></li>
+                  
+                  <li><a onclick="logout('<?=base.'admin/logout'?>')" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-sign-out pull-left"></i>Đăng Xuất</a></li>
                 </ul>
               </div>
             </div>

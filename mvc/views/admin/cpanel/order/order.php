@@ -22,16 +22,16 @@
                     <?php foreach($data["listorder"] as $key=>$values){ ?>
                         <tr class="even pointer">
                             <td style=" font-size: 16px;" class=""><?=($data["currentpage"]-1)*6+$key+1?></td>
-                            <td style=" font-size: 16px;" class=""><?=$values["name"]?></td>
-                            <td style=" font-size: 16px;" class=""><?=number_format ($values["total_mony"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?> VNĐ</td>
-                            <td style=" font-size: 16px;" class=""><?=$values["create_at"]?></td>
-                            <?php if($values["status"] != "Chờ Xử Lý"){?>
-                                <td style=" font-size: 16px;color: green;font-weight: bold;" class=""><?=$values["status"]?></td>
+                            <td style=" font-size: 16px;" class=""><?=$values["makh"]?></td>
+                            <td style=" font-size: 16px;" class=""><?=number_format ($values["tonggiatri"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?> VNĐ</td>
+                            <td style=" font-size: 16px;" class=""><?=$values["ngaymua"]?></td>
+                            <?php if($values["matrangthai"] != "Chờ Xử Lý"){?>
+                                <td style=" font-size: 16px;color: green;font-weight: bold;" class=""><?=$values["matrangthai"]?></td>
                                 <?php }else{?>
-                                    <td style=" font-size: 16px;color: red;font-weight: bold;" class=""><?=$values["status"]?></td>
+                                    <td style=" font-size: 16px;color: red;font-weight: bold;" class=""><?=$values["matrangthai"]?></td>
                             <?php }?>
                             <td>
-                                <a href="<?=base?>admin/orderdetails&id_order=<?=$values['id']?>&id_user=<?=$values['user_id']?>&page=<?=$data["currentpage"]?>" style="height: 35px;" class="btn btn-primary" href="">Chi Tiết</a> 
+                                <a href="<?=base?>admin/orderdetails&id_order=<?=$values['madonhang']?>&id_user=<?=$values['makh']?>&page=<?=$data["currentpage"]?>" style="height: 35px;" class="btn btn-primary" href="">Chi Tiết</a> 
                             </td>
                         </tr>
                     <?php }?>

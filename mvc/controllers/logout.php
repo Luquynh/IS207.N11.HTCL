@@ -14,12 +14,13 @@
         }
         //đăng nhập admin
         function admin(){
-            setcookie("user","",time()-1,"/");
+            
             header("location:".base."login/admin");
         }
 
         function logout(){
             unset($_SESSION["info"]);
+            
             unset($_SESSION["cart"]);
             header("location:".base);
         }

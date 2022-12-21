@@ -2,7 +2,7 @@
     class ordermodel extends DB{
         //Lấy toàn bộ danh sách đơn hàng theo trang
         function GetAllOrder($limit,$offset){
-            $sql = "SELECT * FROM order_product WHERE cancel_order = 0 ORDER BY 'id' ASC LIMIT $limit OFFSET $offset";
+            $sql = "SELECT * FROM donhang ORDER BY 'madonhang' ASC LIMIT $limit OFFSET $offset";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -11,7 +11,7 @@
 
         //Lấy số lượng tất cả các đơn hàng để làm phân trang
         function GetNumberOrder(){
-            $sql = "SELECT * FROM order_product WHERE cancel_order = 0";
+            $sql = "SELECT * FROM donhang ";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->rowCount();
@@ -38,13 +38,13 @@
 
         //Xử Lý đơn hàng
         function orderprocessing($id){
-            $sql = "UPDATE order_product SET status='Đã Xử Lý' WHERE id = $id";
+            $sql = "UPDATE donhang SET status='Đã Xử Lý' WHERE id = $id";
             $query = $this->conn->prepare($sql);
             $query->execute();
         }
         //hàm lấy trạng thái đơn hàng đã được xử lý hay chưa
         function GetStatusOrder($id){
-            $sql = "SELECT * FROM order_product WHERE id = $id";
+            $sql = "SELECT * FROM donhang WHERE id = $id";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);

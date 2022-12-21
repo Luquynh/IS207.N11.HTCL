@@ -14,7 +14,7 @@
                     <tr class="headings">
                         <th class="column-title">Tên Danh Mục</th>
                         <th class="column-title">Trạng Thái</th>
-                        <th class="column-title">Ngày Tạo</th>
+                        <th class="column-title">Giới tính</th>
                         <th class="column-title no-link last"><span class="nobr">Hành Động</span>
                         </th>
                     </tr>
@@ -23,12 +23,12 @@
                 <tbody>
                     <?php foreach($data["data"] as $key => $values){ $stt = ($data["currentpage"]-1)*5 + $key+1?>
                     <tr class="even pointer">
-                        <td style=" font-size: 16px;" class=""><?=$values["name"] ?></td>
-                        <td style=" font-size: 16px;" class=""><a class="btn btn-primary" href="<?=base?>admin/statuscategory&id=<?=$values["id"]?>&status=<?=$values["status"]?>&page=<?=$data['currentpage']?>"><?=$values["status"] ?></a></td>
-                        <td style=" font-size: 16px;" class=""><?=$values["create_at"] ?></td>
+                        <td style=" font-size: 16px;" class=""><?=$values["tenbosuutap"] ?></td>
+                        <td style=" font-size: 16px;" class=""><a class="btn btn-primary" href="<?=base?>admin/statuscategory&id=<?=$values["mabosuutap"]?>&status=<?=$values["tt_xoa"]?>&page=<?=$data['currentpage']?>"><?=$values["tt_xoa"] ?></a></td>
+                        <td style=" font-size: 16px;" class=""><?=$values["gioitinh"] ?></td>
                         <td>
-                        <a style="height: 35px;" class="btn btn-success" href="<?=base?>admin/editcategory&id=<?=$values['id']?>&page=<?=$data['currentpage']?>">Sửa</a>
-                            <a style="height: 35px" class="btn btn-danger submit" href="javascrip:void(0)" onclick="del(<?=$values['id']?>,'<?=$values['name'] ?>','<?=base.'admin/deletecategory/'?>','danh mục ',<?=$data['currentpage']?>,<?=$stt?>)"  >Xóa</a> 
+                        <a style="height: 35px;" class="btn btn-success" href="<?=base?>admin/editcategory&id=<?=$values['mabosuutap']?>&page=<?=$data['currentpage']?>">Sửa</a>
+                            <a style="height: 35px" class="btn btn-danger submit" href="javascrip:void(0)" onclick="del(<?=$values['mabosuutap']?>,'<?=$values['tenbosuutap'] ?>','<?=base.'admin/deletecategory/'?>','danh mục ',<?=$data['currentpage']?>,<?=$stt?>)"  >Xóa</a> 
                         </td>
                     </tr>
                     <?php } ?>

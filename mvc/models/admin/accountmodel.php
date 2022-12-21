@@ -1,4 +1,5 @@
 <?php
+
     class accountmodel extends DB{
         //Đăng nhập người dùng
         function LoginUser($email,$pass){
@@ -9,7 +10,7 @@
             return $result;
         }
         function Loginadmin($email,$pass){
-            $sql = "SELECT * FROM admin WHERE email = '$email' and matkhau  = '$pass'";
+            $sql = "SELECT * FROM admin_account WHERE email = '$email' and matkhau  = '$pass'";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result =  $query->rowCount();

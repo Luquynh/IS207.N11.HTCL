@@ -1,13 +1,23 @@
 <style>
     .title-statistical{
         font-size: 25px;
+        
     }
     .tile-stats{
         min-height: 125px;
+        color: white;
     }
     .count{
       font-size: 15px;
+      color: white;
     }
+    .tile-stats h3 {
+    color: white;
+    font-size: 17px;
+  }
+  .tile-stats .icon{
+    color: white;
+  }
 </style>
 <div class="col" role="main">
     <div class="">
@@ -36,7 +46,7 @@
             <div class="x_content">
             <div class="row">
                 <div class="animated flipInY col-lg-3 col-md-4 col-sm-6  ">
-                <div class="tile-stats">
+                <div class="tile-stats blue_bg">
                     <div class="icon"><i class="fa fa-shopping-cart"></i>
                     </div>
                     <div class="count"><?=$data["totalorder"]?></div>
@@ -45,7 +55,7 @@
                 </div>
                 </div>
                 <div class="animated flipInY col-lg-3 col-md-4 col-sm-6  " >
-                <div class="tile-stats">
+                <div class="tile-stats yellow_bg">
                     <div class="icon"><i class="fa fa-group"></i>
                     </div>
                     <div class="count"><?=$data["totaluser"]?></div>
@@ -54,7 +64,7 @@
                 </div>
                 </div>
                 <div class="animated flipInY col-lg-3 col-md-4 col-sm-6  ">
-                <div class="tile-stats">
+                <div class="tile-stats red_bg">
                     <div class="icon"><i class="fa fa-money"></i></i>
                     </div>
                     <div class="count"><?=number_format ($data["totalmony"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?></div>
@@ -63,7 +73,7 @@
                 </div>
                 </div>
                 <div class="animated flipInY col-lg-3 col-md-4 col-sm-6  ">
-                <div class="tile-stats">
+                <div class="tile-stats light_blue_bg">
                     <div class="icon"><i class="fa fa-check-square-o"></i>
                     </div>
                     <div class="count"><?=$data["ordersuccess"]?></div>

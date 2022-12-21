@@ -13,7 +13,7 @@ function del(id,name,url,text,page,stt){
       }
     });
   }
-
+  
   function logout(url){
     Swal.fire({
       title: 'Bạn Có Muốn Đăng Xuất Không?',

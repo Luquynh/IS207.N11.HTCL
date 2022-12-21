@@ -44,12 +44,12 @@
 <div id="content">
     <div class="watch_container">
             <div class="gallery_list">
-                <img class="gallery_thumbnail_img addborder" src="<?=base?>public/client/assets/img/<?php echo $row["gioitinh"]?>/<?php echo $row["img"]?>" number="0" alt="">
-                <img class="gallery_thumbnail_img" src="<?=base?>public/client/assets/img/<?php echo $row["gioitinh"]?>/<?php echo $row["img1"]?>" number="1" alt="">
-                <img class="gallery_thumbnail_img" src="<?=base?>public/client/assets/img/<?php echo $row["gioitinh"]?>/<?php echo $row["img2"]?>" number="2" alt="">
+                <img class="gallery_thumbnail_img addborder" src="<?=base?>public/client/assets/img/<?php echo $row["img"]?>" number="0" alt="">
+                <img class="gallery_thumbnail_img" src="<?=base?>public/client/assets/img/<?php echo $row["img1"]?>" number="1" alt="">
+                <img class="gallery_thumbnail_img" src="<?=base?>public/client/assets/img/<?php echo $row["img2"]?>" number="2" alt="">
             </div>
             <div class="gallery_main_img">
-                <img class="ibra" src="<?=base?>public/client/assets/img/<?php echo $row["gioitinh"]?>/<?php echo $row["img"]?>" number="0" alt="">
+                <img class="ibra" src="<?=base?>public/client/assets/img/<?php echo $row["img"]?>" number="0" alt="">
                 <div class="change_img_mobile">
                     <div class="arrow_left"><i class="ti-angle-left"></i></div>
                     <div class="arrow_right"><i class="ti-angle-right"></i></div>

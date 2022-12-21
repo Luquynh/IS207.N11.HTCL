@@ -4,7 +4,7 @@ class DB{
     protected $servername="localhost";
     protected $username="root";
     protected $password="";
-    protected $dbname="web_dongho";
+    protected $dbname="web_dongho1";
     function __construct()
     {
         try {

@@ -70,7 +70,7 @@
                     <p class="account__header--text">Nhập email và mật khẩu </p>
                 </header>
                 <div style="height: 20px; width: 100%; color: red;"><?=$data["mess"]?><?php if(isset($_SESSION["error_login"])){echo $_SESSION["error_login"];unset($_SESSION["error_login"]);}?></div>
-                <form action="./admin/login" class="account__body" method="POST">
+                <form action="<?=base?>admin/login" class="account__body" method="POST">
                     <div class="register__form-group">
                         <input type="text"  id="" class="register__input" name="email" value="<?=$data["email"]?>" required>
                         <label for="" class="register__label">Email</label>

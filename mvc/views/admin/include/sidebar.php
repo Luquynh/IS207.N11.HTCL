@@ -13,7 +13,8 @@
                   <li><a href="<?=base."admin"?>"><i class="fa fa-bar-chart"></i>Thống kê</a></li>
 
                   <li><a href="<?=base?>admin/changepass"><i class="fa fa-cog"></i>Đổi Mật Khẩu</a></li>
-                  <li><a onclick="logout('<?=base.'admin'?>')" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-sign-out pull-left"></i>Đăng Xuất</a></li>
+                  
+                  <li><a onclick="logout('<?=base.'admin/logout'?>')" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-sign-out pull-left"></i>Đăng Xuất</a></li>
                 </ul>
               </div>
             </div>

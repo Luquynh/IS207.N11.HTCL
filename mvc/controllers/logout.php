@@ -20,6 +20,7 @@
 
         function logout(){
             unset($_SESSION["info"]);
+            
             unset($_SESSION["cart"]);
             header("location:".base);
         }

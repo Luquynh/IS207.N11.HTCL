@@ -1,5 +1,7 @@
 <?php
+   
     class admin extends Controller{
+        
         var $categorymodel;
         var $accadminmodel;
         var $commonmodel;
@@ -9,6 +11,8 @@
         var $table = "admin";
         var $homemodel;
         var $accountmodel;
+        var $informodel;
+        var $full_address;
         function __construct()
         {
             $this->accountmodel = $this->ModelAdmin("accountmodel");
@@ -19,11 +23,16 @@
             $this->productmodel = $this->ModelAdmin("productmodel");
             $this->slider = $this->ModelAdmin("slidermodel");
             $this->ordermodel=$this->ModelAdmin("ordermodel");
+            $this->informodel = $this->ModelClient("informodel");
+            $this->full_address = $this->ModelClient("addressmodel");
             //check người dùng đã đăng nhập hay chưa hoặc đã đăng nhập trước đó mà chưa đăng xuất
             
             
         }
         function show(){
+            // if(isset($_SESSION["thongtin"])){
+            //     unset($_SESSION["thongtin"]);
+            // }
         $mess="";
         $email = "";
         $pass = "";
@@ -34,7 +43,22 @@
             ];
             $this->ViewAdmin("login",$data);
         }
+        function logout(){
+            if(isset($_SESSION["thongtin"])){
+                unset($_SESSION["thongtin"]);
+            }
+            $mess="";
+            $email = "";
+            $pass = "";
+                        $data = [
+                    "mess"=>$mess,
+                    "email"=>$email,
+                    "pass"=>$pass
+                ];
+                $this->ViewAdmin("login",$data);
+        }
         function login(){
+            
             if(!isset($_SESSION["thongtin"])){
                 $mess = "";
                 $email = "";
@@ -46,12 +70,13 @@
                     if(1){
                         $check = $this->accountmodel->Loginadmin($email,md5($pass));
                         if($check >=1){
+                            // $_SESSION["thongtin"]["tt_xoa"] = $check[0]['tt_xoa'];
                             notification("success","Đăng Nhập Thành Công","","","false","");
                             header('Refresh: 1; URL='.base.'admin/home');
                         }
                         else{
                            
-                            notification("error","Đăng Nhập Thất Bại","Thông tin tài khoản hoặc mật khẩu không chính xác","OK","true","#3085d6");
+                            notification("error","Đăng Nhập Thất Bại","Thông tin tài khoản hoặc mật khẩu không chính xác","$check","true","#3085d6");
                             header('Refresh: 1; URL='.base.'admin');
                         }
                     }else{
@@ -74,7 +99,8 @@
 
         //Trang home admin
         function home(){
-           //lấy ra số lượng tất cả các đơn hàng
+           if(1){
+            //lấy ra số lượng tất cả các đơn hàng
            $countallorder = $this->homemodel->CountAllOrder();
            //lấy ra tổng doanh thu của web
            $totalmony = $this->homemodel->CountAllMony();
@@ -95,11 +121,15 @@
            ];
           
             $this->ViewAdmin("masterlayout",$data);
+           }
+           else{
+            header('Refresh: 1; URL='.base.'admin');
+           }
         }
 
         //quản lí danh mục sản phẩm
         function showcategory(){
-            $limit = 5;
+            $limit = 4;
             //lấy số trang
             if(isset($_GET['page'])){
                 $currentpage =  $_GET['page'];
@@ -129,7 +159,7 @@
 
         //Xóa danh mục sản phẩm 
         function deletecategory($id,$page,$stt){
-            if($stt % 5 == 1){
+            if($stt % 4 == 1){
                 $page-=1;
             }
             $result = $this->categorymodel->DeleteCategory($id);
@@ -485,6 +515,7 @@
             $offset = ($currentpage-1)*$limit;
             $listaccount = $this->accadminmodel->GetAllUser($limit,$offset);
             $numberaccount = $this->accadminmodel->GetNumberUser();
+         
             $totalpage = ceil($numberaccount/$limit);
             $data = [
                 "folder"=>"useraccount",
@@ -493,7 +524,8 @@
                 "listaccount"=>$listaccount,
                 "currentpage"=>$currentpage,
                 "totalpage"=>$totalpage,
-                "gioitinh"=>$gioitinh
+                "gioitinh"=>$gioitinh,
+                
             ];
             $this->ViewAdmin("masterlayout",$data);
         }

@@ -2,6 +2,7 @@
 class home extends Controller{
    var $categorymodel;
    var $slider;
+   var $informodel;
     function __construct()
         {
             // $this->commonmodel = $this->ModelCommon("commonmodel");
@@ -19,7 +20,6 @@ class home extends Controller{
                 $total+=$values["total"];
             }
         }
-        
         $this->ViewClient("masterlayout",
             ["best_men" => $a->get_best_seller("men"),
             "best_women" => $a->get_best_seller("women"),

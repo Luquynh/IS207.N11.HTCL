@@ -6,7 +6,12 @@
             $query = $this->conn->prepare($sql);
             $query->execute();
         }
-
+        //Cập nhật thông tin người dùng khi order 
+        function ChangerInfoorder($id, $name, $email, $address, $xaid, $maqh, $matp, $phone){
+            $sql = "UPDATE khachhang SET tenkh = '$name', email = '$email', sodt = '$phone', diachi = '$address', xaid = '$xaid', maqh = '$maqh', matp = '$matp', ngaysua = current_time() where makh = $id";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+        }
         //lấy thông tin người dùng theo id
         function GetInfoUser($id){
             $sql = "SELECT * FROM khachhang where makh = $id";

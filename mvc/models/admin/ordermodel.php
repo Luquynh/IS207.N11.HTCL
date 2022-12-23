@@ -29,7 +29,7 @@
 
         //Lấy chi tiết đơn hàng
         function GetOrderDetails($id_order){
-            $sql = "SELECT * FROM order_details WHERE order_id = $id_order";
+            $sql = "SELECT * FROM chitietdonhang WHERE madonhang = $id_order";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);

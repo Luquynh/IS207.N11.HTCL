@@ -31,10 +31,10 @@
     
                 <div class="infor-tab-content">
                     <ul class="infor-tab-content__list">
-                        <li class="infor-tab-content__item infor-active">Thông tin tài khoản</li>
-                        <li class="infor-tab-content__item">Lịch sử đơn hàng</li>
+                        <a href = "<?=base?>inforuser" class="infor-tab-content__item infor-active">Thông tin tài khoản</a>
+                        <a href = "<?=base?>inforuser/history" class="infor-tab-content__item ">Danh sách đơn hàng</a>
                         <a href="logout" class="link">
-                            <li class="infor-tab-content__item item-center"><i class="ti-shift-right infor-icon"></i>Đăng xuất</li>
+                            <li class="infor-tab-content__item item-center logout-btn"><i class="ti-shift-right infor-icon"></i>Đăng xuất</li>
                         </a>
                     </ul>
                 </div>

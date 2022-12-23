@@ -13,7 +13,7 @@
             $this->productmodel = $this->ModelClient("get_data_to_pro_details");
             // $this->homeclientmodel = $this->ModelClient("homemodel");
             $this->checkoutmodel = $this->ModelClient("checkoutmodel");
-            // $this->ordermodel = $this->ModelAdmin("ordermodel");
+            $this->ordermodel = $this->ModelAdmin("ordermodel");
 
         }
 
@@ -365,7 +365,7 @@
         }
 
         // chi tiết đơn hàng mà khách hàng đã mua
-        function orderdetails(){
+        function orderdetails_1(){
             $id_order = $_POST["id_order"];
             //lấy tất cả sản phẩm theo id_order
             $order_details = $this->ordermodel->GetOrderDetails($id_order);
@@ -417,6 +417,74 @@
                     </div>
                 </div>
 	        </section>';
+        }
+
+
+        function orderdetails(){
+            $id_order = $_POST["id_order"];
+            //lấy tất cả sản phẩm theo id_order
+            $order_details = $this->ordermodel->GetOrderDetails($id_order);
+            echo '
+                <h2 class="infor-content--header">Chi tiết đơn hàng</h2>
+                <a href="'.base.'inforuser/history" class="" style="text-decoration: none; color: black; font-size: 14px;position: relative;
+                top: -8px">
+                    <i class="infororder__footer-icon fa-solid fa-arrow-left-long"></i>
+                    Trở lại 
+                </a>
+                
+                    <table class="infor-content-infor">
+                    
+                        <tr class="row-infor">
+                            <th class="">
+                                <strong>Hình ảnh</strong>
+                            </th>
+                            <th class="">
+                                <strong>Tên sản phẩm</strong>
+                            </th>
+                            
+                            <th class="">
+                                <strong>Giá</strong>
+                            </th>
+                        
+                            <th class=" ">
+                                <strong>Số lượng</strong> 
+                            </th>
+                        
+                            <th class="">
+                                <strong>Tổng tiền</strong>
+                            </th>
+                        </tr> ';
+            foreach ($order_details as $row):
+                //dùng id sản phẩm đó để lấy thông tin sản phẩm
+                $product = $this->commonmodel->GetProductById($row["masp"]);
+                //dùng for để hiện sản phẩm
+                foreach ($product as $row_product): 
+                    $mabosuutap = $row_product["mabosuutap"];
+                    $bosuutap = $this->commonmodel->getBosuutap($mabosuutap);
+                    $makichthuoc = $bosuutap[0]['makichthuoc'];
+                    $kichthuoc = $this->commonmodel->getKichthuoc($makichthuoc);
+                    echo '
+                        <tr class="row-infor">
+                            <td class="col-infor col-item-center">
+                                <img style="width: 120px; height: 120px;" class="img-cart"src="'.base.'public/client/assets/img/'.$row_product["img"].'">
+                            </td>
+                            <td class="col-infor col-item-center">
+                                <h4 style="margin-bottom: 10px;">'.$row_product["tensp"].'</h4>
+                                <p style="margin-top: 10px;">'.$row_product['mausac'].' / '.$kichthuoc[0]['kichthuoc'].'MM</p>
+                            </td>
+                            <td class="cart_price col-item-center" >
+                                <p style="margin-top: 10px;">'.number_format ($row_product["gia"] * (1-$row_product["giamgia"]/100) , $decimals = 0 , $dec_point = "," , $thousands_sep = "." ).' ₫</p>
+                            </td>
+                            <td class="cart_quantity col-item-center">'.$row["soluong"].'</td>
+                            <td class="cart_total col-item-center" id = "">
+                                <p class="cart_total_price"><strong>'.number_format ($row["tongtien"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." ).' ₫<strong></p>
+                            </td>
+                        </tr>
+                    ';
+                endforeach;
+            endforeach;
+            echo '</table>';
+                    
         }
         //Bình luận sản phẩm
         function commentproduct(){

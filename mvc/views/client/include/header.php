@@ -99,7 +99,7 @@
                             <?php echo '<p style="text-transform:none;">'.'<i class="ti-user pr-8"></i>'.$_SESSION["info"]["name"].'<i style="font-size: 1.2rem;" class="ti-angle-down"> </i></p>'?>
                             <div class="nav-item dropup-content">
                                 <a href="<?=base?>inforuser/inforuser" style="display: flex; align-items: center;">Thông tin cá nhân</a>
-                                <a href="" style="display: flex; align-items: center;">Lịch sử mua hàng</a>
+                                <a href="<?=base?>inforuser/history" style="display: flex; align-items: center;">Lịch sử mua hàng</a>
                                 <a href="<?=base?>logout/logout" style="display: flex; align-items: center;"><i class="ti-shift-right pr-8"></i>Đăng xuất</a>
                             </div>
                         <?php }?>

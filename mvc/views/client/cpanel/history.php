@@ -31,10 +31,10 @@
     
                 <div class="infor-tab-content">
                     <ul class="infor-tab-content__list">
-                        <li class="infor-tab-content__item ">Thông tin tài khoản</li>
-                        <li class="infor-tab-content__item infor-active">Danh sách đơn hàng</li>
+                        <a href = "<?=base?>inforuser" class="infor-tab-content__item ">Thông tin tài khoản</a>
+                        <a href = "<?=base?>inforuser/history" class="infor-tab-content__item infor-active">Danh sách đơn hàng</a>
                         <a href="logout" class="link">
-                            <li class="infor-tab-content__item item-center"><i class="ti-shift-right infor-icon"></i>Đăng xuất</li>
+                            <li class="infor-tab-content__item item-center logout-btn"><i class="ti-shift-right infor-icon"></i>Đăng xuất</li>
                         </a>
                     </ul>
                 </div>
@@ -55,7 +55,7 @@
                         </th>
                     
                         <th class=" ">
-                            <strong>Tổng tiền</strong>
+                            <strong>Tổng tiền</strong> 
                         </th>
                     
                         <th class="">
@@ -65,61 +65,36 @@
                         <th class="">
                             <strong>Chức năng</strong>
                         </th>
-                        <!-- </th> -->
-                        <!-- <td class="col-infor">
-                            <?php echo $data["info"][0]["tenkh"]?>
-                        </td> -->
                     </tr>
-    
+                <?php foreach($data['order'] as $row): ?>
                     <tr class="row-infor">
-                        <!-- <td class="col-infor wd-30">
-                            <strong>Email:</strong>
+                        <td class="col-infor">
+                            <?=$row['diachi']?>
                         </td>
                         <td class="col-infor">
-                            
-                        </td> -->
-                    </tr>
-    
-                    <tr class="row-infor">
-                        <!-- <td class="col-infor wd-30">
-                            <strong>Số điện thoại:</strong>
+                            <?=$row['sodt']?>
                         </td>
                         <td class="col-infor">
-                            <?php echo $data["info"][0]["sodt"]?>
-                        </td> -->
-                    </tr>
-    
-                    <tr class="row-infor">
-                        <!-- <td class="col-infor wd-30">
-                            <strong>Giới tính:</strong>
+                            <?=$row['ngaymua']?>
                         </td>
                         <td class="col-infor">
-                            <?php if($data["info"][0]["gioitinh"] == 0){
-                                echo 'Nam';
-                            } else echo 'Nữ';?>
-                        </td> -->
-                    </tr>
-    
-                    <tr class="row-infor">
-                        <!-- <td class="col-infor wd-30">
-                            <strong>Địa chỉ:</strong>
+                            <!-- <?=$row['tonggiatri']?> ₫ -->
+                            <?=number_format($row['tonggiatri'], $decimals=0, $dec_point=',', $thousands_sep = '.')?> ₫
                         </td>
                         <td class="col-infor">
-                            <?php echo $data["info"][0]['diachi']?>,
-                            <?php echo $data["ward"][0]['name']?>,
-                            <?php echo $data["district"][0]['name']?>,
-                            <?php echo $data["city"][0]['name']?>
-                        </td> -->
-                    </tr>
-    
-                    <tr class="row-infor">
-                        <!-- <td class="col-infor">
-                            <a href="<?=base?>inforuser/changeinfor"><button class="infor-user-btn">Thay đổi thông tin</button></a>
+                            <?php 
+                            $trangthaidonhang = $this->checkoutmodel->getTrangthaidonhang($row['matrangthai']);
+                            echo $trangthaidonhang[0]['tentrangthai'];
+                            ?>
                         </td>
                         <td class="col-infor">
-                            <a href="<?=base?>inforuser/changepassword"><button class="infor-user-btn">Đổi mật khẩu</button></a>
-                        </td> -->
+                            <a  id_order="<?=$row["madonhang"]?>" href="javascrip:void(0)" style="margin-bottom: 18px;" class="btn_details_order" name="details">Xác nhận</a>
+                            <a  id_order="<?=$row["madonhang"]?>" href="javascrip:void(0)" style="margin-bottom: 18px;" class="btn_details_order" name="details">Chi Tiết</a>
+
+                        </td>
                     </tr>
+                <?php endforeach;?>
+                    
                 </table>
             </div>
         </div>
@@ -138,6 +113,46 @@
     }
     th {
         background-color: #eee;
-        padding: 10px 0;
+        padding: 10px;
     }
 </style>
+<script>
+
+		//Chi tiết hóa đơn
+		$(document).on('click','.btn_details_order',function(){
+			id_order = $(this).attr('id_order')
+			$.post("<?=base?>ajax/orderdetails",{id_order:id_order},function(data){
+				$(".infor-content").html(data);
+			});
+   		 });
+		// thông báo xác nhận xóa đơn hàng
+		function deleteorder(){
+			Swal.fire({
+			title: 'Bạn có muốn xóa đơn hàng này không?',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Có'
+			}).then((result) => {
+			if (result.isConfirmed) {
+				$( "#delete" ).click();
+			}
+			});
+		}
+		// thông báo xác nhận hủy đơn hàng
+		function cancelorder(){
+			Swal.fire({
+			title: 'Bạn có muốn hủy đơn hàng này không?',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Có'
+			}).then((result) => {
+			if (result.isConfirmed) {
+				$( "#cancel" ).click();
+			}
+			});
+		}
+	</script>

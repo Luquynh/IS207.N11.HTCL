@@ -20,7 +20,7 @@
             return mysqli_query($this->conn, $sql);
         }
         public function get_all_spOPT($tenbst){
-            $sql = "SELECT masp, tensp, gia, sanpham.img, bosuutap.tenbosuutap
+            $sql = "SELECT masp, tensp, gia, sanpham.img, bosuutap.tenbosuutap, mausac
             from sanpham 
             INNER JOIN bosuutap 
             ON sanpham.mabosuutap = bosuutap.mabosuutap 

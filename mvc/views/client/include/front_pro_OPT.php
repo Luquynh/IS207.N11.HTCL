@@ -67,15 +67,14 @@
 
     <div style="background-color: #f8f7f4;" class="outstanding_products">
         <div class="watch_container" >
-            <?php while($row1 = mysqli_fetch_array($data["get_all_spOPT"])):?>
+            <?php while($row = mysqli_fetch_array($data["get_all_spOPT"])):?>
             <div class="watch_mid_con">
-            <a style="margin-top: 70px;" href="http://localhost/curnon/callMCprodetails/show/<?php echo $row1["masp"]?>" class="watch_item" >
-                <img class="img_watch_item" src="<?=base?>public/client/assets/img/<?php echo $row1["img"]?>" alt="">
-                <p class="p_watch_item"><?php echo $row1["tenbosuutap"]?></p>
-                <h4 class="h4_watch_item"><?php echo $row1["tensp"]?></h4>
-                <div class="div_watch_item"><?php echo $row1["gia"]?>.000 ₫</div>
-                <button class="button_watch_item">THÊM VÀO GIỎ</button>
-                <div style="display: none;" class="tieuxao2"><?php echo $row1["mausac"]?></div>
+            <a style="margin-top: 70px;" href="http://localhost/curnon/callMCprodetails/show/<?php echo $row["masp"]?>" class="watch_item" >
+                <img class="img_watch_item" src="<?=base?>public/client/assets/img/<?php echo $row["img"]?>" alt="">
+                <p class="p_watch_item"><?php echo $row["tenbosuutap"]?></p>
+                <h4 class="h4_watch_item"><?php echo $row["tensp"]?></h4>
+                <div class="div_watch_item"><?php echo number_format($row["gia"], 0,",",".")?> ₫</div>
+                <div style="display: none;" class="tieuxao2"><?php echo $row["mausac"]?></div>
             </a>
             <button class="button_watch_item">THÊM VÀO GIỎ</button>
             </div>
@@ -155,15 +154,15 @@
         })
         $('.filter_color_btn').click(function(){
             var mausac = $(this).find('.filter_color_name').text();
-            $('.watch_item').hide();
-            $sl = $('.watch_item').length;
+            $('.watch_mid_con').hide();
+            $sl = $('.watch_mid_con').length;
             for (var i = 0; i < $sl; i++ ){
-                if ($('.watch_item').eq(i).find('.tieuxao2').text() == mausac) {
-                    $('.watch_item').eq(i).show();
+                if ($('.watch_mid_con').eq(i).find('.tieuxao2').text() == mausac) {
+                    $('.watch_mid_con').eq(i).show();
                 }
             }
         })
         $('.filter_desktop_reset').click(function(){
-            $('.watch_item').show();
+            $('.watch_mid_con').show();
         }) 
     </script>

@@ -41,6 +41,7 @@
             </div>
             <div class="infor-content">
                 <h2 class="infor-content--header">Danh sách đơn hàng</h2>
+
                 <table class="infor-content-infor" >
                     <tr class="row-infor">
                         <th class="">
@@ -70,7 +71,10 @@
                         </th>
                     </tr>
                 <?php foreach($data['order'] as $row): ?>
+                    <form action="<?=base?>inforuser/history" method="POST">
+                    <input name="id" type="text" value="<?=$row["madonhang"]?>" hidden>
                     <tr class="row-infor">
+
                         <td class="col-infor">
                             <?=$row['madonhang']?>
                         </td>
@@ -94,8 +98,8 @@
                         ?>
                         <?php if($row["matrangthai"] == "0"){ ?>
                             <td class="col-infor" style="color: red; font-weight: bold;"><?=$trangthaidonhang[0]['tentrangthai']?></td>
-                        <?php }else if($row["matrangthai"] == "1"){?>
-                            <td class="col-infor" style="color: blue; font-weight: bold;"><?=$trangthaidonhang[0]['tentrangthai']?></td>
+                        <?php }else if($row["matrangthai"] == "5"){?>
+                            <td class="col-infor" style="color: black; font-weight: bold;"><?=$trangthaidonhang[0]['tentrangthai']?></td>
                         <?php } else {?>
                             <td class="col-infor" style="color: green; font-weight: bold;"><?=$trangthaidonhang[0]['tentrangthai']?></td>
                         <?php }?>
@@ -107,12 +111,13 @@
 
                         </td> -->
                         <td class="col-infor col-item-center">
-                            <?php if($row["matrangthai"] == "1") {?>
-                                <span style="margin-bottom: 18px; background-color: red; border: none; " class="btn_details_order" onclick="cancelorder()">Hủy Đơn</span>
+                            
+                            <?php if($row["matrangthai"] == "5") {?>
+                                <span style="margin-bottom: 18px; background-color: red; border: none; cursor: pointer; " class="btn_details_order" onclick="cancelorder()">Hủy Đơn</span>
                                 <button  name="cancel" id="cancel" hidden></button>
                             <?php }?>
                             <?php if($row["matrangthai"] == "4"){ ?>
-                                <span style="margin-bottom: 18px; background-color: green; border: none; " class="btn_details_order" >Xác nhận</span>
+                                <span style="margin-bottom: 18px; background-color: green; border: none;cursor: pointer; " class="btn_details_order" onclick="confirmorder()">Xác nhận</span>
                                 <button  name="confirm" id="confirm" hidden></button>
                                 <!-- <button style="margin-bottom: 10px; background-color: green; border: none;" class="btn_details_order" name="confirm">Xác Nhận</button> -->
                             <?php }?>
@@ -123,13 +128,14 @@
 
                             <?php }?>
                             <!-- <a  id_order="<?=$values["id"]?>" href="javascrip:void(0)" style="margin-bottom: 18px;" class="btn btn-primary btn_details_order" name="details">Chi Tiết</a> -->
-                            <a  id_order="<?=$row["madonhang"]?>" href="javascrip:void(0)" style="margin-bottom: 18px;" class="btn_details_order" name="details">Chi Tiết</a>
-
+                            <a  id_order="<?=$row["madonhang"]?>" href="javascrip:void(0)" style="margin-bottom: 18px;cursor: pointer;" class="btn_details_order" id="order_details" name="details">Chi Tiết</a>
                         </td>
                     </tr>
+                </form>
                 <?php endforeach;?>
                     
                 </table>
+
             </div>
         </div>
     </div>
@@ -156,7 +162,7 @@
 <script>
 
 		//Chi tiết hóa đơn
-		$(document).on('click','.btn_details_order',function(){
+		$(document).on('click','#order_details',function(){
 			id_order = $(this).attr('id_order')
 			$.post("<?=base?>ajax/orderdetails",{id_order:id_order},function(data){
 				$(".infor-content").html(data);
@@ -189,6 +195,22 @@
 			}).then((result) => {
 			if (result.isConfirmed) {
 				$( "#cancel" ).click();
+			}
+			});
+		}
+
+        // thông báo xác nhận đã nhận được hàng
+		function confirmorder(){
+			Swal.fire({
+			title: 'Bạn có xác nhận đã nhận được hàng không?',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Có'
+			}).then((result) => {
+			if (result.isConfirmed) {
+				$( "#confirm" ).click();
 			}
 			});
 		}

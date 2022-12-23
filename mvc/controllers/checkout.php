@@ -116,6 +116,7 @@
                 "district" => $nameDistrict,
                 "ward" => $nameWard,
                 "total"=>$total,
+                "mess" => '',
                 "avatar_men" => $this->header->get_avatar("men"),
                 "avatar_women" => $this->header->get_avatar("women")
             ];

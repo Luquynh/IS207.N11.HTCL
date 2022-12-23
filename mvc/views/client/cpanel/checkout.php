@@ -3,12 +3,18 @@
         require_once "./mvc/views/client/include/head.php";
 ?>
     <!--/head-->
-<script>
+    <script>
     $(document).ready(function(){
+        $("#phonenumber").keyup(function(){
+            var phonenumber = $(this).val();
+            $.post("ajax/checkSodt",{phonenumber:phonenumber},function(data){
+                $("#mess_phonenumber").html(data);
+            });
+        });
         $("#email").keyup(function(){
             var email = $(this).val();
-            $.post("ajax/checkuser",{email:email},function(data){
-                $("#mess").html(data);
+            $.post("ajax/checkEmail",{email:email},function(data){
+                $("#mess_email").html(data);
             });
         });
 
@@ -16,12 +22,64 @@
             var pass_confirm = $(this).val();
             var pass  = $("#pass").val();
             $.post("ajax/checkpass",{pass:pass,pass_confirm:pass_confirm},function(data){
-                $("#mess").html(data);
+                $("#mess_pass").html(data);
             });
         });
-
-		$(".infororder__input").blur(function(){
+        
+		$(".register__input").blur(function(){
             $("#mess").html("");
+        });
+
+        //Kiểm tra thành phố
+        $("#pass_confirm").blur(function(){
+            var city  = $("#city").val();
+            $.post("ajax/checkCity",{city: city},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        $("#city").mouseup(function(){
+            var city  = $("#city").val();
+            $.post("ajax/checkCity",{city: city},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        
+        //Kiểm tra quận huyện
+        $("#district").change(function(){
+            var ward  = $("#ward").val();
+            $.post("ajax/checkWard",{ward:ward},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        
+        $("#district").mouseup(function(){
+            var district  = $("#district").val();
+            $.post("ajax/checkDistrict",{district:district},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        
+        //Kiểm tra xã
+        $("#ward").keyup(function(){
+            var ward  = $("#ward").val();
+            $.post("ajax/checkWard",{ward: ward},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        $("#ward").mouseup(function(){
+            var ward  = $("#ward").val();
+            $.post("ajax/checkWard",{ward: ward},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        
+
+        //Kiểm tra địa chỉ
+        $("#address").keyup(function(){
+            var address  = $(this).val();
+            $.post("ajax/checkAddress",{address: address},function(data){
+                $("#mess_address_full").html(data);
+            });
         });
     });
 </script>
@@ -47,17 +105,21 @@
                                 <input type="text"  name = "data[name]"class="infororder__input" value="<?=$data['info'][0]['tenkh']?>" required>
                                 <label for="" class="infororder__label">Họ tên</label>
                             </div>
+                            <div style="padding-left: 4px; padding-bottom: 10px;width: 100%; text-align: left; font-size: 12px; font-weight: 600;" id= "mess_phonenumber"><?=$data["mess"]?></div>
                 
                             <div class="infororder__form-group">
                                 <input type="text" name="data[phonenumber]" class="infororder__input" value="<?=$data['info'][0]['sodt']?>"required>
                                 <label for="" class="infororder__label">Số điện thoại</label>
                             </div>
+                            
+                            <div style="padding-left: 4px; padding-bottom: 10px;width: 100%; text-align: left; font-size: 12px; font-weight: 600;" id= "mess_email"><?=$data["mess"]?></div>
                 
                             <div class="infororder__form-group">
                                 <input type="text" name="data[email]" id="email" class="infororder__input" value="<?=$data['info'][0]['email']?>"required>
                                 <label for="" class="infororder__label">Email</label>
                             </div>
                             <!--  -->
+                            <div style="padding-left: 4px; padding-bottom: 10px; width: 100%; text-align: left; font-size: 12px; font-weight: 600;" id= "mess_address"><?=$data["mess"]?></div>
                 
                             <div class="infororder__input--address">
                                 <div class="select-address">

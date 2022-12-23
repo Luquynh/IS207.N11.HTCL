@@ -2,7 +2,7 @@
     class checkoutmodel extends DB{
         //Ghi dữ liệu vào bảng order_product trong database
         function AddDonhang($id_user,$phone,$address,$ship, $total){
-            $sql = "INSERT INTO donhang VALUES ('','$address','$phone',$total,current_time(),'', 1, $id_user, $ship, 0)";
+            $sql = "INSERT INTO donhang VALUES ('','$address','$phone',$total,current_time(),'', 5, $id_user, $ship, 0)";
             $query = $this->conn->prepare($sql);
             $query->execute();
             // $this->conn->exec($sql);
@@ -65,24 +65,31 @@
         }
         //xử lý khách hàng bấm nút xác nhận đã nhận hàng
         function Confirm($id){
-            $sql = "UPDATE order_product SET status_recieve = 'true' WHERE id = $id";
+            $sql = "UPDATE donhang SET matrangthai = 5 WHERE madonhang = '$id'";
             $query = $this->conn->prepare($sql);
             $query->execute();
-            $sql = "UPDATE order_product SET status = 'Đã Nhận Hàng' WHERE id = $id";
-            $query = $this->conn->prepare($sql);
-            $query->execute();
+            // $sql = "UPDATE donhang SET status = 'Đã Nhận Hàng' WHERE id = $id";
+            // $query = $this->conn->prepare($sql);
+            // $query->execute();
         }
 
         //xử lý khi khách hàng bấm xóa đơn hàng
         function DeleteOrder($id){
-                $sql = "UPDATE  order_product SET delete_order = 1 WHERE id = $id";
+                $sql = "UPDATE  donhang SET delete_order = 1 WHERE id = $id";
                 $query = $this->conn->prepare($sql);
                 $query->execute();
         }
         function CancelOrder($id){
-            $sql = "UPDATE  order_product SET cancel_order = 1 WHERE id = $id";
+            $sql = "UPDATE  donhang SET matrangthai = 0 WHERE madonhang = '$id'";
             $query = $this->conn->prepare($sql);
             $query->execute();
-    }
+        }
+
+        //Tăng số lượng sản phẩm khi người dùng bấm hủy đơn
+        function getChitietdonhang($madonhang){
+            $sql = "SELECT * FROM chitietdonhang where madonhang = $madonhang";
+            $query = $this->conn->prepare($sql);
+            return $query->execute();
+        }
     }
 ?>

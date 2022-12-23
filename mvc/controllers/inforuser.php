@@ -4,12 +4,16 @@
         var $header;
         var $full_address;
         var $checkoutmodel;
+        var $ordermodel;
+        var $commonmodel;
         function __construct()
         {
             $this->header = $this->ModelClient("get_pictures_to_home");
             $this->informodel = $this->ModelClient("informodel");
             $this->full_address = $this->ModelClient("addressmodel");
             $this->checkoutmodel = $this->ModelClient("checkoutmodel");
+            $this->ordermodel = $this->ModelAdmin("ordermodel");
+            $this->commonmodel = $this->ModelCommon('commonmodel');
             if(!isset($_SESSION["info"])){
                 $_SESSION["error_login"] = "Vui Lòng đăng nhập";
                 header("location:".base."login/login");
@@ -124,6 +128,7 @@
                 "city" => $nameCity,
                 "district" => $nameDistrict,
                 "ward" => $nameWard,
+                'mess' => '',
                 'avt' => $avt,
                 "avatar_men" => $this->header->get_avatar("men"),
                 "avatar_women" => $this->header->get_avatar("women")
@@ -186,19 +191,28 @@
             if(isset($_SESSION["info"])){
                 if(isset($_POST["confirm"])){
                     $id = $_POST["id"];
+                    $id = (int) $id;
                     $this->checkoutmodel->Confirm($id);
+                    
                 }
                 if(isset($_POST["cancel"])){
                     $id = $_POST["id"];
+                    $id = (int) $id;
+                    $Allorder = $this->ordermodel->GetOrderDetails($id);
+                    foreach($Allorder as $row):
+                        $quantity = $this->checkoutmodel->GetQuantityById($row['masp']);
+                        $quantity_new = $quantity[0]['soluong'] + $row['soluong'];
+                        $this->checkoutmodel->UpdateQuantityById($row['masp'], $quantity_new);
+                    endforeach;
                     $this->checkoutmodel->CancelOrder($id);
                 }
-                if(isset($_POST["delete"])){
-                    $id = $_POST["id"];
-                    $this->checkoutmodel->DeleteOrder($id);
-                }
-                if(isset($_POST["details"])){
+                // if(isset($_POST["delete"])){
+                //     $id = $_POST["id"];
+                //     $this->checkoutmodel->DeleteOrder($id);
+                // }
+                // if(isset($_POST["details"])){
                     
-                }
+                // }
 
                 //Lấy id của người dùng
                 $id_user = $_SESSION["info"]["id"];
@@ -228,7 +242,6 @@
                 $data = [
                     "order"=>$order,
                     "info" => $info_user,
-    
                     'avt' => $avt,
                     "avatar_men" => $this->header->get_avatar("men"),
                     "avatar_women" => $this->header->get_avatar("women"),

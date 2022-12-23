@@ -1,6 +1,6 @@
 <?php 
-        require_once "./mvc/views/client/include/head.php";
-    ?>
+    require_once "./mvc/views/client/include/head.php";
+?>
     <!--/head-->
 <style>
     #content{
@@ -10,6 +10,7 @@
     background: linear-gradient(rgba(110, 127, 145, 0.15) 0%, rgba(22, 26, 33, 0) 100%);
     /* background: linear-gradient(rgba(117, 60, 36, 0.15) 0%, rgba(22, 26, 33, 0) 100%); */
     }
+    .error {color: #FF0000;}
     .policy_banner1{
     background: #ecebea;
     padding: 20px 0;
@@ -34,13 +35,20 @@
         margin-right: 10px;
     }
 </style>
-<body>
 
+<body>
 	<!-- header-->
     <?php 
         require_once "./mvc/views/client/include/header.php";
     ?>
-<?php $row = mysqli_fetch_array($data["only1pro"]) ?>
+<?php $row = mysqli_fetch_array($data["only1pro"]);
+    $soluong = (int)($row["soluong"]);
+    if($soluong > 0) {
+        $tinhtrang = "Còn hàng";
+    }else{
+        $tinhtrang = "Hết hàng";
+    }
+?>
 <div id="content">
     <div class="watch_container">
             <div class="gallery_list">
@@ -66,10 +74,10 @@
                 <h3 class="name_product"><?php echo $row["tensp"]?></h3>
 
                 <div class="price_rating_product">
-                    <p class="price_product"><?php echo $row["gia"]?>.000 ₫</p>
+                    <p class="price_product"><?php echo number_format($row["gia"], 0,",",".")?> ₫</p>
                     <div class="rating_product">
                         <span class="empty_icon"><i class="ti-star"></i><i class="ti-star"></i><i class="ti-star"></i><i class="ti-star"></i><i class="ti-star"></i></span>
-                        <span class="total_rating">(35)</span>
+                        <!-- <span class="total_rating">(35)</span> -->
                     </div>
                 </div>
 
@@ -80,7 +88,7 @@
 
                 <div class="status_size_product">
                     <button class="status_product">
-                        Tình trạng: <span style="color: rgb(59, 177,0)" class="status_now">Còn hàng</span>
+                        Tình trạng: <span style="color: rgb(59, 177,0)" class="status_now"><?php echo $tinhtrang;?></span>
                         <div id="tippy-1" class="hide">
                             <div class="stock_detail_box">
                                 <ul>
@@ -158,102 +166,103 @@
             </div>
     </div>
 </div>
-    <div id="fundiin_model_root" class="hide">
-        <div class="fundiin_model_box">
-            <i class="ti-close"></i>
-            <div class="fundiin_model_item"><img src="./assets/img/details/kashmir-calm/2_1_2_.webp" alt=""><p>Chọn giỏ sản phẩm yêu thích</p></div>
-            <u></u>
-            <div class="fundiin_model_item"><img src="./assets/img/details/kashmir-calm/2_1_2_.webp" alt=""><p>Chọn Fundiin ở bước thanh toán</p></div>
-            <u></u>
-            <div class="fundiin_model_item"><img src="./assets/img/details/kashmir-calm/2_1_2_.webp" alt=""><p>Nhận SMS đăng ký tài khoản mới và thanh toán Kỳ 1</p></div>
-            <u></u>
-            <div class="fundiin_model_item"><img src="./assets/img/details/kashmir-calm/2_1_2_.webp" alt=""><p>Nhận hàng và thanh toán 2 Kỳ sau mỗi 30 ngày</p></div>
-            <p class="fundiin_model_text">Bạn cần phải trên 18 tuổi, là công dân Việt Nam, sở hữu số điện thoại chính chủ từ các nhà mạng Viettel, Mobifone, Vinaphone, và một số tiêu chí khác để được duyệt.</p>
-        </div>
-    </div>
-    <div id="mask_root_actice" class="hide">
-        <div class="size_watch_box">
-            <div class="size_watch_left">
-                <div class="size_watch_header">
-                    <p class="size_watch_Title">MẶT ĐỒNG HỒ</p>
-                    <p class="size_watch_subTitle">ĐỐI CHIỀU VỚI CHU VI CỔ TAY</p>
-                </div>
-                <table class="size_watch_boxTable">
-                    <tr>
-                        <th>Đồng hồ</th>
-                        <th>Cổ tay</th>
-                    </tr>
-                    <tr>
-                        <td>Kashmir 40mm</td>
-                        <td>15,5-17,5cm</td>
-                    </tr>
-                    <tr>
-                        <td>Weimar 40mm</td>
-                        <td>16-17,5cm</td>
-                    </tr>
-                    <tr>
-                        <td>Jackson 40mm</td>
-                        <td>16-17,5cm</td>
-                    </tr>
-                    <tr>
-                        <td>Detroit 40mm</td>
-                        <td>16-18cm</td>
-                    </tr>
-                    <tr>
-                        <td>Colosseum 42mm</td>
-                        <td>16-18cm</td>
-                    </tr>
-                    <tr>
-                        <td>Whitesands 38mm</td>
-                        <td>14,5-17cm</td>
-                    </tr>
-                    <tr>
-                        <td>Futura 40mm</td>
-                        <td>16-18cm</td>
-                    </tr>
-                </table>
+<div class="policy_banner1">
+    <div class="policy_text"><span><i class="icon_banner ti-truck"></i></span>FREESHIP ĐƠN HÀNG >700K</div>
+    <div class="policy_text"><span><i class="icon_banner ti-shield"></i></span>BẢO HÀNH 10 NĂM</div>
+    <div class="policy_text"><span><i class="icon_banner ti-package"></i></span>ĐỔI TRẢ MIỄN PHÍ TRONG VÒNG 3 NGÀY</div>                   
+</div>
+<div id="khung_mota">
+    <div class="box_mota"><?php echo $row["mota"]?></div>
+    <div class="box_thongso">
+        <div class="flex0">
+            <div class="flex1">
+                <div class="flex2">Kích thước</div>
+                <div class="flex3"><?php echo $row["kichthuoc"]?>MM</div>
             </div>
-            <div class="size_watch_right">
-                <img src="<?=base?>public/client/assets/img/pic-02.e2d7363f.jpg" alt="">
-                <i class="ti-close"></i>
+            <hr/>
+            <div class="flex1">
+                <div class="flex2">Màu sắc</div>
+                <div class="flex3" style="text-transform: uppercase;"><?php echo $row["mausac"]?></div>
+            </div>
+            <hr/>
+            <div class="flex1">
+                <div class="flex2">Chống nước</div>
+                <div class="flex3">3ATM</div>
+            </div>
+            <hr/>
+            <div class="flex1">
+                <div class="flex2">Chất liệu dây</div>
+                <div class="flex3" style="text-transform: uppercase;"></div>
             </div>
         </div>
     </div>
-    <!-- chinh sach van chuyen  -->
-    <div class="policy_banner1">
-                        <div class="policy_text"><span><i class="icon_banner ti-truck"></i></span>FREESHIP ĐƠN HÀNG >700K</div>
-                        <div class="policy_text"><span><i class="icon_banner ti-shield"></i></span>BẢO HÀNH 10 NĂM</div>
-                        <div class="policy_text"><span><i class="icon_banner ti-package"></i></span>ĐỔI TRẢ MIỄN PHÍ TRONG VÒNG 3 NGÀY</div>                   
-    </div>
-    <div id="khung_mota">
-        <div class="box_mota"><?php echo $row["mota"]?></div>
-        <div class="box_thongso">
-            <div class="flex0">
-                <div class="flex1">
-                    <div class="flex2">Kích thước</div>
-                    <div class="flex3"><?php echo $row["kichthuoc"]?>MM</div>
-                </div>
-                <hr/>
-                <div class="flex1">
-                    <div class="flex2">Màu sắc</div>
-                    <div class="flex3" style="text-transform: uppercase;"><?php echo $row["mausac"]?></div>
-                </div>
-                <hr/>
-                <div class="flex1">
-                    <div class="flex2">Chống nước</div>
-                    <div class="flex3">3ATM</div>
-                </div>
-                <hr/>
-                <div class="flex1">
-                    <div class="flex2">Chất liệu dây</div>
-                    <div class="flex3" style="text-transform: uppercase;"></div>
-                </div>
-            </div>
+</div>
+<?php
+    require_once "./mvc/core/DB1.php";
+    $dt = new DB1();
+    $id_sp = $row["masp"]; 
+    if(isset($_SESSION["info"])){
+        $id_user = $_SESSION["info"]["id"];
+?>
+<div>
+    <?php
+    $comment = $commentErr = "";
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["comment"])) {
+        $commentErr = "Không được bỏ trống phần này";
+    } else {
+        $tieude = $_POST["tieude"];
+        $comment = $_POST["comment"];
+        // $id_sp = $_POST["masp"];
+        $sql = "INSERT INTO binhluan (masp, makh, tieude, content, tt_xoa) VALUES ('$id_sp', '$id_user', '$tieude','$comment', '0')";
+        mysqli_query($dt->conn, $sql);
+    }
+    }
+    ?>
+    <div style="margin: 50px; font-size: 30px">Hãy để lại ý kiến của bạn</div>
+    <form id="formprodetails" method="post" action="">  
+    Tiêu đề: <br>
+    <input type="text" name="tieude">
+    <br><br>
+    <textarea style="display: none" type="hidden" name="masp"><?php echo $row["masp"]?></textarea>
+    Comment: <br>
+    <textarea name="comment" rows="5" cols="40"></textarea><span class="error"> *<?php echo $commentErr;?></span>
+    <br><br>
+    <input class ="submit" type="submit" name="submit" value="ĐĂNG">  
+    </form>
+
+    <?php
+    ?>
+</div>
+<?php }else{echo "<div style='text-align: center;'><h1>Bạn vui lòng đăng nhập để bình luận</h1></div>";}?>
+<div style="margin: 50px; font-size: 32px">REVIEWS CỦA KHÁCH HÀNG</div>
+
+<div class="cmt">
+    <?php
+        $sql = "SELECT binhluan.tieude AS tieude, binhluan.content AS content, khachhang.tenkh AS tenkh 
+        FROM binhluan 
+        INNER JOIN khachhang ON binhluan.makh = khachhang.makh 
+        WHERE binhluan.masp = '$id_sp'
+        ORDER BY mabl DESC";
+        $bl = mysqli_query($dt->conn, $sql);
+    ?>
+    <?php 
+    if (mysqli_num_rows($bl)>0) {
+    while($row = mysqli_fetch_array($bl)):?>
+        <div class="cmt_root">
+            <h1 class="cmt_tenkh"><?php echo $row["tenkh"]?></h1>
+            <hr>
+            <h2 class="cmt_tieude"><?php echo $row["tieude"]?></h2>
+            <div class="cmt_content"><?php echo $row["content"]?></div>
         </div>
-    </div>
-    <div id="notification">
-        <!-- thông báo -->
-    </div>
+    <?php 
+    endwhile;
+  }else{
+    echo "<div style='text-align: center;'><h2>Hiện chưa có bình luận nào</h2></div>";
+  }
+    ?>
+</div>
     <?php 
         require_once "./mvc/views/client/include/footer.php";
     ?>

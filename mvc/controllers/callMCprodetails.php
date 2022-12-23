@@ -21,6 +21,7 @@ class callMCprodetails extends Controller{
         "avatar_men" => $this->header->get_avatar("men"),
         "avatar_women" => $this->header->get_avatar("women"),
         "only1pro" => $a->get_table_sanpham("$masp"),
+        "masp" => "$masp",
         'total' => $total
         ];
         

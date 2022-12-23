@@ -107,8 +107,7 @@
                 <img class="img_watch_item" src="<?=base?>public/client/assets/img/<?php echo $row["img"]?>" alt="">
                 <p class="p_watch_item"><?php echo $row["tenbosuutap"]?></p>
                 <h4 class="h4_watch_item"><?php echo $row["tensp"]?></h4>
-                <div class="div_watch_item"><?php echo $row["gia"]?>₫</div>
-                <button class="button_watch_item">THÊM VÀO GIỎ</button>
+                <div class="div_watch_item"><?php echo number_format($row["gia"], 0,",",".")?> ₫</div>
                 <div style="display: none;" class="tieuxao1"><?php echo $row["kichthuoc"]?></div>
                 <div style="display: none;" class="tieuxao2"><?php echo $row["mausac"]?></div>
             </a>
@@ -191,36 +190,36 @@
         // code lọc theo type
         $('.filter_model_btn').click(function(){
             var tenbst = $(this).find('.filter_model_name').text();
-            $('.watch_item').hide();
-            $sl = $('.watch_item').length;
+            $('.watch_mid_con').hide();
+            $sl = $('.watch_mid_con').length;
             for (var i = 0; i < $sl; i++ ){
-                if ($('.watch_item').eq(i).find('.p_watch_item').text() == tenbst) {
-                    $('.watch_item').eq(i).show();
+                if ($('.watch_mid_con').eq(i).find('.p_watch_item').text() == tenbst) {
+                    $('.watch_mid_con').eq(i).show();
                 }
             }
         })
         $('.filter_color_btn').click(function(){
             var mausac = $(this).find('.filter_color_name').text();
-            $('.watch_item').hide();
-            $sl = $('.watch_item').length;
+            $('.watch_mid_con').hide();
+            $sl = $('.watch_mid_con').length;
             for (var i = 0; i < $sl; i++ ){
-                if ($('.watch_item').eq(i).find('.tieuxao2').text() == mausac) {
-                    $('.watch_item').eq(i).show();
+                if ($('.watch_mid_con').eq(i).find('.tieuxao2').text() == mausac) {
+                    $('.watch_mid_con').eq(i).show();
                 }
             }
         })
         $('.filter_size_btn').click(function(){
             var kichthuoc = $(this).find('.filter_number_size1').text();
-            $('.watch_item').hide();
-            $sl = $('.watch_item').length;
+            $('.watch_mid_con').hide();
+            $sl = $('.watch_mid_con').length;
             for (var i = 0; i < $sl; i++ ){
-                if ($('.watch_item').eq(i).find('.tieuxao1').text() == kichthuoc) {
-                    $('.watch_item').eq(i).show();
+                if ($('.watch_mid_con').eq(i).find('.tieuxao1').text() == kichthuoc) {
+                    $('.watch_mid_con').eq(i).show();
                 }
             }
         })
         $('.filter_desktop_reset').click(function(){
-            $('.watch_item').show();
+            $('.watch_mid_con').show();
         })    
     </script>
 

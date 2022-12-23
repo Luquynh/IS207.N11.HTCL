@@ -465,3 +465,53 @@
     height: 43px;
     line-height: 43px;
 }
+
+#formprodetails {
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 50px;
+    margin-bottom: 70px;
+}
+
+#formprodetails .submit {
+    text-align: center;
+    line-height: 37px;
+    width: 60px;
+    height: 40px;
+    margin-left: 245px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    background-color: burlywood;
+    cursor: pointer;
+}
+
+.cmt {
+    overflow: scroll;
+    height: 200px;
+    padding-top: 30px;
+}
+
+.cmt_root {
+    width: 90%;
+    height: auto;
+    margin: 0 auto 50px auto;
+    padding: 10px 0 0 0;
+    border-radius: 20px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 0px 40px;
+}
+
+.cmt_tenkh {
+    margin: 10px;
+}
+
+.cmt_tieude {
+    margin: 10px;
+    font-size: 18px;
+    text-transform: capitalize;
+}
+
+.cmt_content {
+    margin: 0 10px 0 10px;
+    padding-bottom: 20px;
+    font-size: 16px;
+}

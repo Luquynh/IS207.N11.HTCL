@@ -29,7 +29,7 @@
                             <?php foreach($_SESSION["cart"] as $values):?>
                             <div class="cart-infor--product">
                                 <div class="cart-infor-left">
-                                    <img class="cart-infor--content__img" src="<?=base?>public/client/assets/img/<?=$values['gioitinh']?>/<?php echo $values["img"]?>"></img>
+                                    <img class="cart-infor--content__img" src="<?=base?>public/client/assets/img/<?php echo $values["img"]?>"></img>
                                     <div class="cart-infor--content__nameBox">
                                         <strong class="cart-infor--content__title mg-bt-8px" style="font-size: 16px;"><?=$values["name"]?></strong>
                                         <div class="cart-infor--content__option mg-bt-8px">
@@ -45,8 +45,8 @@
                                             <p class="cart-infor--content__option-size">40MM</p> -->
                                         </div>
                                         <div class="cart-infor--content__price mg-bt-8px">
-                                            <span class="cart-infor--content__price-new"><?= $values['price_new']?> ₫</span>
-                                            <span class="cart-infor--content__price-old"><?= $values['price_old']?> ₫</span>
+                                            <span class="cart-infor--content__price-new"><?= number_format($values['price_new'], 0,",",".")?> ₫</span>
+                                            <span class="cart-infor--content__price-old"><?= number_format($values['price_old'], 0,",",".")?> ₫</span>
                                         </div>
                                     </div>
                                 </div>
@@ -54,12 +54,14 @@
                                     <!-- <span style="padding: 8px; font-size: 12px;">Số lượng: </span> -->
                                     <div class="cart-quanlity-btn">
                                         <a href="<?=base?>ajax/downquantity&id=<?=$values["id"]?>" class="cart-infor--content__btn-sub" value="">-</a>
-                                        <input type="text" value="<?= $values['quantity']?>" class="cart-infor--quanlity-input">
+                                        <!-- <input type="text" value="<?= $values['quantity']?>" class="cart-infor--quanlity-input"> -->
+										<input id="quantity" class="cart-infor--quanlity-input" type="text" name="quantity" value="<?=$values["quantity"]?>" autocomplete="off" size="2">
+
                                         <a href="<?=base?>ajax/upquantity&id=<?=$values["id"]?>" class="cart-infor--content__btn-add" value="">+</a>
                                     </div>
                                     <a href="<?=base?>ajax/deleteproductcart&id=<?=$values["id"]?>" class="cart-remove-product">Xóa</a>
                                 </div>
-                                <p class="cart-infor--content__total" style="font-size: 16px;"><strong><?= $values['total']?> ₫</strong></p>
+                                <p class="cart-infor--content__total" style="font-size: 16px;"><strong><?= number_format($values['total'], 0,",",".")?> ₫</strong></p>
                             </div>
                             <?php endforeach;?>
 				            <?php }?>
@@ -74,7 +76,7 @@
                         <div class="cart-checkout-title">Thông tin đơn hàng</div>
                         <div class="cart-checkout--total" style="padding: 16px 0;">
                             <span class="cart-checkout--total__text">Tổng tiền:</span>
-                            <span class="cart-checkout--total__price"><strong><?= $data['total']?> ₫</strong></span>
+                            <span class="cart-checkout--total__price"><strong><?= number_format($data['total'], 0,",",".")?> ₫</strong></span>
                         </div>
                         <div class="cart-checkout--label" style="font-size: 14px; padding: 16px 0;"> 
                             <p style="padding-bottom: 8px;">Freeship đơn hàng trên 700k </p>
@@ -112,3 +114,11 @@
 	<!--/Footer-->
 </body>
 
+<script>
+	 $(document).on('click','#quantity',function(){
+		quantity = $("#quantity").val()
+        id = $(this).attr('idproduct')
+		$.post("ajax/updatequantity",{id:id,quantity:quantity},function(data){
+       });
+    });
+</script>

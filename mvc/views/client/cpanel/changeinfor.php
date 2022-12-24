@@ -3,28 +3,79 @@
         require_once "./mvc/views/client/include/head.php";
 ?>
     <!--/head-->
-<script>
+<!-- <script>
     $(document).ready(function(){
-        $("#email").keyup(function(){
+        $("#phonenumber_update").keyup(function(){
+            var phonenumber = $(this).val();
+            $.post("ajax/checkSodt",{phonenumber:phonenumber},function(data){
+                $("#mess_phonenumber").html(data);
+            });
+        });
+        $("#email_update").keyup(function(){
             var email = $(this).val();
-            $.post("ajax/checkuser",{email:email},function(data){
-                $("#mess").html(data);
+            $.post("ajax/checkEmail",{email:email},function(data){
+                $("#mess_email").html(data);
             });
         });
 
-        $("#pass_confirm").keyup(function(){
-            var pass_confirm = $(this).val();
-            var pass  = $("#pass").val();
-            $.post("ajax/checkpass",{pass:pass,pass_confirm:pass_confirm},function(data){
-                $("#mess").html(data);
-            });
-        });
-
+        
 		$(".update__input").blur(function(){
             $("#mess").html("");
         });
+
+        // Kiểm tra thành phố
+        $("#email_update").blur(function(){
+            var city  = $("#city_update").val();
+            $.post("ajax/checkCity",{city: city},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        $("#city_update").mouseup(function(){
+            var city  = $("#city_update").val();
+            $.post("ajax/checkCity",{city: city},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        
+        //Kiểm tra quận huyện
+        $("#district_update").change(function(){
+            var ward  = $("#ward_update").val();
+            $.post("ajax/checkWard",{ward:ward},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        
+        $("#district_update").mouseup(function(){
+            var district  = $("#district_update").val();
+            $.post("ajax/checkDistrict",{district:district},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        
+        //Kiểm tra xã
+        $("#ward_update").keyup(function(){
+            var ward  = $("#ward_update").val();
+            $.post("ajax/checkWard",{ward: ward},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        $("#ward_update").mouseup(function(){
+            var ward  = $("#ward_update").val();
+            $.post("ajax/checkWard",{ward: ward},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        
+
+        // //Kiểm tra địa chỉ
+        // $("#address").keyup(function(){
+        //     var address  = $(this).val();
+        //     $.post("ajax/checkAddress",{address: address},function(data){
+        //         $("#mess_address_full").html(data);
+        //     });
+        // });
     });
-</script>
+</script> -->
 <body>
 
 	<!-- header-->
@@ -47,14 +98,16 @@
                             <input type="text"  name = "data[name]"class="update__input" value="<?=$data['info'][0]['tenkh']?>" required>
                             <label for="" class="update__label">Họ tên</label>
                         </div>
+                        <div style="padding-left: 4px; padding-bottom: 10px;width: 100%; text-align: left; font-size: 12px; font-weight: 600;" id= "mess_phonenumber"><?=$data["mess"]?></div>
             
                         <div class="update__form-group">
-                            <input type="text" name="data[phonenumber]" class="update__input" value="<?=$data['info'][0]['sodt']?>"required>
+                            <input type="text" name="data[phonenumber]" class="update__input" value="<?=$data['info'][0]['sodt']?>" id = "phonenumber_update" required>
                             <label for="" class="update__label">Số điện thoại</label>
                         </div>
+                        <div style="padding-left: 4px; padding-bottom: 10px;width: 100%; text-align: left; font-size: 12px; font-weight: 600;" id= "mess_email"><?=$data["mess"]?></div>
             
                         <div class="update__form-group">
-                            <input type="text" name="data[email]" id="email" class="update__input" value="<?=$data['info'][0]['email']?>"required>
+                            <input type="text" name="data[email]" id="email" class="update__input" value="<?=$data['info'][0]['email']?>" id="email_update" required>
                             <label for="" class="update__label">Email</label>
                         </div>
                         <?php 
@@ -83,7 +136,8 @@
                                 </div>';
                             }
                             ?>
-            
+                            <div style="padding-left: 4px; padding-bottom: 10px; width: 100%; text-align: left; font-size: 12px; font-weight: 600;" id= "mess_address"><?=$data["mess"]?></div>
+
                         <div class="update__input--address">
                             <div class="select-address">
                                 <select class="update__input--address-combobox" id="city_update" name="data[city]">

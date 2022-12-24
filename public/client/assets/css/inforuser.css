@@ -16,7 +16,7 @@
     font-family: 'Montserrat';
     background-color: #f8f8f8;
     /* padding: 32px; */
-    padding: 5% 0;
+    padding: 2% 0;
 }
 .infor-tab {
     padding: 8px;
@@ -96,10 +96,13 @@
 }
 .infor-content {
     width: 80%;
+    height: 800px;
     padding-left: 32px;
     background-color: #fff;
     border-radius: 5px;
     padding: 16px 16px 30px 24px;
+    overflow: auto;
+    white-space: nowrap;
 }
 
 .infor-content--header {
@@ -124,7 +127,7 @@
 .col-infor {
     padding: 8px;
     font-size: 16px;
-    max-width: 400px;
+    max-width: 300px;
 }
 
 .row-btn {

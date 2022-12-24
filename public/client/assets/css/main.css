@@ -90,8 +90,8 @@
     padding: 0px 16px;
     text-decoration: none;
     display: block;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    /* margin-top: 8px; */
+    /* margin-bottom: 8px; */
 }
 
 .dropup-content a:hover {

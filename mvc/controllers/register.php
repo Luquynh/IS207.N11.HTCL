@@ -49,7 +49,7 @@ class register extends Controller{
                     $nameCity = $this->informodel->getNameCity($post["city"]);
                     $nameDistrict = $this->informodel->getNameDistrict($post["district"]);
                     $nameWard = $this->informodel->getNameWard($post["ward"]);
-                    $diachi_dd =$post["address"].", ".$nameCity[0]['name'].", ".$nameDistrict[0]['name'].", ".$nameWard[0]['name']."";
+                    $diachi_dd =$post["address"].", ".$nameWard[0]['name'].", ".$nameDistrict[0]['name'].", ".$nameCity[0]['name']."";
                     if($checkuser < 1){
                         $user = $this->commonmodel->sigin($post["email"],md5($post["pass"]),$post["name"],$post["address"],$post["ward"],$post["district"],$post["city"] ,$post["phonenumber"], $post["gender"],$diachi_dd);
                         if($user){

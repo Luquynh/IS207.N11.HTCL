@@ -61,6 +61,7 @@
                     $nameCity = $this->informodel->getNameCity($matp);
                     $nameDistrict = $this->informodel->getNameDistrict($maqh);
                     $nameWard = $this->informodel->getNameWard($xaid);
+
                     $diachi_dd = $order["address"].", ".$nameWard[0]["name"].", ".$nameDistrict[0]["name"].", ".$nameCity[0]["name"]."";
                     $_SESSION['info']['name'] = $order['name'];
                     $this->informodel->ChangerInfoorder($id, $order["name"], $order["email"], $address, $order["ward"], $order["district"], $order["city"], $order["phonenumber"],$diachi_dd);
@@ -222,7 +223,7 @@
                                 }
                             </style>';
 
-                    sendinfororder($infor[0]["email"], $subject, $body, $img_array);
+                    // sendinfororder($infor[0]["email"], $subject, $body, $img_array);
                     NotifiOrder("Đặt Hàng Thành Công","inforuser/history");
                     unset($_SESSION["cart"]);
                     // $flag = 1;

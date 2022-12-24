@@ -41,7 +41,11 @@
     <?php 
         require_once "./mvc/views/client/include/header.php";
     ?>
-<?php $row = mysqli_fetch_array($data["only1pro"]);
+<?php 
+    $row = mysqli_fetch_array($data["only1pro"]);
+    $count = mysqli_fetch_array($data["count"]);
+    $star = mysqli_fetch_array($data["star"]);
+    
     $soluong = (int)($row["soluong"]);
     if($soluong > 0) {
         $tinhtrang = 'Còn hàng';
@@ -77,7 +81,7 @@
                     <p class="price_product"><?php echo number_format($row["gia"], 0,",",".")?> ₫</p>
                     <div class="rating_product">
                         <span class="empty_icon"><i class="ti-star"></i><i class="ti-star"></i><i class="ti-star"></i><i class="ti-star"></i><i class="ti-star"></i></span>
-                        <!-- <span class="total_rating">(35)</span> -->
+                        <span class="total_rating"><?php echo '('.round((float)($star["star"]),1).')';?></span>
                     </div>
                 </div>
 
@@ -161,7 +165,58 @@
                     </div>
                 </div> -->
 
+
                 <button class="buy_now" id="buynow" idproduct="<?=$row["masp"]?>">THANH TOÁN NGAY</button>
+
+                <div id="mask_root_actice" class="hide">
+        <div class="size_watch_box">
+            <div class="size_watch_left">
+                <div class="size_watch_header">
+                    <p class="size_watch_Title">MẶT ĐỒNG HỒ</p>
+                    <p class="size_watch_subTitle">ĐỐI CHIỀU VỚI CHU VI CỔ TAY</p>
+                </div>
+                <table class="size_watch_boxTable">
+                    <tr>
+                        <th>Đồng hồ</th>
+                        <th>Cổ tay</th>
+                    </tr>
+                    <tr>
+                        <td>Kashmir 40mm</td>
+                        <td>15,5-17,5cm</td>
+                    </tr>
+                    <tr>
+                        <td>Weimar 40mm</td>
+                        <td>16-17,5cm</td>
+                    </tr>
+                    <tr>
+                        <td>Jackson 40mm</td>
+                        <td>16-17,5cm</td>
+                    </tr>
+                    <tr>
+                        <td>Detroit 40mm</td>
+                        <td>16-18cm</td>
+                    </tr>
+                    <tr>
+                        <td>Colosseum 42mm</td>
+                        <td>16-18cm</td>
+                    </tr>
+                    <tr>
+                        <td>Whitesands 38mm</td>
+                        <td>14,5-17cm</td>
+                    </tr>
+                    <tr>
+                        <td>Futura 40mm</td>
+                        <td>16-18cm</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="size_watch_right">
+                <img src="<?=base?>public/client/assets/img/pic-02.e2d7363f.jpg" alt="">
+                <i class="ti-close"></i>
+            </div>
+        </div>
+    </div>
+              
                 <button class="add_to_cart" id="addtocart" idproduct="<?=$row["masp"]?>">THÊM VÀO GIỎ</button>
             </div>
     </div>
@@ -171,6 +226,7 @@
     <div class="policy_text"><span><i class="icon_banner ti-shield"></i></span>BẢO HÀNH 10 NĂM</div>
     <div class="policy_text"><span><i class="icon_banner ti-package"></i></span>ĐỔI TRẢ MIỄN PHÍ TRONG VÒNG 3 NGÀY</div>                   
 </div>
+<div id="inforpro">THÔNG TIN SẢN PHẨM</div>
 <div id="khung_mota">
     <div class="box_mota"><?php echo $row["mota"]?></div>
     <div class="box_thongso">
@@ -214,39 +270,48 @@
     } else {
         $tieude = $_POST["tieude"];
         $comment = $_POST["comment"];
-        // $id_sp = $_POST["masp"];
-        $sql = "INSERT INTO binhluan (masp, makh, tieude, content, tt_xoa) VALUES ('$id_sp', '$id_user', '$tieude','$comment', '0')";
+        $id_star = $_POST["star"];
+        $sql = "INSERT INTO binhluan (masp, makh, tieude, content, star, tt_xoa) VALUES ('$id_sp', '$id_user', '$tieude','$comment', '$id_star','0')";
         mysqli_query($dt->conn, $sql);
     }
     }
     ?>
-    <div style="margin: 50px; font-size: 30px">Hãy để lại ý kiến của bạn</div>
+    <div id="beforeform">Hãy để lại ý kiến của bạn</div>
     <form id="formprodetails" method="post" action="">  
     Tiêu đề: <br>
     <input type="text" name="tieude">
     <br><br>
-    <textarea style="display: none" type="hidden" name="masp"><?php echo $row["masp"]?></textarea>
     Comment: <br>
     <textarea name="comment" rows="5" cols="40"></textarea><span class="error"> *<?php echo $commentErr;?></span>
     <br><br>
+    Đánh giá: <br>
+    <input type="radio" name="star" value="1"> 1<i class="ti-star"></i>
+    <input type="radio" name="star" value="2"> 2<i class="ti-star"></i>
+    <input type="radio" name="star" value="3"> 3<i class="ti-star"></i>
+    <input type="radio" name="star" value="4"> 4<i class="ti-star"></i>
+    <input type="radio" name="star" value="5"> 5<i class="ti-star"></i>
     <input class ="submit" type="submit" name="submit" value="ĐĂNG">  
     </form>
 
     <?php
     ?>
 </div>
-<?php }else{echo "<div style='text-align: center;'><h1>Bạn vui lòng đăng nhập để bình luận</h1></div>";}?>
-<div style="margin: 50px; font-size: 32px">REVIEWS CỦA KHÁCH HÀNG</div>
+<?php }else{
+    echo "<div style='margin: 80px 90px 0; border-top: 1px solid; text-align: center; padding: 19px 0 0;'>
+            <h1>Bạn vui lòng đăng nhập để bình luận</h1>
+        </div>";
+    }?>
+<div style="margin: 50px 90px; font-size: 32px">REVIEWS CỦA KHÁCH HÀNG <?php echo '('.$count["count"].')'?></div>
 
+<?php
+    $sql = "SELECT binhluan.tieude AS tieude, binhluan.content AS content, khachhang.tenkh AS tenkh 
+    FROM binhluan 
+    INNER JOIN khachhang ON binhluan.makh = khachhang.makh 
+    WHERE binhluan.masp = '$id_sp'
+    ORDER BY mabl DESC";
+    $bl = mysqli_query($dt->conn, $sql);
+?>
 <div class="cmt">
-    <?php
-        $sql = "SELECT binhluan.tieude AS tieude, binhluan.content AS content, khachhang.tenkh AS tenkh 
-        FROM binhluan 
-        INNER JOIN khachhang ON binhluan.makh = khachhang.makh 
-        WHERE binhluan.masp = '$id_sp'
-        ORDER BY mabl DESC";
-        $bl = mysqli_query($dt->conn, $sql);
-    ?>
     <?php 
     if (mysqli_num_rows($bl)>0) {
     while($row = mysqli_fetch_array($bl)):?>

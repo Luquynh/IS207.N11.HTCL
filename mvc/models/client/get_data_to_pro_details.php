@@ -12,6 +12,18 @@
             where sanpham.masp = '$masp'";
             return mysqli_query($this->conn, $sql);
         }
-        
+        public function count($masp){
+            $sql = "SELECT COUNT(mabl) AS count
+            FROM binhluan
+            WHERE masp = '$masp'";
+            return mysqli_query($this->conn, $sql);
+        }
+        public function star($masp){
+            $sql = "SELECT AVG(a.star) AS star FROM (SELECT star FROM `binhluan` AS SP1 
+                                            WHERE masp = '$masp' AND mabl >= 
+                                            (SELECT MAX(mabl) FROM `binhluan` AS SP2 
+                                                WHERE SP1.makh = SP2.makh GROUP BY makh)) AS a";
+            return mysqli_query($this->conn, $sql);
+        }
     }
 ?>

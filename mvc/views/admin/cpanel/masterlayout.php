@@ -72,5 +72,13 @@
         <?php
             require_once "./mvc/views/admin/include/footer.php";
         ?>
+        <style>
+          footer{
+            padding: 0;
+          }
+          .right_col{
+            min-height: 900px
+          }
+        </style>
   </body>
 </html>

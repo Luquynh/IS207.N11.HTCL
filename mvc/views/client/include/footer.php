@@ -23,13 +23,16 @@
                         <div class="footer_info mt-16">173C Kim Mã, Ba Đình.</div>
                     </div>
                     <div class="col col-fourth footer_box mt-32">
-                        <div class="footer_title">DỊCH VỤ THANH TOÁN</div>
-                        <div class="row mt-16">  
-                            <img src="https://curnonwatch.com/_next/static/media/momo.1a8e86d8.png" alt="" class="col col-fourth footer_pay ">
+                        <div class="footer_title">TP.HCM STORES</div>
+                        <!-- <div class="row mt-16">   -->
+                            <!-- <img src="https://curnonwatch.com/_next/static/media/momo.1a8e86d8.png" alt="" class="col col-fourth footer_pay ">
                             <img src="https://curnonwatch.com/_next/static/media/vnpay.3fa45c06.png" alt="" class="col col-fourth footer_pay ">
                             <img src="https://curnonwatch.com/_next/static/media/cod.10bcbd91.png" alt="" class="col col-fourth footer_pay">
-                            <img src="https://curnonwatch.com/_next/static/media/fundiin.34ef01d3.png" alt="" class="col col-fourth footer_pay">
-                        </div>
+                            <img src="https://curnonwatch.com/_next/static/media/fundiin.34ef01d3.png" alt="" class="col col-fourth footer_pay"> -->
+                            <div class="footer_info mt-16">25 Nguyễn Trãi, P.Bến Thành, Quận 1.</div>
+                            <div class="footer_info mt-16">348 Lê Văn Sỹ, Phường 14, Quận 3.</div>
+                            
+                        <!-- </div> -->
                     </div>
                 </div>
                 

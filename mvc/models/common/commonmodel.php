@@ -58,6 +58,16 @@
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
             return json_encode($result);
         }
+        //Lấy ra kích thước của sản phẩm 
+        function GetCategorysize($limit,$offset){
+            $sql = "SELECT * FROM bosuutap as s
+            INNER JOIN kichthuoc as k on k.makichthuoc=s.makichthuoc
+            ORDER BY mabosuutap ASC LIMIT $limit OFFSET $offset";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return json_encode($result);
+        }
         //lấy sản phẩm hoặc danh mục theo id dùng để sửa sản phẩm hoặc danh mục
         function GetData($id,$table,$maid){
             $sql = "SELECT * FROM $table WHERE $maid = $id";

@@ -377,9 +377,20 @@
     height: 35px;
     border-bottom: var(--text-color) 1px solid;
     padding-left: 8px;
+    margin-right: 5px;
     background: transparent;
     border-radius: 0;
 }
+
+.search-header .nuttimkiem {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 20%;
+    background-color: #2a850bad;
+    cursor: pointer;
+}
+
 .search-icon__close {
     text-decoration: none;
     font-size: 1.6rem;
@@ -390,6 +401,7 @@
     top: 40px;
     cursor: pointer;
 }
+
 .search-body .search-body__title{
     font-size: 1.4rem;
     color: var(--text-color);

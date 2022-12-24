@@ -207,18 +207,21 @@
                     <i class="search-icon__close ti-close"></i>
                 </label>
                 <header class="search-header">
-                    <input type="search" name="search" id="" class="search-input" placeholder="Nhập từ khóa...">
+                <form action="<?=base?>callMCdisplaysp/show" method="post">
+                    <input type="search" name="kyw" class="search-input" placeholder="Nhập từ khóa...">
                     <!-- <label for="search-modal__check" class="search-icon__close">Đóng</label> -->
+                    <input type="submit" name="timkiem" class="nuttimkiem" value="Go">
+                </form>
                 </header>
                 
-                <div class="search-body">
+                <!-- <div class="search-body">
                     <p class="search-body__title">Các từ khóa nổi bật:</p>
                     <p class="search-body__item">Kashmir</p>
                     <p class="search-body__item">Colosseum</p>
                     <p class="search-body__item">Florenge</p>
                     <p class="search-body__item">Jackie Cuff</p>
                     <p class="search-body__item">Mykonos</p>
-                </div>
+                </div> -->
             </div>
         </div>
     

@@ -66,7 +66,7 @@ class login extends Controller{
             "avatar_women" => $this->header->get_avatar("women"),
             ];
             $this->ViewClient("login",$data);
-        }else header("location:".base."home");
+        }else header("location:".base);
     }
     }
 

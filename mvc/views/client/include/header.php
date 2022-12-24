@@ -75,7 +75,7 @@
                     <li class="dropup nav-item nav-item__left">About
                         <div class="nav-item dropup-content">
                             <a href="#">Blog</a>
-                            <a href="">Liên hệ</a>
+                            <a href="<?=base?>contact">Liên hệ</a>
                             <a href="#">Về chúng tôi</a>
                         </div>
                     </li>

@@ -14,5 +14,13 @@
             $sql = "SELECT img, tenbosuutap from bosuutap where gioitinh = '$gioitinh'";
             return mysqli_query($this->conn, $sql);
         }
+        public function search($kyw){
+            $sql = "SELECT masp, tensp, gia, sanpham.img, tenbosuutap
+            from sanpham 
+            INNER JOIN bosuutap 
+            ON sanpham.mabosuutap = bosuutap.mabosuutap 
+            where (tensp LIKE '%".$kyw."%') OR (tenbosuutap LIKE '%".$kyw."%')";
+            return mysqli_query($this->conn, $sql);
+        }
     }
 ?>

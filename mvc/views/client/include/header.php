@@ -207,8 +207,11 @@
                     <i class="search-icon__close ti-close"></i>
                 </label>
                 <header class="search-header">
-                    <input type="search" name="search" id="" class="search-input" placeholder="Nhập từ khóa...">
+                <form action="<?=base?>callMCdisplaysp/show" method="post">
+                    <input type="search" name="kyw" class="search-input" placeholder="Nhập từ khóa...">
                     <!-- <label for="search-modal__check" class="search-icon__close">Đóng</label> -->
+                    <input type="submit" name="timkiem" value="Tìm kiếm">
+                </form>
                 </header>
                 
                 <div class="search-body">

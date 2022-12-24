@@ -99,9 +99,9 @@
                         <?php if($row["matrangthai"] == "0"){ ?>
                             <td class="col-infor" style="color: red; font-weight: bold;"><?=$trangthaidonhang[0]['tentrangthai']?></td>
                         <?php }else if($row["matrangthai"] == "5"){?>
-                            <td class="col-infor" style="color: black; font-weight: bold;"><?=$trangthaidonhang[0]['tentrangthai']?></td>
+                            <td class="col-infor" style="color: blue; font-weight: bold;"><?=$trangthaidonhang[0]['tentrangthai']?></td>
                         <?php } else {?>
-                            <td class="col-infor" style="color: green; font-weight: bold;"><?=$trangthaidonhang[0]['tentrangthai']?></td>
+                            <td class="col-infor" style="color: #53c66e; font-weight: bold;"><?=$trangthaidonhang[0]['tentrangthai']?></td>
                         <?php }?>
                         
                         
@@ -115,18 +115,12 @@
                             <?php if($row["matrangthai"] == "5") {?>
                                 <span style="margin-bottom: 18px; background-color: red; border: none; cursor: pointer; " class="btn_details_order" onclick="cancelorder()">Hủy Đơn</span>
                                 <button  name="cancel" id="cancel" hidden></button>
-                            <?php }?>
-                            <?php if($row["matrangthai"] == "4"){ ?>
-                                <span style="margin-bottom: 18px; background-color: green; border: none;cursor: pointer; " class="btn_details_order" onclick="confirmorder()">Xác nhận</span>
-                                <button  name="confirm" id="confirm" hidden></button>
+                            <?php } else { ?>
+                                <span style="margin-bottom: 18px; background-color: #53c66e; border: none;cursor: pointer; " class="btn_details_order" onclick="confirmorder()">Mua lại</span>
+                                <button  name="buyagain" id="buyagain" hidden></button>
                                 <!-- <button style="margin-bottom: 10px; background-color: green; border: none;" class="btn_details_order" name="confirm">Xác Nhận</button> -->
                             <?php }?>
-                            <?php if($row["matrangthai"] == "0"){?>
-                                <!-- <span style="margin-bottom: 18px;" class="btn_details_order" onclick="deleteorder()">Xóa Đơn</span>
-                                <button id="delete" name="delete" hidden></button> -->
-                                <!-- <a  id_order="<?=$row["madonhang"]?>" href="javascrip:void(0)" style="margin-bottom: 18px;" class="btn_details_order" name="details">Chi Tiết</a> -->
-
-                            <?php }?>
+                            
                             <!-- <a  id_order="<?=$values["id"]?>" href="javascrip:void(0)" style="margin-bottom: 18px;" class="btn btn-primary btn_details_order" name="details">Chi Tiết</a> -->
                             <a  id_order="<?=$row["madonhang"]?>" href="javascrip:void(0)" style="margin-bottom: 18px;cursor: pointer;" class="btn_details_order" id="order_details" name="details">Chi Tiết</a>
                         </td>
@@ -151,7 +145,7 @@
         border: 1px solid #eee;
         border-collapse: collapse;
     }
-    th {
+    .detail th {
         background-color: #eee;
         padding: 10px;
     }
@@ -202,7 +196,7 @@
         // thông báo xác nhận đã nhận được hàng
 		function confirmorder(){
 			Swal.fire({
-			title: 'Bạn có xác nhận đã nhận được hàng không?',
+			title: 'Bạn có xác nhận đặt lại đơn hàng không?',
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
@@ -210,7 +204,7 @@
 			confirmButtonText: 'Có'
 			}).then((result) => {
 			if (result.isConfirmed) {
-				$( "#confirm" ).click();
+				$( "#buyagain" ).click();
 			}
 			});
 		}

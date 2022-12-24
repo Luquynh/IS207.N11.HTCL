@@ -100,7 +100,7 @@
     </div>
 
     <div style="background-color: #f8f7f4;" class="outstanding_products">
-        <div class="watch_container" >
+        <div class="watch_container" style="width: 80%; margin: auto;">
             <?php while($row = mysqli_fetch_array($data["get_all_spmenwo"])):?>
             <div class="watch_mid_con">
             <a style="margin-top: 70px;" href="http://localhost/curnon/callMCprodetails/show/<?php echo $row["masp"]?>" class="watch_item" >
@@ -110,11 +110,12 @@
                 <div class="div_watch_item"><?php echo number_format($row["gia"], 0,",",".")?> ₫</div>
                 <div style="display: none;" class="tieuxao1"><?php echo $row["kichthuoc"]?></div>
                 <div style="display: none;" class="tieuxao2"><?php echo $row["mausac"]?></div>
+                <button class="button_watch_item" id="addtocart" idproduct="<?=$row["masp"]?>">XEM CHI TIẾT</button>
             </a>
-            <button class="button_watch_item">THÊM VÀO GIỎ</button>
             </div>
             <?php endwhile;?>
         </div>
+        <div class="" id="notification"></div>
     </div>
 
     <script>
@@ -223,7 +224,7 @@
         })    
     </script>
 
-    
+
 
 
 

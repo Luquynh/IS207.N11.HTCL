@@ -63,6 +63,16 @@
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         }
+
+        //lấy đơn hàng theo id đơn hàng
+        function GetHistotyOrderByidorder($id){
+            // $sql = "select * from order_product where user_id = $id and cancel_order = 0 and delete_order = 0";
+            $sql = "SELECT * from donhang where madonhang = $id and tt_xoa = 0";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
         //xử lý khách hàng bấm nút xác nhận đã nhận hàng
         function Confirm($id){
             $sql = "UPDATE donhang SET matrangthai = 5 WHERE madonhang = '$id'";

@@ -237,8 +237,8 @@
                                 <p class="order-infor--content__option-size">40MM</p> -->
                             </div>
                             <div class="order-infor--content__price mg-bt-8px">
-                                <span class="order-infor--content__price-new"><?= $values['price_new']?> ₫</span>
-                                <span class="order-infor--content__price-old"><?= $values['price_old']?> ₫</span>
+                                <span class="order-infor--content__price-new"><?= number_format($values['price_new'], 0,",",".")?> ₫</span>
+                                <span class="order-infor--content__price-old"><?= number_format($values['price_old'], 0,",",".")?> ₫</span>
                             </div>
                         </div>
                     </div>
@@ -253,7 +253,7 @@
                     </div>
                     <!-- Số lượng: <input type="text" value="<?= $values['quantity']?>" class="order-infor--quanlity-input"> -->
     
-                    <p class="order-infor--content__total" style="font-size: 16px;"><strong><?= $values['total']?> ₫</strong></p>
+                    <p class="order-infor--content__total" style="font-size: 16px;"><strong><?= number_format($values['total'], 0,",",".")?> ₫</strong></p>
                 </div>
                 <?php endforeach;?>
                 <?php }?>
@@ -262,7 +262,7 @@
                 <tr class="order-checkout--total" style="padding-bottom: 16px;">
                     <td><span class="order-checkout--total__text font-size-14">Tạm tính:</span></td>
                     <?php if(isset($_SESSION["cart"])){?>
-                        <td><span class="order-checkout--total__price font-size-16 color-black"><strong><?= $data['total']?> ₫</strong></span></td>
+                        <td><span class="order-checkout--total__price font-size-16 color-black"><strong><?= number_format($data['total'], 0,",",".")?> ₫</strong></span></td>
                         <!-- <td><span class="order-checkout--total__price" name='data["total"]' value='<?= $data['total']?>'><strong><?= $data['total']?> ₫</strong></span></td> -->
                     <?php }
                     else { ?>
@@ -274,12 +274,12 @@
                 </tr>
                 <tr class="order-checkout--total border-bottom" style="padding-bottom: 24px; border-bottom: 1px #eee solid;">
                     <td><span class="order-checkout--total__text font-size-14">Phí ship:</span></td>
-                    <td><span class="order-checkout--total__price font-size-16 color-black"><strong>35000 ₫</strong></span></td>
+                    <td><span class="order-checkout--total__price font-size-16 color-black"><strong><?=number_format($data['phiship'], 0,",",".")?> ₫</strong></span></td>
                 </tr>
                 <tr class="order-checkout--total" style="padding-bottom: 16px;">
                     <td><span class="order-checkout--total__text font-size-16">Tổng tiền:</span></td>
                     <?php if(isset($_SESSION["cart"])){?>
-                        <td><span class="order-checkout--total__price" name='data["total"]' value='<?= $data['total']?>'><strong><?= $data['total']?> ₫</strong></span></td>
+                        <td><span class="order-checkout--total__price" name='data["total"]' value='<?= $data['total']?>'><strong><?= number_format($data['total'], 0,",",".")?> ₫</strong></span></td>
                     <?php }
                     else { ?>
                         <td><span class="order-checkout--total__price" name='data["total"]' value='<?= $data['total']?>'><strong>0 ₫</strong></span></td>

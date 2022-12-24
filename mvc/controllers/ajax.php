@@ -1,4 +1,7 @@
 <!-- <?php
+
+use function PHPSTORM_META\type;
+
     class ajax extends Controller{
         var $commonmodel;
         var $homeclientmodel;
@@ -6,6 +9,7 @@
         var $ordermodel;
         var $full_address;
         var $productmodel;
+        var $informodel;
         function __construct()
         {
             $this->commonmodel = $this->ModelCommon("commonmodel");
@@ -14,6 +18,7 @@
             // $this->homeclientmodel = $this->ModelClient("homemodel");
             $this->checkoutmodel = $this->ModelClient("checkoutmodel");
             $this->ordermodel = $this->ModelAdmin("ordermodel");
+            $this->informodel = $this->ModelClient('informodel');
 
         }
 
@@ -251,6 +256,51 @@
             }
         }
 
+        //Thanh toán ngay
+        function buynow(){
+            if(isset($_SESSION["info"]["name"])){
+                if(isset($_POST["id"])){
+                    $id = $_POST["id"];
+                    $product_temp = $this->commonmodel->GetProductById($id);
+                    $mabosuutap = $product_temp[0]["mabosuutap"];
+                    $bosuutap = $this->commonmodel->getBosuutap($mabosuutap);
+                    $makichthuoc = $bosuutap[0]['makichthuoc'];
+                    $kichthuoc = $this->commonmodel->getKichthuoc($makichthuoc);
+                    $product = [
+                        "id"=>$product_temp[0]["masp"],
+                        "name"=>$product_temp[0]["tensp"],
+                        "gioitinh"=>$bosuutap[0]['gioitinh'],
+                        "price_new"=>$product_temp[0]["gia"] * (1-$product_temp[0]["giamgia"]/100),
+                        "price_old"=>$product_temp[0]["gia"],
+                        "img"=>$product_temp[0]["img"],
+                        "color" => $product_temp[0]["mausac"],
+                        "size" => $kichthuoc[0]["kichthuoc"],
+                        "quantity"=>1,
+                        "sale"=>$product_temp[0]["giamgia"],
+                        "total" => 0
+                    ];
+                    if($product_temp[0]["soluong"] > 0){
+                        if(!isset($_SESSION["cart"][$id])){ //Nếu chưa có sản phẩm $id
+                            $_SESSION["cart"][$id] = $product;
+                            $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["price_new"];
+                        }
+                        else{
+                            $_SESSION["cart"][$id]["quantity"]+=1;
+                            $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["quantity"] * $_SESSION["cart"][$id]["price_new"];
+                        }
+                        // echo '<script> location.reload() </script>';
+                        // echo count($_SESSION['cart']);
+                        echo '<script>location.href="'.base.'checkout"</script>';
+                    }else{
+                        NotifiErrorQuantity("Sản phẩm đã được bán hết quay lại sau nhé!");
+                    }
+                }
+            }else{
+                $_SESSION["error_login"] = "Vui Lòng đăng nhập";
+                $error_login = '<script>location.href="'.base.'login/"</script>';
+                echo $error_login;
+            }
+        }
         //Thêm sản phẩm vào giỏ hàng
         function addcart(){
             if(isset($_SESSION["info"]["name"])){
@@ -296,6 +346,7 @@
             }
         }
 
+
         // cập nhật lại tổng sổ tiền và số lượng sau khi bấm nút -
         function downquantity(){
             if(isset($_GET["id"])){
@@ -329,7 +380,25 @@
                 }
             }
         }
-
+        function updatequantity() {
+            //cập nhật lại số lượng khi người dùng thêm số lượng
+            if(isset($_POST["updatequantity"])){
+                $id = $_POST["idproduct"];
+                $quantity = $_POST["quantity"];
+                $quantity_product = $this->checkoutmodel->GetQuantityById($id);
+                if($quantity <= $quantity_product[0]["quantity"]){
+                    $_SESSION['cart'][$id]["quantity"]=$quantity;
+                    if($_SESSION['cart'][$id]["quantity"] <= 0){
+                        $_SESSION['cart'][$id]["quantity"]=1;
+                        $_SESSION['cart'][$id]["total"] = $_SESSION['cart'][$id]["quantity"] * $_SESSION['cart'][$id]["price_new"];
+                    }else{
+                        $_SESSION['cart'][$id]["total"] = $_SESSION['cart'][$id]["quantity"] * $_SESSION['cart'][$id]["price_new"];
+                    }
+                }else{
+                    NotifiErrorQuantity("Xin lỗi số lượng trong kho chỉ còn lại ".$quantity_product[0]["soluong"]." sản phẩm");
+                }
+            }
+        }
         //xóa sản phẩm khỏi giỏ hàng
         function deleteproductcart(){
             if(isset($_GET["id"])){
@@ -404,6 +473,8 @@
         function orderdetails(){
             $id_order = $_POST["id_order"];
             //lấy tất cả sản phẩm theo id_order
+            $order = $this->checkoutmodel->GetHistotyOrderByidorder($id_order);
+            $infor = $this->informodel->GetInfoUser($order[0]['makh']);
             $order_details = $this->ordermodel->GetOrderDetails($id_order);
             echo '
                 <h2 class="infor-content--header">Chi tiết đơn hàng: #'.$id_order.'</h2>
@@ -412,8 +483,21 @@
                     <i class="infororder__footer-icon fa-solid fa-arrow-left-long"></i>
                     Trở lại 
                 </a>
-                
-                    <table class="infor-content-infor">
+                <table>
+                    <tr>
+                        <th align="left">Tên khách hàng: </th>
+                        <td style="padding: 10px;">'.$infor[0]['tenkh'].'</td>
+                    </tr>
+                    <tr>
+                        <th align="left">Số điện thoại: </th>
+                        <td style="padding: 10px;">'.$order[0]['sodt'].'</td>
+                    </tr> 
+                    <tr>
+                        <th align="left">Địa chỉ: </th>
+                        <td style="padding: 10px;">'.$order[0]['diachi'].'</td>
+                    </tr> 
+                </table>
+                    <table class="infor-content-infor detail">
                     
                         <tr class="row-infor">
                             <th class="">
@@ -465,6 +549,20 @@
                     ';
                 endforeach;
             endforeach;
+            
+            echo '<tr>
+                    <td colspan="4" align="right"><strong>Tạm tính: </strong></td>
+                    <td  align="right"><strong>'.number_format (intval($order[0]['tonggiatri']) - $order[0]['phiship'] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." ).' ₫</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="right"><strong>Phí ship: </strong></td>
+                    <td  align="right"><strong>'.number_format($order[0]['phiship'],0,',','.') . ' ₫</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="right"><strong>Tổng cộng: </strong></td>
+                    <td  align="right"><strong style="color: red;">'.number_format($order[0]['tonggiatri'], 0,',','.') .' ₫</strong></td>
+                </tr>'
+                ;
             echo '</table>';
                     
         }

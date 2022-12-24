@@ -164,7 +164,54 @@
                         <button class="csp_btn_cross">+ THÊM</button>
                     </div>
                 </div> -->
-
+                <div id="mask_root_actice" class="hide">
+        <div class="size_watch_box">
+            <div class="size_watch_left">
+                <div class="size_watch_header">
+                    <p class="size_watch_Title">MẶT ĐỒNG HỒ</p>
+                    <p class="size_watch_subTitle">ĐỐI CHIỀU VỚI CHU VI CỔ TAY</p>
+                </div>
+                <table class="size_watch_boxTable">
+                    <tr>
+                        <th>Đồng hồ</th>
+                        <th>Cổ tay</th>
+                    </tr>
+                    <tr>
+                        <td>Kashmir 40mm</td>
+                        <td>15,5-17,5cm</td>
+                    </tr>
+                    <tr>
+                        <td>Weimar 40mm</td>
+                        <td>16-17,5cm</td>
+                    </tr>
+                    <tr>
+                        <td>Jackson 40mm</td>
+                        <td>16-17,5cm</td>
+                    </tr>
+                    <tr>
+                        <td>Detroit 40mm</td>
+                        <td>16-18cm</td>
+                    </tr>
+                    <tr>
+                        <td>Colosseum 42mm</td>
+                        <td>16-18cm</td>
+                    </tr>
+                    <tr>
+                        <td>Whitesands 38mm</td>
+                        <td>14,5-17cm</td>
+                    </tr>
+                    <tr>
+                        <td>Futura 40mm</td>
+                        <td>16-18cm</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="size_watch_right">
+                <img src="<?=base?>public/client/assets/img/pic-02.e2d7363f.jpg" alt="">
+                <i class="ti-close"></i>
+            </div>
+        </div>
+    </div>
                 <button class="buy_now">THANH TOÁN NGAY</button>
                 <button class="add_to_cart" id="addtocart" idproduct="<?=$row["masp"]?>">THÊM VÀO GIỎ</button>
             </div>

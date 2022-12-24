@@ -16,7 +16,7 @@ class callMCdisplaysp extends Controller{
         $data = [
         "avatar_men" => $header->get_avatar("men"),
         "avatar_women" => $header->get_avatar("women"),
-        "searchten" => $header->search($kyw),
+        "search" => $header->search($kyw),
         ];
         $this->ViewClient("require_display_sanpham",$data);
     }

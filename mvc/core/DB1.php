@@ -6,7 +6,7 @@ class DB1{
     protected $password="";
 
    
-    protected $dbname="web_dongho1";
+    protected $dbname="web_dongho";
 
     function __construct(){
         $this->conn=mysqli_connect($this->servername,$this->username,$this->password);

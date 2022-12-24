@@ -48,9 +48,9 @@
     
     $soluong = (int)($row["soluong"]);
     if($soluong > 0) {
-        $tinhtrang = "Còn hàng";
+        $tinhtrang = 'Còn hàng';
     }else{
-        $tinhtrang = "Hết hàng";
+        $tinhtrang = '<span style="color:red;">Hết hàng</span>';
     }
 ?>
 <div id="content">
@@ -164,6 +164,10 @@
                         <button class="csp_btn_cross">+ THÊM</button>
                     </div>
                 </div> -->
+
+
+                <button class="buy_now" id="buynow" idproduct="<?=$row["masp"]?>">THANH TOÁN NGAY</button>
+
                 <div id="mask_root_actice" class="hide">
         <div class="size_watch_box">
             <div class="size_watch_left">
@@ -212,7 +216,7 @@
             </div>
         </div>
     </div>
-                <button class="buy_now">THANH TOÁN NGAY</button>
+              
                 <button class="add_to_cart" id="addtocart" idproduct="<?=$row["masp"]?>">THÊM VÀO GIỎ</button>
             </div>
     </div>
@@ -324,6 +328,9 @@
   }
     ?>
 </div>
+
+<!-- Load lại trang khi thêm giỏ hàng (Không được xóa) -->
+<div class="" id="notification"></div>
     <?php 
         require_once "./mvc/views/client/include/footer.php";
     ?>
@@ -478,11 +485,13 @@
                 
             })
         })
+
+        $("#buynow").click(function(){
+            var id_product = $(this).attr("idproduct");
+            $.post("<?=base?>ajax/buynow", {id: id_product}, function(data){
+                $("#notification").html(data)
+                
+            })
+        })
     })
-    // $(document).on('click','#addtocart',function(){
-    //     idproduct =  $(this).attr('idproduct')
-    //     $.post("ajax/addcart",{id:idproduct},function(data){
-    //         $("#notification").html(data);
-    //     });
-    // });
 </script>

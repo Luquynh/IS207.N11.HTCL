@@ -15,6 +15,7 @@
             $query->execute();
             return $query;
         }
+    
         //xóa những sản phẩm thuộc danh mục bị xóa
         function UpdateProduct($id){
             $sql =  "UPDATE  product SET status_delete = 1 where category_id = $id";

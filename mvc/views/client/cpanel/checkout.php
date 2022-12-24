@@ -3,12 +3,18 @@
         require_once "./mvc/views/client/include/head.php";
 ?>
     <!--/head-->
-<script>
+    <script>
     $(document).ready(function(){
+        $("#phonenumber").keyup(function(){
+            var phonenumber = $(this).val();
+            $.post("ajax/checkSodt",{phonenumber:phonenumber},function(data){
+                $("#mess_phonenumber").html(data);
+            });
+        });
         $("#email").keyup(function(){
             var email = $(this).val();
-            $.post("ajax/checkuser",{email:email},function(data){
-                $("#mess").html(data);
+            $.post("ajax/checkEmail",{email:email},function(data){
+                $("#mess_email").html(data);
             });
         });
 
@@ -16,12 +22,64 @@
             var pass_confirm = $(this).val();
             var pass  = $("#pass").val();
             $.post("ajax/checkpass",{pass:pass,pass_confirm:pass_confirm},function(data){
-                $("#mess").html(data);
+                $("#mess_pass").html(data);
             });
         });
-
-		$(".infororder__input").blur(function(){
+        
+		$(".register__input").blur(function(){
             $("#mess").html("");
+        });
+
+        //Kiểm tra thành phố
+        $("#pass_confirm").blur(function(){
+            var city  = $("#city").val();
+            $.post("ajax/checkCity",{city: city},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        $("#city").mouseup(function(){
+            var city  = $("#city").val();
+            $.post("ajax/checkCity",{city: city},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        
+        //Kiểm tra quận huyện
+        $("#district").change(function(){
+            var ward  = $("#ward").val();
+            $.post("ajax/checkWard",{ward:ward},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        
+        $("#district").mouseup(function(){
+            var district  = $("#district").val();
+            $.post("ajax/checkDistrict",{district:district},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        
+        //Kiểm tra xã
+        $("#ward").keyup(function(){
+            var ward  = $("#ward").val();
+            $.post("ajax/checkWard",{ward: ward},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        $("#ward").mouseup(function(){
+            var ward  = $("#ward").val();
+            $.post("ajax/checkWard",{ward: ward},function(data){
+                $("#mess_address").html(data);
+            });
+        });
+        
+
+        //Kiểm tra địa chỉ
+        $("#address").keyup(function(){
+            var address  = $(this).val();
+            $.post("ajax/checkAddress",{address: address},function(data){
+                $("#mess_address_full").html(data);
+            });
         });
     });
 </script>
@@ -47,17 +105,21 @@
                                 <input type="text"  name = "data[name]"class="infororder__input" value="<?=$data['info'][0]['tenkh']?>" required>
                                 <label for="" class="infororder__label">Họ tên</label>
                             </div>
+                            <div style="padding-left: 4px; padding-bottom: 10px;width: 100%; text-align: left; font-size: 12px; font-weight: 600;" id= "mess_phonenumber"><?=$data["mess"]?></div>
                 
                             <div class="infororder__form-group">
                                 <input type="text" name="data[phonenumber]" class="infororder__input" value="<?=$data['info'][0]['sodt']?>"required>
                                 <label for="" class="infororder__label">Số điện thoại</label>
                             </div>
+                            
+                            <div style="padding-left: 4px; padding-bottom: 10px;width: 100%; text-align: left; font-size: 12px; font-weight: 600;" id= "mess_email"><?=$data["mess"]?></div>
                 
                             <div class="infororder__form-group">
                                 <input type="text" name="data[email]" id="email" class="infororder__input" value="<?=$data['info'][0]['email']?>"required>
                                 <label for="" class="infororder__label">Email</label>
                             </div>
                             <!--  -->
+                            <div style="padding-left: 4px; padding-bottom: 10px; width: 100%; text-align: left; font-size: 12px; font-weight: 600;" id= "mess_address"><?=$data["mess"]?></div>
                 
                             <div class="infororder__input--address">
                                 <div class="select-address">
@@ -151,15 +213,15 @@
             <div class="cart-checkout-title" style="padding: 16px;">
                 <?php if(isset($_SESSION["cart"])){?>
                 <?php echo count($_SESSION['cart']); ?> sản phẩm
-                <?php } ?>
-                0 sản phẩm
+                <?php } else echo '0 sản phẩm';?>
+                
             </div>
             <div class="order-infor--content-container">
                 <?php if(isset($_SESSION["cart"])){?>
                 <?php foreach($_SESSION["cart"] as $values):?>
                 <div class="order-infor--product">
                     <div class="order-infor-left">
-                        <img class="order-infor--content__img" src="<?=base?>public/client/assets/img/<?=$values['gioitinh']?>/<?php echo $values["img"]?>"></img>
+                        <img class="order-infor--content__img" src="<?=base?>public/client/assets/img/<?php echo $values["img"]?>"></img>
                         <div class="order-infor--content__nameBox">
                             <strong class="order-infor--content__title mg-bt-8px" style="font-size: 16px;"><?=$values["name"]?></strong>
                             <div class="order-infor--content__option mg-bt-8px">
@@ -175,8 +237,8 @@
                                 <p class="order-infor--content__option-size">40MM</p> -->
                             </div>
                             <div class="order-infor--content__price mg-bt-8px">
-                                <span class="order-infor--content__price-new"><?= $values['price_new']?> ₫</span>
-                                <span class="order-infor--content__price-old"><?= $values['price_old']?> ₫</span>
+                                <span class="order-infor--content__price-new"><?= number_format($values['price_new'], 0,",",".")?> ₫</span>
+                                <span class="order-infor--content__price-old"><?= number_format($values['price_old'], 0,",",".")?> ₫</span>
                             </div>
                         </div>
                     </div>
@@ -191,7 +253,7 @@
                     </div>
                     <!-- Số lượng: <input type="text" value="<?= $values['quantity']?>" class="order-infor--quanlity-input"> -->
     
-                    <p class="order-infor--content__total" style="font-size: 16px;"><strong><?= $values['total']?> ₫</strong></p>
+                    <p class="order-infor--content__total" style="font-size: 16px;"><strong><?= number_format($values['total'], 0,",",".")?> ₫</strong></p>
                 </div>
                 <?php endforeach;?>
                 <?php }?>
@@ -200,7 +262,7 @@
                 <tr class="order-checkout--total" style="padding-bottom: 16px;">
                     <td><span class="order-checkout--total__text font-size-14">Tạm tính:</span></td>
                     <?php if(isset($_SESSION["cart"])){?>
-                        <td><span class="order-checkout--total__price font-size-16 color-black"><strong><?= $data['total']?> ₫</strong></span></td>
+                        <td><span class="order-checkout--total__price font-size-16 color-black"><strong><?= number_format($data['total'], 0,",",".")?> ₫</strong></span></td>
                         <!-- <td><span class="order-checkout--total__price" name='data["total"]' value='<?= $data['total']?>'><strong><?= $data['total']?> ₫</strong></span></td> -->
                     <?php }
                     else { ?>
@@ -212,12 +274,12 @@
                 </tr>
                 <tr class="order-checkout--total border-bottom" style="padding-bottom: 24px; border-bottom: 1px #eee solid;">
                     <td><span class="order-checkout--total__text font-size-14">Phí ship:</span></td>
-                    <td><span class="order-checkout--total__price font-size-16 color-black"><strong>35000 ₫</strong></span></td>
+                    <td><span class="order-checkout--total__price font-size-16 color-black"><strong><?=number_format($data['phiship'], 0,",",".")?> ₫</strong></span></td>
                 </tr>
                 <tr class="order-checkout--total" style="padding-bottom: 16px;">
                     <td><span class="order-checkout--total__text font-size-16">Tổng tiền:</span></td>
                     <?php if(isset($_SESSION["cart"])){?>
-                        <td><span class="order-checkout--total__price" name='data["total"]' value='<?= $data['total']?>'><strong><?= $data['total']?> ₫</strong></span></td>
+                        <td><span class="order-checkout--total__price" name='data["total"]' value='<?= $data['total']?>'><strong><?= number_format($data['total'], 0,",",".")?> ₫</strong></span></td>
                     <?php }
                     else { ?>
                         <td><span class="order-checkout--total__price" name='data["total"]' value='<?= $data['total']?>'><strong>0 ₫</strong></span></td>

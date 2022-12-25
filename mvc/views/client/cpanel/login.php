@@ -50,7 +50,7 @@
                     </p>
     
                     <p class="account__footer--text">Quên mật khẩu? 
-                        <a href="" class="account__footer--link">Khôi phục mật khẩu</a>
+                        <a href="<?=base?>login/resetpassword" class="account__footer--link">Khôi phục mật khẩu</a>
                     </p>
                 </footer>
             </div>

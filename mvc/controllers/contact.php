@@ -23,7 +23,7 @@ class contact extends Controller {
             $name = $_POST['name'];
             $email = $_POST['email'];
             $phone = $_POST['phone'];
-            $message = $_POST['message'];
+            $message = nl2br($_POST['message']);
             sendcontactus($name, $phone, $email, $message);
             header("location:".base);
         }

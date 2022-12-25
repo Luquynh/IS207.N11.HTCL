@@ -223,7 +223,7 @@
                                 }
                             </style>';
 
-                    // sendinfororder($infor[0]["email"], $subject, $body, $img_array);
+                    sendinfororder($infor[0]["email"], $subject, $body, $img_array);
                     NotifiOrder("Đặt Hàng Thành Công","inforuser/history");
                     unset($_SESSION["cart"]);
                     // $flag = 1;

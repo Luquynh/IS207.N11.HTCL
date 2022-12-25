@@ -2,7 +2,7 @@
     class checkoutmodel extends DB{
         //Ghi dữ liệu vào bảng order_product trong database
         function AddDonhang($id_user,$phone,$address,$ship, $total){
-            $sql = "INSERT INTO donhang VALUES ('','$address','$phone',$total,current_time(),'', 5, $id_user, $ship, 0)";
+            $sql = "INSERT INTO donhang VALUES ('','$address','$phone',$total,current_time(),'', 1, $id_user, $ship, 0)";
             $query = $this->conn->prepare($sql);
             $query->execute();
             // $this->conn->exec($sql);

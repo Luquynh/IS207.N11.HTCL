@@ -246,8 +246,8 @@
                     $id_order = (int) $id_order;
                     $Allorder = $this->ordermodel->GetOrderDetails($id_order);
                     foreach($Allorder as $row):
-                        $id = $row['masp'];
-                        $product_temp = $this->commonmodel->GetProductById($id);
+                        $id_sp = $row['masp'];
+                        $product_temp = $this->commonmodel->GetProductById($id_sp);
                         $mabosuutap = $product_temp[0]["mabosuutap"];
                         $bosuutap = $this->commonmodel->getBosuutap($mabosuutap);
                         $makichthuoc = $bosuutap[0]['makichthuoc'];
@@ -265,7 +265,7 @@
                             "sale"=>$product_temp[0]["giamgia"],
                             "total" => $row['tongtien'] 
                         ];
-                        $_SESSION["cart"][$id] = $product;
+                        $_SESSION["cart"][$id_sp] = $product;
 
                         if($product_temp[0]["soluong"] > 0){
                             // if(!isset($_SESSION["cart"][$id])){ //Nếu chưa có sản phẩm $id

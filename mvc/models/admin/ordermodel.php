@@ -41,10 +41,10 @@
         }
         //Lay chi tiet don hang admin
         function GetOrderDetailsadmin($id_order){
-            $sql = "SELECT * FROM chitietdonhang as c
-            INNER JOIN sanpham as s on
+            $sql = "SELECT * FROM sanpham as s
+            INNER JOIN chitietdonhang as c on
             c.masp= s.masp
-             WHERE madonhang = $id_order";
+             WHERE c.madonhang = $id_order";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);

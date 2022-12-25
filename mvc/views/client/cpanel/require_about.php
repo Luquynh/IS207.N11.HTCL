@@ -4,9 +4,7 @@
 <style>
     #footer {
         margin-top: 0px !important;
-        /* border-top: 1px solid #ccc; */
         padding-top: 30px;
-
     }
 </style>
 <body>
@@ -14,7 +12,7 @@
         require_once "./mvc/views/client/include/header.php";
     ?>    
     <?php
-        require_once "./mvc/views/client/include/front_display_sanpham.php";
+        require_once "./mvc/views/client/include/front_about.php";
     ?>
     <?php 
         require_once "./mvc/views/client/include/footer.php";

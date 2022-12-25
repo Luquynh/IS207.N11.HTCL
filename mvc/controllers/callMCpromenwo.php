@@ -1,7 +1,7 @@
 <?php
 class callMCpromenwo extends Controller{
     function __construct(){}
-    function show($gt){
+    function show($gt, $day = 0){
         $header = $this->ModelClient("get_pictures_to_home");
         $a = $this->ModelClient("get_data_to_pro_menwo");
         $total = 0;
@@ -17,11 +17,20 @@ class callMCpromenwo extends Controller{
         "gioitinh" => "$gt",
         "get_menwo1" => $a->get_menwo1($gt),
         "get_menwo2" => $a->get_menwo2($gt),
-        "get_menwo3" => $a->get_menwo3($gt),
-        "get_all_spmenwo" => $a->get_all_spmenwo($gt),
+        "get_menwo3" => $a->get_menwo3($gt, $day),
+        "get_all_spmenwo" => $a->get_all_spmenwo($gt, $day),
+        "day" => "$day",
+        "alldh" => $a->alldh($day),
+        "alldhbst" => $a->alldhbst(),
+        "alldhkichthuoc" => $a->alldhkichthuoc(),
+        "alldhmausac" => $a->alldhmausac($day),
         'total' => $total
         ];
-        $this->ViewClient("require_pro_menwo",$data);
+        if ($gt=='alldh') {
+            $this->ViewClient("require_pro_alldh",$data);
+        } else {
+            $this->ViewClient("require_pro_menwo",$data);
+        }
     }
 }
 ?>

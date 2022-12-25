@@ -75,7 +75,7 @@
             <div class="product_full_detail">
                 <p class="sub_name"><?php echo $row["tenbosuutap"]?></p>
 
-                <h3 class="name_product"><?php echo $row["tensp"]?></h3>
+                <h3 class="name_product"><?php echo str_replace('_', ' ', $row["tensp"])?></h3>
 
                 <div class="price_rating_product">
                     <p class="price_product"><?php echo number_format($row["gia"], 0,",",".")?> ₫</p>

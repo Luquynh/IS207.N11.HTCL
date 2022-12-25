@@ -10,6 +10,10 @@ class callMCpromenwo extends Controller{
                 $total+=$values["total"];
             }
         }
+        $sapxep=0;
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $sapxep=$_POST["sapxep"];
+        }
         $data = [
         "avatar_men" => $header->get_avatar("men"),
         "avatar_women" => $header->get_avatar("women"),
@@ -18,9 +22,9 @@ class callMCpromenwo extends Controller{
         "get_menwo1" => $a->get_menwo1($gt),
         "get_menwo2" => $a->get_menwo2($gt),
         "get_menwo3" => $a->get_menwo3($gt, $day),
-        "get_all_spmenwo" => $a->get_all_spmenwo($gt, $day),
+        "get_all_spmenwo" => $a->get_all_spmenwo($gt, $day, $sapxep),
         "day" => "$day",
-        "alldh" => $a->alldh($day),
+        "alldh" => $a->alldh($day, $sapxep),
         "alldhbst" => $a->alldhbst(),
         "alldhkichthuoc" => $a->alldhkichthuoc(),
         "alldhmausac" => $a->alldhmausac($day),

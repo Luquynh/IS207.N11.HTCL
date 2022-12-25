@@ -24,9 +24,18 @@
                 <div class="cd_box_right">
                     <button class="sort_by">SẮP XẾP THEO <i class="ti-angle-down"></i></button>
                     <ul id="sortby_modal_root">
-                        <li class="sortby_attr" number="0"><span class="cd_text">Mặc định <i class="ti-check" style="display: inline-block;"></i></span></li>
-                        <li class="sortby_attr" number="1"><span class="cd_text">Giá tăng dần <i class="ti-check"></i></span></li>
-                        <li class="sortby_attr" number="2"><span class="cd_text">Giá giảm dần <i class="ti-check"></i></span></li>
+                        <form action="" method="post">
+                            <input type="hidden" name="sapxep" value="0">
+                            <button style="width: 100%;" type="submit" name="timkiem"><li class="sortby_attr" number="0"><span class="cd_text">Mặc định <i class="ti-check" style="display: inline-block;"></i></span></li></button>
+                        </form>
+                        <form action="" method="post">
+                            <input type="hidden" name="sapxep" value="1">
+                            <button style="width: 100%;" type="submit" name="timkiem"><li class="sortby_attr" number="1"><span class="cd_text">Giá tăng dần <i class="ti-check"></i></span></li></button>
+                        </form>
+                        <form action="" method="post">
+                            <input type="hidden" name="sapxep" value="-1">
+                            <button style="width: 100%;" type="submit" name="timkiem"><li class="sortby_attr" number="2"><span class="cd_text">Giá giảm dần <i class="ti-check"></i></span></li></button>
+                        </form>
                     </ul>
                 </div>
                 <div class="filter_modal_root">

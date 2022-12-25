@@ -48,7 +48,7 @@
             return mysqli_query($this->conn, $sql);
         }
 //
-        public function get_all_spmenwo($gt, $day){
+        public function get_all_spmenwo($gt, $day, $sapxep){
             if($day != 0) {
                 $day = 2;
             }else{
@@ -62,9 +62,14 @@
             INNER JOIN kichthuoc 
             ON bosuutap.makichthuoc = kichthuoc.makichthuoc 
             where bosuutap.gioitinh = '$gt' AND sanpham.maloaisp = '$day'";
+            if($sapxep == 1){
+                $sql.=" ORDER BY gia ASC";
+            } else if ($sapxep == -1) {
+                $sql.=" ORDER BY gia DESC";
+            } else{}
             return mysqli_query($this->conn, $sql);
         }
-        public function alldh($day){
+        public function alldh($day, $sapxep){
             $sql = "SELECT masp, tensp, gia, sanpham.img AS img, 
             bosuutap.tenbosuutap AS tenbosuutap, bosuutap.gioitinh AS gioitinh, mausac, kichthuoc
             from sanpham 
@@ -73,6 +78,11 @@
             INNER JOIN kichthuoc 
             ON bosuutap.makichthuoc = kichthuoc.makichthuoc 
             where sanpham.maloaisp = '$day'";
+            if($sapxep == 1){
+                $sql.=" ORDER BY gia ASC";
+            } else if ($sapxep == -1) {
+                $sql.=" ORDER BY gia DESC";
+            } else{}
             return mysqli_query($this->conn, $sql);
         }
     }

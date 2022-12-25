@@ -11,17 +11,44 @@
         }
         //Hàm xóa danh mục sản phẩm
         function DeleteCategory($id){
-            $sql = "UPDATE  category SET tt_xoa = 1 WHERE mabosuutap = '$id'";
+            $sql = "UPDATE bosuutap SET tt_xoa = 1 WHERE mabosuutap = '$id'";
             $query = $this->conn->prepare($sql);
             $query->execute();
             return $query;
         }
         //Hàm them danh mục sản phẩm
-        function AddCategory($name,$status,$slug){
-            $sql = "INSERT INTO category VALUES ('','$name','$slug','$status',current_time(),'',0)";
+        function AddCategory($name,$gioitinh,$makichthuoc,$mota,$img,$imgmain){
+            $sql = "INSERT INTO bosuutap values ('', '$name', '$gioitinh','$makichthuoc', '$mota', '$img', '$imgmain', 0, 0)";
             $query = $this->conn->prepare($sql);
             $result = $query->execute();
             return $result;
+        }
+        //lay so sp thuoc bo suu tap 
+        function GetNumbersp($id){
+            $sql = "SELECT * FROM sanpham WHERE mabosuutap = $id";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result =  $query->rowCount();
+            return $result;
+        }
+        function Getsl_sp($id){
+            $sql = "SELECT * FROM bosuutap WHERE mabosuutap = $id";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return json_decode(json_encode($result),true);
+            return $result;
+        }
+        //Lấy ra kích thước của sản phẩm 
+        function GetCategorysize($limit,$offset,$id){
+            $sql = "SELECT * FROM sanpham as s
+    
+            WHERE s.mabosuutap=$id
+            ORDER BY masp ASC LIMIT $limit OFFSET $offset";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return json_encode($result);
         }
         //Hàm lấy danh mục sản phẩm theo id
         function GetCategoryId($id){
@@ -60,7 +87,7 @@
             return json_decode(json_encode($result),true);
         }
         function getkichthuoc(){
-            $sql = "SELECT * FROM kichthuoc ";
+            $sql = "SELECT * FROM kichthuoc order by kichthuoc ASC";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);

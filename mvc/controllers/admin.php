@@ -159,38 +159,64 @@
 
         //Xóa danh mục sản phẩm 
         function deletecategory($id,$page,$stt){
-            if($stt % 3 == 1){
-                $page-=1;
+            
+            $totalcategory = $this->categorymodel->GetNumbersp($id);
+            if($totalcategory == 0){
+                $this->categorymodel->DeleteCategory($id);
+                $this->productmodel->UpdateProduct($id);
+                
+                    if($stt % 3 == 1){
+                        $page-=1;
+                    }
+                    $_SESSION["DeleteCategory"] = "Xóa Danh Mục Thành Công!";
+                    // notifichanger("Xóa Danh Mục Thành Công!");
+                    header("location:".base."admin/showcategory&page=".$page."");
+                
             }
-            $result = $this->categorymodel->DeleteCategory($id);
-            $this->productmodel->UpdateProduct($id);
-            if($result){
-                $_SESSION["DeleteCategory"] = "Xóa Danh Mục Thành Công!";
-                header("location:".base."admin/showcategory&page=".$page."");
+            else{
+                $_SESSION["DeleteCategory"] = "Xóa Danh Mục không Thành Công!";
+                // notifichanger("Xóa Danh Mục không Thành Công!");
+
+                    header("location:".base."admin/showcategory&page=".$page."");
             }
+           
             
         }
 
         //Thêm Danh Mục Sản Phẩm 
         function addcategory(){
             $mess = "";
+            $datakt=$this->categorymodel->getkichthuoc();
             if(isset($_POST["submit"])){
-                $name = $_POST["name_category"];
-                $publish = "Hiển Thị";
-                $slug = $_POST["slug"];
-                $result = $this->categorymodel->AddCategory($name,$publish,$slug);
-                if($result == true){
-                    $mess = "Thêm Danh Mục Thành Công";
-                   
-                }else{
-                    $mess ="Có Lỗi Xảy Ra Vui Lòng Thử Lại";
+                $info= $_POST["data"];
+                if ($_FILES['img']['size'] == 0 || $_FILES['imgmain']['size']==0){  
+                    {
+                        if($_FILES['img']['size'] == 0){
+                            $mess="Vui long nhap hinh anh";
+                        }
+                        if($_FILES['imgmain']['size'] == 0){
+                            $mess="Vui long nhap hinh anh";
+                        }
+                    }          
+            
                 }
+                else{
+                    $imgmain=$_FILES['imgmain']['name'];
+                    $img=$_FILES['img']['name'];
+                    $this->categorymodel->AddCategory($info['name'],$info['gioitinh'],$info['makichthuoc'],$info['mota'],$img,$imgmain);
+               notifichanger("Them thanh cong");
+                }
+              
+                
+
             }
             $data = [
                 "folder"=>"category",
                 "file"  =>"addcategory",
                 "title" =>"Thêm Mới Danh Mục Sản Phẩm",
-                "mess"  =>$mess];
+                "datakt"=>$datakt,
+                "mess"  =>$mess
+            ];
             $this->ViewAdmin("masterlayout",$data);
         }
 
@@ -221,23 +247,26 @@
             $mess="";
             if(isset($_POST['submit'])){
                 $info = $_POST["data"];
-                if ($_FILES['img']['size'] == 0 || $_FILES['imgmain']['size']==0){  
+                $img1=$_FILES['imgmain']['name'];
+                if ($_FILES['img']['size'] == 0 || $_FILES['imgmain']['size']== 0 ){  
                     foreach($result as $row){
                         if($_FILES['img']['size'] == 0){
                             $img=$row["img"];
                         }
                         if($_FILES['imgmain']['size'] == 0){
-                            $imgmain=$row["imgmain"];
+                            $img1=$row["imgmain"];
+                            // echo"ko load dc";
                         }
                     }          
             
                 }
                 else{
-                    $imgmain=$_FILES['imgmain']['name'];
+                    $img1=$_FILES['imgmain']['name'];
                     $img=$_FILES['img']['name'];
+                    echo"ko load dc";
                 }
                 // $imgmain=$_POST["imgmain"];
-                $this->categorymodel->EditCategory($info["name"],$info["gioitinh"],$id,$info["makichthuoc"],$info["mota"],$img,$imgmain);
+                $this->categorymodel->EditCategory($info["name"],$info["gioitinh"],$id,$info["makichthuoc"],$info["mota"],$img,$img1);
                 notifichanger("Thay đổi thông tin thành công");
                 header("Refresh: 1; URL=".base."admin/showcategory");
                 
@@ -251,17 +280,32 @@
                 "info"        =>$info_category,
                 "mess"        =>$mess,
                 "page"        =>$page,
+                
                 "datakt" =>$datakt,
             ];
             $this->ViewAdmin("masterlayout",$data);
         }
         function detailcategory(){
+            
             $id = $_GET['id'];
             if(isset($_GET["page"])){
                 $page = $_GET["page"];
             }else{
                 $page = 1;
             }
+            $limit = 3;
+            //lấy số trang
+            if(isset($_GET['page'])){
+                $currentpage =  $_GET['page'];
+            }else $currentpage = 1;
+            // hiển thị sản phẩm tương ứng số trang
+            $offset = ($currentpage - 1)*$limit;
+            echo $offset;
+            $totalcategory = $this->categorymodel->GetNumbersp($id);
+            $totalpage = ceil($totalcategory / $limit);
+            $mess = "";
+            $temp = $this->categorymodel->GetCategorysize($limit,$offset,$id);
+            $result = json_decode($temp,true);
             $info_category= $this->categorymodel->GetDatacategory($id,"mabosuutap");
             $info_sp=$this->categorymodel->getsanpham($id);
             //thong tin cua tung san pham trong bo suu tap 
@@ -271,8 +315,10 @@
                 "file"        =>"detailcategory",
                 "title"       =>"Chi tiết Bộ Sưu Tập",
                 "info"        =>$info_category,
-                "info_sp"    =>$info_sp,
+                "info_sp"    =>$result,
                 "page"        =>$page,
+                "total"  =>$totalpage,
+                "currentpage"=>$currentpage,
                 
             ];
             $this->ViewAdmin("masterlayout",$data);
@@ -661,9 +707,9 @@
                 $page = 1;
             }
             //lấy thông tin trạng thái đơn hàng
-            $status = $this->ordermodel->GetStatusOrder($id_order);
+            $info_order = $this->ordermodel->GetorderByIdadmin($id_order);
             //lấy thông tin chi tiết đơn hàng
-            $order_details = $this->ordermodel->GetOrderDetails($id_order);
+            $order_details = $this->ordermodel->GetOrderDetailsadmin($id_order);
             // lấy thông tin người dùng
             $info_user = $this->ordermodel->GetInfoUserById($id_user); 
             //xử lý khi người dùng bấm nút thanh toán
@@ -682,7 +728,7 @@
                 "orderdetails"=>$order_details,
                 "id" => $id_order,
                 "page"=>$page,
-                "statusorder"=>$status[0]["status"],
+                "info_order"=>$info_order,
                 
             ];
             $this->ViewAdmin("masterlayout",$data);

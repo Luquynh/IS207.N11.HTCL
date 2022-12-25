@@ -63,7 +63,7 @@
                         <th class="column-title">Hình ảnh</th>
                         <th class="column-title">Số lượng sp</th>
                         <th class="column-title">Giảm giá</th>
-                        <th class="column-title no-link last"><span class="nobr">Hành Động</span>
+                        <!-- <th class="column-title no-link last"><span class="nobr">Hành Động</span> -->
                         </th>
                     </tr>
                 </thead>
@@ -84,14 +84,12 @@
                         ?></td>
                         <td style=" font-size: 16px;" class="img_product">
                             <img src="<?=imgclient?><?=$values["img"] ?>" alt="" class="img__product-img"></td>
-                       
-                           
                         <td style=" font-size: 16px;" class=""><?=$values["soluong"] ?></td>
                         <td style=" font-size: 16px;" class=""><?=$values["giamgia"] ?>%</td> 
-                        <td>
+                        <!-- <td>
                             <a href="<?=base?>admin/detailproduct&id=<?=$values['masp']?>" style="height: 35px;" class="btn btn-primary" href="">Chi Tiết SP</a> 
                             
-                        </td>
+                        </td> -->
                     </tr>
                     <?php }?>
                 </tbody>
@@ -100,17 +98,17 @@
         </div>
     </div>
     <?php if($data["currentpage"] != 1 && $data["currentpage"] >= 4){?>
-        <a class="page-item" href="<?=base?>admin/showcategory&page=<?=1?>">Trang đầu</a>
+        <a class="page-item" href="<?=base?>admin/detailcategory&page=<?=1?>">Trang đầu</a>
         <?php }?>
     <?php for($i = 1; $i <= $data["total"];$i++){ ?>
                 <?php if($data["currentpage"] != $i){ 
                     if($i > $data["currentpage"]-3 && $i < $data["currentpage"] + 3){ ?>
-                         <a class="page-item" href="<?=base?>admin/showcategory&page=<?=$i?>"><?=$i?></a>
+                         <a class="page-item" href="<?=base?>admin/detailcategory&id=<?=$values['mabosuutap']?>&page=<?=$i?>"><?=$i?></a>
                     <?php }?>
                 <?php }else{ ?>
                 <span class="current-page page-item"><?=$i?></span>
     <?php }}?>
     <?php if($data["currentpage"] != $data["total"] && $data["currentpage"] <= $data["total"] - 3){?>
-        <a class="page-item" href="<?=base?>admin/showcategory&page=<?=$data["total"]?>">Trang cuối</a>
+        <a class="page-item" href="<?=base?>admin/detailcategory&id=<?=$values['mabosuutap']?>&page=<?=$data["total"]?>">Trang cuối</a>
         <?php }?>
 </div>

@@ -22,16 +22,37 @@
                     <?php foreach($data["listorder"] as $key=>$values){ ?>
                         <tr class="even pointer">
                             <td style=" font-size: 16px;" class=""><?=($data["currentpage"]-1)*6+$key+1?></td>
-                            <td style=" font-size: 16px;" class=""><?=$values["makh"]?></td>
+                            <td style=" font-size: 16px;" class=""><?=$values["tenkh"]?></td>
                             <td style=" font-size: 16px;" class=""><?=number_format ($values["tonggiatri"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?> VNĐ</td>
                             <td style=" font-size: 16px;" class=""><?=$values["ngaymua"]?></td>
-                            <?php if($values["matrangthai"] != "Chờ Xử Lý"){?>
-                                <td style=" font-size: 16px;color: green;font-weight: bold;" class=""><?=$values["matrangthai"]?></td>
-                                <?php }else{?>
-                                    <td style=" font-size: 16px;color: red;font-weight: bold;" class=""><?=$values["matrangthai"]?></td>
-                            <?php }?>
+                            <?php 
+                            $color="green";
+                            $tentt="";
+                                switch($values["matrangthai"]){
+                                    case 0:$tentt= "Đã hủy";
+                                    $color="red";
+                                    break;
+                                    case 1: $tentt="Chờ xử lý";
+                                    $color="black";
+                                    break;
+                                    case 2:$tentt="Đã đóng gói";
+                                    break;
+                                    case 3:$tentt="Đang vận chuyển";
+                                    break;
+                                    case 4: $tentt="Đã thanh toán";
+                                    break;
+                                    default:
+                                    $tentt="Đặt hàng thành công";
+                                }
+
+                            
+                            ?>
+                            
+                                <td style=" font-size: 16px;color: <?=$color?>;font-weight: bold;" class=""><?=$tentt?></td>
+                               
                             <td>
-                                <a href="<?=base?>admin/orderdetails&id_order=<?=$values['madonhang']?>&id_user=<?=$values['makh']?>&page=<?=$data["currentpage"]?>" style="height: 35px;" class="btn btn-primary" href="">Chi Tiết</a> 
+                                <a href="<?=base?>admin/orderdetails&id_order=<?=$values['madonhang']?>&id_user=<?=$values['makh']?>&page=<?=$data["currentpage"]?>" style="height: 35px;" class="btn btn-primary" href="">Chi Tiết</a>
+                                <a style="height: 35px;" class="btn btn-success" href="<?=base?>admin/editorder&id=<?=$values['madonhang']?>&page=<?=$data['currentpage']?>">Sửa</a> 
                             </td>
                         </tr>
                     <?php }?>

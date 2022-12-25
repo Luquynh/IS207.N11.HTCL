@@ -1,20 +1,26 @@
 <?php 
-    $nam = 'Sự tự tin trên cổ tay của người đàn ông hiện đại';
-    $nu = 'Trang sức nói lên cá tính của người phụ nữ hiện đại';
+    if ($data["day"]!=0) {
+        $daydh = "dây ";
+        $nam = 'Từ nay bạn đã có thể biến một thành nhiều chiếc đồng hồ để thay đổi phong cách thời trang của bản thân với dây đồng hồ Curnon. Chúng tôi đem đến thiết kế, màu sắc và chất liệu đa dạng và quan trọng là dễ dàng tháo lắp trong vòng 30 giây.';
+        $nu = 'Giúp những cô gái hiện đại không còn đau đầu khi phải mix&match chiếc Đồng hồ với các trang phục khác nhau mỗi ngày. Curnon đem đến thiết kế, màu sắc và chất liệu dây đồng hồ đa dạng và quan trọng là dễ dàng tháo lắp trong vòng 30 giây.';
+    } else {
+        $daydh = "";
+        $nam = 'Sự tự tin trên cổ tay của người đàn ông hiện đại';
+        $nu = 'Trang sức nói lên cá tính của người phụ nữ hiện đại';}
+
     if ($data["gioitinh"] == "men") {
         $mota = $nam;
         $gioitinh = 'nam';
     } else {
         $mota = $nu;
-        $gioitinh = 'nữ';
-    }
+        $gioitinh = 'nữ';}
 ?>
     <div id="category_root">
         <div class="category_banner_desktop">
             <img class="ibra" src="<?=base?>public/client/assets/img/<?php echo $data["gioitinh"]?>/menwo.png" alt="">
         </div>
         <div class="category_category">
-            <h1 style="text-transform: uppercase;">ĐỒNG HỒ <?php echo $gioitinh?></h1>
+            <h1 style="text-transform: uppercase;"><?php echo $daydh?>ĐỒNG HỒ <?php echo $gioitinh?></h1>
             <div class="category_boxSub">
                 <p class="description"><?php echo $mota?></p>
             </div>
@@ -23,7 +29,7 @@
                     <button class="button_menu">BỘ SƯU TẬP <i class="ti-angle-down"></i></button>
                     <button class="button_menu">SIZE <i class="ti-angle-down"></i></button>
                     <button class="button_menu">MÀU SẮC <i class="ti-angle-down"></i></button>
-                    <button class="button_menu">CHẤT LIỆU DÂY <i class="ti-angle-down"></i></button>
+                    <!-- <button class="button_menu">CHẤT LIỆU DÂY <i class="ti-angle-down"></i></button> -->
                 </div>
                 <div class="cd_box_right">
                     <button class="sort_by">SẮP XẾP THEO <i class="ti-angle-down"></i></button>
@@ -79,14 +85,6 @@
                     </div>
                     <!-- chất liệu -->
                     <div class="filter_straps_root">
-                        <div class="filter_straps_contentStraps">
-                            <button class="filter_straps_btn">
-                                <div class="filter_straps_boxImg">
-                                    <img class="filter_straps_thumbnail" src="./assets/img/big_img_men/black.webp">
-                                </div>
-                                <p class="filter_straps_name">Dây da Genuine</p>
-                            </button>
-                        </div>
                     </div>
 
                     <div class="filter_desktop_boxtext">
@@ -106,7 +104,7 @@
             <a style="margin-top: 70px;" href="http://localhost/curnon/callMCprodetails/show/<?php echo $row["masp"]?>" class="watch_item" >
                 <img class="img_watch_item" src="<?=base?>public/client/assets/img/<?php echo $row["img"]?>" alt="">
                 <p class="p_watch_item"><?php echo $row["tenbosuutap"]?></p>
-                <h4 class="h4_watch_item"><?php echo $row["tensp"]?></h4>
+                <h4 class="h4_watch_item"><?php echo str_replace('_', ' ', $row["tensp"])?></h4>
                 <div class="div_watch_item"><?php echo number_format($row["gia"], 0,",",".")?> ₫</div>
                 <div style="display: none;" class="tieuxao1"><?php echo $row["kichthuoc"]?></div>
                 <div style="display: none;" class="tieuxao2"><?php echo $row["mausac"]?></div>

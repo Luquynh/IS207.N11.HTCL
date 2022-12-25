@@ -165,7 +165,8 @@
     width: 100px;
     height: 100px;
 }
-.filter_size_btn .filter_number_size1 {
+.filter_size_btn .filter_number_size1, 
+.filter_straps_btn .filter_straps_name0{
     width: 80px;
     height: 80px;
     font-family: 'Copperplate';

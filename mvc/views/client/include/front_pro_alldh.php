@@ -1,20 +1,25 @@
 <?php 
-    $gt = mysqli_fetch_array($data["gioitinh"]);
+    if ($data["day"]==1){
+        $mota = 'đồng hồ nam nữ';
+    } else {
+        $mota = 'dây đồng hồ';
+    }
 ?>
-
-    <div id="category_root">
-        <?php $bien = mysqli_fetch_array($data["anhmota"]);?>
+<div id="category_root">
         <div class="category_banner_desktop">
-            <img class="ibra" src="<?=base?>public/client/assets/img/<?php echo $gt["gioitinh"]?>/<?php echo $data["tenbst"]?>/<?php echo $bien["imgmain"]?>" alt="">
+            <img style="height: 367px; object-fit: cover; width: 100%;" class="ibra" src="<?=base?>public/client/assets/img/alldh<?php echo $data["day"]?>.jpg" alt="">
         </div>
         <div class="category_category">
-            <h1 style="text-transform: uppercase;">ĐỒNG HỒ <?php echo $data["tenbst"]?></h1>
+            <h1 style="text-transform: uppercase;"><?php echo $mota?></h1>
             <div class="category_boxSub">
-                <p class="description"><?php echo $bien["mota"]?></p>
+                <p class="description">Chúng tôi hướng đến những bạn trẻ ưa tính kết nối, thích trải nghiệm và tôn trọng tính chân thực của thương hiệu.</p>
             </div>
             <div class="collection_desktop">
                 <div class="cd_box_left">
+                    <button class="button_menu">BỘ SƯU TẬP <i class="ti-angle-down"></i></button>
+                    <button class="button_menu">SIZE <i class="ti-angle-down"></i></button>
                     <button class="button_menu">MÀU SẮC <i class="ti-angle-down"></i></button>
+                    <button class="button_menu">GIỚI TÍNH <i class="ti-angle-down"></i></button>
                 </div>
                 <div class="cd_box_right">
                     <button class="sort_by">SẮP XẾP THEO <i class="ti-angle-down"></i></button>
@@ -26,13 +31,39 @@
                 </div>
                 <div class="filter_modal_root">
                     <!-- Bộ sưu tập -->
-                    <div></div>
+                    <div class="filter_model_root">
+                        <div class="filter_model_contentModel">
+                            <?php
+                            // $count = 0; 
+                            while($row = mysqli_fetch_array($data["alldhbst"])):?>
+                            <button class="filter_model_btn">
+                                <img class="filter_model_thumbnail" src="<?=base?>public/client/assets/img/<?php echo $row["gioitinh"]?>/<?php echo $row["img"]?>" alt="">
+                                <p class="filter_model_name"><?php echo $row["tenbosuutap"]?></p>
+                            </button>
+                            <?php 
+                            // $count+=1;
+                            // if($count%4==0) {
+                            //     echo '<br>';
+                            // }
+                            endwhile;?>
+                        </div>
+                    </div>
+                    
                     <!-- Size -->
-                    <div></div>
+                    <div class="filter_size_root">
+                        <div class="filter_size_contentSize">
+                            <?php while($row = mysqli_fetch_array($data["alldhkichthuoc"])):?>
+                            <button class="filter_size_btn">
+                                <p class="filter_number_size1"><?php echo $row["kichthuoc"]?></p>
+                                <p class="filter_number_size2"><?php echo $row["kichthuoc"]?> mm</p>
+                            </button>
+                            <?php endwhile;?>
+                        </div>
+                    </div>
                     <!-- color -->
                     <div class="filter_color_root">
                         <div class="filter_color_contentColor">
-                            <?php while($row = mysqli_fetch_array($data["mausac"])):?>
+                            <?php while($row = mysqli_fetch_array($data["alldhmausac"])):?>
                             <button class="filter_color_btn">
                                 <div class="filter_color_boxImg">
                                     <img class="filter_color_thumbnail" src="<?=base?>public/client/assets/img/color/<?php echo $row["mausac"]?>.png">
@@ -44,6 +75,16 @@
                     </div>
                     <!-- chất liệu -->
                     <div class="filter_straps_root">
+                        <div class="filter_straps_contentStraps">
+                            <button class="filter_straps_btn">
+                                <p style="width: 100px; height: 100px; font-size: 23px; line-height: 100px;" class="filter_straps_name0">MEN</p>
+                                <p class="filter_straps_name">men</p>
+                            </button>
+                            <button class="filter_straps_btn">
+                                <p style="width: 100px; height: 100px; font-size: 21px; line-height: 100px;" class="filter_straps_name0">WOMEN</p>
+                                <p class="filter_straps_name">women</p>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="filter_desktop_boxtext">
@@ -58,16 +99,18 @@
 
     <div style="background-color: #f8f7f4;" class="outstanding_products">
         <div class="watch_container" >
-            <?php while($row = mysqli_fetch_array($data["get_all_spOPT"])):?>
+            <?php while($row = mysqli_fetch_array($data["alldh"])):?>
             <div class="watch_mid_con">
             <a style="margin-top: 70px;" href="http://localhost/curnon/callMCprodetails/show/<?php echo $row["masp"]?>" class="watch_item" >
                 <img class="img_watch_item" src="<?=base?>public/client/assets/img/<?php echo $row["img"]?>" alt="">
                 <p class="p_watch_item"><?php echo $row["tenbosuutap"]?></p>
-                <h4 class="h4_watch_item"><?php echo $row["tensp"]?></h4>
+                <h4 class="h4_watch_item"><?php echo str_replace('_', ' ', $row["tensp"])?></h4>
                 <div class="div_watch_item"><?php echo number_format($row["gia"], 0,",",".")?> ₫</div>
+                <div style="display: none;" class="tieuxao1"><?php echo $row["kichthuoc"]?></div>
                 <div style="display: none;" class="tieuxao2"><?php echo $row["mausac"]?></div>
-                <button class="button_watch_item">XEM CHI TIẾT</button>
+                <div style="display: none;" class="tieuxao3"><?php echo $row["gioitinh"]?></div>
             </a>
+            <button class="button_watch_item">THÊM VÀO GIỎ</button>
             </div>
             <?php endwhile;?>
         </div>
@@ -89,7 +132,7 @@
                     case 'MÀU SẮC ':
                         $(sf + ' > div:nth-child(3)').show();
                         break;
-                    case 'CHẤT LIỆU DÂY ':
+                    case 'GIỚI TÍNH ':
                         $(sf + ' > div:nth-child(4)').show();
                 }
                 $(sf).slideToggle("1000");
@@ -134,14 +177,25 @@
         addborder('.filter_model_btn', '.filter_model_thumbnail');
         addborder('.filter_size_btn','.filter_number_size1');
         addborder('.filter_color_btn','.filter_color_boxImg');
-        addborder('.filter_straps_btn','.filter_straps_boxImg');}
+        addborder('.filter_straps_btn','.filter_straps_name0');}
         $('button.filter_desktop_reset').click(function(){
             $('.filter_model_btn .filter_model_thumbnail').removeClass('addborder');
             $('.filter_size_btn .filter_number_size1').removeClass('addborder');
             $('.filter_color_btn .filter_color_boxImg').removeClass('addborder');
-            $('.filter_straps_btn .filter_straps_boxImg').removeClass('addborder');
+            $('.filter_straps_btn .filter_straps_name0').removeClass('addborder');
             $('.cd_text .ti-check').hide();
             $('.cd_text').eq(0).find('.ti-check').show();
+        })
+        // code lọc theo type
+        $('.filter_model_btn').click(function(){
+            var tenbst = $(this).find('.filter_model_name').text();
+            $('.watch_mid_con').hide();
+            $sl = $('.watch_mid_con').length;
+            for (var i = 0; i < $sl; i++ ){
+                if ($('.watch_mid_con').eq(i).find('.p_watch_item').text() == tenbst) {
+                    $('.watch_mid_con').eq(i).show();
+                }
+            }
         })
         $('.filter_color_btn').click(function(){
             var mausac = $(this).find('.filter_color_name').text();
@@ -153,7 +207,27 @@
                 }
             }
         })
+        $('.filter_size_btn').click(function(){
+            var kichthuoc = $(this).find('.filter_number_size1').text();
+            $('.watch_mid_con').hide();
+            $sl = $('.watch_mid_con').length;
+            for (var i = 0; i < $sl; i++ ){
+                if ($('.watch_mid_con').eq(i).find('.tieuxao1').text() == kichthuoc) {
+                    $('.watch_mid_con').eq(i).show();
+                }
+            }
+        })
+        $('.filter_straps_btn').click(function(){
+            var gt = $(this).find('.filter_straps_name').text();
+            $('.watch_mid_con').hide();
+            $sl = $('.watch_mid_con').length;
+            for (var i = 0; i < $sl; i++ ){
+                if ($('.watch_mid_con').eq(i).find('.tieuxao3').text() == gt) {
+                    $('.watch_mid_con').eq(i).show();
+                }
+            }
+        })
         $('.filter_desktop_reset').click(function(){
             $('.watch_mid_con').show();
-        }) 
+        })    
     </script>

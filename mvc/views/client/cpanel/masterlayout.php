@@ -31,7 +31,7 @@
                         <div class="banner_pretitle"><?php echo $pretitle?></div>
                         <div class="banner_title"><?php echo $title?></div>
                         <div class="banner_subtitle"><?php echo $subtitle?></div>                      
-                        <a href="#" class="btn_banner">SHOP NOW</a>
+                        <a href="http://localhost/curnon/callMCpromenwo/show/alldh/1" class="btn_banner">SHOP NOW</a>
                     </div>
                 </div> 
                 <div class="policy_banner">

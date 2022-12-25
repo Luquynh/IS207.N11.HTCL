@@ -716,6 +716,7 @@
             $this->ViewAdmin("masterlayout",$data);
         }
 
+
         //In hóa đơn
         function printinvoice(){
             $mess ="";
@@ -903,6 +904,7 @@
     </style>';  
         printInvoice($html);          
 }
+
         //Chi tiết đơn hàng
         function orderdetails(){
             $mess ="";
@@ -920,12 +922,15 @@
             $order_details = $this->ordermodel->GetOrderDetailsadmin($id_order);
             // lấy thông tin người dùng
             $info_user = $this->ordermodel->GetInfoUserById($id_user); 
+            //get data from trangthaidonhang
+            $info_tt=$this->ordermodel->Getallstatus();
             //xử lý khi người dùng bấm nút thanh toán
-            if(isset($_POST["submit"])){
-                //hàm xử lý đơn hàng
-                $this->ordermodel->orderprocessing($id_order);
+            if(isset($_POST["update"])){
+                //hàm xử lý trang thai don hang
+                 $matt=$_POST['matt'];
+                $this->ordermodel->updatestatus($id_order,$matt);
                 notification("success","Thành Công","Đơn hàng đã được xử lý","","false","#3085d6");
-                header('Refresh: 1; URL='.base.'orderdetails&id_order='.$id_order.'&id_user='.$id_user.'&page='.$page.'');
+                header('Refresh: 1; URL='.base.'admin/order');
             }
             $data = [
                 "folder"=>"order",
@@ -937,9 +942,27 @@
                 "id" => $id_order,
                 "page"=>$page,
                 "info_order"=>$info_order,
+                "info_tt"=>$info_tt
                 
             ];
             $this->ViewAdmin("masterlayout",$data);
+        }
+        
+        function editorder(){
+            $id_user = $_GET["id_user"];
+            $id_order = $_GET["id_order"];
+            // $gioitinh="";
+            if(isset($_GET["page"])){
+                $page = $_GET["page"];
+            }else{
+                $page = 1;
+            }
+            //lấy thông tin trạng thái đơn hàng
+            $info_order = $this->ordermodel->GetorderByIdadmin($id_order);
+            //lấy thông tin chi tiết đơn hàng
+            $order_details = $this->ordermodel->GetOrderDetailsadmin($id_order);
+            // lấy thông tin người dùng
+            $info_user = $this->ordermodel->GetInfoUserById($id_user); 
         }
     }
 ?>

@@ -9,10 +9,15 @@
     }
     .btn_update{
         padding: 6px 70px;
-        margin-left: 50%;
+        margin-left: 70%;
         font-size: 18px;
-        margin-top:60px;
+        /* margin-top:40px; */
     }
+    .form-control{
+    height: calc(1.5em + 1.5rem + 2px);
+    font-size: 1.5rem;
+}
+
 </style>
 <h3 style="text-align: center;font-weight: bold;">CHI TIẾT ĐƠN HÀNG</h3>
 <a class="btn btn-primary" href="<?=base?>admin/order&page=<?=$data["page"]?>">Trở Về</a>
@@ -33,6 +38,29 @@
       <td><?=$data["info_order"][0]["diachi"]?></td>
       <td><?=$data["infouser"][0]["email"]?></td>
     </tr>
+    <!-- Lay status cua donhang -->
+    <?php 
+                            $color="green";
+                            $tentt="";
+                                switch($data["info_order"][0]["matrangthai"]){
+                                    case 0:$tentt= "Đã hủy";
+                                    $color="red";
+                                    break;
+                                    case 1: $tentt="Chờ xử lý";
+                                    $color="blue";
+                                    break;
+                                    case 2:$tentt="Đã đóng gói";
+                                    break;
+                                    case 3:$tentt="Đang vận chuyển";
+                                    break;
+                                    case 4: $tentt="Đã thanh toán";
+                                    break;
+                                    default:
+                                    $tentt="Đặt hàng thành công";
+                                }
+
+                            
+                            ?>
   </tbody>
 </table>
 <h3>Thông Tin Đơn Hàng</h3>
@@ -95,9 +123,59 @@
 
 <h2>Phí vận chuyển: <?=number_format ($data["info_order"][0]["phiship"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?> VNĐ</h2>
 <h2 style="color: black; font-weight: bold;">Tổng Tiền: <?=number_format ($data["info_order"][0]["phiship"]+$data["info_order"][0]["tonggiatri"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?> VNĐ</h2>
-<div class="row" style="background: #F7F7F7; padding:5px;" >
-      <div class="col-6"></div>
-      <div class="col-6">
-          <input class="btn btn-success btn_update" type="submit" value="IN HÓA ĐƠN" name="submit" >
-      </div>
-</div>
+<form action="" method="post">
+  <div class="row" style="background: #F7F7F7; padding:5px;" >
+        <div class="col-5">
+          <div class="row">
+          <h2 style="margin-right: 15px;color:#077FF8">Trạng thái đơn hàng: </h2>
+          <select name="matt"  style="width: 170px; margin-bottom:40px;" class="form-control" >
+                      <option value="<?=$data['info_order'][0]['matrangthai']?>" style="color:<?=$color?>;"><?=$tentt?></option>
+                            <?php 
+                                        $arr_ten=array();
+                                        $arr_id=array();
+                                        $arr_color=array();
+                                        $i=0;
+                                          foreach($data["info_tt"] as $key => $values){
+                                            
+                                              if($values["matrangthai"]!=$data['info_order'][0]['matrangthai']){
+                                                  $arr_id[$i]=$values["matrangthai"];
+                                                  $arr_ten[$i]=$values["tentrangthai"];
+                                                  if($arr_id[$i]==0){
+                                                    $arr_color[$i]="red";
+                                                  }
+                                                  else if($arr_id[$i]==1){
+                                                    $arr_color[$i]="blue";
+                                              
+                                                  }
+                                                  else{
+                                                    $arr_color[$i]="green";
+                                                  }
+                                                  
+                                                  $i++;
+                                              }
+                                          }
+                            ?>
+                                        <option value="<?=$arr_id[0]?> " style="color:<?=$arr_color[0]?>;"><?=$arr_ten[0]?></option>
+                                        <option value="<?=$arr_id[1]?>"style="color:<?=$arr_color[1]?>;"><?=$arr_ten[1]?></option>
+                                        <option value="<?=$arr_id[2]?>"style="color:<?=$arr_color[2]?>;"><?=$arr_ten[2]?></option>
+                                        <option value="<?=$arr_id[3]?>"style="color:<?=$arr_color[3]?>;"><?=$arr_ten[3]?></option>
+                                        <option value="<?=$arr_id[4]?>"style="color:<?=$arr_color[4]?>;"><?=$arr_ten[4]?></option>
+                                        
+              </select>
+          </div>
+          
+          
+                    
+              <input class="btn btn-primary" type="submit" value="Cập Nhật Trạng Thái" name="update"  style="margin-left:180px; margin-bottom:-5px;">
+        </div>
+        <div class="col-1"></div>
+        <div class="col-5">
+          <div class="row"></div>
+            <input class="btn btn-success btn_update" type="submit" value="IN HÓA ĐƠN" name="submit" >
+        </div>
+  </div>
+</form>
+
+<script>
+ 
+</script>

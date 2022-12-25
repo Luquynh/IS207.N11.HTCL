@@ -4,3 +4,6 @@
     <img src="<?=base?>public/client/assets/img/blog/<?php echo $row["img"]?>.jpg" alt="" class="img_blog">
     <p class="noidung_blog"><?php echo $row["noidung"]?></p>
 </div>
+
+
+

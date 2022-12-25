@@ -44,7 +44,6 @@
     include "public/client/assets/css/cart.css";
     include "public/client/assets/css/cart_mini.css";
     include "public/client/assets/css/checkout.css";
-    include "public/client/assets/css/bootstrap.min.css";
     include "public/client/assets/css/about.css";
     ?>
     </style>

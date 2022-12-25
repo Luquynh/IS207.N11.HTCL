@@ -1,5 +1,6 @@
 <?php 
     require_once "./mvc/views/client/include/head.php";
+    
 ?>
 <style>
     #footer {
@@ -12,6 +13,8 @@
     .card img {
         height: 280px;
     }
+    <?php 
+    include "public/client/assets/css/bootstrap.min.css";?>
 </style>
 <body>
     <?php 

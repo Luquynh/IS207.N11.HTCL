@@ -77,5 +77,20 @@
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         }
+        //Update status
+        function updatestatus($id,$matt){
+            $sql = "UPDATE donhang SET matrangthai = $matt WHERE madonhang = '$id'";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            return $query;
+        }
+        //get trang thai in table trangthaidonhang
+        function Getallstatus(){
+            $sql = "SELECT * FROM trangthaidonhang ";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
     }
 ?>

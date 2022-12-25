@@ -26,14 +26,14 @@
                             <td style=" font-size: 16px;" class=""><?=number_format ($values["tonggiatri"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?> VNĐ</td>
                             <td style=" font-size: 16px;" class=""><?=$values["ngaymua"]?></td>
                             <?php 
-                            $color="green";
+                            $color="btn-outline-success";
                             $tentt="";
                                 switch($values["matrangthai"]){
                                     case 0:$tentt= "Đã hủy";
-                                    $color="red";
+                                    $color="btn-outline-danger";
                                     break;
                                     case 1: $tentt="Chờ xử lý";
-                                    $color="black";
+                                    $color="btn-outline-primary";
                                     break;
                                     case 2:$tentt="Đã đóng gói";
                                     break;
@@ -47,12 +47,17 @@
 
                             
                             ?>
-                            
-                                <td style=" font-size: 16px;color: <?=$color?>;font-weight: bold;" class=""><?=$tentt?></td>
+                            <td>
+                                <a style="height: 35px;font-weight: 600;" class="btn <?=$color?>" href="<?=base?>admin/orderdetails&id_order=<?=$values['madonhang']?>&id_user=<?=$values['makh']?>&page=<?=$data['currentpage']?>"><?=$tentt?></a>
+                            </td>
+                                
+                                
                                
                             <td>
                                 <a href="<?=base?>admin/orderdetails&id_order=<?=$values['madonhang']?>&id_user=<?=$values['makh']?>&page=<?=$data["currentpage"]?>" style="height: 35px;" class="btn btn-primary" href="">Chi Tiết</a>
-                                <a style="height: 35px;" class="btn btn-success" href="<?=base?>admin/editorder&id=<?=$values['madonhang']?>&page=<?=$data['currentpage']?>">Sửa</a> 
+                                <a style="height: 35px; " class="btn btn-success" href="<?=base?>admin/editorder&id_order=<?=$values['madonhang']?>&id_user=<?=$values['makh']?>&page=<?=$data['currentpage']?>">Sửa</a>
+                                 
+
                             </td>
                         </tr>
                     <?php }?>

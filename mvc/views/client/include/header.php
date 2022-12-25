@@ -32,7 +32,7 @@
                                         Từ nay bạn đã có thể biến một thành nhiều chiếc đồng hồ để thay đổi phong cách thời trang của bản thân với dây đồng hồ Curnon.
                                     </p>
                                     
-                                    <button class="watch-chain--purchase-btn">MUA NGAY</button>
+                                    <a href="http://localhost/curnon/callMCpromenwo/show/men/1" class="watch-chain--purchase-btn">MUA NGAY</a>
                                 </div>
                             </div>
                             
@@ -67,15 +67,15 @@
                                 <p class="watch-chain--text">
                                     Biến một thành nhiều chiếc đồng hồ để thay đổi phong cách thời trang của bản thân với dây đồng hồ Curnon.
                                 </p>
-                                <button class="watch-chain--purchase-btn">MUA NGAY</button>
+                                <a href="http://localhost/curnon/callMCpromenwo/show/women/1" class="watch-chain--purchase-btn">MUA NGAY</a>
                             </div>
                         </div>
                     </li>
     
                     <li class="dropup nav-item nav-item__left">About
                         <div class="nav-item dropup-content">
-                            <a href="">Blog</a>
-                            <a href="">Về chúng tôi</a>
+                            <a href="http://localhost/curnon/callMCmainblog/show">Blog</a>
+                            <a href="http://localhost/curnon/callMCabout/show">Về chúng tôi</a>
                         </div>
                     </li>
                 </ul>
@@ -134,7 +134,7 @@
                 <?php if(!isset($_SESSION["cart"])){?>
                     <div class="cart-mini-modal-body padding-center">
                         <p class="cart-mini-info">Hiện đang chưa có sản phẩm nào trong giỏ hàng của bạn.</p>
-                        <button class="cart-mini-buy-btn">Mua hàng ngay <i class="cart-mini-buy-icon ti-arrow-right"></i></button>
+                        <a href="http://localhost/curnon/callMCpromenwo/show/alldh/1" class="cart-mini-buy-btn">Mua hàng ngay <i class="cart-mini-buy-icon ti-arrow-right"></i></a>
                     </div>
                 <?php }?>
                 <div class="cart-mini-body">
@@ -210,18 +210,18 @@
                 <form action="<?=base?>callMCdisplaysp/show" method="post">
                     <input type="search" name="kyw" class="search-input" placeholder="Nhập từ khóa...">
                     <!-- <label for="search-modal__check" class="search-icon__close">Đóng</label> -->
-                    <input type="submit" name="timkiem" class="nuttimkiem" value="Go">
+                    <button type="submit" name="timkiem" class="nuttimkiem"><i class="ti-search"></i></button>
                 </form>
                 </header>
                 
-                <!-- <div class="search-body">
+                <div class="search-body">
                     <p class="search-body__title">Các từ khóa nổi bật:</p>
                     <p class="search-body__item">Kashmir</p>
                     <p class="search-body__item">Colosseum</p>
                     <p class="search-body__item">Florenge</p>
                     <p class="search-body__item">Jackie Cuff</p>
                     <p class="search-body__item">Mykonos</p>
-                </div> -->
+                </div>
             </div>
         </div>
     

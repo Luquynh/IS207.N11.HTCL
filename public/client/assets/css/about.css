@@ -1,0 +1,98 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';
+}
+
+.about_bannerDesktop {
+    position: relative;
+    margin-bottom: 250px;
+}
+
+.about_bannerDesktop .about_img_first {
+    /* margin: 110px 30px 0 30px; */
+    padding: 110px 30px 0;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.about_bannerDesktop .boxText {
+    padding: 0 20px;
+    margin: 0 340px;
+    background-color: #F8F7F4;
+    color: #161A21;
+    text-align: center;
+    position: absolute;
+    bottom: 0%;
+    transform: translateY(50%);
+}
+
+.boxText .about_title {
+    font-size: 32px;
+    line-height: 32px;
+    padding: 56px 0 0;
+    font-weight: 700;
+}
+
+.boxText .about_subTitle {
+    font-size: 32px;
+    line-height: 32px;
+    padding: 20px 0 35px;
+}
+
+.boxText .about_des {
+    padding: 0 110px;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: .02em;
+}
+
+.about_mainWhy {
+    display: flex;
+    padding: 0 6.5%;
+    justify-content: space-evenly;
+}
+
+.about_mainWhy .img_about {
+    flex: 1;
+}
+
+.about_mainWhy .about_boxText {
+    flex: 1;
+    color: #161A21;
+    text-align: left;
+    margin: auto 0;
+    padding-left: 12%;
+}
+
+.about_boxText .about_textWhy {
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+}
+
+.about_boxText .about_subWhy {
+    padding: 16px 0 32px;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: .02em;
+}
+
+.about_boxText .about_titleWhy {
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: .02em;
+    padding: 0 0 16px;
+}
+
+.about_boxText .about_desWhy {
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: .02em;
+    opacity: .6;
+}
+
+

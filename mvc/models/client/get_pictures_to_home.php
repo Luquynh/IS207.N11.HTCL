@@ -5,7 +5,7 @@
             from sanpham 
             INNER JOIN bosuutap 
             ON sanpham.mabosuutap = bosuutap.mabosuutap 
-            where bosuutap.gioitinh = '$gioitinh' 
+            where bosuutap.gioitinh = '$gioitinh' AND sanpham.maloaisp = '1'
             ORDER BY soluong
             LIMIT 4"; 
             return mysqli_query($this->conn, $sql);     
@@ -19,7 +19,7 @@
             from sanpham 
             INNER JOIN bosuutap 
             ON sanpham.mabosuutap = bosuutap.mabosuutap 
-            where (tensp LIKE '%".$kyw."%') OR (tenbosuutap LIKE '%".$kyw."%')";
+            where ((tensp LIKE '%".$kyw."%') OR (tenbosuutap LIKE '%".$kyw."%')) AND sanpham.maloaisp = '1'";
             return mysqli_query($this->conn, $sql);
         }
     }

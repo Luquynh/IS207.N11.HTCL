@@ -306,7 +306,9 @@
     height: 36px;
     background-color: var(--text-color);
     color: #fff;
+    line-height: 36px;
     font-weight: 600;
+    text-decoration: none;
 }
 
 .watch-chain--purchase-btn:hover {
@@ -387,8 +389,12 @@
     height: 30px;
     border: none;
     border-radius: 20%;
-    background-color: #2a850bad;
+    background-color: #000;
     cursor: pointer;
+}
+
+.nuttimkiem > i {
+    color: #fff;
 }
 
 .search-icon__close {

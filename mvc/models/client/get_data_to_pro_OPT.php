@@ -4,7 +4,7 @@
             $sql = "SELECT DISTINCT sanpham.mausac
             FROM sanpham
             INNER JOIN bosuutap ON sanpham.mabosuutap = bosuutap.mabosuutap
-            WHERE bosuutap.tenbosuutap = '$tenbst'";
+            WHERE bosuutap.tenbosuutap = '$tenbst' AND sanpham.maloaisp = '1'";
             return mysqli_query($this->conn, $sql);
         }
         public function get_anh_mota($tenbst){
@@ -24,7 +24,7 @@
             from sanpham 
             INNER JOIN bosuutap 
             ON sanpham.mabosuutap = bosuutap.mabosuutap 
-            where tenbosuutap = '$tenbst'";
+            where tenbosuutap = '$tenbst' AND sanpham.maloaisp = '1'";
             return mysqli_query($this->conn, $sql);
         }
     }

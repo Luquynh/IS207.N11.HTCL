@@ -17,10 +17,10 @@
                             <div class="category_card_link"><i class="ti-arrow-right"></i></div>
                         </div>
                     </a>
-                    <a href="" class="category_card">
+                    <a href="http://localhost/curnon/callMCpromenwo/show/alldh/2" class="category_card">
                         <img src="<?=base?>public/client/assets/img/main_page/Phu_kien_thoi_trang_a94ba78315.jpg" alt="">
                         <div class="category_card_content">
-                            <p>PHỤ KIỆN THỜI TRANG</p>
+                            <p>DÂY ĐỒNG HỒ</p>
                             <div class="category_card_link"><i class="ti-arrow-right"></i></div>
                         </div>
                     </a>

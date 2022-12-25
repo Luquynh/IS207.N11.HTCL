@@ -68,7 +68,7 @@ $html = '<!DOCTYPE html>
                         <th>Thông tin</th>
                         <th>Đơn giá</th>
                         <th>Số lượng</th>
-                        <th>thành tiền</th>
+                        <th>Thành tiền</th>
                     </tr>
                     <tr>
                         <td>1</td>

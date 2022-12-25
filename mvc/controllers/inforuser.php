@@ -186,114 +186,65 @@
             $this->ViewClient("changepassword",$data);
         }
 
-        // function buyagian(){
-        //     if(isset($_SESSION["info"]["name"])){
-        //         if(isset($_POST["buyagain"])){
-        //             unset($_SESSION['cart']);
-        //             $id_order = $_POST["id"];
-        //             $id = (int) $id_order;
-        //             $Allorder = $this->ordermodel->GetOrderDetails($id);
-        //             foreach($Allorder as $row):
-        //                 $product_temp = $this->commonmodel->GetProductById($row[0]['masp']);
-        //                 $mabosuutap = $product_temp[0]["mabosuutap"];
-        //                 $bosuutap = $this->commonmodel->getBosuutap($mabosuutap);
-        //                 $makichthuoc = $bosuutap[0]['makichthuoc'];
-        //                 $kichthuoc = $this->commonmodel->getKichthuoc($makichthuoc);
-        //                 $product = [
-        //                     "id"=>$product_temp[0]["masp"],
-        //                     "name"=>$product_temp[0]["tensp"],
-        //                     "gioitinh"=>$bosuutap[0]['gioitinh'],
-        //                     "price_new"=>$product_temp[0]["gia"] * (1-$product_temp[0]["giamgia"]/100),
-        //                     "price_old"=>$product_temp[0]["gia"],
-        //                     "img"=>$product_temp[0]["img"],
-        //                     "color" => $product_temp[0]["mausac"],
-        //                     "size" => $kichthuoc[0]["kichthuoc"],
-        //                     "quantity"=>1,
-        //                     "sale"=>$product_temp[0]["giamgia"],
-        //                     "total" => 0
-        //                 ];
-        //                 if($product_temp[0]["soluong"] > 0){
-        //                     if(!isset($_SESSION["cart"][$id])){ //Nếu chưa có sản phẩm $id
-        //                         $_SESSION["cart"][$id] = $product;
-        //                         $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["price_new"];
-        //                     }
-        //                     else{
-        //                         $_SESSION["cart"][$id]["quantity"]+=1;
-        //                         $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["quantity"] * $_SESSION["cart"][$id]["price_new"];
-        //                     }
-        //                     // echo '<script> location.reload() </script>';
-        //                     // echo count($_SESSION['cart']);
-        //                     echo '<script>location.href="'.base.'checkout"</script>';
-        //                 }else{
-        //                     NotifiErrorQuantity("Sản phẩm đã được bán hết quay lại sau nhé!");
-        //                 }
-        //             endforeach;
+        function buyagain(){
+            unset($_SESSION["cart"]);
+            $id_order = $_GET["id"];
+            $id_order = (int) $id_order;
+            $Allorder = $this->ordermodel->GetOrderDetails($id_order);
+            foreach($Allorder as $row):
+                $id = $row['masp'];
+                $product_temp = $this->commonmodel->GetProductById($id);
+                $mabosuutap = $product_temp[0]["mabosuutap"];
+                $bosuutap = $this->commonmodel->getBosuutap($mabosuutap);
+                $makichthuoc = $bosuutap[0]['makichthuoc'];
+                $kichthuoc = $this->commonmodel->getKichthuoc($makichthuoc);
+                $product = [
+                    "id"=>$product_temp[0]["masp"],
+                    "name"=>$product_temp[0]["tensp"],
+                    "gioitinh"=>$bosuutap[0]['gioitinh'],
+                    "price_new"=>$product_temp[0]["gia"] * (1-$product_temp[0]["giamgia"]/100),
+                    "price_old"=>$product_temp[0]["gia"],
+                    "img"=>$product_temp[0]["img"],
+                    "color" => $product_temp[0]["mausac"],
+                    "size" => $kichthuoc[0]["kichthuoc"],
+                    "quantity"=>$row['soluong'],
+                    "sale"=>$product_temp[0]["giamgia"],
+                    "total" => $row['tongtien'] 
+                ];
+                $_SESSION["cart"][$id] = $product;
 
-                    
-        //         }
-        //     }else{
-        //         $_SESSION["error_login"] = "Vui Lòng đăng nhập";
-        //         $error_login = '<script>location.href="'.base.'login/"</script>';
-        //         echo $error_login;
-        //     }
-        // }
+                // if($product_temp[0]["soluong"] > 0){
+                //     // if(!isset($_SESSION["cart"][$id])){ //Nếu chưa có sản phẩm $id
+                //     //     $_SESSION["cart"][$id] = $product;
+                //     //     $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["price_new"];
+                //     // }
+                //     // else{
+                //     //     $_SESSION["cart"][$id]["quantity"]+=1;
+                //     //     $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["quantity"] * $_SESSION["cart"][$id]["price_new"];
+                //     // }
+                // }else{
+                //     NotifiErrorQuantity("Sản phẩm đã được bán hết quay lại sau nhé!");
+                // }
+            endforeach;
+            header("location:".base."checkout");
+            
+        }
+
+        function cancel() {
+                $id = $_GET["id"];
+                echo '<script>alert('.$id.')</script>';
+                $Allorder = $this->ordermodel->GetOrderDetails($id);
+                foreach($Allorder as $row):
+                    $quantity = $this->checkoutmodel->GetQuantityById($row['masp']);
+                    $quantity_new = $quantity[0]['soluong'] + $row['soluong'];
+                    $this->checkoutmodel->UpdateQuantityById($row['masp'], $quantity_new);
+                endforeach;
+                $this->checkoutmodel->CancelOrder($id);
+                header("location:".base."inforuser/history");
+        }
         function history()
         {
             if(isset($_SESSION["info"])){
-                if(isset($_POST["buyagain"])){
-                    unset($_SESSION["cart"]);
-                    $id_order = $_POST["id"];
-                    $id_order = (int) $id_order;
-                    $Allorder = $this->ordermodel->GetOrderDetails($id_order);
-                    foreach($Allorder as $row):
-                        $id_sp = $row['masp'];
-                        $product_temp = $this->commonmodel->GetProductById($id_sp);
-                        $mabosuutap = $product_temp[0]["mabosuutap"];
-                        $bosuutap = $this->commonmodel->getBosuutap($mabosuutap);
-                        $makichthuoc = $bosuutap[0]['makichthuoc'];
-                        $kichthuoc = $this->commonmodel->getKichthuoc($makichthuoc);
-                        $product = [
-                            "id"=>$product_temp[0]["masp"],
-                            "name"=>$product_temp[0]["tensp"],
-                            "gioitinh"=>$bosuutap[0]['gioitinh'],
-                            "price_new"=>$product_temp[0]["gia"] * (1-$product_temp[0]["giamgia"]/100),
-                            "price_old"=>$product_temp[0]["gia"],
-                            "img"=>$product_temp[0]["img"],
-                            "color" => $product_temp[0]["mausac"],
-                            "size" => $kichthuoc[0]["kichthuoc"],
-                            "quantity"=>$row['soluong'],
-                            "sale"=>$product_temp[0]["giamgia"],
-                            "total" => $row['tongtien'] 
-                        ];
-                        $_SESSION["cart"][$id_sp] = $product;
-
-                        if($product_temp[0]["soluong"] > 0){
-                            // if(!isset($_SESSION["cart"][$id])){ //Nếu chưa có sản phẩm $id
-                            //     $_SESSION["cart"][$id] = $product;
-                            //     $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["price_new"];
-                            // }
-                            // else{
-                            //     $_SESSION["cart"][$id]["quantity"]+=1;
-                            //     $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["quantity"] * $_SESSION["cart"][$id]["price_new"];
-                            // }
-                        }else{
-                            NotifiErrorQuantity("Sản phẩm đã được bán hết quay lại sau nhé!");
-                        }
-                    endforeach;
-                    echo '<script>location.href="'.base.'checkout"</script>';
-                }
-                if(isset($_POST["cancel"])){
-                    $id = $_POST["id"];
-                    $id = $id;
-                    $Allorder = $this->ordermodel->GetOrderDetails($id);
-                    foreach($Allorder as $row):
-                        $quantity = $this->checkoutmodel->GetQuantityById($row['masp']);
-                        $quantity_new = $quantity[0]['soluong'] + $row['soluong'];
-                        $this->checkoutmodel->UpdateQuantityById($row['masp'], $quantity_new);
-                    endforeach;
-                    $this->checkoutmodel->CancelOrder($id);
-                }
-                
 
                 //Lấy id của người dùng
                 $id_user = $_SESSION["info"]["id"];
@@ -335,5 +286,6 @@
             }
             
         }
+        
     }
 ?>

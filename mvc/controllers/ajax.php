@@ -103,9 +103,9 @@ use function PHPSTORM_META\type;
                     // $mess = "<p style='color: green;'>Email của bạn hợp lệ!";
                     $check = $this->commonmodel->checkemail($email);
                     if($check >=1){
-                        $mess = "<p style='color: red;'>Email này đã có người khác sử dụng</p>";
-                    }else{
                         $mess= "<p style='color: green;'>Email hợp lệ</p>";
+                    }else{
+                        $mess = "<p style='color: red;'>Email chưa được đăng ký tài khoản!!</p>";
                     }
                 }
             }else{
@@ -542,7 +542,7 @@ use function PHPSTORM_META\type;
                                 <p style="margin-top: 10px;">'.number_format ($row_product["gia"] * (1-$row_product["giamgia"]/100) , $decimals = 0 , $dec_point = "," , $thousands_sep = "." ).' ₫</p>
                             </td>
                             <td class="cart_quantity col-item-center">'.$row["soluong"].'</td>
-                            <td class="cart_total col-item-center" id = "">
+                            <td class="cart_total col-item-center" id = "" align="right">
                                 <p class="cart_total_price"><strong>'.number_format ($row["tongtien"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." ).' ₫<strong></p>
                             </td>
                         </tr>

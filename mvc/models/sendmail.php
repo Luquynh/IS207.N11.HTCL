@@ -73,14 +73,40 @@ function sendcontactus($name, $phone, $email, $message){
         </tr>
         <tr>
             <th><td><strong>Message: </strong></td></th>
-            <td><p>'
-            .$message.
-            '</p></td>
+            <td>'.$message.'</td>
         </tr>
     
     </table>';
 
     $mail->Body = $html;
+    $mail->send();
+}
+
+function sendpass($email,$name, $pass){
+    $mail = new PHPMailer(true);  
+    
+    $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'buivanthuan1608@gmail.com';                 // SMTP username
+    $mail->Password = 'ockqprqutqxudcyd';                           // SMTP password
+    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 465;  
+    
+    $mail->setFrom('buivanthuan1608@gmail.com', 'Admin Curnon');
+    $mail->addAddress($email);
+
+    $mail->isHTML(true);      
+    $subject= "=?utf-8?b?".base64_encode('Khôi phục mật khẩu')."?=";                            // Set email format to HTML
+                            
+    $mail->Subject = $subject;
+
+    $body = '<h3>Xin chào '.$name.',<br>Mật khẩu tài khoản của bạn đã được thay đổi!!</h3>
+            <p style="font-size: 14px;">Mật khẩu hiện tại là <span style="color: red; font-size: 20px; padding: 10px; font-weight: 600;">'.$pass.'</span></p>
+            <p style="font-size: 12px;"><i>(*) Vui lòng đổi mật khẩu này trong vòng 30 ngày để đảm bảo tính bảo mật!';       
+    $mail->Body = $body;
     $mail->send();
 }
 ?>

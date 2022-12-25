@@ -29,10 +29,31 @@ function NotifiSiginSuccess(){
             confirmButtonText: "Đăng Nhập Ngay"
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href= "'.base.'login/login";
+              window.location.href= "'.base.'login";
             }
           });
     });
+</script>';
+}
+
+//Khôi phục mật khẩu thành công
+function NotifiResetpassSuccess(){
+  echo '<script>
+  $(document).ready(function(){
+      Swal.fire({
+          title: "Khôi Phục Mật Khẩu Thành Công",
+          text: "Vui lòng kiểm tra email của bạn",
+          icon: "success",
+          showCancelButton: false,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Đăng Nhập Ngay"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href= "'.base.'login";
+          }
+        });
+  });
 </script>';
 }
 //xử lý đơn hàng trang admin

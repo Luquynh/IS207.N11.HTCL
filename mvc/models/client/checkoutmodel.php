@@ -57,7 +57,17 @@
         //lấy đơn hàng theo id khách hàng(dùng để hiển thị lịch sử mua hàng của khách hàng)
         function GetHistotyOrder($id){
             // $sql = "select * from order_product where user_id = $id and cancel_order = 0 and delete_order = 0";
-            $sql = "SELECT * from donhang where makh = $id and tt_xoa = 0";
+            $sql = "SELECT * from donhang where makh = $id and tt_xoa = 0 ORDER BY madonhang DESC";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
+
+        //lấy đơn hàng theo id đơn hàng
+        function GetHistotyOrderByidorder($id){
+            // $sql = "select * from order_product where user_id = $id and cancel_order = 0 and delete_order = 0";
+            $sql = "SELECT * from donhang where madonhang = $id and tt_xoa = 0";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -65,24 +75,31 @@
         }
         //xử lý khách hàng bấm nút xác nhận đã nhận hàng
         function Confirm($id){
-            $sql = "UPDATE order_product SET status_recieve = 'true' WHERE id = $id";
+            $sql = "UPDATE donhang SET matrangthai = 5 WHERE madonhang = '$id'";
             $query = $this->conn->prepare($sql);
             $query->execute();
-            $sql = "UPDATE order_product SET status = 'Đã Nhận Hàng' WHERE id = $id";
-            $query = $this->conn->prepare($sql);
-            $query->execute();
+            // $sql = "UPDATE donhang SET status = 'Đã Nhận Hàng' WHERE id = $id";
+            // $query = $this->conn->prepare($sql);
+            // $query->execute();
         }
 
         //xử lý khi khách hàng bấm xóa đơn hàng
         function DeleteOrder($id){
-                $sql = "UPDATE  order_product SET delete_order = 1 WHERE id = $id";
+                $sql = "UPDATE  donhang SET delete_order = 1 WHERE id = $id";
                 $query = $this->conn->prepare($sql);
                 $query->execute();
         }
         function CancelOrder($id){
-            $sql = "UPDATE  order_product SET cancel_order = 1 WHERE id = $id";
+            $sql = "UPDATE  donhang SET matrangthai = 0 WHERE madonhang = '$id'";
             $query = $this->conn->prepare($sql);
             $query->execute();
-    }
+        }
+
+        //Tăng số lượng sản phẩm khi người dùng bấm hủy đơn
+        function getChitietdonhang($madonhang){
+            $sql = "SELECT * FROM chitietdonhang where madonhang = $madonhang";
+            $query = $this->conn->prepare($sql);
+            return $query->execute();
+        }
     }
 ?>

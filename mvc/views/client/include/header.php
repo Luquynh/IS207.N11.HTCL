@@ -75,6 +75,7 @@
                     <li class="dropup nav-item nav-item__left">About
                         <div class="nav-item dropup-content">
                             <a href="http://localhost/curnon/callMCmainblog/show">Blog</a>
+                            <a href="<?=base?>contact">Liên hệ</a>
                             <a href="http://localhost/curnon/callMCabout/show">Về chúng tôi</a>
                         </div>
                     </li>
@@ -148,7 +149,7 @@
                                         <!-- <a href="<?=base?>ajax/deleteproductcart&id=<?=$values["id"]?>" id="deleteproductcart" idproduct="<?=$values["id"]?>"><i class="ti-close"></i></a> -->
                                     </div>
                                     <div class="cart-mini-item--img">
-                                        <img src="<?=base?>public/client/assets/img/<?=$values['gioitinh']?>/<?php echo $values["img"]?>" alt="">
+                                        <img src="<?=base?>public/client/assets/img/<?php echo $values["img"]?>" alt="">
                                     </div>
                                 </div>
                                 <div class="cart-mini-item--contentBox">
@@ -156,7 +157,8 @@
                                         <div class="cart-mini-item--itemName">
                                             <div class="cart-mini-item--itemName__text"><?=$values["name"]?></div>
                                             <div class="cart-mini-item--itemName__price">
-                                                <strong><?=$values["price_old"]?></strong>
+                                            
+                                                <strong><?=number_format($values["price_old"], 0,",",".")?> ₫</strong>
                                             </div>
                                         </div>
                                         <div class="cart-mini-item--itemOption">
@@ -179,7 +181,8 @@
                 <div class="cart-mini-footer">
                     <div class="cart-mini-total">
                         <div class="cart-mini-total--title">Thành tiền:</div>
-                        <div class="cart-mini-total--value"><strong><?=$data['total']?> ₫</strong></div>
+                        
+                        <div class="cart-mini-total--value"><strong><?=number_format($data['total'], 0,",",".")?> ₫</strong></div>
                     </div>
                     <a href="<?=base?>cart/showcart" class="cart-mini-btn cart-mini-buy-btn mg-10">
                         XEM CHI TIẾT

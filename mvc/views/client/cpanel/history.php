@@ -44,6 +44,9 @@
                 <table class="infor-content-infor" >
                     <tr class="row-infor">
                         <th class="">
+                            <strong>ID</strong>
+                        </th>
+                        <th class="">
                             <strong>Địa chỉ</strong>
                         </th>
                         <th class="">
@@ -66,36 +69,61 @@
                             <strong>Chức năng</strong>
                         </th>
                     </tr>
-                <?php foreach($data['order'] as $row): ?>
-                    <tr class="row-infor">
-                        <td class="col-infor">
-                            <?=$row['diachi']?>
-                        </td>
-                        <td class="col-infor">
-                            <?=$row['sodt']?>
-                        </td>
-                        <td class="col-infor">
-                            <?=$row['ngaymua']?>
-                        </td>
-                        <td class="col-infor">
-                            <!-- <?=$row['tonggiatri']?> ₫ -->
-                            <?=number_format($row['tonggiatri'], $decimals=0, $dec_point=',', $thousands_sep = '.')?> ₫
-                        </td>
-                        <td class="col-infor">
+                <?php 
+                foreach($data['order'] as $row): ?>
+                    <form action="<?=base?>inforuser/history" method="post">
+                    <input name="madonhang" type="text" value="<?=$row['madonhang']?>" hidden>
+                        <tr class="row-infor">
+                            <td class="col-infor">
+                                <?=$row['madonhang']?>
+                            </td>
+                            <td class="col-infor">
+                                <?=$row['diachi']?>
+                            </td>
+                            <td class="col-infor">
+                                <?=$row['sodt']?>
+                            </td>
+                            <td class="col-infor">
+                                <?=$row['ngaymua']?>
+                            </td>
+                            <td class="col-infor">
+                                
+                                <?=number_format($row['tonggiatri'], $decimals=0, $dec_point=',', $thousands_sep = '.')?> ₫
+                            </td>
                             <?php 
-                            $trangthaidonhang = $this->checkoutmodel->getTrangthaidonhang($row['matrangthai']);
-                            echo $trangthaidonhang[0]['tentrangthai'];
+                                $trangthaidonhang = $this->checkoutmodel->getTrangthaidonhang($row['matrangthai']);
+                                $trangthaidonhang[0]['tentrangthai'];
                             ?>
-                        </td>
-                        <td class="col-infor">
-                            <a  id_order="<?=$row["madonhang"]?>" href="javascrip:void(0)" style="margin-bottom: 18px;" class="btn_details_order" name="details">Xác nhận</a>
-                            <a  id_order="<?=$row["madonhang"]?>" href="javascrip:void(0)" style="margin-bottom: 18px;" class="btn_details_order" name="details">Chi Tiết</a>
-
-                        </td>
-                    </tr>
+                            <?php if($row["matrangthai"] == "0"){ ?>
+                                <td class="col-infor" style="color: red; font-weight: bold;"><?=$trangthaidonhang[0]['tentrangthai']?></td>
+                            <?php }else if($row["matrangthai"] == "1"){?>
+                                <td class="col-infor" style="color: blue; font-weight: bold;"><?=$trangthaidonhang[0]['tentrangthai']?></td>
+                            <?php } else {?>
+                                <td class="col-infor" style="color: #53c66e; font-weight: bold;"><?=$trangthaidonhang[0]['tentrangthai']?></td>
+                            <?php }?>
+                            
+                            <td class="col-infor col-item-center">
+                                <?php if($row["matrangthai"] == "1") {?>
+                                    <span style="margin-bottom: 18px; background-color: red; border: none; cursor: pointer; " class="btn_details_order" >
+                                        <a href="<?=base?>inforuser/cancel&id=<?=$row['madonhang']?>"  name="cancel" id="cancel" class="btn_details_order"  style="margin-bottom: 18px; background-color: red; border: none; cursor: pointer; ">Hủy đơn</a>
+                                    </span>
+                                    
+                                <?php } else { ?>
+                                    <span style="margin-bottom: 18px; background-color: #53c66e; border: none;cursor: pointer; " class="btn_details_order">
+                                        <a href="<?=base?>inforuser/buyagain&id=<?=$row['madonhang']?>" name="buyagain" id="buyagain" style="margin-bottom: 18px; background-color: #53c66e; border: none;cursor: pointer; " class="btn_details_order">Mua lại</a>
+                                    </span>
+                                    <!-- <button style="margin-bottom: 10px; background-color: green; border: none;" class="btn_details_order" name="confirm">Xác Nhận</button> -->
+                                <?php }?>
+                                
+                                <a  id_order="<?=$row["madonhang"]?>" href="javascrip:void(0)" style="margin-bottom: 18px;cursor: pointer;" class="btn_details_order" id="order_details" name="details">Chi Tiết</a>
+                            </td>
+                        </tr>
+                    </form>
+                    
                 <?php endforeach;?>
                     
                 </table>
+
             </div>
         </div>
     </div>
@@ -110,21 +138,37 @@
     table, td, th {
         border: 1px solid #eee;
         border-collapse: collapse;
+        padding: 10px;
     }
-    th {
+    table {
+        margin-bottom: 16px;
+    }
+    .detail th,
+    .infor-content-infor th {
         background-color: #eee;
         padding: 10px;
     }
+    .color-green {
+        color: green;
+    }
 </style>
 <script>
-
 		//Chi tiết hóa đơn
-		$(document).on('click','.btn_details_order',function(){
+		$(document).on('click','#order_details',function(){
 			id_order = $(this).attr('id_order')
 			$.post("<?=base?>ajax/orderdetails",{id_order:id_order},function(data){
 				$(".infor-content").html(data);
 			});
    		 });
+
+        // $(document).ready(function(){
+        //     $("#buyagain").click(function(){
+        //         id = $(this).val();
+        //         $.post("<?=base?>inforuser/history", {id: id}, function(data){
+
+        //         })
+        //     })
+        // })
 		// thông báo xác nhận xóa đơn hàng
 		function deleteorder(){
 			Swal.fire({
@@ -152,6 +196,22 @@
 			}).then((result) => {
 			if (result.isConfirmed) {
 				$( "#cancel" ).click();
+			}
+			});
+		}
+
+        // thông báo xác nhận đã nhận được hàng
+		function confirmorder(){
+			Swal.fire({
+			title: 'Bạn có xác nhận đặt lại đơn hàng không?',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Có'
+			}).then((result) => {
+			if (result.isConfirmed) {
+				$("#buyagain").click();
 			}
 			});
 		}

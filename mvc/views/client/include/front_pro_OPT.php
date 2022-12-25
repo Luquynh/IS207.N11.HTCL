@@ -66,8 +66,8 @@
                 <h4 class="h4_watch_item"><?php echo $row["tensp"]?></h4>
                 <div class="div_watch_item"><?php echo number_format($row["gia"], 0,",",".")?> ₫</div>
                 <div style="display: none;" class="tieuxao2"><?php echo $row["mausac"]?></div>
+                <button class="button_watch_item">XEM CHI TIẾT</button>
             </a>
-            <button class="button_watch_item">THÊM VÀO GIỎ</button>
             </div>
             <?php endwhile;?>
         </div>

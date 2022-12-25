@@ -50,9 +50,21 @@
             $result =  $query->rowCount();
             return $result;
         }
+       
         //lấy danh mục sản phẩm theo số lượng để phân trang
         function GetCategoryPage($limit,$offset,$table,$id_name){
             $sql = "SELECT * FROM $table WHERE tt_xoa = 0  ORDER BY $id_name ASC LIMIT $limit OFFSET $offset";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return json_encode($result);
+        }
+        //Lấy ra kích thước của sản phẩm 
+        function GetCategorysize($limit,$offset){
+            $sql = "SELECT * FROM bosuutap as s
+            INNER JOIN kichthuoc as k on k.makichthuoc=s.makichthuoc
+            WHERE tt_xoa=0
+            ORDER BY mabosuutap ASC LIMIT $limit OFFSET $offset";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);

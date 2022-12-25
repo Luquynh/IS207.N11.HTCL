@@ -1,3 +1,19 @@
+<style>
+    .img_product .img__product-img{
+        width: 100px;
+        height: 80px;
+        object-fit: cover;
+    }
+    span{
+        display: inline-block;
+    }
+    .btn_update{
+        padding: 6px 70px;
+        margin-left: 50%;
+        font-size: 18px;
+        margin-top:60px;
+    }
+</style>
 <h3 style="text-align: center;font-weight: bold;">CHI TIẾT ĐƠN HÀNG</h3>
 <a class="btn btn-primary" href="<?=base?>admin/order&page=<?=$data["page"]?>">Trở Về</a>
 <h3>Thông Tin Khách Hàng</h3>
@@ -5,17 +21,17 @@
   <thead>
     <tr>
       <th scope="col">Tên Khách Hàng</th>
-      <th scope="col">Số Điện Thoại</th>
-      <th scope="col">Địa Chỉ</th>
+      <th scope="col">Số Điện Thoại </th>
+      <th scope="col">Địa Chỉ </th>
       <th scope="col">Email</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td scope="row"><?=$data["infouser"][0]["name"]?></td>
-      <td><?=$data["infouser"][0]["phone_number"]?></td>
-      <td><?=$data["infouser"][0]["address_user"]?></td>
-      <td><?=$data["infouser"][0]["email_account"]?></td>
+      <td scope="row"><?=$data["infouser"][0]["tenkh"]?></td>
+      <td><?=$data["info_order"][0]["sodt"]?></td>
+      <td><?=$data["info_order"][0]["diachi"]?></td>
+      <td><?=$data["infouser"][0]["email"]?></td>
     </tr>
   </tbody>
 </table>
@@ -25,8 +41,12 @@
     <tr>
       <th scope="col">STT</th>
       <th scope="col">Tên Sản Phẩm</th>
+      <th scope="col">Màu</th>
+      <th scope="col">Kích thước</th>
       <th scope="col">Số Lượng</th>
-      <th scope="col">Đơn Giá</th>
+      <th scope="col">Hình Ảnh</th>
+       <th scope="col">Đơn Giá</th>
+       <th scope="col">Tổng </th>
     </tr>
   </thead>
   <tbody>
@@ -34,20 +54,50 @@
     <?php foreach($data["orderdetails"] as $key=>$values){?>
     <tr>
       <th scope="row"><?=$key+1?></th>
-      <td><?=$values["name_product"]?></td>
-      <td><?=$values["quantity"]?></td>
-      <td><?=number_format ($values["unit_price"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?> VNĐ</td>
-      <?php $total+= $values["unit_price"];?>
+      <td><?=$values["tensp"]?></td>
+      <td><?=$values["mausac"]?></td>
+      <?php 
+      $kichthuoc=40;
+      switch($values["mabosuutap"]){
+          case 1:$kichthuoc= 40;
+          
+          break;
+          case 2: $kichthuoc=38;
+          $color="black";
+          break;
+          case 3:$kichthuoc=42;
+          break;
+          case 4:$kichthuoc=28;
+          break;
+          case 5: $kichthuoc=30;
+          break;
+          default:
+          $kichthuoc=32;
+      }
+
+      
+      
+      ?>
+      <td><?=$kichthuoc?>mm</td>
+      <td><?=$values["soluong"]?></td>
+      <td style=" font-size: 16px;" class="img_product">
+                            <img class="img__product-img" src="<?=base?>public/client/assets/img/<?=$values['img']?>" alt="">
+        </td>
+      <td><?=number_format ($values["tongtien"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?> VNĐ</td>
+      <td><?=number_format ($values["tongtien"]* $values["soluong"], $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?> VNĐ</td>
+
+      
     </tr>
+    
     <?php }?>
   </tbody>
 </table>
-<h2>Phí vận chuyển 35.000đ</h2>
-<h2 style="color: black; font-weight: bold;">Tổng Tiền: <?=number_format ($total+35000 , $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?> VNĐ</h2>
-<form method="POST">
-  <?php if($data["statusorder"] == "Chờ Xử Lý"){ ?>
-  <button class="btn btn-primary" name="submit">Xử Lý Đơn Hàng</button>
-  <?php }else{?>
-    <h2 style="color: green; font-weight: bold;">Đơn Hàng Đã Được Xử Lý</h2>
-  <?php }?>
-</form>
+
+<h2>Phí vận chuyển: <?=number_format ($data["info_order"][0]["phiship"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?> VNĐ</h2>
+<h2 style="color: black; font-weight: bold;">Tổng Tiền: <?=number_format ($data["info_order"][0]["phiship"]+$data["info_order"][0]["tonggiatri"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?> VNĐ</h2>
+<div class="row" style="background: #F7F7F7; padding:5px;" >
+      <div class="col-6"></div>
+      <div class="col-6">
+          <input class="btn btn-success btn_update" type="submit" value="IN HÓA ĐƠN" name="submit" >
+      </div>
+</div>

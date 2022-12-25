@@ -2,11 +2,30 @@
 //lay banner_img
     $banner=$data["data"][0]["banner_img"];     
 ?>
-                       
+ <style>
+    .form-control{
+    height: calc(1.5em + 1.5rem + 2px);
+    font-size: 1.5rem;
+}
+    label{
+        font-size: 17px;
+    }
+    .gender .gender__input{
+        width: 20%;
+    }
+    .btn_update{
+        padding: 6px 70px;
+        margin-left: 50%;
+        font-size: 18px;
+        margin-top:90px;
+    }
+    
+    
+</style>                      
 <div class="">
     <div class="page-title">
         <div class="title_left">
-            <h3><?= $data['title']?></h3>
+            <h3 style="color: black;"><?= $data['title']?></h3>
             <h4 class="text-success"><?php if(isset($data["mess"])){echo $data["mess"];} ?></h4>
             <a class="btn btn-primary" href="<?=base?>admin/showslider">Trở Về</a>
                 <h4 class="text-success"><?php if(isset($data["notifi"]["addsuccess"])){echo $data["notifi"]["addsuccess"];} ?></h4>
@@ -33,7 +52,7 @@
                 
                 <!-- trong row chứa col , trong col chứa dc row -->
                 <!-- col từ 1 -> 12 -->
-                <div class="col-2">
+                <div class="col-5">
                     <div class="form-group">
                         <label for="">Slogan</label>
                         <input id="subtitle" type="text" class="form-control" name="slogan" value="<?=$data["data"][0]["subtitle"]?>">

@@ -21,6 +21,23 @@
             return $result;
         }
 
+        //lấy thông tin người dùng theo email
+        function GetInfoUserbyEmail($email){
+            $sql = "SELECT * FROM khachhang where email = '$email'";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result =  $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
+        //Kiểm tra email có tồn tại không
+        function checkemail($email){
+            $sql ="SELECT * FROM khachhang WHERE email = '$email'";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result = $query->rowCount();
+            return $result;
+        }
+
         //đổi mật khẩu người dùng
         function ChangerPassUser($id, $pass){
             $sql = "UPDATE khachhang SET matkhau = '$pass' where makh = '$id' ";

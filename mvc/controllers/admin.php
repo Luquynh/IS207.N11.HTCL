@@ -76,7 +76,7 @@
                         }
                         else{
                            
-                            notification("error","Đăng Nhập Thất Bại","Thông tin tài khoản hoặc mật khẩu không chính xác","$check","true","#3085d6");
+                            notification("error","Đăng Nhập Thất Bại","Thông tin tài khoản hoặc mật khẩu không chính xác","OK","true","#3085d6");
                             header('Refresh: 1; URL='.base.'admin');
                         }
                     }else{
@@ -129,7 +129,7 @@
 
         //quản lí danh mục sản phẩm
         function showcategory(){
-            $limit = 4;
+            $limit = 3;
             //lấy số trang
             if(isset($_GET['page'])){
                 $currentpage =  $_GET['page'];
@@ -139,7 +139,7 @@
             $totalcategory = $this->commonmodel->GetNumber("bosuutap");
             $totalpage = ceil($totalcategory / $limit);
             $mess = "";
-            $temp = $this->commonmodel->GetCategoryPage($limit,$offset,"bosuutap","mabosuutap");
+            $temp = $this->commonmodel->GetCategorysize($limit,$offset);
             $result = json_decode($temp,true);
             if( isset($_SESSION["DeleteCategory"]) ){
                 $mess  = $_SESSION["DeleteCategory"];
@@ -148,7 +148,7 @@
             $data = [
             "folder"     =>"category",
             "file"       =>"showcategory",
-            "title"      =>"Danh Sách Danh Mục Sản Phẩm",
+            "title"      =>"Danh Sách Bộ sưu tập",
             "data"       =>$result,
             "mess"       =>$mess,
             "total"  =>$totalpage,
@@ -159,38 +159,64 @@
 
         //Xóa danh mục sản phẩm 
         function deletecategory($id,$page,$stt){
-            if($stt % 4 == 1){
-                $page-=1;
+            
+            $totalcategory = $this->categorymodel->GetNumbersp($id);
+            if($totalcategory == 0){
+                $this->categorymodel->DeleteCategory($id);
+                $this->productmodel->UpdateProduct($id);
+                
+                    if($stt % 3 == 1){
+                        $page-=1;
+                    }
+                    $_SESSION["DeleteCategory"] = "Xóa Danh Mục Thành Công!";
+                    // notifichanger("Xóa Danh Mục Thành Công!");
+                    header("location:".base."admin/showcategory&page=".$page."");
+                
             }
-            $result = $this->categorymodel->DeleteCategory($id);
-            $this->productmodel->UpdateProduct($id);
-            if($result){
-                $_SESSION["DeleteCategory"] = "Xóa Danh Mục Thành Công!";
-                header("location:".base."admin/showcategory&page=".$page."");
+            else{
+                $_SESSION["DeleteCategory"] = "Xóa Danh Mục không Thành Công!";
+                // notifichanger("Xóa Danh Mục không Thành Công!");
+
+                    header("location:".base."admin/showcategory&page=".$page."");
             }
+           
             
         }
 
         //Thêm Danh Mục Sản Phẩm 
         function addcategory(){
             $mess = "";
+            $datakt=$this->categorymodel->getkichthuoc();
             if(isset($_POST["submit"])){
-                $name = $_POST["name_category"];
-                $publish = "Hiển Thị";
-                $slug = $_POST["slug"];
-                $result = $this->categorymodel->AddCategory($name,$publish,$slug);
-                if($result == true){
-                    $mess = "Thêm Danh Mục Thành Công";
-                   
-                }else{
-                    $mess ="Có Lỗi Xảy Ra Vui Lòng Thử Lại";
+                $info= $_POST["data"];
+                if ($_FILES['img']['size'] == 0 || $_FILES['imgmain']['size']==0){  
+                    {
+                        if($_FILES['img']['size'] == 0){
+                            $mess="Vui long nhap hinh anh";
+                        }
+                        if($_FILES['imgmain']['size'] == 0){
+                            $mess="Vui long nhap hinh anh";
+                        }
+                    }          
+            
                 }
+                else{
+                    $imgmain=$_FILES['imgmain']['name'];
+                    $img=$_FILES['img']['name'];
+                    $this->categorymodel->AddCategory($info['name'],$info['gioitinh'],$info['makichthuoc'],$info['mota'],$img,$imgmain);
+               notifichanger("Them thanh cong");
+                }
+              
+                
+
             }
             $data = [
                 "folder"=>"category",
                 "file"  =>"addcategory",
                 "title" =>"Thêm Mới Danh Mục Sản Phẩm",
-                "mess"  =>$mess];
+                "datakt"=>$datakt,
+                "mess"  =>$mess
+            ];
             $this->ViewAdmin("masterlayout",$data);
         }
 
@@ -213,25 +239,87 @@
             }else{
                 $page = 1;
             }
+            // $img="";
+            // $imgmain="";
+            $info_category= $this->categorymodel->GetDatacategory($id,"mabosuutap");
+            $result=$this->commonmodel->GetData($id,"bosuutap","mabosuutap");
+            $datakt=$this->categorymodel->getkichthuoc();
             $mess="";
             if(isset($_POST['submit'])){
-                $slug = $_POST['slug'];
-                $name = $_POST['name'];
-                $result = $this->categorymodel->EditCategory($name,$slug,$id);
-                if($result != null){
-                    $mess = "Sửa Danh Mục Thành Công!";
-                }else{
-                    $mess = "Sửa Danh Mục Thất Bại!";
+                $info = $_POST["data"];
+                $img1=$_FILES['imgmain']['name'];
+                if ($_FILES['img']['size'] == 0 || $_FILES['imgmain']['size']== 0 ){  
+                    foreach($result as $row){
+                        if($_FILES['img']['size'] == 0){
+                            $img=$row["img"];
+                        }
+                        if($_FILES['imgmain']['size'] == 0){
+                            $img1=$row["imgmain"];
+                            // echo"ko load dc";
+                        }
+                    }          
+            
                 }
+                else{
+                    $img1=$_FILES['imgmain']['name'];
+                    $img=$_FILES['img']['name'];
+                    echo"ko load dc";
+                }
+                // $imgmain=$_POST["imgmain"];
+                $this->categorymodel->EditCategory($info["name"],$info["gioitinh"],$id,$info["makichthuoc"],$info["mota"],$img,$img1);
+                notifichanger("Thay đổi thông tin thành công");
+                header("Refresh: 1; URL=".base."admin/showcategory");
+                
+
             }
-            $result = $this->commonmodel->GetData($id,"category");
+            
             $data = [
                 "folder"      =>"category",
                 "file"        =>"editcategory",
                 "title"       =>"Sửa Danh Mục Sản Phẩm",
-                "data"        =>$result,
+                "info"        =>$info_category,
                 "mess"        =>$mess,
-                "page"        =>$page
+                "page"        =>$page,
+                
+                "datakt" =>$datakt,
+            ];
+            $this->ViewAdmin("masterlayout",$data);
+        }
+        function detailcategory(){
+            
+            $id = $_GET['id'];
+            if(isset($_GET["page"])){
+                $page = $_GET["page"];
+            }else{
+                $page = 1;
+            }
+            $limit = 3;
+            //lấy số trang
+            if(isset($_GET['page'])){
+                $currentpage =  $_GET['page'];
+            }else $currentpage = 1;
+            // hiển thị sản phẩm tương ứng số trang
+            $offset = ($currentpage - 1)*$limit;
+            echo $offset;
+            $totalcategory = $this->categorymodel->GetNumbersp($id);
+            $totalpage = ceil($totalcategory / $limit);
+            $mess = "";
+            $temp = $this->categorymodel->GetCategorysize($limit,$offset,$id);
+            $result = json_decode($temp,true);
+            $info_category= $this->categorymodel->GetDatacategory($id,"mabosuutap");
+            $info_sp=$this->categorymodel->getsanpham($id);
+            //thong tin cua tung san pham trong bo suu tap 
+            // thong tin cua bo suu tap 
+            $data = [
+                "folder"      =>"category",
+                "file"        =>"detailcategory",
+                "title"       =>"Chi tiết Bộ Sưu Tập",
+                "info"        =>$info_category,
+                "info_sp"    =>$result,
+                "page"        =>$page,
+                "total"  =>$totalpage,
+                "currentpage"=>$currentpage,
+                
             ];
             $this->ViewAdmin("masterlayout",$data);
         }
@@ -483,12 +571,8 @@
                     
                 }
            
-                $result = $this->slider->Editslider($id,$name,$slogan,$content,$img);
-                if($result == null){
-                    $mess = "Sửa Thành Công!";
-                }else{
-                    $mess = "Sửa Thất Bại!";
-                }
+                $this->slider->Editslider($id,$name,$slogan,$content,$img);
+                notifichanger("Thay đổi thông tin thành công");
             }
             $result = $this->commonmodel->GetDataslider($id,"slider");
             $data = [
@@ -551,12 +635,12 @@
                 $nameCity1 = $this->informodel->getNameCity($matp);
                 $nameDistrict1 = $this->informodel->getNameDistrict($maqh);
                 $nameWard1 = $this->informodel->getNameWard($xaid);
-                $diachi_dd =$info["address"].", ".$nameCity1[0]["name"].", ".$nameDistrict1[0]["name"].", ".$nameWard1[0]["name"]."";
+                $diachi_dd =$info["address"].", ".$nameWard1[0]["name"].", ".$nameDistrict1[0]["name"].", ".$nameCity1[0]["name"]."";
                
                 
                 $this->informodel->ChangerInfo($id, $info["name"], $info["email"], $info["address"], $info["ward"], $info["district"], $info["city"], $info["phonenumber"], $info["gender"],$diachi_dd);
                 notifichanger("Thay đổi thông tin thành công");
-           
+                header("Refresh: 1; URL=".base."admin/useraccount");
                
 
             }
@@ -623,9 +707,9 @@
                 $page = 1;
             }
             //lấy thông tin trạng thái đơn hàng
-            $status = $this->ordermodel->GetStatusOrder($id_order);
+            $info_order = $this->ordermodel->GetorderByIdadmin($id_order);
             //lấy thông tin chi tiết đơn hàng
-            $order_details = $this->ordermodel->GetOrderDetails($id_order);
+            $order_details = $this->ordermodel->GetOrderDetailsadmin($id_order);
             // lấy thông tin người dùng
             $info_user = $this->ordermodel->GetInfoUserById($id_user); 
             //xử lý khi người dùng bấm nút thanh toán
@@ -642,9 +726,9 @@
                 "mess"  =>$mess,
                 "infouser"=>$info_user,
                 "orderdetails"=>$order_details,
-                "idorder" => $id_order,
+                "id" => $id_order,
                 "page"=>$page,
-                "statusorder"=>$status[0]["status"],
+                "info_order"=>$info_order,
                 
             ];
             $this->ViewAdmin("masterlayout",$data);

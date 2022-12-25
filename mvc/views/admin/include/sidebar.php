@@ -7,7 +7,7 @@
                   </li>
                   <li><a href="<?=base?>admin/useraccount"><i class="fa fa-users"></i>Quản Lí Khách Hàng</a></li>
                   <li><a href="<?=base?>admin/order"><i class="fa fa-shopping-cart"></i>Quản Lí Đơn Hàng</a></li>
-                  <li><a href="<?=base."admin/showcategory"?>"><i class="fa fa-list"></i>Quản Lí Danh Mục</a></li>
+                  <li><a href="<?=base."admin/showcategory"?>"><i class="fa fa-list"></i>Quản Lí Bộ Sưu Tập</a></li>
                   <li><a href="<?=base."admin/showproduct"?>"><i class="fa fa-archive"></i>Quản Lí Sản Phẩm</a></li>
                   <li><a href="<?=base."admin/showslider"?>"><i class="fa fa-slideshare"></i>Quản Lí Slider</a></li>
                   <li><a href="<?=base."admin"?>"><i class="fa fa-bar-chart"></i>Thống kê</a></li>

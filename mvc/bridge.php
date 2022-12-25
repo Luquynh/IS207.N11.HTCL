@@ -8,7 +8,8 @@ require_once "./mvc/core/DB1.php";
 require_once "./mvc/core/config.php";
 require_once "./mvc/core/checkunicode.php";
 require_once "./mvc/core/notification.php";
-require_once "./mvc/models/sendmail.php";
+require_once "./mvc/core/sendmail.php";
+require_once "./mvc/core/invoice.php"
 
 // How controllers call Views & Models
 

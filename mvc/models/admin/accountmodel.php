@@ -44,6 +44,15 @@
             return $result;
         }
 
+        //Lấy danh sách người dùng theo trang
+        function GetEmailAllUser(){
+            $sql = "SELECT * FROM khachhang ";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result =  $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
+        
         //Lấy ra số lượng người dùng để phân trang
         function GetNumberUser(){
             $sql = "SELECT * FROM khachhang";

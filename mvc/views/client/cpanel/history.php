@@ -112,7 +112,7 @@
                         </td> -->
                         <td class="col-infor col-item-center">
                             
-                            <?php if($row["matrangthai"] == "5") {?>
+                            <?php if($row["matrangthai"] == "1") {?>
                                 <span style="margin-bottom: 18px; background-color: red; border: none; cursor: pointer; " class="btn_details_order" onclick="cancelorder()">Hủy Đơn</span>
                                 <button  name="cancel" id="cancel" hidden></button>
                             <?php } else { ?>
@@ -145,7 +145,8 @@
         border: 1px solid #eee;
         border-collapse: collapse;
     }
-    .detail th {
+    .detail th,
+    .infor-content-infor th {
         background-color: #eee;
         padding: 10px;
     }
@@ -154,7 +155,6 @@
     }
 </style>
 <script>
-
 		//Chi tiết hóa đơn
 		$(document).on('click','#order_details',function(){
 			id_order = $(this).attr('id_order')
@@ -204,7 +204,7 @@
 			confirmButtonText: 'Có'
 			}).then((result) => {
 			if (result.isConfirmed) {
-				$( "#buyagain" ).click();
+				$("#buyagain").click();
 			}
 			});
 		}

@@ -241,7 +241,7 @@
         {
             if(isset($_SESSION["info"])){
                 if(isset($_POST["buyagain"])){
-                    unset($_SESSION['cart']);
+                    unset($_SESSION["cart"]);
                     $id_order = $_POST["id"];
                     $id_order = (int) $id_order;
                     $Allorder = $this->ordermodel->GetOrderDetails($id_order);
@@ -284,7 +284,7 @@
                 }
                 if(isset($_POST["cancel"])){
                     $id = $_POST["id"];
-                    $id = (int) $id;
+                    $id = $id;
                     $Allorder = $this->ordermodel->GetOrderDetails($id);
                     foreach($Allorder as $row):
                         $quantity = $this->checkoutmodel->GetQuantityById($row['masp']);

@@ -41,9 +41,12 @@
     <tr>
       <th scope="col">STT</th>
       <th scope="col">Tên Sản Phẩm</th>
+      <th scope="col">Màu</th>
+      <th scope="col">Kích thước</th>
       <th scope="col">Số Lượng</th>
       <th scope="col">Hình Ảnh</th>
-      <th scope="col">Đơn Giá</th>
+       <th scope="col">Đơn Giá</th>
+       <th scope="col">Tổng </th>
     </tr>
   </thead>
   <tbody>
@@ -52,11 +55,37 @@
     <tr>
       <th scope="row"><?=$key+1?></th>
       <td><?=$values["tensp"]?></td>
+      <td><?=$values["mausac"]?></td>
+      <?php 
+      $kichthuoc=40;
+      switch($values["mabosuutap"]){
+          case 1:$kichthuoc= 40;
+          
+          break;
+          case 2: $kichthuoc=38;
+          $color="black";
+          break;
+          case 3:$kichthuoc=42;
+          break;
+          case 4:$kichthuoc=28;
+          break;
+          case 5: $kichthuoc=30;
+          break;
+          default:
+          $kichthuoc=32;
+      }
+
+      
+      
+      ?>
+      <td><?=$kichthuoc?>mm</td>
       <td><?=$values["soluong"]?></td>
       <td style=" font-size: 16px;" class="img_product">
                             <img class="img__product-img" src="<?=base?>public/client/assets/img/<?=$values['img']?>" alt="">
         </td>
       <td><?=number_format ($values["tongtien"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?> VNĐ</td>
+      <td><?=number_format ($values["tongtien"]* $values["soluong"], $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?> VNĐ</td>
+
       
     </tr>
     

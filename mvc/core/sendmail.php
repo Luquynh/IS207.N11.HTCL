@@ -138,4 +138,81 @@ function sendmailspam($email_arr,$tieude, $content, $img){
     $mail->Body = $body;
     $mail->send();
 }
+function sendmailstatus($email, $status, $id_order){
+    $mail = new PHPMailer(true);  
+    
+    $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'buivanthuan1608@gmail.com';                 // SMTP username
+    $mail->Password = 'ockqprqutqxudcyd';                           // SMTP password
+    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 465;  
+    
+    $mail->setFrom('buivanthuan1608@gmail.com', 'Admin Curnon');
+    $mail->addAddress($email);
+
+    $mail->isHTML(true);      
+    
+    if ($status == 0){
+        $subject = 'Thông báo hủy đơn hàng #'.$id_order;
+        $subject= "=?utf-8?b?".base64_encode($subject)."?=";                            // Set email format to HTML
+                                
+        $mail->Subject = $subject;
+        $html= '<h3>MÃ ĐƠN HÀNG #'.$id_order.'</h3>
+                        <p>Đơn hàng #'.$id_order.' của bạn đã bị hủy. <br><br>
+                        Nếu muốn đặt lại đơn hàng này vui lòng truy cập trang web hoặc liên hệ qua email và số điện thoại của chúng tôi.<br>
+                        ' ;
+        $mail->Body = $html;
+        $mail->send();
+    } else if ($status == 5){
+        $subject = 'Xác nhận giao hàng cho đơn hàng #'.$id_order;
+        $subject= "=?utf-8?b?".base64_encode($subject)."?=";                            // Set email format to HTML
+                                
+        $mail->Subject = $subject;
+        $html= '<h3>MÃ ĐƠN HÀNG #'.$id_order.'</h3>
+                        <p>Đơn hàng #'.$id_order.' của bạn đã được xử lý và sẳn sàng để vận chuyện. <br><br>
+                        Các sản phẩm trong đơn hàng của bạn đã sẳn sàng để được vận chuyển, tình hình hiện tại có thể mất nhiều hơn thời gian vận chuyển giao hàng, bạn hãy kiên nhẫn và giữ gìn sức khỏe nhé ^^.<br><br>
+                        Trạng thái đơn hàng: <strong>Đặt hàng thành công.</strong>
+                        </p>' ;
+        $mail->Body = $html;
+        $mail->send();
+    } else if ($status == 2){
+        $subject = 'Cập nhật trạng thái cho đơn hàng #'.$id_order;
+        $subject= "=?utf-8?b?".base64_encode($subject)."?=";                            // Set email format to HTML
+                                
+        $mail->Subject = $subject;
+        $html= '<h3>MÃ ĐƠN HÀNG #'.$id_order.'</h3>
+                        <p>Đơn hàng #'.$id_order.' của bạn đã được cập nhật trạng thái. <br><br>
+                        Trạng thái đơn hàng: <strong>Đã đóng gói.</strong>
+                        </p>';
+        $mail->Body = $html;
+        $mail->send();
+    } else if ($status == 3){
+        $subject = 'Cập nhật trạng thái cho đơn hàng #'.$id_order;
+        $subject= "=?utf-8?b?".base64_encode($subject)."?=";                            // Set email format to HTML
+                                
+        $mail->Subject = $subject;
+        $html= '<h3>MÃ ĐƠN HÀNG #'.$id_order.'</h3>
+                <p>Đơn hàng #'.$id_order.' của bạn đã được cập nhật trạng thái. <br><br>
+                Trạng thái đơn hàng: <strong>Đang vận chuyển.</strong>
+                </p>';
+        $mail->Body = $html;
+        $mail->send();
+    } else if ($status == 4){
+        $subject = 'Cập nhật trạng thái cho đơn hàng #'.$id_order;
+        $subject= "=?utf-8?b?".base64_encode($subject)."?=";                            // Set email format to HTML
+                                
+        $mail->Subject = $subject;
+        $html= '<h3>MÃ ĐƠN HÀNG #'.$id_order.'</h3>
+                <p>Đơn hàng #'.$id_order.' của bạn đã được cập nhật trạng thái. <br><br>
+                Trạng thái đơn hàng: <strong>Đã thanh toán.</strong>
+                </p>';
+        $mail->Body = $html;
+        $mail->send();
+    } 
+    
+}
 ?>

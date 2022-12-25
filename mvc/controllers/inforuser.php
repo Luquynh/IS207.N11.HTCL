@@ -232,15 +232,19 @@
 
         function cancel() {
                 $id = $_GET["id"];
-                echo '<script>alert('.$id.')</script>';
                 $Allorder = $this->ordermodel->GetOrderDetails($id);
                 foreach($Allorder as $row):
                     $quantity = $this->checkoutmodel->GetQuantityById($row['masp']);
                     $quantity_new = $quantity[0]['soluong'] + $row['soluong'];
                     $this->checkoutmodel->UpdateQuantityById($row['masp'], $quantity_new);
                 endforeach;
+                notifichangerstatus("Đã hủy đơn hàng");
                 $this->checkoutmodel->CancelOrder($id);
                 header("location:".base."inforuser/history");
+                $id_user = $_SESSION["info"]["id"];
+                $info_user = $this->informodel->GetInfoUser($id_user);
+                // sendmailstatus($info_user[0]['email'], 0, $id);
+                $text = "Đã hủy đơn hàng #'.$id";
         }
         function history()
         {

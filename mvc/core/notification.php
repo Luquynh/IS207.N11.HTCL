@@ -110,6 +110,23 @@ function notifichanger($text){
 </script>
   ";
 }
+
+//Hủy đơn hàng
+function notifichangerstatus($text){
+  echo "
+  <script>
+  $(document).ready(function(){
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: '".$text."',
+      showConfirmButton: false,
+      timer: 1000
+    })
+  });
+</script>
+  ";
+}
 //thông báo hết số lượng sản phẩm
 function NotifiErrorQuantity($text){
   echo '<script>
@@ -126,13 +143,13 @@ function NotifiErrorQuantity($text){
 </script>';
 }
 //thông báo lỗi góc phải màn hình
-function NotificationRight($text,$position){
+function NotificationRight($text){
   echo '
   <script>
   $(document).ready(function(){
     const Toast = Swal.mixin({
       toast: true,
-      position: "'.$position.'",
+      position: "right",
       showConfirmButton: false,
       timer: 3000,
       timerProgressBar: true,

@@ -78,7 +78,7 @@
                             ?>
   </tbody>
 </table>
-<h3>Thông Tin Đơn Hàng</h3>
+<h3>Thông Tin Đơn Hàng Mã #<?=$data["info_order"][0]["madonhang"]?></h3>
 <table class="table table-striped">
   <thead>
     <tr>

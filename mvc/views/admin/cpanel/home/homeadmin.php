@@ -114,21 +114,40 @@
                         </tr>
                       </thead>
 
-
                       <tbody>
-                        <?php foreach($data["ordernew"] as $key=>$value){ ?>
+                        <?php foreach($data["ordernew"] as $key=>$value){ 
+                          $infor_user = $this->ordermodel->GetInfoUserById($value['makh']);
+                        ?>
                           <tr>
                             <td><?=$key+1?></td>
-                            <td><?=$value["name"]?></td>
-                            <td><?=number_format ($value["total_mony"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?></td>
-                            <td><?=$value["create_at"]?></td>
-                            <?php if($value["status"] == "Chờ Xử Lý"){ ?>
-                              <td style="color: red; font-weight: bold;"><?=$value["status"]?></td>
-                            <?php }else {?>
-                              <td style="color: green; font-weight: bold;"><?=$value["status"]?></td>
-                            <?php }?>
+                            <td><?=$infor_user[0]["tenkh"]?></td>
+                            <td><?=number_format ($value["tonggiatri"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?></td>
+                            <td><?=$value["ngaymua"]?></td>
+                            <?php 
+                              $color="green";
+                              $tentt="";
+                              switch($value["matrangthai"]){
+                                  case 0:$tentt= "Đã hủy";
+                                  $color="red";
+                                  break;
+                                  case 1: $tentt="Chờ xử lý";
+                                  $color="blue";
+                                  break;
+                                  case 2:$tentt="Đã đóng gói";
+                                  break;
+                                  case 3:$tentt="Đang vận chuyển";
+                                  break;
+                                  case 4: $tentt="Đã thanh toán";
+                                  break;
+                                  default:
+                                  $tentt="Đặt hàng thành công";
+                              }
+                            ?>
+                            
+                            <td style="color: <?=$color?>; font-weight: bold;"><?=$tentt?></td>
+                            
                             <td style="padding: unset; padding-left: 5px ;">
-                            <a style="height: 35px;" class="btn btn-primary" href="<?=base?>admin/orderdetails&id_order=<?=$value['id']?>&id_user=<?=$value['user_id']?>">Chi Tiết</a>
+                            <a style="height: 35px;" class="btn btn-primary" href="<?=base?>admin/orderdetails&id_order=<?=$value['madonhang']?>&id_user=<?=$value['makh']?>">Chi Tiết</a>
                             </td>
                           </tr>
                         <?php }?>

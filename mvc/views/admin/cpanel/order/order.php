@@ -1,3 +1,13 @@
+<style>
+    .btn-success-custom {
+        background-color: #28a745;
+        color: #fff;
+}
+.btn-success-custom:hover {
+    opacity: 0.8;
+    color: #fff;
+}
+</style>
 <div class="">
     <div class="page-title">
         <div class="title_left">
@@ -40,6 +50,7 @@
                                     case 3:$tentt="Đang vận chuyển";
                                     break;
                                     case 4: $tentt="Đã thanh toán";
+                                    $color="btn-success-custom";
                                     break;
                                     default:
                                     $tentt="Đặt hàng thành công";

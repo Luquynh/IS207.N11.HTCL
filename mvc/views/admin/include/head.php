@@ -36,7 +36,6 @@
     include "public/client/assets/css/responsive_triet.css";
     include "public/client/assets/css/register.css";
     include "public/client/assets/font/themify-icons/themify-icons.css";
-    
     ?>
     </style>
 </head>

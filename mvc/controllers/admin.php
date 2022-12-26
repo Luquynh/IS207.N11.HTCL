@@ -594,7 +594,7 @@
                 $content = '<h2>'.$result[0]['title'];
                 $content .= '<br>'.$result[0]['subtitle'].'</h2>';
                 $img = $result[0]['banner_img'];
-                $content .= '<img src="cid:'.$img.'"  alt="" style="width: 60%;">';
+                $content .= '<img src="cid:'.$img.'"  alt="" style="width: 100%;">';
                 $email_list = $this->accountmodel->GetEmailAllUser();
                 foreach ($email_list as $key => $row){
                     sendmailspam($row['email'],$tieude,$content,$img);

@@ -268,7 +268,7 @@ use function PHPSTORM_META\type;
                     $kichthuoc = $this->commonmodel->getKichthuoc($makichthuoc);
                     $product = [
                         "id"=>$product_temp[0]["masp"],
-                        "name"=>$product_temp[0]["tensp"],
+                        "name"=>str_replace('_', ' ', $product_temp[0]["tensp"]),
                         "gioitinh"=>$bosuutap[0]['gioitinh'],
                         "price_new"=>$product_temp[0]["gia"] * (1-$product_temp[0]["giamgia"]/100),
                         "price_old"=>$product_temp[0]["gia"],
@@ -319,7 +319,7 @@ use function PHPSTORM_META\type;
                     $kichthuoc = $this->commonmodel->getKichthuoc($makichthuoc);
                     $product = [
                         "id"=>$product_temp[0]["masp"],
-                        "name"=>$product_temp[0]["tensp"],
+                        "name"=>str_replace('_', ' ', $product_temp[0]["tensp"]),
                         "gioitinh"=>$bosuutap[0]['gioitinh'],
                         "price_new"=>$product_temp[0]["gia"] * (1-$product_temp[0]["giamgia"]/100),
                         "price_old"=>$product_temp[0]["gia"],

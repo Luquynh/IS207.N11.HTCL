@@ -76,7 +76,7 @@ function NotifiOrder($text,$url){
 </script>';
 }
 //xử lý đơn hàng trang admin
-function NotifiAddcart($text){
+function NotifiAddcart($text, $url){
   echo '<script>
   $(document).ready(function(){
       Swal.fire({
@@ -88,7 +88,7 @@ function NotifiAddcart($text){
           confirmButtonText: "OK"
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.reload()";
+            window.location.href= "'.base.$url.'";
           }
         });
   });

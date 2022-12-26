@@ -200,7 +200,7 @@
                 $kichthuoc = $this->commonmodel->getKichthuoc($makichthuoc);
                 $product = [
                     "id"=>$product_temp[0]["masp"],
-                    "name"=>$product_temp[0]["tensp"],
+                    "name"=>str_replace('_', ' ', $product_temp[0]["tensp"]),
                     "gioitinh"=>$bosuutap[0]['gioitinh'],
                     "price_new"=>$product_temp[0]["gia"] * (1-$product_temp[0]["giamgia"]/100),
                     "price_old"=>$product_temp[0]["gia"],
@@ -211,23 +211,26 @@
                     "sale"=>$product_temp[0]["giamgia"],
                     "total" => $row['tongtien'] 
                 ];
-                $_SESSION["cart"][$id] = $product;
+                // $_SESSION["cart"][$id] = $product;
 
-                // if($product_temp[0]["soluong"] > 0){
-                //     // if(!isset($_SESSION["cart"][$id])){ //Nếu chưa có sản phẩm $id
-                //     //     $_SESSION["cart"][$id] = $product;
-                //     //     $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["price_new"];
-                //     // }
-                //     // else{
-                //     //     $_SESSION["cart"][$id]["quantity"]+=1;
-                //     //     $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["quantity"] * $_SESSION["cart"][$id]["price_new"];
-                //     // }
-                // }else{
-                //     NotifiErrorQuantity("Sản phẩm đã được bán hết quay lại sau nhé!");
-                // }
+                if($product_temp[0]["soluong"] > 0 && $product_temp[0]["soluong"] >= $product['quantity']){
+                    
+                    $_SESSION["cart"][$id] = $product;
+                    
+                }else{
+                    unset($_SESSION['cart']);
+                    NotifiError("Số lượng sản phẩm không đủ quay lại sau nhé!",'inforuser/history');
+                    // NotifiErrorQuantity("Số lượng sản phẩm không đủ quay lại sau nhé!");
+                }
             endforeach;
-            header("location:".base."checkout");
-            
+            if(isset($_SESSION['cart'])){
+                header("location:".base."checkout");
+            }
+            else{
+                // header("location:".base."inforuser/history");
+                // NotifiErrorQuantity("Số lượng sản phẩm không đủ quay lại sau nhé!");
+                NotifiError("Số lượng sản phẩm không đủ quay lại sau nhé!",'inforuser/history');
+            }
         }
 
         function cancel() {

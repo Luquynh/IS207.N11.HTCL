@@ -61,7 +61,16 @@
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
             return json_decode(json_encode($result),true);
         }
-
+        function GetorderByIdadmin1($id){
+            $sql = "SELECT * FROM donhang as d
+            INNER JOIN trangthaidonhang as t
+            on t.matrangthai=d.matrangthai
+             WHERE d.madonhang= $id";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
 
         //Xử Lý đơn hàng
         function orderprocessing($id){

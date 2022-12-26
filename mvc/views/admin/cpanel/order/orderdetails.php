@@ -171,8 +171,12 @@
         <div class="col-1"></div>
         <div class="col-5">
           <div class="row"></div>
-            <!-- <a href="<?=base?>admin/printinvoice&id_order=<?=$data["info_order"][0]['madonhang']?>&id_user=<?=$data["info_order"][0]['makh']?>" class="btn btn-success btn_update" type="submit" name="submit" style="width: 150px; height: 50px; padding: 5px 8px; color: #fff;">IN HÓA ĐƠN</a> -->
-        </div>
+          <form action="<?=base?>printinvoice/print" method="POST"></form>
+            <input type="text" name="id_order" id="" value="<?=$data["info_order"][0]['madonhang']?>" hidden>
+            <input type="text" name="id_user" id="" value="<?=$data["info_order"][0]['makh']?>" hidden>
+            <a href="http://localhost:3000/xampp/htdocs/curnon/mvc/core/invoice.php" target="_blank" class="btn btn-success btn_update" style="width: 150px; height: 50px; padding: 5px 8px; color: #fff;">IN HÓA ĐƠN</a>
+          </form>
+          </div>
   </div>
 </form>
 

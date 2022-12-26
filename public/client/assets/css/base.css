@@ -34,7 +34,7 @@ html {
     flex-wrap: wrap;
 }
 
-.col {
+.col_footer {
     float: left;
     padding-left: 8px;
     padding-right: 8px;
@@ -47,21 +47,16 @@ html {
 .col-4 {
     width: 25%;
 }
-.row{
+.row_footer{
     margin-left:-8px ;
     /* margin-right: -8px; */
 }
-.row::after{
+.row_footer::after{
     display: block;
     clear: both;
     content: "";
 }
-.col{
-    float: left;
-    padding-left: 8px;
-    padding-right: 8px;
-    
-}
+
 .col-full{
     width: 100%;
 }

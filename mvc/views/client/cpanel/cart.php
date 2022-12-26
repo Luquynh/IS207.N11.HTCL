@@ -88,7 +88,7 @@
                         </div> -->
                         <div class="cart-checkout--footer">
                             <a href="<?=base?>checkout" class="cart-checkout-buy-btn mg-b-10">THANH TOÁN NGAY</a>
-                            <a href="" class="cart-checkout-buy-back mg-b-10" style="font-size: 14px;">
+                            <a href="<?=base?>callMCpromenwo/show/alldh/1" class="cart-checkout-buy-back mg-b-10" style="font-size: 14px;">
                                 <!-- <i class="fa-solid fa-arrow-rotate-left cart-checkout-buy-icon"></i> -->
                                 <!-- <i class="ti-arrow-left cart-checkout-buy-icon"></i> -->
                                 TIẾP TỤC MUA SẮM

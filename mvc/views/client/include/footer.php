@@ -1,28 +1,28 @@
 <div id="footer">
-                <div class="row footer_content">
-                    <div class="col col-fourth footer_box ">
+                <div class="row_footer footer_content">
+                    <div class="col_footer col-fourth footer_box ">
                         <img src="https://curnonwatch.com/_next/static/media/logo.cc5d661a.svg" alt="" >
                         <div class="footer_info mt-16"><a href="" class="footer_link">Về chúng tôi</a></div>
                         <div class="footer_info mt-16"><a href="" class="footer_link">Chính sách vận chuyển</a></div>
                         <div class="footer_info mt-16"><a href="" class="footer_link">Đổi trả & Bảo hành</a></div>
                     </div>
-                    <div class="col col-fourth footer_box mt-32">
+                    <div class="col_footer col-fourth footer_box mt-32">
                         <div class="footer_title">LIÊN LẠC</div>
                         <div class="footer_info mt-16">cskh@curnonwatch.com</div>
                         <div class="footer_info mt-16">0868889103</div>
-                        <div class="row mt-16">
-                            <img src="https://curnonwatch.com/_next/static/media/icon_fb.ba9f5d29.svg" alt="" class="col col-fourth footer_social ">
-                            <img src="https://curnonwatch.com/_next/static/media/icon_insta.9353e397.svg" alt="" class="col col-fourth footer_social ">
-                            <img src="https://curnonwatch.com/_next/static/media/icon_youtube.dee9fd66.svg" alt="" class="col col-fourth footer_social ">
+                        <div class="row_footer mt-16">
+                            <img src="https://curnonwatch.com/_next/static/media/icon_fb.ba9f5d29.svg" alt="" class="col_footer col-fourth footer_social ">
+                            <img src="https://curnonwatch.com/_next/static/media/icon_insta.9353e397.svg" alt="" class="col_footer col-fourth footer_social ">
+                            <img src="https://curnonwatch.com/_next/static/media/icon_youtube.dee9fd66.svg" alt="" class="col_footer col-fourth footer_social ">
                         </div>
                     </div>
-                    <div class="col col-fourth  footer_box mt-32">
+                    <div class="col_footer col-fourth  footer_box mt-32">
                         <div class="footer_title">HANOI STORES</div>
                         <div class="footer_info mt-16">33 Hàm Long, Hoàn Kiếm.</div>
                         <div class="footer_info mt-16">9 B7 Phạm Ngọc Thạch, Đống Đa.</div>
                         <div class="footer_info mt-16">173C Kim Mã, Ba Đình.</div>
                     </div>
-                    <div class="col col-fourth footer_box mt-32">
+                    <div class="col_footer col-fourth footer_box mt-32">
                         <div class="footer_title">TP.HCM STORES</div>
                         <!-- <div class="row mt-16">   -->
                             <!-- <img src="https://curnonwatch.com/_next/static/media/momo.1a8e86d8.png" alt="" class="col col-fourth footer_pay ">

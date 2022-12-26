@@ -56,8 +56,6 @@
                     </div>
 
                     <div class="filter_desktop_boxtext">
-                        <p class="filter_desktop_stock"><input type="checkbox"> Ẩn sản phẩm hết hàng</p>
-                        <p class="filter_desktop_text01"><span></span> sản phẩm phù hợp</p>
                         <button class="filter_desktop_reset">Reset</button>
                     </div>
                 </div>   
@@ -75,7 +73,7 @@
                 <h4 class="h4_watch_item"><?php echo $row["tensp"]?></h4>
                 <div class="div_watch_item"><?php echo number_format($row["gia"], 0,",",".")?> ₫</div>
                 <div style="display: none;" class="tieuxao2"><?php echo $row["mausac"]?></div>
-                <button class="button_watch_item">XEM CHI TIẾT</button>
+                <button class="button_watch_item" id="addtocart" idproduct="<?=$row["masp"]?>">XEM CHI TIẾT</button>
             </a>
             </div>
             <?php endwhile;?>

@@ -97,7 +97,7 @@
 /* hangf cuoi */
 .filter_modal_root .filter_desktop_boxtext {
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     margin: 0 40px;
     padding: 16px 0;
     border-top: 1px solid #d6d6d4;

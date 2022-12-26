@@ -273,16 +273,17 @@
         $id_star = $_POST["star"];
         $sql = "INSERT INTO binhluan (masp, makh, tieude, content, star, tt_xoa) VALUES ('$id_sp', '$id_user', '$tieude','$comment', '$id_star','0')";
         mysqli_query($dt->conn, $sql);
+        header("location:".base."callMCprodetails/show/".$id_sp);
     }
     }
     ?>
     <div id="beforeform">Hãy để lại ý kiến của bạn</div>
-    <form id="formprodetails" method="post" action="">  
+    <form id="formprodetails" method="post" action="" style="width: 60%; ">  
     Tiêu đề: <br>
-    <input type="text" name="tieude">
+    <input type="text" name="tieude" style="width: 50%; padding: 10px; font-size: 14px; border-radius: 3px;">
     <br><br>
     Comment: <br>
-    <textarea name="comment" rows="5" cols="40"></textarea><span class="error"> *<?php echo $commentErr;?></span>
+    <textarea name="comment" rows="5" cols="40" style="width: 50%; padding: 10px; font-size: 14px; border-radius: 3px;"></textarea><span class="error"> *<?php echo $commentErr;?></span>
     <br><br>
     Đánh giá: <br>
     <input type="radio" name="star" value="1"> 1<i class="ti-star"></i>
@@ -290,7 +291,7 @@
     <input type="radio" name="star" value="3"> 3<i class="ti-star"></i>
     <input type="radio" name="star" value="4"> 4<i class="ti-star"></i>
     <input type="radio" name="star" value="5"> 5<i class="ti-star"></i>
-    <input class ="submit" type="submit" name="submit" value="ĐĂNG">  
+    <input style="width: 20%; font-size: 16px; font-weight: 700;" class ="submit" type="submit" name="submit" value="ĐĂNG">  
     </form>
 
     <?php
@@ -311,11 +312,11 @@
     ORDER BY mabl DESC";
     $bl = mysqli_query($dt->conn, $sql);
 ?>
-<div class="cmt">
+<div class="cmt" style="height: 350px; overflow: auto;">
     <?php 
     if (mysqli_num_rows($bl)>0) {
     while($row = mysqli_fetch_array($bl)):?>
-        <div class="cmt_root">
+        <div class="cmt_root" >
             <h1 class="cmt_tenkh"><?php echo $row["tenkh"]?></h1>
             <hr>
             <h2 class="cmt_tieude"><?php echo $row["tieude"]?></h2>

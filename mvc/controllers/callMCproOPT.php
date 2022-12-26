@@ -10,6 +10,10 @@ class callMCproOPT extends Controller{
                 $total+=$values["total"];
             }
         }
+        $sapxep=0;
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $sapxep=$_POST["sapxep"];
+        }
         $data = [
         "avatar_men" => $header->get_avatar("men"),
         "avatar_women" => $header->get_avatar("women"),
@@ -18,7 +22,7 @@ class callMCproOPT extends Controller{
         "gioitinh" => $a->get_gioitinh($tenbst),
         "anhmota" => $a->get_anh_mota($tenbst),
         "mausac" => $a->get_mausac($tenbst),
-        "get_all_spOPT" => $a->get_all_spOPT($tenbst),
+        "get_all_spOPT" => $a->get_all_spOPT($tenbst, $sapxep),
         'total' => $total
     ];
         $this->ViewClient("require_pro_OPT",$data);

@@ -73,8 +73,8 @@
       <th scope="col">Kích thước</th>
       <th scope="col">Số Lượng</th>
       <th scope="col">Hình Ảnh</th>
-       <th scope="col">Đơn Giá</th>
-       <th scope="col">Tổng </th>
+       <th scope="col">Thành tiền</th>
+       
     </tr>
   </thead>
   <tbody>
@@ -112,7 +112,7 @@
                             <img class="img__product-img" src="<?=base?>public/client/assets/img/<?=$values['img']?>" alt="">
         </td>
       <td><?=number_format ($values["tongtien"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?> VNĐ</td>
-      <td><?=number_format ($values["tongtien"]* $values["soluong"], $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?> VNĐ</td>
+      
 
       
     </tr>

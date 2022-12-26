@@ -97,8 +97,6 @@
                     </div>
 
                     <div class="filter_desktop_boxtext">
-                        <p class="filter_desktop_stock"><input type="checkbox"> Ẩn sản phẩm hết hàng</p>
-                        <p class="filter_desktop_text01"><span></span> sản phẩm phù hợp</p>
                         <button class="filter_desktop_reset">Reset</button>
                     </div>
                 </div>   

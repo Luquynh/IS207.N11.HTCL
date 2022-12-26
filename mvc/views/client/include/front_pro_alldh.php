@@ -97,8 +97,6 @@
                     </div>
 
                     <div class="filter_desktop_boxtext">
-                        <p class="filter_desktop_stock"><input type="checkbox"> Ẩn sản phẩm hết hàng</p>
-                        <p class="filter_desktop_text01"><span></span> sản phẩm phù hợp</p>
                         <button class="filter_desktop_reset">Reset</button>
                     </div>
                 </div>   
@@ -118,8 +116,8 @@
                 <div style="display: none;" class="tieuxao1"><?php echo $row["kichthuoc"]?></div>
                 <div style="display: none;" class="tieuxao2"><?php echo $row["mausac"]?></div>
                 <div style="display: none;" class="tieuxao3"><?php echo $row["gioitinh"]?></div>
+                <button class="button_watch_item" id="addtocart" idproduct="<?=$row["masp"]?>">XEM CHI TIẾT</button>
             </a>
-            <button class="button_watch_item">THÊM VÀO GIỎ</button>
             </div>
             <?php endwhile;?>
         </div>

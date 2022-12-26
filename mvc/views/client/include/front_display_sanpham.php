@@ -9,8 +9,8 @@
                     <p class="p_watch_item"><?php echo $row["tenbosuutap"]?></p>
                     <h4 class="h4_watch_item"><?php echo $row["tensp"]?></h4>
                     <div class="div_watch_item"><?php echo number_format($row["gia"], 0,",",".")?> ₫</div>
+                    <button class="button_watch_item" id="addtocart" idproduct="<?=$row["masp"]?>">XEM CHI TIẾT</button>
                 </a>
-                <button class="button_watch_item">THÊM VÀO GIỎ</button>
             </div>
         <?php endwhile;} else {
             echo '<h1 style="margin: 45px 0">Không có kết quả phù hợp <i class="ti-search"></i></h1>';

@@ -75,7 +75,25 @@ function NotifiOrder($text,$url){
     });
 </script>';
 }
-
+//xử lý đơn hàng trang admin
+function NotifiAddcart($text){
+  echo '<script>
+  $(document).ready(function(){
+      Swal.fire({
+          title: "'.$text.'",
+          icon: "success",
+          showCancelButton: false,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "OK"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.reload()";
+          }
+        });
+  });
+</script>';
+}
 function NotifiError($text,$url){
   echo '<script>
   $(document).ready(function(){
@@ -134,6 +152,22 @@ function NotifiErrorQuantity($text){
       Swal.fire({
           title: "'.$text.'",
           icon: "error",
+          showCancelButton: false,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "OK"
+        })
+  });
+</script>';
+}
+
+//thông báo thêm vào giỏ hàng thành công
+function NotifiSuccesAddcart($text){
+  echo '<script>
+  $(document).ready(function(){
+      Swal.fire({
+          title: "'.$text.'",
+          icon: "success",
           showCancelButton: false,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",

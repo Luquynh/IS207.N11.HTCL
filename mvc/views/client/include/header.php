@@ -158,7 +158,7 @@
                                             <div class="cart-mini-item--itemName__text"><?=$values["name"]?></div>
                                             <div class="cart-mini-item--itemName__price">
                                             
-                                                <strong><?=number_format($values["price_old"], 0,",",".")?> ₫</strong>
+                                                <strong><?=number_format($values["price_new"], 0,",",".")?> ₫</strong>
                                             </div>
                                         </div>
                                         <div class="cart-mini-item--itemOption">

@@ -283,14 +283,20 @@ use function PHPSTORM_META\type;
                         if(!isset($_SESSION["cart"][$id])){ //Nếu chưa có sản phẩm $id
                             $_SESSION["cart"][$id] = $product;
                             $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["price_new"];
+                            echo '<script> location.reload() </script>';
+                            echo '<script>location.href="'.base.'cart/showcart"</script>';
                         }
                         else{
-                            $_SESSION["cart"][$id]["quantity"]+=1;
-                            $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["quantity"] * $_SESSION["cart"][$id]["price_new"];
+                            if ($_SESSION['cart'][$id]['quantity'] < $product_temp[0]["soluong"]){
+                                $_SESSION["cart"][$id]["quantity"]+=1;
+                                $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["quantity"] * $_SESSION["cart"][$id]["price_new"];
+                                echo '<script> location.reload() </script>';
+                                echo '<script>location.href="'.base.'cart/showcart"</script>';
+                            } else {
+                                NotifiErrorQuantity('Số lượng sản phẩm không đủ!!');
+                            }
                         }
-                        // echo '<script> location.reload() </script>';
-                        // echo count($_SESSION['cart']);
-                        echo '<script>location.href="'.base.'checkout"</script>';
+
                     }else{
                         NotifiErrorQuantity("Sản phẩm đã được bán hết quay lại sau nhé!");
                     }
@@ -328,13 +334,18 @@ use function PHPSTORM_META\type;
                         if(!isset($_SESSION["cart"][$id])){ //Nếu chưa có sản phẩm $id
                             $_SESSION["cart"][$id] = $product;
                             $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["price_new"];
+                            echo '<script> location.reload() </script>';
                         }
                         else{
-                            $_SESSION["cart"][$id]["quantity"]+=1;
-                            $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["quantity"] * $_SESSION["cart"][$id]["price_new"];
+                            if ($_SESSION['cart'][$id]['quantity'] < $product_temp[0]["soluong"]){
+                                $_SESSION["cart"][$id]["quantity"]+=1;
+                                $_SESSION["cart"][$id]["total"] = $_SESSION["cart"][$id]["quantity"] * $_SESSION["cart"][$id]["price_new"];
+                                echo '<script> location.reload() </script>';
+                            } else {
+                                NotifiErrorQuantity('Số lượng sản phẩm không đủ!!');
+                            }
                         }
-                        echo '<script> location.reload() </script>';
-                        // echo count($_SESSION['cart']);
+                        
                     }else{
                         NotifiErrorQuantity("Sản phẩm đã được bán hết quay lại sau nhé!");
                     }

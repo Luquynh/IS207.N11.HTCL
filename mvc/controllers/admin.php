@@ -105,7 +105,7 @@
             //lấy ra số lượng tất cả các đơn hàng
            $countallorder = $this->homemodel->CountAllOrder();
            //lấy ra tổng doanh thu của web
-           $totalmony = $this->homemodel->CountAllMony();
+           $totalmony = $this->homemodel->CountAllMonyinmonth();
            //lấy ra tổng các đơn hàng đã giao thành công
            $ordersuccess = $this->homemodel->CountOrderSuccess();
            //lấy ra tổng số lượng thành viên
@@ -116,6 +116,8 @@
                "folder"=>"home",
                "file"  =>"homeadmin",
                "totalorder"=>$countallorder[0]["tong"],
+               "month"=>$totalmony[0]["month"],
+               "year"=>$totalmony[0]["year"],
                "totalmony"=>$totalmony[0]["tong"],
                "ordersuccess"=>$ordersuccess[0]["tong"],
                "ordernew"=>$ordernew,

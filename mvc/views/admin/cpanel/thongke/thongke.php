@@ -21,8 +21,10 @@ $result = $statement->fetchAll();
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script> 
     </head>  
     <body> 
+    
         <br /><br />
-        <div class="container">  
+        <div class="container"> 
+        <a class="btn btn-primary" href="http://localhost/curnon/admin/home">Trở Về</a>  
             <h3 >Bảng Doanh Thu</h3>  
             <br />  
             
@@ -49,7 +51,8 @@ $result = $statement->fetchAll();
                     <div id="chart_area" style="width: 1000px; height: 620px;"></div>
                 </div>
             </div>
-        </div>  
+        </div>
+         
     </body>  
 </html>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

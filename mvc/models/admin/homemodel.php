@@ -17,7 +17,14 @@
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         }
-
+        //DEM tong doanh thu trong thang cua web
+        function CountAllMonyinmonth(){
+            $sql = "SELECT profit as tong,year,month FROM doanhthu WHERE mathongke= 1";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
         //đếm tổng số đơn hàng đã giao
         function CountOrderSuccess(){
             $sql = "SELECT count(*) as tong FROM donhang WHERE matrangthai= 4";

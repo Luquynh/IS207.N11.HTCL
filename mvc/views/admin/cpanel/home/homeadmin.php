@@ -60,7 +60,7 @@
                     </div>
                     <div class="count"><?=$data["totaluser"]?></div>
 
-                    <h3>Thành Viên</h3>
+                    <h3>Thành Viên đang hoạt động</h3>
                 </div>
                 </div>
                 <div class="animated flipInY col-lg-3 col-md-4 col-sm-6  ">
@@ -69,7 +69,7 @@
                     </div>
                     <div class="count"><?=number_format ($data["totalmony"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?></div>
 
-                    <h3>Doanh Thu</h3>
+                    <h3>Doanh Thu trong <?=$data["month"]?>/<?=$data["year"]?></h3>
                 </div>
                 </div>
                 <div class="animated flipInY col-lg-3 col-md-4 col-sm-6  ">

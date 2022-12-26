@@ -23,7 +23,10 @@
                 <thead>
                     <tr class="headings">
                         <th class="column-title">Tên Sản Phẩm</th>
-                        <th class="column-title">Danh Mục</th>
+                        <th class="column-title">Bộ sưu tập</th>
+                        <th class="column-title">Màu sắc</th>
+                        <th class="column-title">Kích thước</th>
+
                         <th class="column-title">Hình Ảnh</th>
                         <th class="column-title">Giá</th>
                         <th class="column-title">Số Lượng</th>
@@ -36,11 +39,36 @@
                     <?php foreach($data["data"] as $key => $values){ $stt = ($data['currentpage']-1)*3+($key+1)?>
                     <tr class="even pointer">
                         <td style=" font-size: 16px;" class="name__product"><?=$values['tensp']?></td>
-                        <td style=" font-size: 16px;" class="price__product"><?=$values['mabosuutap']?></td>
+                        <td style=" font-size: 16px;" class="price__product"><?=$values['tenbosuutap']?></td>
+                        <td style=" font-size: 16px;" class="price__product"><?=$values['mausac']?></td>
+                        <?php 
+                        $kichthuoc=40;
+                        switch($values["makichthuoc"]){
+                            case 1:$kichthuoc= 40;
+                            
+                            break;
+                            case 2: $kichthuoc=38;
+                            $color="black";
+                            break;
+                            case 3:$kichthuoc=42;
+                            break;
+                            case 4:$kichthuoc=28;
+                            break;
+                            case 5: $kichthuoc=30;
+                            break;
+                            default:
+                            $kichthuoc=32;
+                        }
+
+      
+      
+                    ?>
+                        <td style=" font-size: 16px;" class="price__product"><?=$kichthuoc?>mm</td>
+
                         <td style=" font-size: 16px;" class="img_product">
                             <img class="img__product-img" src="<?=base?>public/client/assets/img/<?=$values['img']?>" alt="">
                         </td>
-                        <td><?=$values['gia']?></td>
+                        <td><?=number_format ($values['gia'], $decimals = 0 , $dec_point = "," , $thousands_sep = "." )?> VNĐ</td>
                         <td><?=$values['soluong']?></td>
                         <td>
                             <a style="height: 35px;" class="btn btn-success" href="<?=base?>admin/editproduct&id=<?=$values['masp']?>&page=<?=$data["currentpage"]?>">Sửa</a>

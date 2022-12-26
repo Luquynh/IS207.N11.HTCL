@@ -3,7 +3,7 @@
     class categorymodel extends DB{
         //Hàm lấy tất cả danh mục sản phẩm
         function GetCategory(){
-            $sql = "SELECT * FROM category ";
+            $sql = "SELECT * FROM bosuutap WHERE tt_xoa=0";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -52,7 +52,7 @@
         }
         //Hàm lấy danh mục sản phẩm theo id
         function GetCategoryId($id){
-            $sql = "SELECT * FROM category WHERE mabosuutap = '$id' and tt_xoa = 0";
+            $sql = "SELECT * FROM bosuutap WHERE mabosuutap = '$id' and tt_xoa = 0";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);

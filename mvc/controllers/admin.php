@@ -380,20 +380,23 @@
                 if($product["sale"] == ""){
                     $notifi["sale"] = "Vui Lòng Nhập % Giảm Giá";
                 }
+                if($product["mausac"] == ""){
+                    $notifi["mausac"] = "Vui Lòng Nhập % Giảm Giá";
+                }
                 if($notifi == null){
                     $img_product = $_FILES["img"]["name"];
-                    $checkUpLoad = UpLoadFiles(urlFileProduct,$_FILES);
-                    if($checkUpLoad != 1){
-                        $notifi["img"] = $checkUpLoad["exits"];
-                    }
+                    // $checkUpLoad = UpLoadFiles(urlFileProduct,$_FILES);
+                    // if($checkUpLoad != 1){
+                    //     $notifi["img"] = $checkUpLoad["exits"];
+                    // }
                 }
                 //lấy tên danh mục sản phẩm mà người quản trị chọn để lưu vào name_category
-                $temp = $this->categorymodel->GetCategoryId($product["id_category"]);
-                $name_category = json_decode($temp,true);
+                
+                
                 if($notifi == null){
-                    $result = $this->productmodel->AddProduct($product["name"],$product["price"],$img_product,$product["quantity"],$product["decs"],$product["company"],$product["id_category"],$name_category[0]["name"],$product["sale"]);
+                    $result = $this->productmodel->AddProduct($product["name"],$product["price"],$img_product,$product["quantity"],$product["decs"],$product["id_category"],$product["sale"],$product["mausac"],$product["loaisp"]);
                     if($result == true){
-                        $addsuccess = "Thêm Sản Phẩm Thành Công!";
+                        notifichanger("Thêm thành công!");
                     }
                 };
             }
@@ -426,7 +429,7 @@
             $totalproduct = $this->commonmodel->GetNumber("sanpham");
             $totalpage = ceil($totalproduct / $limit);
             $offset = ($currentpage - 1) * $limit;
-            $result = json_decode($this->commonmodel->GetCategoryPage($limit,$offset,"sanpham","masp"),true);
+            $result = json_decode($this->productmodel->GetCategoryPage($limit,$offset,"masp"),true);
             $totalpage = ceil($totalproduct / $limit);
             $data = [
                 "folder"      =>"product",
@@ -461,6 +464,7 @@
             $id = $_GET['id'];
             //lấy sản phẩm cần sửa
             $product = $this->commonmodel->GetProductById($id);
+            $name_category = $this->productmodel->GetbosuutapById($id);
             // lấy danh sách danh mục sản phẩm
             $category = json_decode($this->categorymodel->GetCategory(),true);
             $notifi = [];
@@ -470,20 +474,19 @@
                     $notifi ["img"] = "Vui Lòng Chọn Ảnh Sản Phẩm";
                 }else{
                     $img_product = $_FILES["img"]["name"];
-                    $checkUpLoad = UpLoadFiles(urlFileProduct,$_FILES);
-                    if($checkUpLoad != 1){
-                        $notifi["img"] = $checkUpLoad["exits"];
-                    }
+                    // $checkUpLoad = $this->commonmodel->UpLoadFiles(urlFileProduct,$_FILES);
+                    // if($checkUpLoad != 1){
+                    //     $notifi["img"] = $checkUpLoad["exits"];
+                    // }
                 }
                 // kiểm tra lỗi
                 if($notifi == null){
-                    //lấy tên danh mục sản phẩm mà người quản trị chọn để lưu vào name_category
-                    $temp = $this->categorymodel->GetCategoryId($editproduct["id_category"]);
-                    $name_category = json_decode($temp,true);
-                    $result = $this->productmodel->UpdateProductById($id,$editproduct["name"],$editproduct["price"],$img_product,$editproduct["quantity"],$editproduct["decs"],$editproduct["company"],$editproduct["id_category"],$name_category[0]["name"]);
+                    
+                    // $name_category = json_decode($temp,true);
+                    $result = $this->productmodel->UpdateProductById($id,$editproduct["tensp"],$editproduct["gia"],$img_product,$editproduct["soluong"],$editproduct["mota"],$editproduct["mabosuutap"]);
                     if($result != null){
                         notification("success","Sửa Sản Phẩm Thành Công","","","false","");
-                        header('Refresh: 1; URL='.base.'showproduct');
+                        header('Refresh: 1; URL='.base.'admin/showproduct');
                     }
                 }
             }
@@ -493,6 +496,7 @@
                 "file"  =>"editproduct",
                 "title" =>"Sửa Sản Phẩm",
                 "product"=>$product,
+                "tenbosuutap"=>$name_category,
                 "category"=>$category,
                 "notifi"=>$notifi,
                 "page"  =>$page
@@ -963,6 +967,23 @@
             $order_details = $this->ordermodel->GetOrderDetailsadmin($id_order);
             // lấy thông tin người dùng
             $info_user = $this->ordermodel->GetInfoUserById($id_user); 
+        }
+        function thongke(){
+            
+            $data = [
+                "folder"=>"thongke",
+                "file"  =>"Thong ke",
+                "title" =>"Quản Lí Đơn Hàng",
+                // "mess"  =>$mess,
+                // "infouser"=>$info_user,
+                // "orderdetails"=>$order_details,
+                // "id" => $id_order,
+                // "page"=>$page,
+                // "info_order"=>$info_order,
+                // "info_tt"=>$info_tt
+                
+            ];
+            $this->ViewAdmin("masterlayout",$data);
         }
     }
 ?>

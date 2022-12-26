@@ -1,3 +1,28 @@
+<style>
+    .form-control{
+    height: calc(1.5em + 1.5rem + 2px);
+    font-size: 1.5rem;
+}
+    label{
+        font-size: 17px;
+    }
+    .gender .gender__input{
+        width: 20%;
+    }
+    .btn_update{
+        padding: 6px 70px;
+        margin-left: 50%;
+        font-size: 18px;
+        margin-top:90px;
+    }
+    .btn_update{
+        padding: 6px 70px;
+        margin-left: 50%;
+        font-size: 18px;
+        margin-top:60px;
+    }
+    
+</style>      
 <div class="">
     <div class="page-title">
         <div class="title_left">
@@ -22,13 +47,18 @@
                         <select class="form-control" name="product[id_category]">
                             <option value="true">-----Chọn Danh Mục Sản Phẩm-----</option>
                             <?php foreach($data["data"] as $key=>$values){?>
-                            <option value="<?=$values["id"]?>"><?=$values["name"]?></option>
+                            <option value="<?=$values["mabosuutap"]?>"><?=$values["tenbosuutap"]?></option>
                             <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="">Nhà Sản Xuất</label>
-                        <input id="name" type="text" class="form-control" name="product[company]">
+                        <label for="">Chọn Loại Sản Phẩm</label>
+                        <select class="form-control" name="product[loaisp]">
+                            <option value="true">-----Chọn Loại Sản Phẩm-----</option>
+                           <option value="1">Đồng hồ</option>
+                           <option value="2">Dây Đồng hồ</option>
+
+                        </select>
                     </div>
                     
                 </div>
@@ -48,6 +78,11 @@
                         <label for="">Số Lượng</label>
                         <input id="name" type="number" class="form-control" name="product[quantity]">
                     </div>
+                    <div class="form-group">
+                        <label for="">Màu Sắc</label>
+                        <h6 class="text-danger"><?php if(isset($data["notifi"]["mausac"])){}?> </h6>
+                        <input id="name" type="text" class="form-control" name="product[mausac]" >
+                    </div>
                 </div>
                 <div class="col-2">
                     <div class="form-group">
@@ -62,10 +97,11 @@
                         <textarea style="height: 100px;" id="name" type="text" class="form-control" name="product[decs]"></textarea>
                     </div>
                 </div>
-                <div class="col-12">
-                    <div class="form-group">
-                        <button class="btn btn-primary" type="submit" name="submit">Thêm Sản Phẩm</button>
-                    </div>
+                <div class="row" style="background: #F7F7F7; padding:5px;" >
+                            <div class="col-6"></div>
+                            <div class="col-6">
+                                <input class="btn btn-primary btn_update" type="submit" value="Thêm" name="submit" >
+                            </div>
                 </div>
             </div>
         </form>

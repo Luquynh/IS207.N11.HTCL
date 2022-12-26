@@ -1,3 +1,31 @@
+<?php 
+$banner=$data["product"][0]["img"];
+?>
+<style>
+    .form-control{
+    height: calc(1.5em + 1.5rem + 2px);
+    font-size: 1.5rem;
+}
+    label{
+        font-size: 17px;
+    }
+    .gender .gender__input{
+        width: 20%;
+    }
+    .btn_update{
+        padding: 6px 70px;
+        margin-left: 50%;
+        font-size: 18px;
+        margin-top:90px;
+    }
+    .btn_update{
+        padding: 6px 70px;
+        margin-left: 50%;
+        font-size: 18px;
+        margin-top:60px;
+    }
+    
+</style>                     
 <div class="">
     <div class="page-title">
         <div class="title_left">
@@ -14,25 +42,25 @@
                     <div class="form-group">
                         <label for="">Tên Sản Phẩm</label>
                         <h6 class="text-danger"><?php if(isset($data["notifi"]["name"])){echo $data["notifi"]["name"];}?> </h6>
-                        <input id="name" type="text" class="form-control" name="product[name]" value="<?=$data["product"][0]["name"]?>">
+                        <input id="name" type="text" class="form-control" name="product[tensp]" value="<?=$data["product"][0]["tensp"]?>">
                    
                     </div>
-                  
+                   
                     <div class="form-group">
                         <label for="">Chọn Danh Mục Sản Phẩm</label>
                         <h6 class="text-danger"><?php if(isset($data["notifi"]["category"])){echo $data["notifi"]["category"];}?> </h6>
-                        <select class="form-control" name="product[id_category]">
-                            <option value="<?=$data["product"][0]["category_id"]?>"><?=$data["product"][0]["name_category"]?></option>
+                        <?php 
+                            
+                        ?>
+                        <select class="form-control" name="product[mabosuutap]">
+                            <option value="<?=$data["product"][0]["mabosuutap"]?>"><?=$data["tenbosuutap"][0]["tenbosuutap"]?></option>
                             <?php foreach($data["category"] as $key=>$values){?>
-                            <option value="<?=$values["id"]?>"><?=$values["name"]?></option>
+                            <option value="<?=$values["mabosuutap"]?>"><?=$values["tenbosuutap"]?></option>
                             <?php } ?>
                         </select>
                     </div>
                    
-                    <div class="form-group">
-                        <label for="">Nhà Sản Xuất</label>
-                        <input id="name" type="text" class="form-control" name="product[company]" value="<?=$data["product"][0]["production_company"]?>">
-                    </div>
+                  
                     
                 </div>
                 
@@ -42,38 +70,58 @@
                     <div class="form-group">
                         <label for="">Giá Sản Phẩm</label>
                         <h6 class="text-danger"><?php if(isset($data["notifi"]["price"])){echo $data["notifi"]["price"];}?> </h6>
-                        <input id="" type="number" class="form-control" name="product[price]" value="<?=$data["product"][0]["price"]?>">
+                        <input id="" type="number" class="form-control" name="product[gia]" value="<?=$data["product"][0]["gia"]?>">
                     </div>
                     <div class="form-group">
                         <label for="">Giảm Giá</label>
                         <h6 class="text-danger"><?php if(isset($data["notifi"]["sale"])){echo $data["notifi"]["sale"];}?> </h6>
-                        <input id="name" type="number" class="form-control" name="product[sale]" value="<?=$data["product"][0]["sale_product"]?>" placeholder="%">
+                        <input id="name" type="number" class="form-control" name="product[giamgia]" value="<?=$data["product"][0]["giamgia"]?>" placeholder="%">
                     </div>
                     <div class="form-group">
                         <label for="">Số Lượng</label>
                         <h6 class="text-danger"><?php if(isset($data["notifi"]["quantity"])){echo $data["notifi"]["quantity"];}?> </h6>
-                        <input id="name" type="number" class="form-control" name="product[quantity]" value="<?=$data["product"][0]["quantity"]?>">
+                        <input id="name" type="number" class="form-control" name="product[soluong]" value="<?=$data["product"][0]["soluong"]?>">
                     </div>
                 </div>
                 <div class="col-2">
                 <div class="form-group">
                         <label for="">Hình Ảnh</label>
                         <h6 class="text-danger"><?php if(isset($data["notifi"]["img"])){echo $data["notifi"]["img"];}?> </h6>
-                        <input id="name" type="file" accept=".jpg, .png" class="" name="img">
+                         <div class="img_product" style=" font-size: 16px; width: 20%;">
+                            <img id ="image" alt="" style=" width: 100px;" >
+            
+                        </div>
+                        <input id="img" type="file" class="" name="img" >
                     </div>
                 </div>
                 <div class="col-7">
                     <div class="form-group">
                     <label for="">Mô Tả</label>
-                        <textarea style="height: 100px;" id="name" type="text" class="form-control" name="product[decs]" ><?=$data["product"][0]["descrip"]?></textarea>
+                        <textarea style="height: 100px;" id="name" type="text" class="form-control" name="product[mota]" ><?=$data["product"][0]["mota"]?></textarea>
                     </div>
                 </div>
-                <div class="col-12">
-                    <div class="form-group">
-                        <button class="btn btn-primary" type="submit" name="submit">Cập Nhật</button>
-                    </div>
+                
+                <div class="row" style="background: #F7F7F7; padding:5px;" >
+                            <div class="col-6"></div>
+                            <div class="col-6">
+                                <input class="btn btn-success btn_update" type="submit" value="Cập nhật" name="submit" >
+                            </div>
                 </div>
             </div>
         </form>
     </div>
 </div>
+<script>
+ $("#image").attr("src","<?=imgclient?><?=$banner?>");
+   
+
+    const file = document.querySelector("#img")
+    file.addEventListener("change", function() {
+    const reader = new FileReader()
+    reader.addEventListener("load", () => {
+        document.querySelector("#image").src = reader.result
+    })
+    reader.readAsDataURL(this.files[0]);
+    })
+
+</script>

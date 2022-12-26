@@ -19,7 +19,7 @@
             $result = $query->rowCount();
             return $result;
         }
-
+        
         //Lấy thông tin khách hàng theo madonhang(để làm trang chi tiết đơn hàng)
         function GetInfoUserById($id){
             $sql = "SELECT * FROM khachhang as k INNER JOIN donhang as d  ON

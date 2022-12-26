@@ -10,7 +10,7 @@
                   <li><a href="<?=base."admin/showcategory"?>"><i class="fa fa-list"></i>Quản Lí Bộ Sưu Tập</a></li>
                   <li><a href="<?=base."admin/showproduct"?>"><i class="fa fa-archive"></i>Quản Lí Sản Phẩm</a></li>
                   <li><a href="<?=base."admin/showslider"?>"><i class="fa fa-slideshare"></i>Quản Lí Slider</a></li>
-                  <li><a href="<?=base."admin"?>"><i class="fa fa-bar-chart"></i>Thống kê</a></li>
+                  <li><a href="<?=base."admin/thongke"?>"><i class="fa fa-bar-chart"></i>Thống kê</a></li>
 
                   <li><a href="<?=base?>admin/changepass"><i class="fa fa-cog"></i>Đổi Mật Khẩu</a></li>
                   

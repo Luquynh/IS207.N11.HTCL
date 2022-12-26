@@ -587,26 +587,25 @@
         }
 
         // Spam mail quãng cáo với nội dung của slider
-        // function spamquangcao(){
-        //     $id = $_GET['id'];
-        //     $result = $this->commonmodel->GetDataslider($id,"slider");
-        //     $mess="";         
-        //         $tieude = $result[0]['pretitle'];
-        //         $content = $result[0]['title'];
-        //         $content .= '<br>'.$result[0]['title'];
-        //         $img = $result[0]['banner_img'];
-        //         $content .= '<img src="cid:'.$img.'"  alt="" style="width: 100%;">';
-        //         $email_list = $this->accountmodel->GetEmailAllUser();
-        //         $email_arr = [];
-        //         foreach ($email_list as $key => $row){
-        //             array_push(strval($row['email']));
-        //         };
-        //         // $this->slider->Editslider($id,$name,$slogan,$content,$img);
-        //         sendmailspam($email_arr,$tieude,$content,$img);
-        //         notifichanger("Gửi quãng cáo thành công");
-        //         header("location:".base."admin/showslider");
+        function spamquangcao(){
+            $id = $_GET['id'];
+            $result = $this->commonmodel->GetDataslider($id,"slider");
+            $mess="";         
+                $tieude = $result[0]['pretitle'];
+                $content = '<h2>'.$result[0]['title'];
+                $content .= '<br>'.$result[0]['subtitle'].'</h2>';
+                $img = $result[0]['banner_img'];
+                $content .= '<img src="cid:'.$img.'"  alt="" style="width: 60%;">';
+                $email_list = $this->accountmodel->GetEmailAllUser();
+                foreach ($email_list as $key => $row){
+                    sendmailspam($row['email'],$tieude,$content,$img);
+                };
+                // $this->slider->Editslider($id,$name,$slogan,$content,$img);
+                // header("location:".base."admin/showslider");
+                // notifichanger("Gửi quãng cáo thành công");
+                NotifiOrder("Đã gửi quảng cáo cho toàn bộ khách hàng","admin/showslider");
             
-        // }
+        }
         //Quản lí tài khoản người dùng
         function useraccount(){
             $gioitinh="";

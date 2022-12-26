@@ -111,7 +111,7 @@ function sendpass($email,$name, $pass){
 }
 
 //Gửi mail spam quãng cáo
-function sendmailspam($email_arr,$tieude, $content, $img){
+function sendmailspam($email,$tieude, $content, $img){
     $mail = new PHPMailer(true);  
     
     $mail->SMTPDebug = 0;                                 // Enable verbose debug output
@@ -125,9 +125,8 @@ function sendmailspam($email_arr,$tieude, $content, $img){
     $mail->Port = 465;  
     
     $mail->setFrom('buivanthuan1608@gmail.com', 'Admin Curnon');
-    for($i = 0; $i < count($email_arr); $i ++){
-        $mail->addAddress($email_arr[$i]);
-    }
+    $mail->addAddress($email);
+    
 
     $mail->isHTML(true);      
     $subject= "=?utf-8?b?".base64_encode($tieude)."?=";                            // Set email format to HTML

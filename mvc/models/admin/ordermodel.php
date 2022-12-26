@@ -61,6 +61,13 @@
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
             return json_decode(json_encode($result),true);
         }
+        //Update order information
+        function updateorder($id,$sodt,$diachi){
+            $sql = "UPDATE donhang SET sodt='$sodt',diachi='$diachi' WHERE madonhang = '$id'";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            return $query;
+        }
 
 
         //Xử Lý đơn hàng

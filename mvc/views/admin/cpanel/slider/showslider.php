@@ -62,7 +62,7 @@
                         <td>
                             <a style="height: 35px" class="btn btn-danger submit" href="javascrip:void(0)" onclick="del(<?=$values['maslider']?>,'<?=$values['pretitle'] ?>','<?=base.'admin/deleteslider/'?>','slider ')"  >Xóa</a> 
                             <a style="height: 35px;" class="btn btn-success" href="<?=base?>admin/editslider&id=<?=$values['maslider']?>">Sửa</a>
-                            <a style="height: 35px;" class="btn btn-primary" href="<?=base?>admin/spamquangcao&id=<?=$values['maslider']?>">Gửi quãng cáo</a>
+                            <a style="height: 35px;" class="btn btn-primary" href="<?=base?>admin/spamquangcao&id=<?=$values['maslider']?>">Gửi quảng cáo</a>
                         </td>
                     </tr>
                     <?php } ?>

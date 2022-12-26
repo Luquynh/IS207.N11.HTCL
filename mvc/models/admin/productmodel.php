@@ -10,7 +10,7 @@
         }
         //Xóa sản phẩm
         function DeleteProduct($id){
-            $sql = "UPDATE sanpham SET tt_xoa = 1 WHERE id = '$id'";
+            $sql = "UPDATE sanpham SET tt_xoa = 1 WHERE masp = '$id'";
             $query = $this->conn->prepare($sql);
             $query->execute();
             return $query;
@@ -61,12 +61,12 @@
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
             return json_decode(json_encode($result),true);
         }
-        //lấy số lượng sản phẩm theo danh mục
-        function GetNumber($id){
-            $sql = "SELECT * FROM product where category_id = $id and status_delete = 0";
+        //lấy số lượng sản phẩm theo id
+        function GetNumberspid($id){
+            $sql = "SELECT soluong FROM sanpham where masp = $id ";
             $query = $this->conn->prepare($sql);
             $query->execute();
-            $result =  $query->rowCount();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         }
         // cập nhật lại sản phẩm sau khi sửa

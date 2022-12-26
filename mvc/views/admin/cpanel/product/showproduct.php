@@ -22,6 +22,8 @@
             <table class="table table-striped jambo_table bulk_action">
                 <thead>
                     <tr class="headings">
+                    <th class="column-title">STT</th>
+
                         <th class="column-title">Tên Sản Phẩm</th>
                         <th class="column-title">Bộ sưu tập</th>
                         <th class="column-title">Màu sắc</th>
@@ -38,6 +40,7 @@
                 <tbody>
                     <?php foreach($data["data"] as $key => $values){ $stt = ($data['currentpage']-1)*3+($key+1)?>
                     <tr class="even pointer">
+                        <td style=" font-size: 16px;" class=""><?=($data["currentpage"]-1)*4+$key+1?></td>
                         <td style=" font-size: 16px;" class="name__product"><?=$values['tensp']?></td>
                         <td style=" font-size: 16px;" class="price__product"><?=$values['tenbosuutap']?></td>
                         <td style=" font-size: 16px;" class="price__product"><?=$values['mausac']?></td>

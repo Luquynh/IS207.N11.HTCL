@@ -11,6 +11,7 @@
         var $accountmodel;
         var $informodel;
         var $full_address;
+        var $thongkemodel;
         function __construct()
         {
             $this->accountmodel = $this->ModelAdmin("accountmodel");
@@ -23,6 +24,7 @@
             $this->ordermodel=$this->ModelAdmin("ordermodel");
             $this->informodel = $this->ModelClient("informodel");
             $this->full_address = $this->ModelClient("addressmodel");
+            $this->thongkemodel=$this->ModelAdmin("thongkemodel");
             //check người dùng đã đăng nhập hay chưa hoặc đã đăng nhập trước đó mà chưa đăng xuất
             
             
@@ -742,9 +744,29 @@
                 $matt=$_POST['matt'];
                 $this->ordermodel->updatestatus($id_order,$matt);
                 // sendmail();
-                sendmailstatus($info_user[0]["email"], $matt, $id_order);
+                // sendmailstatus($info_user[0]["email"], $matt, $id_order);
+                if($matt==4){
+                    $this->ordermodel->updatengaygiao($id_order);
+                    $year=$this->ordermodel->GetyearOrder($id_order);
+                    $month=$this->ordermodel->GetMonthOrder($id_order);
+                    $profit_now=$this->thongkemodel->getdoanhthu($month[0]["month"],$year[0]["year"]);
+                    if($profit_now == null){
+                        $doanhthuthang=0;
+                        $profit=$info_order[0]["tonggiatri"]+$doanhthuthang;
+                        $this->thongkemodel->addthongke($year[0]["year"],$month[0]["month"],$profit);
+                    }
+                    else{
+                        $doanhthuthang=$profit_now[0]["profit"];
+                        
+                        $profit=$info_order[0]["tonggiatri"]+$doanhthuthang;
+                        $this->thongkemodel->Updatedoanhthu($year[0]["year"],$month[0]["month"],$profit);
+                    }
+                    
+                    
+                    
+                }
                 notification("success","Thành Công","Đơn hàng đã được xử lý","","false","#3085d6");
-                header('Refresh: 1; URL='.base.'admin/order');
+                // header('Refresh: 1; URL='.base.'admin/order');
             }
             $data = [
                 "folder"=>"order",
@@ -761,7 +783,7 @@
             ];
             $this->ViewAdmin("masterlayout",$data);
         }
-        
+        //Chinh sua thong tin order 
         function editorder(){
             $id_user = $_GET["id_user"];
             $id_order = $_GET["id_order"];
@@ -817,16 +839,7 @@
             $data = [
                 "folder"=>"thongke",
                 "file"  =>"thongke",
-                "title" =>"Quản Lí Đơn Hàng",
-                // "mess"  =>$mess,
-                // "infouser"=>$info_user,
-                // "orderdetails"=>$order_details,
-                // "id" => $id_order,
-                // "page"=>$page,
-                // "info_order"=>$info_order,
-                // "info_tt"=>$info_tt
-                
-            ];
+                 ];
             $this->ViewAdmin("masterlayout",$data);
         }
     }

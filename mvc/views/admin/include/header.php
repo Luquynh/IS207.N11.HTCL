@@ -31,7 +31,8 @@
     <!-- csss -->
     <link href="public/build/css/page.css" rel="stylesheet">
     <link href="public/admin/assets/css/main.css" rel="stylesheet">
-
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>  -->
     
     <!-- jQuery -->
     <script src="public/vendors/jquery/dist/jquery.min.js"></script>

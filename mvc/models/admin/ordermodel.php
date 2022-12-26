@@ -4,7 +4,7 @@
         function GetAllOrder($limit,$offset){
             $sql = "SELECT * FROM donhang as d
             INNER JOIN khachhang as k on k.makh=d.makh
-            ORDER BY 'madonhang' ASC LIMIT $limit OFFSET $offset";
+            ORDER BY 'madonhang' DESC LIMIT $limit OFFSET $offset";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -69,9 +69,30 @@
             $query->execute();
             return $query;
         }
+        //update ngaygiao
+        function updatengaygiao($id){
+            $sql = "UPDATE donhang SET ngaygiao=CURRENT_TIME() WHERE madonhang = '$id'";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            return $query;
+        }
+        //Lay thang va nam cua don hang
+        
+        function GetyearOrder($id){
+            $sql = "SELECT year(ngaygiao) as year FROM donhang WHERE madonhang= $id";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
 
-
-
+        function GetMonthOrder($id){
+            $sql = "SELECT month(ngaygiao) as month FROM donhang WHERE madonhang= $id";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
         //Xử Lý đơn hàng
         function orderprocessing($id){
             $sql = "UPDATE donhang SET status='Đã Xử Lý' WHERE madonhang= $id";

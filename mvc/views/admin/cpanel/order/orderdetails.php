@@ -171,7 +171,7 @@
         <div class="col-1"></div>
         <div class="col-5">
           <div class="row"></div>
-            <input class="btn btn-success btn_update" type="submit" value="IN HÓA ĐƠN" name="submit" >
+            <!-- <a href="<?=base?>admin/printinvoice&id_order=<?=$data["info_order"][0]['madonhang']?>&id_user=<?=$data["info_order"][0]['makh']?>" class="btn btn-success btn_update" type="submit" name="submit" style="width: 150px; height: 50px; padding: 5px 8px; color: #fff;">IN HÓA ĐƠN</a> -->
         </div>
   </div>
 </form>

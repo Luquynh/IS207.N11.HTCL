@@ -1,7 +1,5 @@
 <?php
-   
     class admin extends Controller{
-        
         var $categorymodel;
         var $accadminmodel;
         var $commonmodel;
@@ -593,26 +591,25 @@
         }
 
         // Spam mail quãng cáo với nội dung của slider
-        // function spamquangcao(){
-        //     $id = $_GET['id'];
-        //     $result = $this->commonmodel->GetDataslider($id,"slider");
-        //     $mess="";         
-        //         $tieude = $result[0]['pretitle'];
-        //         $content = $result[0]['title'];
-        //         $content .= '<br>'.$result[0]['title'];
-        //         $img = $result[0]['banner_img'];
-        //         $content .= '<img src="cid:'.$img.'"  alt="" style="width: 100%;">';
-        //         $email_list = $this->accountmodel->GetEmailAllUser();
-        //         $email_arr = [];
-        //         foreach ($email_list as $key => $row){
-        //             array_push(strval($row['email']));
-        //         };
-        //         // $this->slider->Editslider($id,$name,$slogan,$content,$img);
-        //         sendmailspam($email_arr,$tieude,$content,$img);
-        //         notifichanger("Gửi quãng cáo thành công");
-        //         header("location:".base."admin/showslider");
+        function spamquangcao(){
+            $id = $_GET['id'];
+            $result = $this->commonmodel->GetDataslider($id,"slider");
+            $mess="";         
+                $tieude = $result[0]['pretitle'];
+                $content = '<h2>'.$result[0]['title'];
+                $content .= '<br>'.$result[0]['subtitle'].'</h2>';
+                $img = $result[0]['banner_img'];
+                $content .= '<img src="cid:'.$img.'"  alt="" style="width: 60%;">';
+                $email_list = $this->accountmodel->GetEmailAllUser();
+                foreach ($email_list as $key => $row){
+                    sendmailspam($row['email'],$tieude,$content,$img);
+                };
+                // $this->slider->Editslider($id,$name,$slogan,$content,$img);
+                // header("location:".base."admin/showslider");
+                // notifichanger("Gửi quãng cáo thành công");
+                NotifiOrder("Đã gửi quảng cáo cho toàn bộ khách hàng","admin/showslider");
             
-        // }
+        }
         //Quản lí tài khoản người dùng
         function useraccount(){
             $gioitinh="";
@@ -722,192 +719,191 @@
 
 
         //In hóa đơn
-        function printinvoice(){
-            $mess ="";
-            $id_user = $_GET["id_user"];
-            $id_order = $_GET["id_order"];
+//         function printinvoice(){
+//             $mess ="";
+//             $id_user = $_GET["id_user"];
+//             $id_order = $_GET["id_order"];
 
-            //lấy thông tin trạng thái đơn hàng
-            $info_order = $this->ordermodel->GetorderByIdadmin($id_order);
-            //lấy thông tin chi tiết đơn hàng
-            $order_details = $this->ordermodel->GetOrderDetailsadmin($id_order);
-            // lấy thông tin người dùng
-            $info_user = $this->ordermodel->GetInfoUserById($id_user); 
-            $html = '<!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Document</title>
-                </head>
-                <body>
-                    <div class="main">
-                        <div class="invoice-container">
-                            <div class="invoice-header">
-                                <table width="100%">
-                                    <tr> 
-                                        <td>
-                                        <span><strong>CỬA HÀNG ĐỒNG HỒ CURNON</srong></span><br>
-                                        <span>CN1: 33 Hàm Long, Hoàn Kiếm.<br>
-                                            CN2: 9 B7 Phạm Ngọc Thạch, Đống Đa.<br>
-                                            CN3: 173C Kim Mã, Ba Đình.<br>
-                                            Email: buivanthuan1608@gmail.com<br>
-                                            SĐT: 0327437343
-                                        </span>
-                                        </td>
-                                        <td align="right">
-                                            <h3>HÓA ĐƠN BÁN HÀNG</h3>
-                                            <span>Mã đơn hàng: #'.$id_order.'</span><br>
-                                            <span>Ngày tạo: '.$info_order[0]['ngaymua'].'</span><br>
-                                            <span>Ngày in: '.date("Y-m-d h:i:s").'</span>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="invoice-content">
-                <table class="border-top table1" width="100%">
-                    <tr><td colspan="2"><strong>THÔNG TIN KHÁCH HÀNG #'.$id_order.'</strong></td></tr>
-                    <tr>
-                        <td align="left" width="35%">Tên khách hàng: </td>
-                        <td>'.$info_user[0]['tenkh'].'</td>
-                    </tr>
-                    <tr>
-                        <td  align="left">Số điện thoại: </td>
-                        <td>'.$info_order[0]['sodt'].'</td>
-                    </tr>
-                    <tr>
-                        <td  align="left">Email: </td>
-                        <td>'.$info_user[0]['email'].'</td>
-                    </tr>
-                    <tr>
-                        <td  align="left">Địa chỉ giao hàng: </td>
-                        <td>'.$info_order[0]['diachi'].'</td>
-                    </tr>
-                    <tr>
-                        <td  align="left">Hình thức thanh toán: </td>
-                        <td>Thanh toán khi nhận hàng (COD)</td>
-                    </tr>
-                </table>
+//             //lấy thông tin trạng thái đơn hàng
+//             $info_order = $this->ordermodel->GetorderByIdadmin($id_order);
+//             //lấy thông tin chi tiết đơn hàng
+//             $order_details = $this->ordermodel->GetOrderDetailsadmin($id_order);
+//             // lấy thông tin người dùng
+//             $info_user = $this->ordermodel->GetInfoUserById($id_user); 
+//             $html = '<!DOCTYPE html>
+//                 <html lang="en">
+//                 <head>
+//                     <meta charset="UTF-8">
+//                     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+//                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//                     <title>Document</title>
+//                 </head>
+//                 <body>
+//                     <div class="main">
+//                         <div class="invoice-container">
+//                             <div class="invoice-header">
+//                                 <table width="100%">
+//                                     <tr> 
+//                                         <td>
+//                                         <span><strong>CỬA HÀNG ĐỒNG HỒ CURNON</srong></span><br>
+//                                         <span>CN1: 33 Hàm Long, Hoàn Kiếm.<br>
+//                                             CN2: 9 B7 Phạm Ngọc Thạch, Đống Đa.<br>
+//                                             CN3: 173C Kim Mã, Ba Đình.<br>
+//                                             Email: buivanthuan1608@gmail.com<br>
+//                                             SĐT: 0327437343
+//                                         </span>
+//                                         </td>
+//                                         <td align="right">
+//                                             <h3>HÓA ĐƠN BÁN HÀNG</h3>
+//                                             <span>Mã đơn hàng: #'.$id_order.'</span><br>
+//                                             <span>Ngày tạo: '.$info_order[0]['ngaymua'].'</span><br>
+//                                             <span>Ngày in: '.date("Y-m-d h:i:s").'</span>
+//                                         </td>
+//                                     </tr>
+//                                 </table>
+//                             </div>
+//                             <div class="invoice-content">
+//                 <table class="border-top table1" width="100%">
+//                     <tr><td colspan="2"><strong>THÔNG TIN KHÁCH HÀNG #'.$id_order.'</strong></td></tr>
+//                     <tr>
+//                         <td align="left" width="35%">Tên khách hàng: </td>
+//                         <td>'.$info_user[0]['tenkh'].'</td>
+//                     </tr>
+//                     <tr>
+//                         <td  align="left">Số điện thoại: </td>
+//                         <td>'.$info_order[0]['sodt'].'</td>
+//                     </tr>
+//                     <tr>
+//                         <td  align="left">Email: </td>
+//                         <td>'.$info_user[0]['email'].'</td>
+//                     </tr>
+//                     <tr>
+//                         <td  align="left">Địa chỉ giao hàng: </td>
+//                         <td>'.$info_order[0]['diachi'].'</td>
+//                     </tr>
+//                     <tr>
+//                         <td  align="left">Hình thức thanh toán: </td>
+//                         <td>Thanh toán khi nhận hàng (COD)</td>
+//                     </tr>
+//                 </table>
     
-                <table class="table2 border-top" border="1" cellpadding="10" cellspacing="0">
-                    <tr align="left"><td colspan="6" ><strong>THÔNG TIN ĐƠN HÀNG #'.$id_order.'</strong></td></tr>
-                    <tr>
-                        <th>STT</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Thông tin</th>
-                        <th>Đơn giá</th>
-                        <th>Số lượng</th>
-                        <th>Thành tiền</th>
-                    </tr>';
-            foreach($order_details as $key => $values){
-                $kichthuoc=40;
-                switch($values["mabosuutap"]){
-                    case 1:$kichthuoc= 40;
+//                 <table class="table2 border-top" border="1" cellpadding="10" cellspacing="0">
+//                     <tr align="left"><td colspan="6" ><strong>THÔNG TIN ĐƠN HÀNG #'.$id_order.'</strong></td></tr>
+//                     <tr>
+//                         <th>STT</th>
+//                         <th>Tên sản phẩm</th>
+//                         <th>Thông tin</th>
+//                         <th>Đơn giá</th>
+//                         <th>Số lượng</th>
+//                         <th>Thành tiền</th>
+//                     </tr>';
+//             foreach($order_details as $key => $values){
+//                 $kichthuoc=40;
+//                 switch($values["mabosuutap"]){
+//                     case 1:$kichthuoc= 40;
                     
-                        break;
-                    case 2: $kichthuoc=38;
-                        break;
-                    case 3:$kichthuoc=42;
-                        break;
-                    case 4:$kichthuoc=28;
-                        break;
-                    case 5: $kichthuoc=30;
-                        break;
-                    default:
-                        $kichthuoc=32;
-                }
-                $html .=    
-                    '<tr>
-                        <td>'.($key + 1).'</td>
-                        <td>'.$values['tensp'].'</td>
-                        <td>'.$values['mausac'].'/'.$kichthuoc.'MM</td>
-                        <td>'.number_format ($values["tongtien"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." ).'₫</td>
-                        <td>'.$values["soluong"].'</td>
-                        <td align="right">'.number_format ($values["tongtien"]* $values["soluong"], $decimals = 0 , $dec_point = "," , $thousands_sep = "." ).'₫</td>
-                    </tr>';
-            }
+//                         break;
+//                     case 2: $kichthuoc=38;
+//                         break;
+//                     case 3:$kichthuoc=42;
+//                         break;
+//                     case 4:$kichthuoc=28;
+//                         break;
+//                     case 5: $kichthuoc=30;
+//                         break;
+//                     default:
+//                         $kichthuoc=32;
+//                 }
+//                 $html .=    
+//                     '<tr>
+//                         <td>'.($key + 1).'</td>
+//                         <td>'.$values['tensp'].'</td>
+//                         <td>'.$values['mausac'].'/'.$kichthuoc.'MM</td>
+//                         <td>'.number_format ($values["tongtien"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." ).'₫</td>
+//                         <td>'.$values["soluong"].'</td>
+//                         <td align="right">'.number_format ($values["tongtien"]* $values["soluong"], $decimals = 0 , $dec_point = "," , $thousands_sep = "." ).'₫</td>
+//                     </tr>';
+//             }
 
-            $html .= 
-                        '<tr>
-                            <th colspan="5" align="right" >Tạm tính:</th>
-                            <td align="right">'.number_format ($info_order[0]["tongiatri"] - $info_order[0]["phiship"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." ).'₫</td>
-                        </tr>
-                        <tr>
-                            <th colspan="5" align="right">Phí ship:</th>
-                            <td align="right">'.number_format ($info_order[0]["phiship"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." ).'₫</td>
-                        </tr>
-                        <tr>
-                            <th colspan="5" align="right">Tổng cộng:</th>
-                            <td align="right">'.number_format ($info_order[0]["tongiatri"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." ).'₫</td>
-                        </tr>
-                        <tr align="left"><td colspan="6"><i>(*) Giá trên đã bao gồm thuế VAT</i></td></tr>
-                    </table>
-                </div>
-                <div class="invoice-footer" style="font-size: 16px;">
-                    <strong>Cảm ơn bạn đã đặt hàng!!</strong>
-                    <table width="100%">
-                        <tr>
-                            <td width="50%" align="center">Khách hàng <br>(Kí, ghi rõ họ tên)</td>
-                            <td width="50%" align="center">Người bán <br>(Kí, ghi rõ họ tên)</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </body>
-    </html>
-    <style>
-        *{ font-family: DejaVu Sans !important;}
-        body {
-            height: 842px;
-            width: 595px;
-            /* to centre page on screen*/
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .main {
-            width: 100%;
-        }
-        .invoice-container {
-            width: 100%;
-            padding: 16px;
+//             $html .= 
+//                         '<tr>
+//                             <th colspan="5" align="right" >Tạm tính:</th>
+//                             <td align="right">'.number_format ($info_order[0]["tongiatri"] - $info_order[0]["phiship"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." ).'₫</td>
+//                         </tr>
+//                         <tr>
+//                             <th colspan="5" align="right">Phí ship:</th>
+//                             <td align="right">'.number_format ($info_order[0]["phiship"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." ).'₫</td>
+//                         </tr>
+//                         <tr>
+//                             <th colspan="5" align="right">Tổng cộng:</th>
+//                             <td align="right">'.number_format ($info_order[0]["tongiatri"] , $decimals = 0 , $dec_point = "," , $thousands_sep = "." ).'₫</td>
+//                         </tr>
+//                         <tr align="left"><td colspan="6"><i>(*) Giá trên đã bao gồm thuế VAT</i></td></tr>
+//                     </table>
+//                 </div>
+//                 <div class="invoice-footer" style="font-size: 16px;">
+//                     <strong>Cảm ơn bạn đã đặt hàng!!</strong>
+//                     <table width="100%">
+//                         <tr>
+//                             <td width="50%" align="center">Khách hàng <br>(Kí, ghi rõ họ tên)</td>
+//                             <td width="50%" align="center">Người bán <br>(Kí, ghi rõ họ tên)</td>
+//                         </tr>
+//                     </table>
+//                 </div>
+//             </div>
+//         </div>
+//     </body>
+//     </html>
+//     <style>
+//         *{ font-family: DejaVu Sans !important;}
+//         body {
+//             height: 842px;
+//             width: 595px;
+//             /* to centre page on screen*/
+//             margin-left: auto;
+//             margin-right: auto;
+//         }
+//         .main {
+//             width: 100%;
+//         }
+//         .invoice-container {
+//             width: 100%;
+//             padding: 16px;
 
-        }
-        .invoice-header {
-            display: flex;
-            justify-content: space-between;
-        }
-        .invoice-content {
-            width: 100%;
-        }
-        .table1 {
-            width: 100%;
-            /* text-align: center; */
-            border: none;
-        }
-        .table2 {
-            width: 100%;
-            text-align: center;
-        }
-        table, td, th {
-            // border: 1px #000 solid
-            border-collapse: collapse;
-        }
-        table {
-            padding-top: 4px;
-            margin-bottom: 16px;
-        }
-        .border-top {
-            border-top: 1px #ccc solid;
-        }
-        .invoice-footer {
-            width: 100%;
-            padding:  0 10px;
-        }
-    </style>';  
-        printInvoice($html);          
-}
+//         }
+//         .invoice-header {
+//             display: flex;
+//             justify-content: space-between;
+//         }
+//         .invoice-content {
+//             width: 100%;
+//         }
+//         .table1 {
+//             width: 100%;
+//             /* text-align: center; */
+//             border: none;
+//         }
+//         .table2 {
+//             width: 100%;
+//             text-align: center;
+//         }
+//         table, td, th {
+//             // border: 1px #000 solid
+//             border-collapse: collapse;
+//         }
+//         table {
+//             padding-top: 4px;
+//             margin-bottom: 16px;
+//         }
+//         .border-top {
+//             border-top: 1px #ccc solid;
+//         }
+//         .invoice-footer {
+//             width: 100%;
+//             padding:  0 10px;
+//         }
+//     </style>';   
+// }
 
         //Chi tiết đơn hàng
         function orderdetails(){
@@ -931,8 +927,10 @@
             //xử lý khi người dùng bấm nút thanh toán
             if(isset($_POST["update"])){
                 //hàm xử lý trang thai don hang
-                 $matt=$_POST['matt'];
+                $matt=$_POST['matt'];
                 $this->ordermodel->updatestatus($id_order,$matt);
+                // sendmail();
+                sendmailstatus($info_user[0]["email"], $matt, $id_order);
                 notification("success","Thành Công","Đơn hàng đã được xử lý","","false","#3085d6");
                 header('Refresh: 1; URL='.base.'admin/order');
             }

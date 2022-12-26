@@ -50,7 +50,7 @@
     if($soluong > 0) {
         $tinhtrang = 'Còn hàng';
     }else{
-        $tinhtrang = '<span style="color:red;">Hết hàng</span>';
+        $tinhtrang = '<span style="color:red; font-weight: bold;">Hết hàng</span>';
     }
 ?>
 <div id="content">
@@ -166,7 +166,7 @@
                 </div> -->
 
 
-                <button class="buy_now" id="buynow" idproduct="<?=$row["masp"]?>">THANH TOÁN NGAY</button>
+                <button class="buy_now" id="buynow" idproduct="<?=$row["masp"]?>">MUA NGAY</button>
 
                 <div id="mask_root_actice" class="hide">
         <div class="size_watch_box">

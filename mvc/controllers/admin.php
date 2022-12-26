@@ -596,7 +596,7 @@
                 $content = '<h2>'.$result[0]['title'];
                 $content .= '<br>'.$result[0]['subtitle'].'</h2>';
                 $img = $result[0]['banner_img'];
-                $content .= '<img src="cid:'.$img.'"  alt="" style="width: 60%;">';
+                $content .= '<img src="cid:'.$img.'"  alt="" style="width: 100%;">';
                 $email_list = $this->accountmodel->GetEmailAllUser();
                 foreach ($email_list as $key => $row){
                     sendmailspam($row['email'],$tieude,$content,$img);
@@ -741,7 +741,7 @@
                 $matt=$_POST['matt'];
                 $this->ordermodel->updatestatus($id_order,$matt);
                 // sendmail();
-                // sendmailstatus($info_user[0]["email"], $matt, $id_order);
+                sendmailstatus($info_user[0]["email"], $matt, $id_order);
                 if($matt==4){
                     $this->ordermodel->updatengaygiao($id_order);
                     $year=$this->ordermodel->GetyearOrder($id_order);
@@ -763,7 +763,7 @@
                     
                 }
                 notification("success","Thành Công","Đơn hàng đã được xử lý","","false","#3085d6");
-                // header('Refresh: 1; URL='.base.'admin/order');
+                header('Refresh: 1; URL='.base.'admin/order');
             }
             $data = [
                 "folder"=>"order",

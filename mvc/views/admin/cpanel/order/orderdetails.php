@@ -8,9 +8,9 @@
         display: inline-block;
     }
     .btn_update{
-        padding: 6px 70px;
+        padding: 6px 10px;
         margin-left: 70%;
-        font-size: 18px;
+        font-size: 15px;
         /* margin-top:40px; */
     }
     .form-control{
@@ -20,7 +20,22 @@
 
 </style>
 <h3 style="text-align: center;font-weight: bold;">CHI TIẾT ĐƠN HÀNG</h3>
-<a class="btn btn-primary" href="<?=base?>admin/order&page=<?=$data["page"]?>">Trở Về</a>
+
+
+        <div class="row">
+          <div class="col-5">
+          <a class="btn btn-primary" href="<?=base?>admin/order&page=<?=$data["page"]?>">Trở Về</a>
+
+          </div>
+          <div class="col-1"></div>
+          <div class="col-5">
+          <form action="<?=base?>printinvoice/print" method="POST"></form>
+            <input type="text" name="id_order" id="" value="<?=$data["info_order"][0]['madonhang']?>" hidden>
+            <input type="text" name="id_user" id="" value="<?=$data["info_order"][0]['makh']?>" hidden>
+            <a href="http://localhost:3000/xampp/htdocs/curnon/mvc/core/invoice.php" target="_blank" class="btn btn-success btn_update" style="width: 150px; height: 40px;  color: #fff;">IN HÓA ĐƠN</a>
+          </form>
+          </div>
+        </div>
 <h3>Thông Tin Khách Hàng</h3>
 <table class="table table-striped">
   <thead>
@@ -127,6 +142,10 @@
   <div class="row" style="background: #F7F7F7; padding:5px;" >
         <div class="col-5">
           <div class="row">
+          <?php if($data['info_order'][0]['matrangthai'] == 4){?>
+            <h2 style="margin-right: 15px;color:#077FF8">Trạng thái đơn hàng: <span style="color: green; font-weight: bold;">Đã thanh toán</span></h2>
+            
+          <?php } else {?>
           <h2 style="margin-right: 15px;color:#077FF8">Trạng thái đơn hàng: </h2>
           <select name="matt"  style="width: 170px; margin-bottom:40px;" class="form-control" >
                       <option value="<?=$data['info_order'][0]['matrangthai']?>" style="color:<?=$color?>;"><?=$tentt?></option>
@@ -162,13 +181,12 @@
                                         <option value="<?=$arr_id[4]?>"style="color:<?=$arr_color[4]?>;"><?=$arr_ten[4]?></option>
                                         
               </select>
-          </div>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Cập Nhật Trạng Thái" name="update"  style="width: 170px;margin-left:156px; margin-bottom:-5px;height: 40px;padding: 0 10px;position: relative; top: -30px;">
           
           
                     
-              <input class="btn btn-primary" type="submit" value="Cập Nhật Trạng Thái" name="update"  style="margin-left:180px; margin-bottom:-5px;">
-        </div>
-        <div class="col-1"></div>
+          <!-- <div class="col-1"></div>
         <div class="col-5">
           <div class="row"></div>
           <form action="<?=base?>printinvoice/print" method="POST"></form>
@@ -176,7 +194,10 @@
             <input type="text" name="id_user" id="" value="<?=$data["info_order"][0]['makh']?>" hidden>
             <a href="http://localhost:3000/xampp/htdocs/curnon/mvc/core/invoice.php" target="_blank" class="btn btn-success btn_update" style="width: 150px; height: 50px; padding: 5px 8px; color: #fff;">IN HÓA ĐƠN</a>
           </form>
-          </div>
+          </div> -->
+        <?php }?>
+        </div>
+        
   </div>
 </form>
 

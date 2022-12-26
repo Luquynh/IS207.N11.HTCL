@@ -71,6 +71,8 @@
                         $check = $this->accountmodel->Loginadmin($email,md5($pass));
                         if($check >=1){
                             // $_SESSION["thongtin"]["tt_xoa"] = $check[0]['tt_xoa'];
+                            $name = $this->accountmodel->GetNameAdmin($email,md5($pass));
+                            $_SESSION["thongtin"]["id"]= $name[0]["maadmin"];
                             notification("success","Đăng Nhập Thành Công","","","false","");
                             header('Refresh: 1; URL='.base.'admin/home');
                         }
@@ -108,8 +110,8 @@
            $ordersuccess = $this->homemodel->CountOrderSuccess();
            //lấy ra tổng số lượng thành viên
            $totaluser = $this->homemodel->CountUser();
-           //lấy ra thông tin 10 đơn hàng gần nhất
-           $ordernew = $this->homemodel->OrderNew();
+           //lấy ra thông tin các đơn hàng chưa xử lí
+           $ordernew = $this->homemodel->Orderprocess();
            $data = [
                "folder"=>"home",
                "file"  =>"homeadmin",
@@ -326,29 +328,22 @@
 
         //Đổi mật khẩu admin
         function changepass(){
-                // if(isset($_POST["submit"])){
-                //     $post = $_POST["data"];
-                //     $cookie = $_COOKIE["user"];
-                //     $result = $this->commonmodel->GetPassOld($cookie,$this->table);
-                //     if($result != null){
-                //         if(md5($post["pass_old"]) == $result[0]["pass_word"]){
-                //             if($post["pass_new"]==$post["pass_again"]){
-                //                 $passnew = $post["pass_new"];
-                //                 $passold = $result[0]["pass_word"];
-                //                 $success = $this->commonmodel->ChangePassword(md5($passnew),$cookie,$this->table);
-                //                 if($success){
-                //                     notification("success","Thành Công!","Mật khẩu đã được thay đổi!","Xác Nhận","true","#3085d6");
-                //                 }else{
-                //                     notification("error","Thất Bại","Có lỗi sảy ra vui lòng thử lại!","Xác Nhận","true","#3085d6");
-                //                 }
-                //             }else{
-                //                 notification("error","Thất Bại","Nhập lại mật khẩu không khớp!","Xác Nhận","true","#3085d6");
-                //             }
-                //         }else{
-                //             notification("error","Thất Bại","Mật khẩu cũ không chính xác!","Xác Nhận","true","#3085d6");
-                //         }
-                //     }
-                // }
+            $id_admin = $_SESSION['thongtin']['id'];
+            $info_admin = $this->commonmodel->GetInfoAdmin($id_admin);
+                if(isset($_POST["submit"])){
+                    $post = $_POST["data"];
+                    if(md5($post["pass_old"]) == $info_admin[0]["matkhau"]){
+                        if($post["pass_new"]==$post["pass_again"]){
+                            $passnew = $post["pass_new"];
+                            $this->commonmodel->ChangePasswordAdmin($id_admin, md5($passnew));
+                            notification("success","Thành Công!","Mật khẩu đã được thay đổi!","Xác Nhận","true","#3085d6");                        
+                        } else{
+                            notification("error","Thất Bại","Nhập lại mật khẩu không khớp!","Xác Nhận","true","#3085d6");
+                        }
+                    } else{
+                        notification("error","Thất Bại","Mật khẩu cũ không chính xác!","Xác Nhận","true","#3085d6");
+                    }
+                }
             $data = ["folder"=>"changepass","file"=>"changepass","titel"=>"Đổi Mật Khẩu"];
             $this->ViewAdmin("masterlayout",$data);
         }

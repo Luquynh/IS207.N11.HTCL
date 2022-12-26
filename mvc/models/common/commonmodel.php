@@ -9,19 +9,19 @@
             $result =  $query->rowCount();
             return $result;
         }
-        //hàm lấy cookie từ database
-        function AddCookie($user,$cookie,$table){
-            $sql = "UPDATE $table SET cookie = '$cookie' WHERE user_name = '$user'";
+        //lấy thông tin admin theo id
+        function GetInfoAdmin($id){
+            $sql = "SELECT * FROM admin_account where maadmin = $id";
             $query = $this->conn->prepare($sql);
             $query->execute();
+            $result =  $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
         }
-
-        // đổi mật khẩu
-        function ChangePassword($passnew,$cookie,$table){
-            $sql = "UPDATE $table SET pass_word = '$passnew' WHERE cookie = '$cookie'";
+        // đổi mật khẩu admin
+        function ChangePasswordAdmin($id, $pass){
+            $sql = "UPDATE admin_account SET matkhau = '$pass' where maadmin = '$id' ";
             $query = $this->conn->prepare($sql);
             $query->execute();
-            return $query;
         }
 
         // hàm dùng để lấy ra mật khẩu cũ từ database mục đích dùng để đăng nhập và đổi mật khẩu

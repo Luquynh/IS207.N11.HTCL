@@ -35,6 +35,15 @@
             return json_decode($result,true);
         }
 
+        //Lấy thông tin admin
+        function GetNameAdmin($email,$pass){
+            $sql = "SELECT * FROM admin_account WHERE email = '$email' and matkhau  = '$pass'";
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            $result =  json_encode($query->fetchAll(PDO::FETCH_ASSOC));
+            return json_decode($result,true);
+        }
+
         //Lấy danh sách người dùng theo trang
         function GetAllUser($limit,$offset){
             $sql = "SELECT * FROM khachhang ORDER BY 'makh' ASC LIMIT $limit OFFSET $offset";
